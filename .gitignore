@@ -26,6 +26,9 @@
 # Visual Studio cache directory
 .vs/
 
+# Adding vs code to the .gitignore - Jay
+.vscode/
+
 # Gradle cache directory
 .gradle/
 
