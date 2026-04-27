@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Linq;
 using RPNEvaluator;
+using Unity.VisualScripting;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -68,13 +69,14 @@ public class EnemySpawner : MonoBehaviour
         }
         GameManager.Instance.state = GameManager.GameState.INWAVE;
         int enemyTypeCount = levelReference.spawns.Count;
+        // This for loop should create every enemy type with enemy type number amount of programs running, but all halting individually depending on delays
         for (int i = 0; i < enemyTypeCount; ++i)
         {
-            SpawnEnemies();
+            SpawnEnemies(levelReference.spawns[i]);
         }
         yield return new WaitWhile(() => GameManager.Instance.enemy_count > 0);
         GameManager.Instance.state = GameManager.GameState.WAVEEND;
-        NextWave(levelReference);
+        NextWave(levelReference); // does this get cancelled out by yield return above? - chris
     }
 
     // saving SpawnZombie for reference
@@ -98,12 +100,23 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator SpawnEnemies(SpawnData spawnReference)
     {
         int tempCount = RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.count, variables);
+        int tempSequenceIndex = 0; // will iterate through sequence 
+        int currBuildCount = spawnReference.sequence[tempSequenceIndex]; // stores the current build count from sequence
         EnemyData tempRef = enemyTypes[spawnReference.enemy];
-        for (int i = 0; i < tempCount; i++)
+
+        // separate this into its own function?
+        while (tempCount >= 0)
         {
-            SpawnEnemy(tempRef, spawnReference.location);
+            for (int i = 0; i < currBuildCount; i++)
+            {
+                SpawnModifyFlat(SpawnEnemy(tempRef, spawnReference.location)); // location will need to be handled separately with a locator?
+            }
+            tempSequenceIndex++;
+            tempCount -= currBuildCount;
+            currBuildCount = spawnReference.sequence[tempSequenceIndex];
+            yield return new WaitForSeconds(float.Parse(spawnReference.delay));
         }
-        yield return new WaitForSeconds(float.Parse(spawnReference.delay));
+        
     }
     // SpawnEnemy
     // Spawns the actual enemy with the process of locations - (I have no idea if its one specific location, random locations, etc) - chris
@@ -128,16 +141,16 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // SpawnValues
-    // Sets the spawn values initially
+    // Sets the spawn values initially?
 
     // SpawnModifyFlat
     // Called upon spawn, will change the given objects values by parameter specifications
     private void SpawnModifyFlat(SpawnData spawnReference, EnemyController en)
     {
         // might be better not to do this?
-        variables["base_hp"] = 
-        en.hp.SetMaxHP(RPNEvaluator.RPNEvaluator.Evaluate(, variables));
+        en.hp.SetMaxHP(RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.hp, variables));
 
-        en.speed = 
+        //en.speed = spawnReference.speed;
+        //en.damage = spawnReference.damage;
     }
 }
