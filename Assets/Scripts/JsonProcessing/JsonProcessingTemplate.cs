@@ -19,10 +19,10 @@ public abstract class JsonProcessingTemplate<Type>
             throw new Exception("Json file not provided. Please provide a Json file to parse.");
         }
 
-        return File.ReadAllText(filename);
+        return File.ReadAllText(jsonfilename);
 
     }
 
-    protected Type ParseJsonFile(string jsonfilename); //Classes using this template will edit this method
+    protected abstract ParseJsonFile(string data); //Children using this template will edit this method
 
 }
