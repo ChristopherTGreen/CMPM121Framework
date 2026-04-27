@@ -7,14 +7,12 @@ using UnityEngine;
 [Serializable]
 public class EnemyData
 {
-    public string name;
-    // Making sure, do we need sprite name or index (i'm going with index for memory reasons) (clarify me if I am wrong) - Chris
-    public int sprite;
-    public int hp;
-    public int speed;
-    public int damage;
-    
-    // surely there must be a better way to store this information with keeping encapsulation?
 
+    public string name { get ; set; }
+    public int sprite { get ; set; } //Sprites are indexed - Jay
+    public int hp { get ; set; }
+    public int speed { get ; set; }
+    public int damage { get ; set; }
+    // surely there must be a better way to store this information with keeping encapsulation?
 
 }
