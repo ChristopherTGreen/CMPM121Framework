@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System;
+using System.IO;
+
 //Template Method Pattern?
 public abstract class JsonProcessingTemplate<Type>
 {
@@ -23,6 +27,6 @@ public abstract class JsonProcessingTemplate<Type>
 
     }
 
-    protected abstract ParseJsonFile(string data); //Children using this template will edit this method
+    protected abstract Type ParseJsonFile(string data); //Children using this template will edit this method
 
 }
