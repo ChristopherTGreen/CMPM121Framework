@@ -20,6 +20,13 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         variables["wave"] = 1; // wave tracker
+        // variables for base (maybe move to for loop)
+        variables["base_hp"] = 0;
+        variables["base_speed"] = 0;
+        variables["base_damage"] = 0;
+
+
+
         GameObject selector = Instantiate(button, level_selector.transform);
         selector.transform.localPosition = new Vector3(0, 130);
         selector.GetComponent<MenuSelectorController>().spawner = this;
@@ -37,17 +44,20 @@ public class EnemySpawner : MonoBehaviour
         level_selector.gameObject.SetActive(false);
         // this is not nice: we should not have to be required to tell the player directly that the level is starting
         GameManager.Instance.player.GetComponent<PlayerController>().StartLevel();
-        StartCoroutine(SpawnWave());
+
+        // find the level name (I think that is what this does) - chris
+        LevelData levelReference = level_selector.GetComponent<LevelData>();
+        StartCoroutine(SpawnWave(levelReference));
     }
 
-    public void NextWave()
+    public void NextWave(LevelData levelReference)
     {
         variables["wave"]++;
-        StartCoroutine(SpawnWave());
+        StartCoroutine(SpawnWave(levelReference));
     }
 
 
-    IEnumerator SpawnWave()
+    IEnumerator SpawnWave(LevelData levelReference)
     {
         GameManager.Instance.state = GameManager.GameState.COUNTDOWN;
         GameManager.Instance.countdown = 3;
@@ -57,12 +67,14 @@ public class EnemySpawner : MonoBehaviour
             GameManager.Instance.countdown--;
         }
         GameManager.Instance.state = GameManager.GameState.INWAVE;
-        for (int i = 0; i < 10; ++i)
+        int enemyTypeCount = levelReference.spawns.Count;
+        for (int i = 0; i < enemyTypeCount; ++i)
         {
-            yield return SpawnZombie();
+            SpawnEnemies();
         }
         yield return new WaitWhile(() => GameManager.Instance.enemy_count > 0);
         GameManager.Instance.state = GameManager.GameState.WAVEEND;
+        NextWave(levelReference);
     }
 
     // saving SpawnZombie for reference
@@ -85,8 +97,8 @@ public class EnemySpawner : MonoBehaviour
     // The process of spawning multiple given enemies and applying SpawnData
     IEnumerator SpawnEnemies(SpawnData spawnReference)
     {
-        var tempCount = RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.count, variables);
-        var tempRef = enemyTypes[spawnReference.enemy];
+        int tempCount = RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.count, variables);
+        EnemyData tempRef = enemyTypes[spawnReference.enemy];
         for (int i = 0; i < tempCount; i++)
         {
             SpawnEnemy(tempRef, spawnReference.location);
@@ -95,7 +107,7 @@ public class EnemySpawner : MonoBehaviour
     }
     // SpawnEnemy
     // Spawns the actual enemy with the process of locations - (I have no idea if its one specific location, random locations, etc) - chris
-    IEnumerator SpawnEnemy(EnemyData enemyReference, int location)
+    private EnemyController SpawnEnemy(EnemyData enemyReference, int location)
     {
         SpawnPoint spawn_point = SpawnPoints[location];
         Vector2 offset = Random.insideUnitCircle * 1.8f; // constant here - chris
@@ -112,6 +124,20 @@ public class EnemySpawner : MonoBehaviour
         en.damage = enemyReference.damage;
 
         GameManager.Instance.AddEnemy(new_enemy);
-        yield return new WaitForSeconds(0.5f); // this will need to take level data for how long to wait, probably get rid of this for delay/sequence - chris
+        return en;
+    }
+
+    // SpawnValues
+    // Sets the spawn values initially
+
+    // SpawnModifyFlat
+    // Called upon spawn, will change the given objects values by parameter specifications
+    private void SpawnModifyFlat(SpawnData spawnReference, EnemyController en)
+    {
+        // might be better not to do this?
+        variables["base_hp"] = 
+        en.hp.SetMaxHP(RPNEvaluator.RPNEvaluator.Evaluate(, variables));
+
+        en.speed = 
     }
 }

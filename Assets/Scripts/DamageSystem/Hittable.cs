@@ -35,7 +35,7 @@ public class Hittable
 
     public void SetMaxHP(int max_hp)
     {
-        float perc = this.hp * 1.0f / this.max_hp;
+        float perc = this.hp * 1.0f / this.max_hp; // converts to float
         this.max_hp = max_hp;
         this.hp = Mathf.RoundToInt(perc * max_hp);
     }
