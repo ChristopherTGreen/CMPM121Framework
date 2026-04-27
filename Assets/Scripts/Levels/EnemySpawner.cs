@@ -21,10 +21,6 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         variables["wave"] = 1; // wave tracker
-        // variables for base (maybe move to for loop)
-        variables["base_hp"] = 0;
-        variables["base_speed"] = 0;
-        variables["base_damage"] = 0;
 
 
 
@@ -72,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
         // This for loop should create every enemy type with enemy type number amount of programs running, but all halting individually depending on delays
         for (int i = 0; i < enemyTypeCount; ++i)
         {
-            SpawnEnemies(levelReference.spawns[i]);
+            StartCoroutine(SpawnEnemies(levelReference.spawns[i]));
         }
         yield return new WaitWhile(() => GameManager.Instance.enemy_count > 0);
         GameManager.Instance.state = GameManager.GameState.WAVEEND;
@@ -101,17 +97,18 @@ public class EnemySpawner : MonoBehaviour
     {
         int tempCount = RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.count, variables);
         int tempSequenceIndex = 0; // will iterate through sequence 
+        int sequenceCount = spawnReference.sequence.Count;
         int currBuildCount = spawnReference.sequence[tempSequenceIndex]; // stores the current build count from sequence
-        EnemyData tempRef = enemyTypes[spawnReference.enemy];
+        EnemyData tempEnemyReference = enemyTypes[spawnReference.enemy];
 
         // separate this into its own function?
         while (tempCount >= 0)
         {
             for (int i = 0; i < currBuildCount; i++)
             {
-                SpawnModifyFlat(SpawnEnemy(tempRef, spawnReference.location)); // location will need to be handled separately with a locator?
+                SpawnModifyFlat(tempEnemyReference, SpawnEnemy(tempEnemyReference, spawnReference.location)); // location will need to be handled separately with a locator?
             }
-            tempSequenceIndex++;
+            tempSequenceIndex = (tempSequenceIndex + 1) % sequenceCount;
             tempCount -= currBuildCount;
             currBuildCount = spawnReference.sequence[tempSequenceIndex];
             yield return new WaitForSeconds(float.Parse(spawnReference.delay));
@@ -148,7 +145,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnModifyFlat(SpawnData spawnReference, EnemyController en)
     {
         // might be better not to do this?
-        en.hp.SetMaxHP(RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.hp, variables));
+        en.hp.SetMaxHP(RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.hp, new Dictionary<string, int>(variables) { ["base"] = en.hp.max_hp}));
 
         //en.speed = spawnReference.speed;
         //en.damage = spawnReference.damage;
