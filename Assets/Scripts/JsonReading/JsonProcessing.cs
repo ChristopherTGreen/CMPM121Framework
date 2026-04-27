@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Linq;
+using System.Dynamic;
 using System.IO;
 
 namespace JsonProcessing 
@@ -22,6 +23,13 @@ namespace JsonProcessing
         public string SpawnDelay { get ; set; }
         public Array<int> EnemySpawnSequence { get ; set; }
         public string EnemySpawnLocation { get ; set; }
+    }
+
+    public class LevelsBaseData
+    {
+        public string LevelDifficulty { get ; set ;}
+        public int AmountOfWaves { get ; set; }
+        public List<SpawnsBaseData> EnemySpawns; //should make a list of with all the different enemy spawn types
     }
 
 
