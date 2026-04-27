@@ -26,7 +26,7 @@ namespace JsonProcessing
 
         }
 
-        protected Type ParseJsonFile(string jsonfilename){} //Classes using this template will edit this method
+        protected Type ParseJsonFile(string jsonfilename); //Classes using this template will edit this method
 
     }
 
