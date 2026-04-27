@@ -6,17 +6,20 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Collections;
 using System.Linq;
+using RPNEvaluator;
 
 public class EnemySpawner : MonoBehaviour
 {
     public Image level_selector;
     public GameObject button;
     public GameObject enemy;
-    public SpawnPoint[] SpawnPoints;    
+    public SpawnPoint[] SpawnPoints;
+    private Dictionary<string, int> variables = new Dictionary<string, int>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        variables["wave"] = 1; // wave tracker
         GameObject selector = Instantiate(button, level_selector.transform);
         selector.transform.localPosition = new Vector3(0, 130);
         selector.GetComponent<MenuSelectorController>().spawner = this;
@@ -39,6 +42,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void NextWave()
     {
+        variables["wave"]++;
         StartCoroutine(SpawnWave());
     }
 
@@ -81,18 +85,20 @@ public class EnemySpawner : MonoBehaviour
     // The process of spawning multiple given enemies and applying SpawnData
     IEnumerator SpawnEnemies(SpawnData spawnReference)
     {
-        for (int i = 0; i < 10; i++)
+        var tempCount = RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.count, variables);
+        var tempRef = enemyTypes[spawnReference.enemy];
+        for (int i = 0; i < tempCount; i++)
         {
-            // need rpn
+            SpawnEnemy(tempRef, spawnReference.location);
         }
-        yield return 0;
+        yield return new WaitForSeconds(float.Parse(spawnReference.delay));
     }
     // SpawnEnemy
     // Spawns the actual enemy with the process of locations - (I have no idea if its one specific location, random locations, etc) - chris
     IEnumerator SpawnEnemy(EnemyData enemyReference, int location)
     {
         SpawnPoint spawn_point = SpawnPoints[location];
-        Vector2 offset = Random.insideUnitCircle * 1.8f;
+        Vector2 offset = Random.insideUnitCircle * 1.8f; // constant here - chris
 
         Vector3 initial_position = spawn_point.transform.position + new Vector3(offset.x, offset.y, 0);
         GameObject new_enemy = Instantiate(enemy, initial_position, Quaternion.identity);
@@ -106,6 +112,6 @@ public class EnemySpawner : MonoBehaviour
         en.damage = enemyReference.damage;
 
         GameManager.Instance.AddEnemy(new_enemy);
-        yield return new WaitForSeconds(0.5f); // this will need to take level data for how long to wait - chris
+        yield return new WaitForSeconds(0.5f); // this will need to take level data for how long to wait, probably get rid of this for delay/sequence - chris
     }
 }

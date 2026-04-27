@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,14 @@ public class EnemyData
     public int hp { get ; set; }
     public int speed { get ; set; }
     public int damage { get ; set; }
-    // surely there must be a better way to store this information with keeping encapsulation?
+    [JsonConstructor]
+    public EnemyData(string initName, int initSprite, int initHp, int initSpeed, int initDamage)
+    {
+        name = initName;
+        sprite = initSprite;
+        hp = initHp;
+        speed = initSpeed;
+        damage = initDamage;
+    }
 
 }
