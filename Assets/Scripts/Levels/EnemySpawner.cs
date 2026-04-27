@@ -61,6 +61,7 @@ public class EnemySpawner : MonoBehaviour
         GameManager.Instance.state = GameManager.GameState.WAVEEND;
     }
 
+    // saving SpawnZombie for reference
     IEnumerator SpawnZombie()
     {
         SpawnPoint spawn_point = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
@@ -75,5 +76,18 @@ public class EnemySpawner : MonoBehaviour
         en.speed = 10;
         GameManager.Instance.AddEnemy(new_enemy);
         yield return new WaitForSeconds(0.5f);
+    }
+    // spawns given enemy
+    IEnumerator SpawnEnemy(string enemyName, string[] locations)
+    {
+        SpawnPoint spawn_point = SpawnPoints[locations];
+        // need to iterate through
+        Vector2 offset = Random.insideUnitCircle * 1.8f; // store this somewhere so we don't calculate every call - chris
+
+        Vector3 initial_position = spawn_point.transform.position + new Vector3(offset.x, offset.y, 0);
+        GameObject new_enemy = Instantiate(enemy, initial_position, Quaternion.identity);
+        // don't have time, but going to essentially create an enemy with all values applied when calling enemy class (essentially enemy class is data storage for all enemy types?)
+
+        new_enemy.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.enemySpriteManager.Get(new_enemy.sprite);
     }
 }
