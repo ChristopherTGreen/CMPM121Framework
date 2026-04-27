@@ -13,6 +13,17 @@ namespace JsonProcessing
         public int EnemyBaseDamage { get ; set; }
     }
 
+    //also might need to move this to a different file?
+    public class SpawnsBaseData
+    {
+        public string EnemyType { get ; set; }
+        public string EnemyAmount { get ; set; }
+        public string EnemyHp { get ; set; }
+        public string SpawnDelay { get ; set; }
+        public Array<int> EnemySpawnSequence { get ; set; }
+        public string EnemySpawnLocation { get ; set; }
+    }
+
 
 
     //Template Method Pattern?
