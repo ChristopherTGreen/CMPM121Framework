@@ -77,10 +77,17 @@ public class EnemySpawner : MonoBehaviour
         GameManager.Instance.AddEnemy(new_enemy);
         yield return new WaitForSeconds(0.5f);
     }
-    // spawns given enemy
-    IEnumerator SpawnEnemy(string enemyName, string[] locations)
+    // SpawnEnemies
+    // The process of spawning multiple given enemies, specificially to call the actual spawn enemy function for multiple
+    IEnumerator SpawnEnemies()
     {
-        SpawnPoint spawn_point = SpawnPoints[locations];
+        yield return 0;
+    }
+    // SpawnEnemy
+    // Spawns the actual enemy with the process of locations - (I have no idea if its one specific location, random locations, etc) - chris
+    IEnumerator SpawnEnemy(EnemyData enemyReference, int[] locations)
+    {
+        SpawnPoint spawn_point = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
         // need to iterate through
         Vector2 offset = Random.insideUnitCircle * 1.8f; // store this somewhere so we don't calculate every call - chris
 
@@ -88,6 +95,13 @@ public class EnemySpawner : MonoBehaviour
         GameObject new_enemy = Instantiate(enemy, initial_position, Quaternion.identity);
         // don't have time, but going to essentially create an enemy with all values applied when calling enemy class (essentially enemy class is data storage for all enemy types?)
 
-        new_enemy.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.enemySpriteManager.Get(new_enemy.sprite);
+        new_enemy.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.enemySpriteManager.Get(enemyReference.sprite);
+        EnemyController en = new_enemy.GetComponent<EnemyController>();
+        // builder (lets try to have default values somehow?
+        en.hp = new Hittable(enemyReference.hp, Hittable.Team.MONSTERS, new_enemy);
+        en.speed = enemyReference.speed;
+        // this is something which can be put into spawn enemies maybe? - chris
+        GameManager.Instance.AddEnemy(new_enemy);
+        yield return new WaitForSeconds(0.5f); // this will need to take level data for how long to wait - chris
     }
 }

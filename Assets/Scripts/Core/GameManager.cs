@@ -34,6 +34,8 @@ public class GameManager
     public RelicIconManager relicIconManager;
 
     private List<GameObject> enemies;
+    // Private dictionary for enemy types for storage in a singleton 
+    private Dictionary<string, EnemyData> enemyTypes; // (possibly convert to lists based on what prof said) - chris
     public int enemy_count { get { return enemies.Count; } }
 
     public void AddEnemy(GameObject enemy)
