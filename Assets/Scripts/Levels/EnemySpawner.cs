@@ -78,29 +78,33 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
     // SpawnEnemies
-    // The process of spawning multiple given enemies, specificially to call the actual spawn enemy function for multiple
-    IEnumerator SpawnEnemies()
+    // The process of spawning multiple given enemies and applying SpawnData
+    IEnumerator SpawnEnemies(SpawnData spawnReference)
     {
+        for (int i = 0; i < 10; i++)
+        {
+            // need rpn
+        }
         yield return 0;
     }
     // SpawnEnemy
     // Spawns the actual enemy with the process of locations - (I have no idea if its one specific location, random locations, etc) - chris
-    IEnumerator SpawnEnemy(EnemyData enemyReference, int[] locations)
+    IEnumerator SpawnEnemy(EnemyData enemyReference, int location)
     {
-        SpawnPoint spawn_point = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
-        // need to iterate through
-        Vector2 offset = Random.insideUnitCircle * 1.8f; // store this somewhere so we don't calculate every call - chris
+        SpawnPoint spawn_point = SpawnPoints[location];
+        Vector2 offset = Random.insideUnitCircle * 1.8f;
 
         Vector3 initial_position = spawn_point.transform.position + new Vector3(offset.x, offset.y, 0);
         GameObject new_enemy = Instantiate(enemy, initial_position, Quaternion.identity);
-        // don't have time, but going to essentially create an enemy with all values applied when calling enemy class (essentially enemy class is data storage for all enemy types?)
 
         new_enemy.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.enemySpriteManager.Get(enemyReference.sprite);
         EnemyController en = new_enemy.GetComponent<EnemyController>();
-        // builder (lets try to have default values somehow?
+        // builder (lets try to have default values somehow?, and quicker way to initialize)
+        // we might need to make a function similar to that of hittable
         en.hp = new Hittable(enemyReference.hp, Hittable.Team.MONSTERS, new_enemy);
         en.speed = enemyReference.speed;
-        // this is something which can be put into spawn enemies maybe? - chris
+        en.damage = enemyReference.damage;
+
         GameManager.Instance.AddEnemy(new_enemy);
         yield return new WaitForSeconds(0.5f); // this will need to take level data for how long to wait - chris
     }

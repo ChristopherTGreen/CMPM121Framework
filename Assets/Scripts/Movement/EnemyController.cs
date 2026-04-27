@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour
 
     public Transform target;
     public int speed;
+    public int damage;
     public Hittable hp;
     public HealthBar healthui;
     public bool dead;
