@@ -14,14 +14,17 @@ public class EnemyData
     public int hp { get ; set; }
     public int speed { get ; set; }
     public int damage { get ; set; }
+
     [JsonConstructor]
     public EnemyData(string initName, int initSprite, int initHp, int initSpeed, int initDamage)
     {
+
         name = initName;
         sprite = initSprite;
         hp = initHp;
         speed = initSpeed;
         damage = initDamage;
+        
     }
 
 }
