@@ -72,7 +72,9 @@ public class EnemySpawner : MonoBehaviour
         }
         yield return new WaitWhile(() => GameManager.Instance.enemy_count > 0);
         GameManager.Instance.state = GameManager.GameState.WAVEEND;
-        NextWave(levelReference); // does this get cancelled out by yield return above? - chris
+        // Should end the round when waves are finished?
+        if (variables["wave"] < levelReference.waves) NextWave(levelReference);
+        else GameManager.Instance.state = GameManager.GameState.GAMEOVER; // there might be a better state for this, pregame?
     }
 
     // saving SpawnZombie for reference
