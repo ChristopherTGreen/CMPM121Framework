@@ -59,5 +59,6 @@ public class GameManager
     {
         enemies = new List<GameObject>();
         levels = RetrieveLevelData.LevelDictionary();
+        enemyTypes = RetrieveEnemyData.EnemyDictionary();
     }
 }

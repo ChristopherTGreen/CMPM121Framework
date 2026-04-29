@@ -168,8 +168,8 @@ public class EnemySpawner : MonoBehaviour
         
         for (int i = 0; i < SpawnPoints.Length; i++)
         {
-            SpawnPoint spawn = SpawnPoints[i];
-            if (spawn.ToString() == spawnName) return spawn;
+            SpawnPoint.SpawnName spawn = SpawnPoints[i].kind;
+            if (spawn.ToString().ToLower() == spawnName) return SpawnPoints[i];
         }
 
 
