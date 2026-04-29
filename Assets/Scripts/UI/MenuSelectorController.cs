@@ -33,16 +33,42 @@ public class MenuSelectorController : MonoBehaviour
 
 
 
-    // Making this exist in the enemy controller first before putting it in here
-    
-    public static void MenuButtonsHandler()
+    // Making this exist in the enemy spawner first before putting it in here
+    // need to get the Unity inspector references in the EnemySpawner class
+    public static void DynamicMenuButtonSpawner(EnemySpawner EnemySpawnerClassReferences)
     {
         
-        
+        Dictionary<string, LevelData> level_dictionary = RetrieveLevelData.LevelDictionary();
+        int y_pos = 60; // Initial button was too high on the UI so this lowers it
+
+        foreach (var difficulty in level_dictionary)
+        {
+
+            /* Note From Jay:
+            Okay so from my understanding: button is a prefab referenced in the Unity inspector under the 
+            "EnemySpawner" script. The EnemySpawner script for some reason is attached to Main Camera (Why?!?).
+
+            level_selector references a UI image for the buttons. This reference is also in the EnemySpawner
+
+            *I think* selector.GetComponent<MenuSelectorController>().spawner = EnemySpawnerClassReferences; 
+            links the enemy spawner to the button in some way. 
+
+            I took what the professor originally had in the Start() method in the EnemySpawner, stuck it
+            in a for loop and stuck it in a method in the MenuSelectorController. 
+            */
+
+            GameObject selector = Instantiate(EnemySpawnerClassReferences.button, EnemySpawnerClassReferences.level_selector.transform);
+
+            selector.transform.localPosition = new Vector3(0, 130 - y_pos); //Button position
+            y_pos += 40; //spacing between buttons 
+
+            selector.GetComponent<MenuSelectorController>().spawner = EnemySpawnerClassReferences;
+            selector.GetComponent<MenuSelectorController>().SetLevel(difficulty.Key); //Sets the text on the button (selector)
+
+        }
 
     }
     
-
 }
 
 
