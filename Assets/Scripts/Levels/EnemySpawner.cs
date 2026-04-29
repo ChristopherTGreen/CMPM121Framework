@@ -41,7 +41,8 @@ public class EnemySpawner : MonoBehaviour
         GameManager.Instance.player.GetComponent<PlayerController>().StartLevel();
 
         // find the level name (I think that is what this does) - chris
-        LevelData levelReference = LevelSelector(levelname);
+        //LevelData levelReference = LevelSelector(levelname);
+        LevelData levelReference = GameManager.Instance.levels[levelname];
         StartCoroutine(SpawnWave(levelReference));
     }
 
@@ -178,10 +179,10 @@ public class EnemySpawner : MonoBehaviour
 
     // LevelSelector
     // Finds the given level and returns levelData to it (move this to an outside function)  - chris
-    private LevelData LevelSelector(string levelName)
+    // THIS IS OLD, but keep it just in case we move to lists - chris
+    /*private LevelData LevelSelector(string levelName)
     {
-        List<LevelData> levels = GameManager.Instance.levels;
-        print(levels);
+        Dictionary<string, LevelData> levels = GameManager.Instance.levels;
         int levelSize = levels.Count;
         for (int i = 0; i < levelSize; i++)
         {
@@ -190,6 +191,6 @@ public class EnemySpawner : MonoBehaviour
         }
 
         throw new Exception("Level name invalid, the level name in the JSON file does not exist as a class LevelData");
-    }
+    }*/
     
 }

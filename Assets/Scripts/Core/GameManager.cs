@@ -36,7 +36,7 @@ public class GameManager
     private List<GameObject> enemies;
     // Private dictionary for enemy types for storage in a singleton 
     public Dictionary<string, EnemyData> enemyTypes; // (possibly convert to lists based on what prof said) - chris
-    public List<LevelData> levels;
+    public Dictionary<string, LevelData> levels;
     public int enemy_count { get { return enemies.Count; } }
 
     public void AddEnemy(GameObject enemy)
@@ -58,5 +58,6 @@ public class GameManager
     private GameManager()
     {
         enemies = new List<GameObject>();
+        levels = RetrieveLevelData.LevelDictionary();
     }
 }
