@@ -24,11 +24,20 @@ public class EnemySpawner : MonoBehaviour
         variables["wave"] = 1; // wave tracker
 
 
+        //---Making Dynamic Button Spawning Exist First before putting it into a class ---//
+        Dictionary<string, LevelData> level_dictionary = RetrieveLevelData.LevelDictionary();
+        int y_pos = 60;
 
-        GameObject selector = Instantiate(button, level_selector.transform);
-        selector.transform.localPosition = new Vector3(0, 130);
-        selector.GetComponent<MenuSelectorController>().spawner = this;
-        selector.GetComponent<MenuSelectorController>().SetLevel("Easy");
+        foreach (var difficulty in level_dictionary)
+        {
+            GameObject selector = Instantiate(button, level_selector.transform);
+            selector.transform.localPosition = new Vector3(0, 130 - y_pos);
+            y_pos += 40;
+            selector.GetComponent<MenuSelectorController>().spawner = this;
+            selector.GetComponent<MenuSelectorController>().SetLevel(difficulty.Key);
+        }
+        //---Making Dynamic Button Spawning Exist First---//
+
     }
 
     // Update is called once per frame

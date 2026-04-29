@@ -28,7 +28,7 @@ public class RetrieveLevelData
     private static LevelParsing LevelParse = new LevelParsing();
     private static Dictionary<string, LevelData> leveldictionary = new Dictionary<string, LevelData>();
 
-    // Programmer can now call Dictionary<string, LevelData> level_dictionary = StoredLevelData.LevelDictionary();
+    // Programmer can now call Dictionary<string, LevelData> level_dictionary = RetrieveLevelData.LevelDictionary();
     public static Dictionary<string, LevelData> LevelDictionary()
     {
         

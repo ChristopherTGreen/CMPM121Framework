@@ -30,13 +30,19 @@ public class MenuSelectorController : MonoBehaviour
     {
         spawner.StartLevel(level);
     }
+
+
+
+    // Making this exist in the enemy controller first before putting it in here
+    
+    public static void MenuButtonsHandler()
+    {
+        
+        
+
+    }
+    
+
 }
 
 
-// Should add a button to the Difficulty Selector.
-public class MenuButtonHandler
-{
-    
-    
-
-}

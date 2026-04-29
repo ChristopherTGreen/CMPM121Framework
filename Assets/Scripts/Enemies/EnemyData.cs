@@ -38,7 +38,7 @@ public class RetrieveEnemyData
     private static EnemyParsing EnemyParse = new EnemyParsing();
     private static Dictionary<string, EnemyData> enemydictionary = new Dictionary<string, EnemyData>();
 
-    // Programmer can now call Dictionary<string, EnemyData> enemy_dictionary = StoredEnemyData.EnemyDictionary();
+    // Programmer can now call Dictionary<string, EnemyData> enemy_dictionary = RetrieveEnemyData.EnemyDictionary();
     public static Dictionary<string, EnemyData> EnemyDictionary()
     {
         
