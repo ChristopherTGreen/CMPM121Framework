@@ -23,15 +23,3 @@ public class EnemyParsing : JsonProcessingTemplate<EnemyData>
     }
 
 }
-
-//This should be it's own class in this file
-
-/*
-private void AddEnemyData(Dictionary<string, EnemyData> dictionaryReference)
-    {
-        EnemyParsing enemy = new EnemyParsing();
-
-        EnemyData newEnemy = enemy.StoreData("enemies.json");
-        dictionaryReference.Add(newEnemy.name, newEnemy);
-    }
-*/
