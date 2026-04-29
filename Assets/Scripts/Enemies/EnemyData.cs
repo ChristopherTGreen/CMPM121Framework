@@ -9,11 +9,11 @@ using UnityEngine;
 public class EnemyData
 {
 
-    public string name { get ; set; }
-    public int sprite { get ; set; } //Sprites are indexed - Jay
-    public int hp { get ; set; }
-    public int speed { get ; set; }
-    public int damage { get ; set; }
+    public string name { get ; set; } = null;
+    public int sprite { get ; set; } = 0;//Sprites are indexed - Jay
+    public int hp { get ; set; } = 1;
+    public int speed { get ; set; } = 1;
+    public int damage { get ; set; } = 1;
 
     [JsonConstructor]
     public EnemyData(string initName, int initSprite, int initHp, int initSpeed, int initDamage)

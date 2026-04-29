@@ -5,14 +5,14 @@ using Newtonsoft.Json;
 public class SpawnData
 {
 
-    public string enemy { get ; set; }
-    public string count { get ; set; }
-    public string hp { get ; set; }
-    public string delay { get ; set; }
-    public List<int> sequence { get ; set; }
-    public string location { get ; set; }
+    public string enemy { get ; set; } = null;
+    public string count { get ; set; } = null;
+    public string hp { get ; set; } = null;
+    public string delay { get ; set; } = "2";
+    public List<int> sequence { get ; set; } = new List<int> { 1 };
+    public string location { get; set; } = null;
 
-    [JsonConstructor]
+    /*[JsonConstructor]
     public SpawnData(string initEnemy, string initCount, string initHp, string initDelay, List<int> initSequence, string initLocation)
     {
         
@@ -23,6 +23,6 @@ public class SpawnData
         sequence = initSequence;
         location = initLocation;
 
-    }
+    }*/
 
 }
