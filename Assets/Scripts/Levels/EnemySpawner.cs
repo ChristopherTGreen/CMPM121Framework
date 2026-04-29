@@ -1,13 +1,14 @@
-using UnityEngine;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.IO;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using System.Collections;
-using System.Linq;
+using Newtonsoft.Json.Linq;
 using RPNEvaluator;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -80,8 +81,8 @@ public class EnemySpawner : MonoBehaviour
     // saving SpawnZombie for reference
     IEnumerator SpawnZombie()
     {
-        SpawnPoint spawn_point = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
-        Vector2 offset = Random.insideUnitCircle * 1.8f;
+        SpawnPoint spawn_point = SpawnPoints[UnityEngine.Random.Range(0, SpawnPoints.Length)]; // UnityEngine.Random is an issue, when UnityEngine and System are being used, doesn't know which to reference
+        Vector2 offset = UnityEngine.Random.insideUnitCircle * 1.8f;
                 
         Vector3 initial_position = spawn_point.transform.position + new Vector3(offset.x, offset.y, 0);
         GameObject new_enemy = Instantiate(enemy, initial_position, Quaternion.identity);
@@ -101,14 +102,15 @@ public class EnemySpawner : MonoBehaviour
         int tempSequenceIndex = 0; // will iterate through sequence 
         int sequenceCount = spawnReference.sequence.Count;
         int currBuildCount = spawnReference.sequence[tempSequenceIndex]; // stores the current build count from sequence
-        EnemyData tempEnemyReference = enemyTypes[spawnReference.enemy];
+        SpawnPoint spawnLocation = SpawnSelector(spawnReference.location);
+        EnemyData tempEnemyReference = GameManager.Instance.enemyTypes[spawnReference.enemy];
 
         // separate this into its own function?
         while (tempCount >= 0)
         {
             for (int i = 0; i < currBuildCount; i++)
             {
-                SpawnModifyFlat(tempEnemyReference, SpawnEnemy(tempEnemyReference, spawnReference.location)); // location will need to be handled separately with a locator?
+                SpawnModifyFlat(spawnReference, SpawnEnemy(tempEnemyReference, spawnLocation)); // location will need to be handled separately with a locator?
             }
             tempSequenceIndex = (tempSequenceIndex + 1) % sequenceCount;
             tempCount -= currBuildCount;
@@ -119,10 +121,10 @@ public class EnemySpawner : MonoBehaviour
     }
     // SpawnEnemy
     // Spawns the actual enemy with the process of locations - (I have no idea if its one specific location, random locations, etc) - chris
-    private EnemyController SpawnEnemy(EnemyData enemyReference, int location)
+    private EnemyController SpawnEnemy(EnemyData enemyReference, SpawnPoint spawnLocation)
     {
-        SpawnPoint spawn_point = SpawnPoints[location];
-        Vector2 offset = Random.insideUnitCircle * 1.8f; // constant here - chris
+        SpawnPoint spawn_point = spawnLocation;
+        Vector2 offset = UnityEngine.Random.insideUnitCircle * 1.8f; // constant here - chris
 
         Vector3 initial_position = spawn_point.transform.position + new Vector3(offset.x, offset.y, 0);
         GameObject new_enemy = Instantiate(enemy, initial_position, Quaternion.identity);
@@ -151,5 +153,29 @@ public class EnemySpawner : MonoBehaviour
 
         //en.speed = spawnReference.speed;
         //en.damage = spawnReference.damage;
+    }
+
+
+    // Possibly move to a separate file or dedicated .cs - Chris
+    // SpawnSelector
+    // Checks the given name and identifies index for the spawn
+    private SpawnPoint SpawnSelector(string spawnLocation)
+    {
+        if (spawnLocation == "random")
+        {
+            return SpawnPoints[UnityEngine.Random.Range(0, SpawnPoints.Length)];
+        }
+        string[] spawnToken = RPNEvaluator.RPNEvaluator.TokenizeString(spawnLocation);
+        string spawnName = spawnToken[1];
+        
+        for (int i = 0; i < SpawnPoints.Length; i++)
+        {
+            SpawnPoint spawn = SpawnPoints[i];
+            if (spawn.ToString() == spawnName) return spawn;
+        }
+
+
+
+        throw new Exception("Spawn point name invalid, the JSON file name does not exist in the SpawnPoint.cs");
     }
 }
