@@ -16,11 +16,11 @@ public abstract class JsonProcessingTemplate<Type>
 
     protected string ReadJsonFile(string jsonfilename)
     {
-        
+
         //error throwing/crash program if jsonfile is not provided
         if (!File.Exists(jsonfilename))
         {
-            throw new Exception("Json file not provided. Please provide a Json file to parse.");
+            throw new Exception("Json file not provided. Please provide a Json file to parse. You Provided: " + jsonfilename);
         }
 
         return File.ReadAllText(jsonfilename);
