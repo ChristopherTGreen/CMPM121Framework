@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
+using UnityEngine.PlayerLoop;
 
 public class MenuSelectorController : MonoBehaviour
 {
@@ -39,7 +41,10 @@ public class MenuSelectorController : MonoBehaviour
     {
         
         Dictionary<string, LevelData> level_dictionary = RetrieveLevelData.LevelDictionary();
-        int y_pos = 60; // Initial button was too high on the UI so this lowers it
+        int y_pos = 0; // Initial button was too high on the UI so this lowers it
+
+        const int initialButtonPosition = 190;
+        const int buttonGap = 40;
 
         foreach (var difficulty in level_dictionary)
         {
@@ -59,8 +64,8 @@ public class MenuSelectorController : MonoBehaviour
 
             GameObject selector = Instantiate(EnemySpawnerClassReferences.button, EnemySpawnerClassReferences.level_selector.transform);
 
-            selector.transform.localPosition = new Vector3(0, 130 - y_pos); //Button position
-            y_pos += 40; //spacing between buttons 
+            selector.transform.localPosition = new Vector3(0, initialButtonPosition - y_pos); //Button position
+            y_pos += buttonGap; //spacing between buttons 
             // possibly get rid of these constants for ease of adjustment
 
             selector.GetComponent<MenuSelectorController>().spawner = EnemySpawnerClassReferences;
