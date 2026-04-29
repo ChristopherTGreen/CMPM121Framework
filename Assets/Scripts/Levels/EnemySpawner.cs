@@ -184,7 +184,8 @@ public class EnemySpawner : MonoBehaviour
     private LevelData LevelSelector(string levelName)
     {
         List<LevelData> levels = GameManager.Instance.levels;
-        int levelSize = levels.Capacity;
+        print(levels);
+        int levelSize = levels.Count;
         for (int i = 0; i < levelSize; i++)
         {
             LevelData currentLevel = levels[i];

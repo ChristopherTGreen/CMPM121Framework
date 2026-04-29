@@ -12,4 +12,12 @@ public class EnemyParsing : JsonProcessingTemplate<EnemyData>
 
     }
 
+    private void AddEnemyData(Dictionary<string, EnemyData> dictionaryReference)
+    {
+        EnemyParsing enemy = new EnemyParsing();
+
+        EnemyData newEnemy = enemy.StoreData("enemies.json");
+        dictionaryReference.Add(newEnemy.name, newEnemy);
+    }
+
 }

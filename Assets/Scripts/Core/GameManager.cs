@@ -57,6 +57,9 @@ public class GameManager
 
     private GameManager()
     {
+        EnemyParsing enemy = new EnemyParsing();
+        EnemyData newEnemy = enemy.StoreData("enemies.json");
+        enemyTypes.Add(newEnemy.name, newEnemy);
         enemies = new List<GameObject>();
     }
 }
