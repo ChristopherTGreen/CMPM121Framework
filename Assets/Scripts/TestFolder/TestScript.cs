@@ -21,8 +21,8 @@ public class TestScript : MonoBehaviour
         //Call any class you want to test in here.
 
         //Testing Json reading, parsing and storing
-        Debug.Log("Enemies Dictionary: " + JsonConvert.SerializeObject(StoredEnemyData.EnemyDictionary(), Formatting.Indented));
-        Debug.Log("Levels Dictionary: " + JsonConvert.SerializeObject(StoredLevelData.LevelDictionary(), Formatting.Indented));
+        Debug.Log("Enemies Dictionary: " + JsonConvert.SerializeObject(RetrieveEnemyData.EnemyDictionary(), Formatting.Indented));
+        Debug.Log("Levels Dictionary: " + JsonConvert.SerializeObject(RetrieveLevelData.LevelDictionary(), Formatting.Indented));
 
     }
 

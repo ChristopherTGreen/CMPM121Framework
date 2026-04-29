@@ -32,7 +32,7 @@ public class EnemyData
 
 
 // call this class to retrieve the dictionary with all the enemy data
-public class StoredEnemyData
+public class RetrieveEnemyData
 {
     
     private static EnemyParsing EnemyParse = new EnemyParsing();

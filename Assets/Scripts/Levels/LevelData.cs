@@ -22,7 +22,7 @@ public class LevelData
 
 
 // call this class to retrieve the dictionary with all the level data
-public class StoredLevelData
+public class RetrieveLevelData
 {
     
     private static LevelParsing LevelParse = new LevelParsing();
