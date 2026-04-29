@@ -4,12 +4,9 @@ using System.Collections.Generic;
 public class EnemyParsing : JsonProcessingTemplate<EnemyData>
 {
     
-    protected override EnemyData ParseJsonFile(string data)
+    protected override EnemyData ParseData(string jsonfile)
     {
-
-        //Referencing the assignment instructions on the professor's recommendation.
-        return JsonConvert.DeserializeObject<EnemyData>(data); //should deserialize the data from the json file and store it into the EnemyData class
-
+        
     }
 
     private void AddEnemyData(Dictionary<string, EnemyData> dictionaryReference)

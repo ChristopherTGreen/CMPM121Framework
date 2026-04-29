@@ -6,15 +6,17 @@ using Newtonsoft.Json.Linq;
 //Template Method Pattern?
 public abstract class JsonProcessingTemplate<Type>
 {
-    
-    protected Type StoreData(string filename)
+
+    private Dictionary<string, Type> StoreData(string jsonfile)
     {
-
-        JToken jsonObject = JToken.Parse(filename);
-        Type jsonData = jsonObject.ToObject<Type>();
-        return jsonData;
-
+        
+        Dictionary<string, Type> StoredData = new Dictionary<string, Type>();
+        ParseData(jsonfile, StoredData);
+        return StoredData;
     }
+
+    //Children will override this method
+    protected abstract void ParseData(string jsonfile, Dictionary<string, Type> dictionary);
 
     /*
     protected string ReadJsonFile(string jsonfilename)
