@@ -61,6 +61,7 @@ public class MenuSelectorController : MonoBehaviour
 
             selector.transform.localPosition = new Vector3(0, 130 - y_pos); //Button position
             y_pos += 40; //spacing between buttons 
+            // possibly get rid of these constants for ease of adjustment
 
             selector.GetComponent<MenuSelectorController>().spawner = EnemySpawnerClassReferences;
             selector.GetComponent<MenuSelectorController>().SetLevel(difficulty.Key); //Sets the text on the button (selector)
