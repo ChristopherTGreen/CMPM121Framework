@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject selector = Instantiate(button, level_selector.transform);
         selector.transform.localPosition = new Vector3(0, 130);
         selector.GetComponent<MenuSelectorController>().spawner = this;
-        selector.GetComponent<MenuSelectorController>().SetLevel("Start");
+        selector.GetComponent<MenuSelectorController>().SetLevel("Easy");
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
         GameManager.Instance.player.GetComponent<PlayerController>().StartLevel();
 
         // find the level name (I think that is what this does) - chris
-        LevelData levelReference = level_selector.GetComponent<LevelData>();
+        LevelData levelReference = LevelSelector(levelname);
         StartCoroutine(SpawnWave(levelReference));
     }
 
@@ -178,4 +178,20 @@ public class EnemySpawner : MonoBehaviour
 
         throw new Exception("Spawn point name invalid, the JSON file name does not exist in the SpawnPoint.cs");
     }
+
+    // LevelSelector
+    // Finds the given level and returns levelData to it (move this to an outside function)  - chris
+    private LevelData LevelSelector(string levelName)
+    {
+        List<LevelData> levels = GameManager.Instance.levels;
+        int levelSize = levels.Capacity;
+        for (int i = 0; i < levelSize; i++)
+        {
+            LevelData currentLevel = levels[i];
+            if (currentLevel.name == levelName) return currentLevel;
+        }
+
+        throw new Exception("Level name invalid, the level name in the JSON file does not exist as a class LevelData");
+    }
+    
 }
