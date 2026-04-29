@@ -1,32 +1,29 @@
 using System.Collections.Generic;
 using System;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 //Template Method Pattern?
 public abstract class JsonProcessingTemplate<Type>
 {
     
-    public Type StoreData(string filename)
+    protected Type StoreData(string filename)
     {
 
-        Type ParsedData = ParseJsonFile(ReadJsonFile(filename));
-        return ParsedData;
+        JToken jsonObject = JToken.Parse(filename);
+        Type jsonData = jsonObject.ToObject<Type>();
+        return jsonData;
 
     }
 
+    /*
     protected string ReadJsonFile(string jsonfilename)
     {
-
-        //error throwing/crash program if jsonfile is not provided
-        if (!File.Exists(jsonfilename))
-        {
-            throw new Exception("Json file not provided. Please provide a Json file to parse. You Provided: " + jsonfilename);
-        }
 
         return File.ReadAllText(jsonfilename);
 
     }
 
     protected abstract Type ParseJsonFile(string data); //Children using this template will edit this method
-
+    */
 }
