@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class MenuSelectorController : MonoBehaviour
 {
@@ -29,4 +30,13 @@ public class MenuSelectorController : MonoBehaviour
     {
         spawner.StartLevel(level);
     }
+}
+
+
+// Should add a button to the Difficulty Selector.
+public class MenuButtonHandler
+{
+    
+    
+
 }

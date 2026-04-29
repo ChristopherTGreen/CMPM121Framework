@@ -28,3 +28,23 @@ public class EnemyData
     }
 
 }
+
+
+
+// call this class to retrieve the dictionary with all the enemy data
+public class StoredEnemyData
+{
+    
+    private static EnemyParsing EnemyParse = new EnemyParsing();
+    private static Dictionary<string, EnemyData> enemydictionary = new Dictionary<string, EnemyData>();
+
+    // Programmer can now call Dictionary<string, EnemyData> enemy_dictionary = StoredEnemyData.EnemyDictionary();
+    public static Dictionary<string, EnemyData> EnemyDictionary()
+    {
+        
+        enemydictionary = EnemyParse.StoreData(Resources.Load<TextAsset>("enemies").text);
+        return enemydictionary;
+
+    }
+
+}
