@@ -12,7 +12,8 @@ public class TestScript : MonoBehaviour
 
 
     // Put any declarations needed for testing here
-    EnemyStoringTest TestingEnemy = new EnemyStoringTest();
+    EnemyStoringTest TestingEnemyStoring = new EnemyStoringTest();
+    LevelStoringTest TestingLevelStoring = new LevelStoringTest();
 
     void Start()
     {
@@ -20,7 +21,8 @@ public class TestScript : MonoBehaviour
         //Call any class you want to test in here.
 
         //Testing Json reading, parsing and storing
-        TestingEnemy.EnemyDebugStatements(Resources.Load<TextAsset>("enemies").text); //figure out how to reference the json file
+        TestingEnemyStoring.EnemyDebugStatements(Resources.Load<TextAsset>("enemies").text); //figure out how to reference the json file
+        TestingLevelStoring.LevelDebugStatements(Resources.Load<TextAsset>("levels").text);
 
     }
 
@@ -28,7 +30,7 @@ public class TestScript : MonoBehaviour
     {
         
         //Declarations - Have to do this or the script will scream at you :/
-        public EnemyParsing EnemyParse = new EnemyParsing();
+        private EnemyParsing EnemyParse = new EnemyParsing();
 
         public void EnemyDebugStatements(string loadedjsonfile)
         {
@@ -36,9 +38,28 @@ public class TestScript : MonoBehaviour
             Dictionary<string, EnemyData> StoredEnemyData = EnemyParse.StoreData(loadedjsonfile);
 
             // Printing the returned dictionary from StoreData to Unity's console
-            Debug.Log("Dictionary: " + JsonConvert.SerializeObject(StoredEnemyData));
+            Debug.Log("Enemy Dictionary: " + JsonConvert.SerializeObject(StoredEnemyData, Formatting.Indented));
 
         } 
 
     }
+
+    public class LevelStoringTest
+    {
+        
+        private LevelParsing LevelParse = new LevelParsing();
+
+        public void LevelDebugStatements(string loadedjsonfile)
+        {
+            
+            Dictionary<string, LevelData> StoredLevelData = LevelParse.StoreData(loadedjsonfile);
+
+            Debug.Log("Level Dictionary: " + JsonConvert.SerializeObject(StoredLevelData, Formatting.Indented));
+
+        } 
+
+    }
+
 }
+
+
