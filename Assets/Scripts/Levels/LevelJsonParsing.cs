@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
+/*
 public class LevelParsing : JsonProcessingTemplate<LevelData>
 {
     
@@ -21,3 +22,4 @@ public class LevelParsing : JsonProcessingTemplate<LevelData>
     }
 
 }
+*/
