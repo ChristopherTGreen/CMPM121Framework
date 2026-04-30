@@ -108,8 +108,12 @@ public class EnemySpawner : MonoBehaviour
             //NextWave(levelReference);  ------ this is now called in the NextWaveButtonhandler
 
         }
-        else GameManager.Instance.state = GameManager.GameState.GAMEOVER; // there might be a better state for this, pregame?
-
+        else
+        {
+            RewardScreenManagerClass.RestartButtonHandler(this);
+            yield return new WaitWhile(() => RewardScreenManager.RewardScreenActive() == true);
+            GameManager.Instance.state = GameManager.GameState.GAMEOVER; // there might be a better state for this, pregame?
+        }
     }
 
     // saving SpawnZombie for reference

@@ -72,5 +72,27 @@ public class RewardScreenManager : MonoBehaviour
         NextWaveButton.onClick.AddListener(() => spawner.NextWave(spawner.levelReference)); //When Continue button click, trigger the next wave
 
     }
-    
+
+    // RestartButtonHandler
+    // Converts the button for continue, to bring the player back to selection, called when gameover
+    public void RestartButtonHandler(EnemySpawner spawner)
+    {
+
+        Button NextWaveButton = rewardUI.GetComponentInChildren<Button>(); //finding the button component of the RewardUI
+        TextMeshProUGUI NextButtonText = NextWaveButton.GetComponentInChildren<TextMeshProUGUI>(); //Finding the text component of the child of the button component
+
+        NextButtonText.text = "Back to Selection"; //changing the button text
+
+        // Centers the button in the rewardUI. For some reason, the y position is set at -158?!
+        RectTransform NextWaveButtonPosition = rewardUI.GetComponentInChildren<Button>().GetComponent<RectTransform>();
+        NextWaveButtonPosition.anchoredPosition = new Vector2(0, 0);
+
+
+        // RemoveAllListeners is so you dont spawn 5 waves at once at wave 5.
+        // If I didn't have this here, it would spawn the previous five waves and mess up the countdown
+        NextWaveButton.onClick.RemoveAllListeners();
+        NextWaveButton.onClick.AddListener(() => GameRestarter.RestartCurrentScene()); //When Continue button click, trigger the next wave
+
+    }
+
 }
