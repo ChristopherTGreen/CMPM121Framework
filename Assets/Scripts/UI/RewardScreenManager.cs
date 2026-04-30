@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class RewardScreenManager : MonoBehaviour
 {
     public static GameObject GlobalRewardUI;
     public GameObject rewardUI;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +22,9 @@ public class RewardScreenManager : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
         {
+
             rewardUI.SetActive(true);
+            
         }
         else
         {
@@ -32,4 +38,19 @@ public class RewardScreenManager : MonoBehaviour
     {
         return GlobalRewardUI.activeSelf;
     }
+
+    
+    
+    public void NextWaveButtonHandler(EnemySpawner spawner)
+    {
+
+        Button NextWaveButton = rewardUI.GetComponentInChildren<Button>();
+        TextMeshProUGUI NextButtonText = NextWaveButton.GetComponentInChildren<TextMeshProUGUI>();
+
+        NextButtonText.text = "Continue";
+        
+        NextWaveButton.onClick.AddListener(() => spawner.NextWave(EnemySpawner.levelReference));
+
+    }
+    
 }

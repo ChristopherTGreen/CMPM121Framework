@@ -17,6 +17,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemy;
     public SpawnPoint[] SpawnPoints;
     public Dictionary<string, int> variables { get; private set; } = new Dictionary<string, int> { {"Wave", 1} };
+    public static LevelData levelReference;
+    RewardScreenManager RewardScreenManagerClass;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
 
         // find the level name (I think that is what this does) - chris
         //LevelData levelReference = LevelSelector(levelname);
-        LevelData levelReference = GameManager.Instance.levels[levelname];
+        levelReference = GameManager.Instance.levels[levelname];
         StartCoroutine(SpawnWave(levelReference));
     }
     // NextWave
@@ -79,6 +81,7 @@ public class EnemySpawner : MonoBehaviour
         {
             // theres a temporary delay?
             yield return new WaitForSeconds(1);
+            RewardScreenManagerClass.NextWaveButtonHandler(this);
             yield return new WaitWhile(() => RewardScreenManager.RewardScreenActive() == true);
             NextWave(levelReference);
         }
