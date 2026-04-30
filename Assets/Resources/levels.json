@@ -19,9 +19,9 @@
         "location": "random red"
       },
       {
-        "enemy": "warlock",
-        "count": "wave 5 / 1 wave 5 % - *",
-        "hp": "100 25 wave * +",
+        "enemy": "eyeball",
+        "count": "3 wave 2 * +",
+        "hp": "5 10 wave * +",
         "location": "random bone"
       }
     ]
@@ -51,6 +51,12 @@
         "hp": "75 50 wave * +",
         "damage": "base 10 +",
         "location": "random bone"
+      },
+      {
+        "enemy": "eyeball",
+        "count": "2 wave 3 * +",
+        "hp": "10 20 wave * +",
+        "location": "random"
       }
     ]
   },
@@ -78,6 +84,12 @@
         "hp": "75 15 wave * +",
         "damage": "base 5 -",
         "location": "random bone"
+      },
+      {
+        "enemy": "eyeball",
+        "count": "5 wave 5 * +",
+        "hp": "15 25 wave * +",
+        "location": "random"
       }
     ]
 
