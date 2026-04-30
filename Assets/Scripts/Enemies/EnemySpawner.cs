@@ -16,13 +16,13 @@ public class EnemySpawner : MonoBehaviour
     public GameObject button;
     public GameObject enemy;
     public SpawnPoint[] SpawnPoints;
-    private Dictionary<string, int> variables = new Dictionary<string, int>();
+    public Dictionary<string, int> variables { get; private set; } = new Dictionary<string, int> { {"Wave", 1} };
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-        variables["wave"] = 1; // wave tracker
+        GameManager.Instance.wave_count = 1;
+        variables["wave"] = GameManager.Instance.wave_count; // there might be a better way to improve this - chris
 
         MenuSelectorController.DynamicMenuButtonSpawner(this);
         
@@ -46,10 +46,12 @@ public class EnemySpawner : MonoBehaviour
         LevelData levelReference = GameManager.Instance.levels[levelname];
         StartCoroutine(SpawnWave(levelReference));
     }
-
+    // NextWave
+    // Calls for the next wave, with relevant level
     public void NextWave(LevelData levelReference)
     {
-        variables["wave"]++;
+        GameManager.Instance.wave_count++;
+        variables["wave"] = GameManager.Instance.wave_count;
         StartCoroutine(SpawnWave(levelReference));
     }
 
@@ -73,7 +75,7 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitWhile(() => GameManager.Instance.enemy_count > 0);
         GameManager.Instance.state = GameManager.GameState.WAVEEND;
         // Should end the round when waves are finished?
-        if (variables["wave"] < levelReference.waves) NextWave(levelReference);
+        if (GameManager.Instance.wave_count < levelReference.waves) NextWave(levelReference);
         else GameManager.Instance.state = GameManager.GameState.GAMEOVER; // there might be a better state for this, pregame?
     }
 

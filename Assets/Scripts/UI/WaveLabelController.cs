@@ -21,5 +21,24 @@ public class WaveLabelController : MonoBehaviour
         {
             tmp.text = "Starting in " + GameManager.Instance.countdown;
         }
+        if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
+        {
+            // Wave Count
+            tmp.text = "Wave: " + GameManager.Instance.wave_count;
+            // Data display?
+        }
+        if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
+        {
+            // End display
+            
+        }
+    }
+
+    // WaveCounterDisplay
+    // Displays the wave counter given by the EnemySpawner
+    public static void WaveCounterDisplay(int waveCount)
+    {
+        //tmp.text = "Wave: " + waveCount;
+
     }
 }
