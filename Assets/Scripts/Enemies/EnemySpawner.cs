@@ -75,7 +75,13 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitWhile(() => GameManager.Instance.enemy_count > 0);
         GameManager.Instance.state = GameManager.GameState.WAVEEND;
         // Should end the round when waves are finished?
-        if (GameManager.Instance.wave_count < levelReference.waves) NextWave(levelReference);
+        if (GameManager.Instance.wave_count < levelReference.waves)
+        {
+            // theres a temporary delay?
+            yield return new WaitForSeconds(1);
+            yield return new WaitWhile(() => RewardScreenManager.RewardScreenActive() == true);
+            NextWave(levelReference);
+        }
         else GameManager.Instance.state = GameManager.GameState.GAMEOVER; // there might be a better state for this, pregame?
     }
 
