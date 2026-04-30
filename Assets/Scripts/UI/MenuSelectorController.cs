@@ -43,7 +43,7 @@ public class MenuSelectorController : MonoBehaviour
         Dictionary<string, LevelData> level_dictionary = RetrieveLevelData.LevelDictionary();
         int y_pos = 0; // Initial button was too high on the UI so this lowers it
 
-        const int initialButtonPosition = 190;
+        const int initialButtonPosition = 70;
         const int buttonGap = 40;
 
         foreach (var difficulty in level_dictionary)
