@@ -19,6 +19,13 @@
        "hp": 30,
        "speed": 7,
        "damage": 10
+   },
+   {
+        "name": "eyeball",
+        "sprite": 5,
+        "hp": 5,
+        "speed": 10,
+        "damage": 2
    }
  
 ]
