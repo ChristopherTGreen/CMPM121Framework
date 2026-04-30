@@ -29,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
         RewardScreenManagerClass = FindFirstObjectByType<RewardScreenManager>();
 
         GameManager.Instance.sessionStats.resetStats();
+        GameManager.Instance.enemy_spawns_left = 0;
         GameManager.Instance.wave_count = 1;
         variables["wave"] = GameManager.Instance.wave_count; // there might be a better way to improve this - chris
         MenuSelectorController.DynamicMenuButtonSpawner(this);
@@ -91,12 +92,12 @@ public class EnemySpawner : MonoBehaviour
         {
             StartCoroutine(SpawnEnemies(levelReference.spawns[i]));
         }
-        yield return new WaitWhile(() => GameManager.Instance.enemy_count > 0);
+        yield return new WaitWhile(() => (GameManager.Instance.enemy_count > 0 && GameManager.Instance.enemy_spawns_left <= 0));
 
         // End of wave state handling - also it's own method? We should have a class called state handling and have methods for each state there
         GameManager.Instance.state = GameManager.GameState.WAVEEND;
-        // Should end the round when waves are finished?
-        if (GameManager.Instance.wave_count < levelReference.waves)
+        // Loops if there are still waves left or if infinite
+        if (levelReference.waves <= -1 || GameManager.Instance.wave_count < levelReference.waves) // maybe change check to 0 instead of -1
         {
 
             // theres a temporary delay?
@@ -137,23 +138,27 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemies(SpawnData spawnReference)
     {
-        int tempCount = RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.count, variables);
-        int tempSequenceIndex = 0; // will iterate through sequence 
+        int enemyCount = RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.count, variables);
+        GameManager.Instance.enemy_spawns_left += enemyCount;
+
+        int sequenceIndex = 0; // will iterate through sequence 
         int sequenceCount = spawnReference.sequence.Count; // 1 is default, since we check with mod or %
-        int currBuildCount = spawnReference.sequence[tempSequenceIndex]; // stores the current build count from sequence
+        int currBuildCount = spawnReference.sequence[sequenceIndex]; // stores the current build count from sequence
         SpawnPoint spawnLocation = SpawnSelector(spawnReference.location);
         EnemyData tempEnemyReference = GameManager.Instance.enemyTypes[spawnReference.enemy];
 
         // separate this into its own function?
-        while (tempCount >= 0)
+        while (enemyCount >= 0)
         {
             for (int i = 0; i < currBuildCount; i++)
             {
                 SpawnModifyFlat(spawnReference, SpawnEnemy(tempEnemyReference, spawnLocation)); // location will need to be handled separately with a locator?
             }
-            tempSequenceIndex = (tempSequenceIndex + 1) % sequenceCount;
-            tempCount -= currBuildCount;
-            currBuildCount = spawnReference.sequence[tempSequenceIndex];
+            sequenceIndex = (sequenceIndex + 1) % sequenceCount;
+            enemyCount -= currBuildCount;
+            currBuildCount = (enemyCount < spawnReference.sequence[sequenceIndex]) ? enemyCount % spawnReference.sequence[sequenceIndex] : spawnReference.sequence[sequenceIndex];
+            // 2 remaining, but 3 sequence, its mod
+            // 4 remaing, but 3 sequence, 3
             if (spawnReference.delay != null) yield return new WaitForSeconds(RPNEvaluator.RPNEvaluator.Evaluatef(spawnReference.delay, variables));
         }
         
@@ -179,6 +184,7 @@ public class EnemySpawner : MonoBehaviour
         en.damage = enemyReference.damage;
 
         GameManager.Instance.AddEnemy(new_enemy);
+        GameManager.Instance.enemy_spawns_left -= 1;
         return en;
     }
 

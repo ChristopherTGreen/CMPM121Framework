@@ -6,7 +6,7 @@ public class LevelData
 {
 
     public string name { get ; set ;} = null;
-    public int waves { get ; set ;} = 0;
+    public int waves { get ; set ;} = -1;
     public List<SpawnData> spawns { get ; set ;} = new List<SpawnData>(); //should make a list of with all the different enemy spawn types
 
     /*[JsonConstructor]

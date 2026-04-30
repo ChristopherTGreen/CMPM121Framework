@@ -30,7 +30,7 @@ public class WaveLabelController : MonoBehaviour
         }
         if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
         {
-            // End display
+            
         }
     }
 

@@ -40,6 +40,7 @@ public class GameManager
     public Dictionary<string, EnemyData> enemyTypes; // (possibly convert to lists based on what prof said) - chris
     public Dictionary<string, LevelData> levels;
     public int enemy_count { get { return enemies.Count; } }
+    public int enemy_spawns_left = 0;
     public int wave_count = 0;
 
     public void AddEnemy(GameObject enemy)
