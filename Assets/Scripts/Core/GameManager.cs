@@ -33,6 +33,8 @@ public class GameManager
     public PlayerSpriteManager playerSpriteManager;
     public RelicIconManager relicIconManager;
 
+    public Stats sessionStats = new Stats();
+
     private List<GameObject> enemies;
     // Private dictionary for enemy types for storage in a singleton 
     public Dictionary<string, EnemyData> enemyTypes; // (possibly convert to lists based on what prof said) - chris

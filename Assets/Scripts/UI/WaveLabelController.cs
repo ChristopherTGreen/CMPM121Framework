@@ -24,13 +24,13 @@ public class WaveLabelController : MonoBehaviour
         if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
         {
             
-            tmp.text = "Wave " + GameManager.Instance.wave_count + " Cleared!";
+            tmp.text = "Wave " + GameManager.Instance.wave_count + " Cleared!\n";
+            tmp.text += GameManager.Instance.sessionStats.getStats();
     
         }
         if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
         {
             // End display
-            
         }
     }
 

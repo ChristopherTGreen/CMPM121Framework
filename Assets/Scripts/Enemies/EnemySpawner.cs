@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemy;
     public SpawnPoint[] SpawnPoints;
     public Dictionary<string, int> variables { get; private set; } = new Dictionary<string, int> { {"Wave", 1} };
-    public LevelData levelReference;
+    public LevelData levelReference; // this might not be necessary
     RewardScreenManager RewardScreenManagerClass;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,9 +28,9 @@ public class EnemySpawner : MonoBehaviour
         // Has to find which object the RewardScreenManager class is attached to
         RewardScreenManagerClass = FindFirstObjectByType<RewardScreenManager>();
 
+        GameManager.Instance.sessionStats.resetStats();
         GameManager.Instance.wave_count = 1;
         variables["wave"] = GameManager.Instance.wave_count; // there might be a better way to improve this - chris
-
         MenuSelectorController.DynamicMenuButtonSpawner(this);
         
     }
