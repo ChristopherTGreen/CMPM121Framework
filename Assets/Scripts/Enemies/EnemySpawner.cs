@@ -17,25 +17,31 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemy;
     public SpawnPoint[] SpawnPoints;
     public Dictionary<string, int> variables { get; private set; } = new Dictionary<string, int> { {"Wave", 1} };
-    public static LevelData levelReference;
+    public LevelData levelReference;
     RewardScreenManager RewardScreenManagerClass;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        // For RewardScreenManaderClass.NextWaveButtonHandler()\
+        // Has to find which object the RewardScreenManager class is attached to
+        RewardScreenManagerClass = FindFirstObjectByType<RewardScreenManager>();
+
         GameManager.Instance.wave_count = 1;
         variables["wave"] = GameManager.Instance.wave_count; // there might be a better way to improve this - chris
 
         MenuSelectorController.DynamicMenuButtonSpawner(this);
         
-
     }
+
 
     // Update is called once per frame
     void Update()
     {
         
     }
+
 
     public void StartLevel(string levelname)
     {
@@ -48,18 +54,27 @@ public class EnemySpawner : MonoBehaviour
         levelReference = GameManager.Instance.levels[levelname];
         StartCoroutine(SpawnWave(levelReference));
     }
+
+
     // NextWave
     // Calls for the next wave, with relevant level
     public void NextWave(LevelData levelReference)
     {
+
+        //Updating wave count
         GameManager.Instance.wave_count++;
         variables["wave"] = GameManager.Instance.wave_count;
+
+        //Spawns the next wave
         StartCoroutine(SpawnWave(levelReference));
+
     }
 
 
     IEnumerator SpawnWave(LevelData levelReference)
     {
+
+        //Countdown state handling - Put it in it's own method or class?
         GameManager.Instance.state = GameManager.GameState.COUNTDOWN;
         GameManager.Instance.countdown = 3;
         for (int i = 3; i > 0; i--)
@@ -67,6 +82,8 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(1);
             GameManager.Instance.countdown--;
         }
+
+        //Inwave state handling - Put it in it's own method or class?
         GameManager.Instance.state = GameManager.GameState.INWAVE;
         int enemyTypeCount = levelReference.spawns.Count;
         // This for loop should create every enemy type with enemy type number amount of programs running, but all halting individually depending on delays
@@ -75,17 +92,24 @@ public class EnemySpawner : MonoBehaviour
             StartCoroutine(SpawnEnemies(levelReference.spawns[i]));
         }
         yield return new WaitWhile(() => GameManager.Instance.enemy_count > 0);
+
+        // End of wave state handling - also it's own method? We should have a class called state handling and have methods for each state there
         GameManager.Instance.state = GameManager.GameState.WAVEEND;
         // Should end the round when waves are finished?
         if (GameManager.Instance.wave_count < levelReference.waves)
         {
+
             // theres a temporary delay?
-            yield return new WaitForSeconds(1);
+            // yield return new WaitForSeconds(1); Might not need this delay?
+
             RewardScreenManagerClass.NextWaveButtonHandler(this);
             yield return new WaitWhile(() => RewardScreenManager.RewardScreenActive() == true);
-            NextWave(levelReference);
+
+            //NextWave(levelReference);  ------ this is now called in the NextWaveButtonhandler
+
         }
         else GameManager.Instance.state = GameManager.GameState.GAMEOVER; // there might be a better state for this, pregame?
+
     }
 
     // saving SpawnZombie for reference
@@ -106,6 +130,7 @@ public class EnemySpawner : MonoBehaviour
     }
     // SpawnEnemies
     // The process of spawning multiple given enemies and applying SpawnData
+
     IEnumerator SpawnEnemies(SpawnData spawnReference)
     {
         int tempCount = RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.count, variables);
@@ -129,6 +154,8 @@ public class EnemySpawner : MonoBehaviour
         }
         
     }
+
+
     // SpawnEnemy
     // Spawns the actual enemy with the process of locations - (I have no idea if its one specific location, random locations, etc) - chris
     private EnemyController SpawnEnemy(EnemyData enemyReference, SpawnPoint spawnLocation)
@@ -150,6 +177,7 @@ public class EnemySpawner : MonoBehaviour
         GameManager.Instance.AddEnemy(new_enemy);
         return en;
     }
+
 
     // SpawnValues
     // Sets the spawn values initially?

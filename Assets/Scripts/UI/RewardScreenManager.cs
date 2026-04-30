@@ -41,15 +41,26 @@ public class RewardScreenManager : MonoBehaviour
 
     
     
+    // This will get called in the enemy spawner right before the yield return wait for the RewardUI.
+    // Using a similar method that I used in the MenuSelectorController when getting the enemy spawner class references
+    
+    /*
+    * In EnemySpawner.cs, I had to declare levelReference at the top of the class + Declare the RewardScreenManager
+    * Then in Start() of EnemySpawner, I had to tell Unity to find which object in the heirachy that class was attached to
+    * That way, the script could find the Reward Screen UI so the method below could access the components in the children
+    */
     public void NextWaveButtonHandler(EnemySpawner spawner)
     {
 
-        Button NextWaveButton = rewardUI.GetComponentInChildren<Button>();
-        TextMeshProUGUI NextButtonText = NextWaveButton.GetComponentInChildren<TextMeshProUGUI>();
+        Button NextWaveButton = rewardUI.GetComponentInChildren<Button>(); //finding the button component of the RewardUI
+        TextMeshProUGUI NextButtonText = NextWaveButton.GetComponentInChildren<TextMeshProUGUI>(); //Finding the text component of the child of the button component
 
-        NextButtonText.text = "Continue";
+        NextButtonText.text = "Continue"; //changing the button text
         
-        NextWaveButton.onClick.AddListener(() => spawner.NextWave(EnemySpawner.levelReference));
+        // RemoveAllListeners is so you dont spawn 5 waves at once at wave 5.
+        // If I didn't have this here, it would spawn the previous five waves and mess up the countdown
+        NextWaveButton.onClick.RemoveAllListeners();
+        NextWaveButton.onClick.AddListener(() => spawner.NextWave(spawner.levelReference)); //When Continue button click, trigger the next wave
 
     }
     

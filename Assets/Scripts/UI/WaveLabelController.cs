@@ -34,11 +34,4 @@ public class WaveLabelController : MonoBehaviour
         }
     }
 
-    // WaveCounterDisplay
-    // Displays the wave counter given by the EnemySpawner
-    public static void WaveCounterDisplay(int waveCount)
-    {
-        //tmp.text = "Wave: " + waveCount;
-
-    }
 }
