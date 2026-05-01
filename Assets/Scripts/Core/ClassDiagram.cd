@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EnemySpawner">
+    <Position X="15.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAABAACAABIACAAAAIAAAAAACAAAAQiAIABAUAAI=</HashCode>
+      <FileName>Assets\Scripts\Enemies\EnemySpawner.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="SpawnPoints" />
+      <Field Name="levelReference" />
+      <Field Name="RewardScreenManagerClass" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpawnPoint">
+    <Position X="18.75" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="SpawnPoint.SpawnName" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Spawns\SpawnPoint.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spawns\SpawnPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyData" Collapsed="true">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAABAEAQAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\EnemyData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelData">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAEAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Levels\LevelData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="spawns" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="SpawnData" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAgCAAAAAAAAAQBAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Spawns\SpawnData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="GameManager.GameState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Core\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIIAQEAIAQAAABAAACAAAAARBAEAAAQFQAgEAEAIAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\GameManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="sessionStats" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="enemyTypes" />
+      <Field Name="levels" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RewardScreenManager">
+    <Position X="18.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgACAAAAgAAAAAAAAEAAAAAAAAAAAIAAAAEAA=</HashCode>
+      <FileName>Assets\Scripts\UI\RewardScreenManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stats">
+    <Position X="12.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEEAASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\Stats.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuSelectorController">
+    <Position X="15.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQBAAAACAAABAAAAAQAAAAAAEAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\MenuSelectorController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="spawner" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JsonProcessingTemplate&lt;Type&gt;">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Assets\Scripts\JsonProcessing\JsonProcessingTemplate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelParsing" Collapsed="true">
+    <Position X="2.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Levels\LevelJsonParsing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyParsing" Collapsed="true">
+    <Position X="2.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\EnemyJsonParsing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameRestarter">
+    <Position X="20.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Core\GameRestarter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestScript" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\TestFolder\TestScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RetrieveLevelData">
+    <Position X="5.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAIEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Levels\LevelData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="LevelParse" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="leveldictionary" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RetrieveEnemyData">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\EnemyData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="EnemyParse" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="enemydictionary" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
