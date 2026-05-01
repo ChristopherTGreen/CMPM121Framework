@@ -26,7 +26,7 @@
       <FileName>Assets\Scripts\Spawns\SpawnPoint.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EnemyData" Collapsed="true">
+  <Class Name="EnemyData">
     <Position X="8" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAABAEAQAAAABAAAAAAAA=</HashCode>
@@ -34,7 +34,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="LevelData">
-    <Position X="10.5" Y="0.5" Width="1.5" />
+    <Position X="9.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAEAAAAAABAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Levels\LevelData.cs</FileName>
@@ -43,7 +43,7 @@
       <Property Name="spawns" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="SpawnData" Collapsed="true">
+  <Class Name="SpawnData">
     <Position X="12.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAABAAAAAgCAAAAAAAAAQBAAAAAAAI=</HashCode>
@@ -51,7 +51,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GameManager">
-    <Position X="10.5" Y="2.5" Width="1.5" />
+    <Position X="10.5" Y="3" Width="1.5" />
     <NestedTypes>
       <Enum Name="GameManager.GameState" Collapsed="true">
         <TypeIdentifier>
