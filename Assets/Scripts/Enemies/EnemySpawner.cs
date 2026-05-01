@@ -92,8 +92,7 @@ public class EnemySpawner : MonoBehaviour
         {
             StartCoroutine(SpawnEnemies(levelReference.spawns[i]));
         }
-        yield return new WaitWhile(() => (GameManager.Instance.enemy_count > 0 && GameManager.Instance.enemy_spawns_left <= 0));
-
+        yield return new WaitWhile(() => (GameManager.Instance.enemy_count > 0 || GameManager.Instance.enemy_spawns_left > 0));
         // End of wave state handling - also it's own method? We should have a class called state handling and have methods for each state there
         GameManager.Instance.state = GameManager.GameState.WAVEEND;
         // Loops if there are still waves left or if infinite
@@ -101,8 +100,7 @@ public class EnemySpawner : MonoBehaviour
         {
 
             // theres a temporary delay?
-            // yield return new WaitForSeconds(1); Might not need this delay?
-
+            //yield return new WaitForSeconds(1); //Might not need this delay?
             RewardScreenManagerClass.NextWaveButtonHandler(this);
             yield return new WaitWhile(() => RewardScreenManager.RewardScreenActive() == true);
 
