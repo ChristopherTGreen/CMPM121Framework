@@ -23,7 +23,7 @@ public class RewardScreenManager : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
         {
-
+            NextWaveButtonHandler();
             rewardUI.SetActive(true);
             
         }
@@ -55,7 +55,7 @@ public class RewardScreenManager : MonoBehaviour
     * Then in Start() of EnemySpawner, I had to tell Unity to find which object in the heirachy that class was attached to
     * That way, the script could find the Reward Screen UI so the method below could access the components in the children
     */
-    public void NextWaveButtonHandler(EnemySpawner spawner)
+    public void NextWaveButtonHandler()
     {
 
         Button NextWaveButton = rewardUI.GetComponentInChildren<Button>(); //finding the button component of the RewardUI
@@ -71,7 +71,7 @@ public class RewardScreenManager : MonoBehaviour
         // RemoveAllListeners is so you dont spawn 5 waves at once at wave 5.
         // If I didn't have this here, it would spawn the previous five waves and mess up the countdown
         NextWaveButton.onClick.RemoveAllListeners();
-        NextWaveButton.onClick.AddListener(() => spawner.NextWave(spawner.levelReference)); //When Continue button click, trigger the next wave
+        NextWaveButton.onClick.AddListener(() => GameManager.Instance.state = GameManager.GameState.COUNTDOWN); //When Continue button click, trigger the next wave
 
     }
 

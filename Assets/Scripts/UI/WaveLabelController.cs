@@ -30,7 +30,14 @@ public class WaveLabelController : MonoBehaviour
         }
         if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
         {
-            
+            if (GameManager.Instance.enemy_count <= 0)
+            {
+                tmp.text = "You Win!\n" + GameManager.Instance.sessionStats.getStats();
+            }
+            else
+            {
+                tmp.text = "You Lose!\n" + GameManager.Instance.sessionStats.getStats();
+            }
         }
     }
 

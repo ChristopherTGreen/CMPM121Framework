@@ -102,10 +102,9 @@ public class EnemySpawner : MonoBehaviour
 
             // theres a temporary delay?
             //yield return new WaitForSeconds(1); //Might not need this delay?
-            RewardScreenManagerClass.NextWaveButtonHandler(this);
-            yield return new WaitWhile(() => RewardScreenManager.RewardScreenActive() == true);
+            yield return new WaitWhile(() => GameManager.Instance.state == GameManager.GameState.WAVEEND);
 
-            //NextWave(levelReference);  ------ this is now called in the NextWaveButtonhandler
+            NextWave(levelReference);
 
         }
         else
