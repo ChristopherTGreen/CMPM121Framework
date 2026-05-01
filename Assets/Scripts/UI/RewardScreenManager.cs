@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class RewardScreenManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class RewardScreenManager : MonoBehaviour
         }
         else if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
         {
+            RestartButtonHandler();
             rewardUI.SetActive(true);
         }
         else
@@ -75,7 +77,7 @@ public class RewardScreenManager : MonoBehaviour
 
     // RestartButtonHandler
     // Converts the button for continue, to bring the player back to selection, called when gameover
-    public void RestartButtonHandler(EnemySpawner spawner)
+    public void RestartButtonHandler()
     {
 
         Button NextWaveButton = rewardUI.GetComponentInChildren<Button>(); //finding the button component of the RewardUI
@@ -91,8 +93,12 @@ public class RewardScreenManager : MonoBehaviour
         // RemoveAllListeners is so you dont spawn 5 waves at once at wave 5.
         // If I didn't have this here, it would spawn the previous five waves and mess up the countdown
         NextWaveButton.onClick.RemoveAllListeners();
-        NextWaveButton.onClick.AddListener(() => GameRestarter.RestartCurrentScene()); //When Continue button click, trigger the next wave
-
+        NextWaveButton.onClick.AddListener(() =>
+        {
+            GameManager.Instance.state = GameManager.GameState.PREGAME;
+            GameRestarter.RestartCurrentScene(); //When Continue button click, trigger the next wave
+        });
     }
 
+    
 }

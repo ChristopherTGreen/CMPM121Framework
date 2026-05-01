@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         spellcaster = new SpellCaster(125, 8, Hittable.Team.PLAYER);
         StartCoroutine(spellcaster.ManaRegeneration());
-        
+
         hp = new Hittable(100, Hittable.Team.PLAYER, gameObject);
         hp.OnDeath += Die;
         hp.team = Hittable.Team.PLAYER;
@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
+        GameManager.Instance.state = GameManager.GameState.GAMEOVER;
         Debug.Log("You Lost");
     }
 

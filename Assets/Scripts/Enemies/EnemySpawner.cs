@@ -30,6 +30,7 @@ public class EnemySpawner : MonoBehaviour
 
         GameManager.Instance.sessionStats.resetStats();
         GameManager.Instance.enemy_spawns_left = 0;
+        GameManager.Instance.ClearEnemy();
         GameManager.Instance.wave_count = 1;
         variables["wave"] = GameManager.Instance.wave_count; // there might be a better way to improve this - chris
         MenuSelectorController.DynamicMenuButtonSpawner(this);
@@ -109,7 +110,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            RewardScreenManagerClass.RestartButtonHandler(this);
+            RewardScreenManagerClass.RestartButtonHandler();
             yield return new WaitWhile(() => RewardScreenManager.RewardScreenActive() == true);
             GameManager.Instance.state = GameManager.GameState.GAMEOVER; // there might be a better state for this, pregame?
         }

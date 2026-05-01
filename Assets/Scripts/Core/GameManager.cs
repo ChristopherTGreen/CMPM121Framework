@@ -51,6 +51,10 @@ public class GameManager
     {
         enemies.Remove(enemy);
     }
+    public void ClearEnemy()
+    {
+        enemies.Clear();
+    }
 
     public GameObject GetClosestEnemy(Vector3 point)
     {
