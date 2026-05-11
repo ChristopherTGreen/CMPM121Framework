@@ -26,14 +26,14 @@ public class Spell
         this.owner = owner;
     }
 
-    public interface ISpell
-    {
-
-    }
-
     public int GetDamage()
     {
         return baseDamage;
+    }
+
+    public int GetManaCost()
+    {
+        return baseManaCost;
     }
 
     // IsReady() 
