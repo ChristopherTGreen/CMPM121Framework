@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-// potentially, we should separate these into their own classes - chris
-public class ValueModifier<T>
+// may need to make this an "interface" and not a "class" - chris
+public class ValueModifier
+{
+    // don't know if we need anything in here, but we do need an interface - chris
+    
+}
+public class ValueModifier<T> : ValueModifier
 {
     public virtual T GetValue(T original)
     {

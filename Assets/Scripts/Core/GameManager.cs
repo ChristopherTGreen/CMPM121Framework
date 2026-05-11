@@ -39,6 +39,7 @@ public class GameManager
     // Private dictionary for enemy types for storage in a singleton 
     public Dictionary<string, EnemyData> enemyTypes; // (possibly convert to lists based on what prof said) - chris
     public Dictionary<string, LevelData> levels;
+    public Dictionary<string, SpellData> spells;
     public int enemy_count { get { return enemies.Count; } }
     public int enemy_spawns_left = 0;
     public int wave_count = 0;
@@ -68,5 +69,6 @@ public class GameManager
         enemies = new List<GameObject>();
         levels = RetrieveLevelData.LevelDictionary();
         enemyTypes = RetrieveEnemyData.EnemyDictionary();
+        spells = RetrieveSpellData.SpellDictionary();
     }
 }
