@@ -23,6 +23,7 @@ public class TestScript : MonoBehaviour
         //Testing Json reading, parsing and storing
         Debug.Log("Enemies Dictionary: " + JsonConvert.SerializeObject(RetrieveEnemyData.EnemyDictionary(), Formatting.Indented));
         Debug.Log("Levels Dictionary: " + JsonConvert.SerializeObject(RetrieveLevelData.LevelDictionary(), Formatting.Indented));
+        Debug.Log("Spell Dictionary: " + JsonConvert.SerializeObject(RetrieveSpellData.SpellDictionary(), Formatting.Indented));
 
     }
 
