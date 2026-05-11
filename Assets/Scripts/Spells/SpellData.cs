@@ -28,6 +28,7 @@ public class SpellProjectileData
 
     public string trajectory { get; set;} = null;
     public string speed { get ; set; } = null;
+    public string lifetime { get ; set; } = null;
     public int sprite { get ; set; } = -1;
 
 }
