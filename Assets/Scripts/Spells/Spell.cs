@@ -6,42 +6,29 @@ using Newtonsoft.Json.Linq;
 public class Spell 
 {
     public float last_cast;
+    public string name { get; set; } = null; // should this be restricted to its own spell (not base class) - chris
     public SpellCaster owner;
     public Hittable.Team team;
+    public int icon { get; set; } = 0;
 
-    public Spell(SpellCaster owner)
+    // Variables for base class (we need to find default values)
+    public int baseDamage { get; set; } = -1;
+    public int baseHeal { get; set; } = -1;
+    public float baseSpeed { get; set; } = -1;
+    public int baseNumber { get; set; } = -1;
+    public int baseManaCost { get; set; } = -1;
+    public float baseCooldown { get; set; } = -1;
+    public int baseLifetime { get; set; } = -1;
+
+
+    public Spell(SpellCaster owner) // change this probably - chris
     {
         this.owner = owner;
     }
 
-    public string GetName()
-    {
-        return "Bolt";
-    }
-
-    public int GetManaCost()
-    {
-        return 10;
-    }
-
-    public int GetDamage()
-    {
-        return 100;
-    }
-
-    public float GetCooldown()
-    {
-        return 0.75f;
-    }
-
-    public virtual int GetIcon()
-    {
-        return 0;
-    }
-
     public bool IsReady()
     {
-        return (last_cast + GetCooldown() < Time.time);
+        return (last_cast + baseCooldown < Time.time);
     }
 
     public virtual IEnumerator Cast(Vector3 where, Vector3 target, Hittable.Team team)
@@ -51,14 +38,27 @@ public class Spell
         yield return new WaitForEndOfFrame();
     }
 
+    public void Cast()
+    {
+        Cast(new ValueModifier());
+    }
+
+    protected virtual void Cast(ValueModifier modifier)
+    {
+        
+    }
+
     void OnHit(Hittable other, Vector3 impact)
     {
         if (other.team != team)
         {
-            other.Damage(new Damage(GetDamage(), Damage.Type.ARCANE));
-            GameManager.Instance.sessionStats.totalDamageDealt += GetDamage();
+            other.Damage(new Damage(baseDamage, Damage.Type.ARCANE));
+            GameManager.Instance.sessionStats.totalDamageDealt += baseDamage;
         }
 
     }
+
+    // Note: 
+    // The original version of OnHit and IsReady has GetDamage(), not too sure if we need them to be get calls which can be overriden or not - chris
 
 }
