@@ -20,6 +20,7 @@ public class Spell
     public int baseManaCost { get; set; } = -1;
     public float baseCooldown { get; set; } = -1;
     public float baseAngle { get; set; } = 0;
+    public float baseDelay { get; set; } = -1;
     public float baseLifetime { get; set; } = -1;
 
 
@@ -71,6 +72,10 @@ public class Spell
     {
         return baseAngle;
     }
+    public float GetDelay()
+    {
+        return baseDelay;
+    }
     public float GetLifetime()
     {
         return baseLifetime;
@@ -104,8 +109,8 @@ public class Spell
     {
         if (other.team != team)
         {
-            other.Damage(new Damage(baseDamage, Damage.Type.ARCANE));
-            GameManager.Instance.sessionStats.totalDamageDealt += baseDamage;
+            other.Damage(new Damage(GetDamage(), Damage.Type.ARCANE));
+            GameManager.Instance.sessionStats.totalDamageDealt += GetDamage();
         }
 
     }
