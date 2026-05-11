@@ -13,12 +13,13 @@ public class Spell
     public string name { get; set; } = null; // should this be restricted to its own spell (not base class) - chris
     public string baseTrajectory { get; set; } = null;
     // Variables for base class (we need to find default values)
-    public int baseDamage { get; set; } = -1;
+    public Damage baseDamage { get; set; } = null;
     public int baseHeal { get; set; } = -1;
     public float baseSpeed { get; set; } = -1;
     public int baseNumber { get; set; } = -1;
     public int baseManaCost { get; set; } = -1;
     public float baseCooldown { get; set; } = -1;
+    public float baseAngle { get; set; } = 0;
     public float baseLifetime { get; set; } = -1;
 
 
@@ -38,7 +39,12 @@ public class Spell
 
     public int GetDamage()
     {
-        return baseDamage;
+        return baseDamage.amount;
+    }
+    public Damage.Type GetDamageType()
+    {
+        Damage.Type type = baseDamage.type;
+        return type;
     }
     public int GetHeal()
     {
@@ -60,6 +66,10 @@ public class Spell
     public float GetCooldown()
     {
         return baseCooldown;
+    }
+    public float GetAngle()
+    {
+        return baseAngle;
     }
     public float GetLifetime()
     {
