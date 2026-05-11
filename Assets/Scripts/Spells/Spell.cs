@@ -26,7 +26,12 @@ public class Spell
         this.owner = owner;
     }
 
-    public T GetDamage()
+    public interface ISpell
+    {
+
+    }
+
+    public int GetDamage()
     {
         return baseDamage;
     }
@@ -47,10 +52,10 @@ public class Spell
     // Not too sure if we should merge the cast here with the cast above - chris
     public void Cast()
     {
-        Cast(new ValueModifier<T>);
+        Cast(new ValueModifier());
     }
 
-    protected virtual void Cast(ValueModifier<T> modifier)
+    protected virtual void Cast(ValueModifier modifier)
     {
         
     }
