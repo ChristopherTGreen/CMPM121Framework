@@ -16,8 +16,16 @@ public class SpellBuilder
         spell.baseDamage = new Damage(RPNEvaluator.RPNEvaluator.Evaluate(amount, null), Damage.TypeFromString(type));
         return this;
     }
+    public SpellBuilder withIcon(int icon) { spell.icon = icon; return this; }
+    public SpellBuilder withTrajectory(string trajectory) { spell.baseTrajectory = trajectory; return this; }
+    public SpellBuilder withSpeed(string speed) { spell.baseSpeed = RPNEvaluator.RPNEvaluator.Evaluate(speed, null); return this; }
+    public SpellBuilder withHeal(string heal) { spell.baseHeal = RPNEvaluator.RPNEvaluator.Evaluate(heal, null); return this; }
+    public SpellBuilder withNumber(string number) { spell.baseNumber = RPNEvaluator.RPNEvaluator.Evaluate(number, null); return this; }
+    public SpellBuilder withManaCost(string manaCost) { spell.baseManaCost = RPNEvaluator.RPNEvaluator.Evaluate(manaCost, null); return this; }
+    public SpellBuilder withCooldown(string cooldown) { spell.baseCooldown = RPNEvaluator.RPNEvaluator.Evaluate(cooldown, null); return this; }
     public SpellBuilder WithAngle(float angle) { spell.baseAngle = angle; return this; }
-
+    public SpellBuilder withDelay(string delay) { spell.baseDelay = RPNEvaluator.RPNEvaluator.Evaluate(delay, null); return this; }
+    public SpellBuilder withLifetime(string lifetime) { spell.baseLifetime = RPNEvaluator.RPNEvaluator.Evaluate(lifetime, null); return this; }
 
     public Spell Build(SpellCaster owner)
     {
@@ -27,7 +35,7 @@ public class SpellBuilder
         return new Spell(owner);
     }
 
-    public SpellBuilder(SpellData givenSpell)
+    public SpellBuilder()
     {
         
     }
