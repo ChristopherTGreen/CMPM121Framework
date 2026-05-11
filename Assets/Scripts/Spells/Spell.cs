@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
+//Notes to self:
+// Lecture 10 - Probably use decorator Pattern for a spell class? Similar to template?
+// Lecture 11 - Reference the Slay the Spire structure
+// Lecture 12 - Take a look at lecture 12 later today...
+
 public class Spell 
 {
     public float last_cast;
