@@ -6,11 +6,12 @@ using Newtonsoft.Json.Linq;
 public class Spell 
 {
     public float last_cast;
-    public string name { get; set; } = null; // should this be restricted to its own spell (not base class) - chris
     public SpellCaster owner;
     public Hittable.Team team;
+    // modifiable data below
     public int icon { get; set; } = 0;
-
+    public string name { get; set; } = null; // should this be restricted to its own spell (not base class) - chris
+    public string baseTrajectory { get; set; } = null;
     // Variables for base class (we need to find default values)
     public int baseDamage { get; set; } = -1;
     public int baseHeal { get; set; } = -1;
@@ -18,22 +19,51 @@ public class Spell
     public int baseNumber { get; set; } = -1;
     public int baseManaCost { get; set; } = -1;
     public float baseCooldown { get; set; } = -1;
-    public int baseLifetime { get; set; } = -1;
+    public float baseLifetime { get; set; } = -1;
 
 
     public Spell(SpellCaster owner) // change this probably - chris
     {
         this.owner = owner;
     }
+    public int GetIcon()
+    {
+        return icon;
+    }
+
+    public string GetTrajectory()
+    {
+        return baseTrajectory;
+    }
 
     public int GetDamage()
     {
         return baseDamage;
     }
+    public int GetHeal()
+    {
+        return baseHeal;
+    }
+    public float GetSpeed()
+    {
+        return baseSpeed;
+    }
+    public int GetNumber()
+    {
+        return baseNumber;
+    }
 
     public int GetManaCost()
     {
         return baseManaCost;
+    }
+    public float GetCooldown()
+    {
+        return baseCooldown;
+    }
+    public float GetLifetime()
+    {
+        return baseLifetime;
     }
 
     // IsReady() 
@@ -46,7 +76,7 @@ public class Spell
     public virtual IEnumerator CastRoutine(Vector3 where, Vector3 target, Hittable.Team team)
     {
         this.team = team;
-        GameManager.Instance.projectileManager.CreateProjectile(0, "straight", where, target - where, 15f, OnHit);
+        GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, target - where, GetSpeed(), OnHit);
         yield return new WaitForEndOfFrame();
     }
     // Not too sure if we should merge the cast here with the cast above - chris

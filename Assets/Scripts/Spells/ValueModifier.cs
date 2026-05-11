@@ -6,10 +6,7 @@ using System.Text;
 public class ValueModifier
 {
     // don't know if we need anything in here, but we do need an interface - chris
-    public virtual void GetValue()
-    {
-
-    }
+    
 }
 public class ValueModifier<T> : ValueModifier
 {
