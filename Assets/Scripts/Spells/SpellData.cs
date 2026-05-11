@@ -38,3 +38,19 @@ public class SpellProjectileData
     public int sprite { get ; set; } = -1;
 
 }
+
+
+//prgrammer can call RetrieveSpellData.SpellDictionary();
+public class RetrieveSpellData
+{
+    
+    private static SpellParsing spellparse = new SpellParsing();
+    private static Dictionary<string, SpellData> spelldictionary = new Dictionary<string, SpellData>();
+
+    public static Dictionary<string, SpellData> SpellDictionary()
+    {
+        spelldictionary = spellparse.StoreData(Resources.Load<TextAsset>("spells").text);
+        return spelldictionary;
+    }
+
+}
