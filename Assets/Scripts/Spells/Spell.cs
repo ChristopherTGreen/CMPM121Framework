@@ -26,7 +26,9 @@ public class Spell
         this.owner = owner;
     }
 
-    public bool IsReady()
+    // IsReady() 
+    // Seems to return if the spell is ready to be spawned if player clicks a button
+    public bool IsReady() 
     {
         return (last_cast + baseCooldown < Time.time);
     }
