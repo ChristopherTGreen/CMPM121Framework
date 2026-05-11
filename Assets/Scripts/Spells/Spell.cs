@@ -11,6 +11,7 @@ public class Spell
     // modifiable data below
     public int icon { get; set; } = 0;
     public string name { get; set; } = null; // should this be restricted to its own spell (not base class) - chris
+    public string description { get; set; } = null; // should this be restricted to its own spell (not base class) - chris
     public string baseTrajectory { get; set; } = null;
     // Variables for base class (we need to find default values)
     public Damage baseDamage { get; set; } = null;
