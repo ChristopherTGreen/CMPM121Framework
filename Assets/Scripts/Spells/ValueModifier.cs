@@ -11,11 +11,14 @@ public class ValueModifier<T>
     }
     public static T GetValue(List<ValueModifier<T>> mods, T original)
     {
-        // I believe it returns a list of values, defined by the mods
+        // Modifies specific value with current list of mods
+        T result = original;
         foreach (ValueModifier<T> mod in mods)
         {
-            return original;
+            result = mod.GetValue(result);
         }
+
+        return result;
     }
 }
 public class ConstantAdderModifierGeneric<Ops, T> : ValueModifier<T> where Ops : MathOperations<T>, new()
