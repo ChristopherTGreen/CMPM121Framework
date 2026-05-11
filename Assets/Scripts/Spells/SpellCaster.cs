@@ -34,7 +34,7 @@ public class SpellCaster
         if (mana >= spell.GetManaCost() && spell.IsReady())
         {
             mana -= spell.GetManaCost();
-            yield return spell.Cast(where, target, team);
+            yield return spell.CastRoutine(where, target, team);
         }
         yield break;
     }

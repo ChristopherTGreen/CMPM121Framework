@@ -26,6 +26,11 @@ public class Spell
         this.owner = owner;
     }
 
+    public T GetDamage()
+    {
+        return baseDamage;
+    }
+
     // IsReady() 
     // Seems to return if the spell is ready to be spawned if player clicks a button
     public bool IsReady() 
@@ -33,19 +38,19 @@ public class Spell
         return (last_cast + baseCooldown < Time.time);
     }
 
-    public virtual IEnumerator Cast(Vector3 where, Vector3 target, Hittable.Team team)
+    public virtual IEnumerator CastRoutine(Vector3 where, Vector3 target, Hittable.Team team)
     {
         this.team = team;
         GameManager.Instance.projectileManager.CreateProjectile(0, "straight", where, target - where, 15f, OnHit);
         yield return new WaitForEndOfFrame();
     }
-
+    // Not too sure if we should merge the cast here with the cast above - chris
     public void Cast()
     {
-        Cast(new ValueModifier());
+        Cast(new ValueModifier<T>);
     }
 
-    protected virtual void Cast(ValueModifier modifier)
+    protected virtual void Cast(ValueModifier<T> modifier)
     {
         
     }

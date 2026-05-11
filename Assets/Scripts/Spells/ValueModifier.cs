@@ -21,6 +21,26 @@ public class ValueModifier<T>
         return result;
     }
 }
+
+public interface MathOperations<T>
+{
+    T Add(T a, T b);
+    T Mul(T a, T b);
+    // and other operations
+}
+public class MathOperationsInt :
+        MathOperations<int>
+{
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+    public int Mul(int a, int b)
+    {
+        return a * b;
+    }
+}
+
 public class ConstantAdderModifierGeneric<Ops, T> : ValueModifier<T> where Ops : MathOperations<T>, new()
 {
     public T add;
@@ -45,24 +65,5 @@ public class ConstantMultiplierModifierGeneric<Ops, T> :
     public override T GetValue(T original)
     {
         return new Ops().Mul(original, mul);
-    }
-}
-
-public interface MathOperations<T>
-{
-    T Add(T a, T b);
-    T Mul(T a, T b);
-    // and other operations
-}
-public class MathOperationsInt :
-        MathOperations<int>
-{
-    public int Add(int a, int b)
-    {
-        return a + b;
-    }
-    public int Mul(int a, int b)
-    {
-        return a * b;
     }
 }
