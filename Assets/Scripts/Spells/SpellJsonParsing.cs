@@ -1,5 +1,6 @@
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 
 public class SpellParsing : JsonProcessingTemplate<SpellData>
@@ -13,9 +14,8 @@ public class SpellParsing : JsonProcessingTemplate<SpellData>
         foreach (var spell in jsonObject.Properties())
         {
 
-            string SpellName = spell.Name; // .Name takes the string outside of the curly brackets (The spell name)
-            SpellData spellData = spell.Value.ToObject<SpellData>(); //.Value gets everything in the curly brackets
-            dictionary[SpellName] = spellData;
+            SpellData spellData = spell.Value.ToObject<SpellData>();
+            dictionary[spellData.name] = spellData;
 
         }
 
