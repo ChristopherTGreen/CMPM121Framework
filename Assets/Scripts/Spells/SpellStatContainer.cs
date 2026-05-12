@@ -13,6 +13,7 @@ public class SpellStatContainer
         if (!allCurrentMods.ContainsKey(valueName))
         {
             allCurrentMods[valueName] = new List<ValueModifier<T>>();
+            // we need some way to check properties
         }
         else
         {

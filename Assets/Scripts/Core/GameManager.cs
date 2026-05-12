@@ -70,5 +70,6 @@ public class GameManager
         levels = RetrieveLevelData.LevelDictionary();
         enemyTypes = RetrieveEnemyData.EnemyDictionary();
         spells = RetrieveSpellData.SpellDictionary();
+        Debug.Log(string.Join(", ", spells));
     }
 }
