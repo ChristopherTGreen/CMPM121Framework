@@ -109,7 +109,6 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            RewardScreenManagerClass.RestartButtonHandler();
             yield return new WaitWhile(() => RewardScreenManager.RewardScreenActive() == true);
             GameManager.Instance.state = GameManager.GameState.GAMEOVER; // there might be a better state for this, pregame?
         }
