@@ -13,6 +13,7 @@ public class Spell
     public string name { get; set; } = null; // should this be restricted to its own spell (not base class) - chris
     public string description { get; set; } = null; // should this be restricted to its own spell (not base class) - chris
     public string baseTrajectory { get; set; } = null;
+    public int sprite { get; set; } = 0;
     // Variables for base class (we need to find default values)
     public Damage baseDamage { get; set; } = null;
     public int baseHeal { get; set; } = -1;
@@ -25,7 +26,7 @@ public class Spell
     public float baseLifetime { get; set; } = -1;
 
 
-    public Spell(SpellCaster owner) // change this probably - chris
+    public Spell(SpellCaster owner = null) // change this probably - chris
     {
         this.owner = owner;
     }

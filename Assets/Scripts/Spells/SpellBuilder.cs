@@ -23,6 +23,7 @@ public class SpellBuilder
     }
     public SpellBuilder WithTrajectory(string trajectory) { spell.baseTrajectory = trajectory; return this; }
     public SpellBuilder WithSpeed(string speed) { spell.baseSpeed = RPNEvaluator.RPNEvaluator.Evaluatef(speed, variables); return this; }
+    public SpellBuilder WithSprite(int sprite) { spell.sprite = sprite; return this; }
     public SpellBuilder WithHeal(string heal) { spell.baseHeal = RPNEvaluator.RPNEvaluator.Evaluate(heal, variables); return this; }
     public SpellBuilder WithNumber(string number) { spell.baseNumber = RPNEvaluator.RPNEvaluator.Evaluate(number, variables); return this; }
     public SpellBuilder WithManaCost(string manaCost) { spell.baseManaCost = RPNEvaluator.RPNEvaluator.Evaluate(manaCost, variables); return this; }
@@ -30,20 +31,20 @@ public class SpellBuilder
     public SpellBuilder WithAngle(string angle) { spell.baseAngle = RPNEvaluator.RPNEvaluator.Evaluatef(angle, variables); return this; }
     public SpellBuilder WithDelay(string delay) { spell.baseDelay = RPNEvaluator.RPNEvaluator.Evaluatef(delay, variables); return this; }
     public SpellBuilder WithLifetime(string lifetime) { spell.baseLifetime = RPNEvaluator.RPNEvaluator.Evaluatef(lifetime, variables); return this; }
-    // Returns the final result after stacking prior spell builder datas
+ 
     public Spell Build(SpellCaster owner)
     {
         return spell;
     }
     // Acts as an interface and class call
-    public SpellBuilder()
+    public SpellBuilder(Spell existingSpell)
     {
-
+        this.spell = existingSpell;
     }
     // Temporary factory we may move outside this class
     public Spell CreateSpell(SpellCaster owner, SpellData data)
     {
-        Spell newSpell = new SpellBuilder()
+        Spell newSpell = new SpellBuilder(spell)
             .WithName(data.name)
             .WithDescription(data.description)
             .WithIcon(data.icon)
