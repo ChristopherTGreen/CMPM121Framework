@@ -7,16 +7,46 @@ using System.Collections;
 // This is the SpellModifier wrapper Template. Any new spell modifier should inherit this class!
 public class SpellModifier : Spell
 {
-    
-
 
     // inner should be the spell being wrapped.
     Spell inner;
 
-    /*
+    // multipliers / modifier stats
+    public float damage_multiplier { get ; set ;} = -1.0f;
+    public float mana_multiplier { get ; set ;} = -1.0f;
+    public float speed_multiplier { get ; set ;} = -1.0f;
+    public float cooldown_multiplier { get ; set ;} = -1.0f;
+
+    
     // Variables for base class (we need to find default values)
     SpellStatContainer statContainer { get; set; } = new SpellStatContainer();
-    */
+    
+
+
+    // Get Methods for Modifier spells. This spell template can also access the get methods from Spell
+    // The Spell template does not know these get methods exist, as it doesn't need to know them.
+    public virtual float getDamageMultiplier()
+    {
+        return damage_multiplier;
+    }
+
+    public virtual float getManaMultiplier()
+    {
+        return mana_multiplier;
+    }
+
+    public virtual float getSpeedMultiplier()
+    {
+        return speed_multiplier;
+    }
+
+    public virtual float getCooldownMultiplier()
+    {
+        return cooldown_multiplier;
+    }
+
+
+
 
 
     //This is SpellModifier class' constructor. So we can call it like SpellModifier()
