@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-// This should Modify any spell it wraps 
+// This is the SpellModifier Template. Any spell modifier should inherit this class!
 public class SpellModifier : Spell
 {
 
     // inner should be the spell being wrapped.
     protected Spell inner;
 
+    /*
     // Variables for base class (we need to find default values)
     SpellStatContainer statContainer { get; set; } = new SpellStatContainer();
-
+    */
 
 
     //This is SpellModifier class' constructor. So we can call it like SpellModifier()
@@ -32,8 +33,21 @@ public class SpellModifier : Spell
 
     }
 
+
+
+    //Editing the Cast Method from the Parent (Spell) class
     protected override void Cast(ValueModifier modifier)
     {
-        inner.Cast();
+
+        Modifier(modifier); //This should the modification to the spell
+        inner.Cast(); //call the cast of the next class
+
     }
+
+
+
+    //This is a editable method that the children of this class can edit
+    // This is where the spell modifier will be
+    protected virtual void Modifier(ValueModifier modifier){}
+
 }
