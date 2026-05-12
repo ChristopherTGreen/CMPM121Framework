@@ -6,7 +6,58 @@ using System.Text;
 
 public class ValueModifier
 {
+    /* From Chris' attempt below
+        public interface MathOperations<T>
+    {
+        T Add(T a, T b);
+        T Mul(T a, T b);
+        // and other operations
+    }
+    public class MathOperationsInt :
+            MathOperations<int>
+    {
+        public int Add(int a, int b)
+        {
+            return a + b;
+        }
+        public int Mul(int a, int b)
+        {
+            return a * b;
+        }
+    }
+    */
 
+    
+    //trying enums - structs, methods and classes didn't work as I thought
+    public enum MathOperations
+    {
+        AddValue,
+        ScalarValue
+    }
+
+    public MathOperations mathoperations;
+    public float modifieramount;
+
+    public float CalculateModification(float basevalue)
+    {
+        
+        if (mathoperations == MathOperations.AddValue)
+        {
+    
+            return modifieramount + basevalue;
+
+        } 
+        else
+        {
+
+            return modifieramount * basevalue;
+
+        }
+
+    }
+
+
+    /* Having issues with methods
     public float AddValue(float basevalue, float modifierinput)
     {
         return basevalue + modifierinput;
@@ -16,6 +67,7 @@ public class ValueModifier
     {
         return basevalue * modifierinput;
     }
+    */
 
     // Modulus??? Probably not but for scalability... maybe
 
