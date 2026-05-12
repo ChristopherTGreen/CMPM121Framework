@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-// This is the SpellModifier Template. Any spell modifier should inherit this class!
+// This is the SpellModifier wrapper Template. Any new spell modifier should inherit this class!
 public class SpellModifier : Spell
 {
 
