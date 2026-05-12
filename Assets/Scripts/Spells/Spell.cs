@@ -26,59 +26,66 @@ public class Spell
     public float baseLifetime { get; set; } = -1;
 
 
+    // Constructor
     public Spell(SpellCaster owner = null) // change this probably - chris
     {
         this.owner = owner;
     }
-    public int GetIcon()
+
+    public virtual int GetIcon()
     {
         return icon;
     }
 
-    public string GetTrajectory()
+    public virtual string GetTrajectory()
     {
         return baseTrajectory;
     }
 
-    public int GetDamage()
+    public virtual int GetDamage()
     {
         return baseDamage.amount;
     }
-    public Damage.Type GetDamageType()
+
+    public virtual Damage.Type GetDamageType()
     {
         Damage.Type type = baseDamage.type;
         return type;
     }
-    public int GetHeal()
+
+    public virtual int GetHeal()
     {
         return baseHeal;
     }
-    public float GetSpeed()
+
+    public virtual float GetSpeed()
     {
         return baseSpeed;
     }
-    public int GetNumber()
+
+    public virtual int GetNumber()
     {
         return baseNumber;
     }
 
-    public int GetManaCost()
+    public virtual int GetManaCost()
     {
         return baseManaCost;
     }
-    public float GetCooldown()
+
+    public virtual float GetCooldown()
     {
         return baseCooldown;
     }
-    public float GetAngle()
+    public virtual float GetAngle()
     {
         return baseAngle;
     }
-    public float GetDelay()
+    public virtual float GetDelay()
     {
         return baseDelay;
     }
-    public float GetLifetime()
+    public virtual float GetLifetime()
     {
         return baseLifetime;
     }
@@ -96,6 +103,7 @@ public class Spell
         GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, target - where, GetSpeed(), OnHit);
         yield return new WaitForEndOfFrame();
     }
+
     // Not too sure if we should merge the cast here with the cast above - chris
     public void Cast()
     {
