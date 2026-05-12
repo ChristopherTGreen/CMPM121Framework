@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 
 //Jay's trying something else with the ValueModifier
-
+/*
 public class ValueModifier
 {
-    /* From Chris' attempt below
+     From Chris' attempt below
         public interface MathOperations<T>
     {
         T Add(T a, T b);
@@ -25,7 +25,7 @@ public class ValueModifier
             return a * b;
         }
     }
-    */
+    
 
     
     //trying enums - structs, methods and classes didn't work as I thought
@@ -67,16 +67,16 @@ public class ValueModifier
     {
         return basevalue * modifierinput;
     }
-    */
+    
 
     // Modulus??? Probably not but for scalability... maybe
 
 }
-
+*/
 
 //Chris' ValueModifier
 
-/*
+
 // may need to make this an "interface" and not a "class" - chris
 public class ValueModifier
 {
@@ -148,4 +148,3 @@ public class ConstantMultiplierModifierGeneric<Ops, T> :
         return new Ops().Mul(original, mul);
     }
 }
-*/
