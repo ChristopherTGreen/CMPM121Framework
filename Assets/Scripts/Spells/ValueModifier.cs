@@ -109,8 +109,7 @@ public interface MathOperations<T>
     T Mul(T a, T b);
     // and other operations
 }
-public class MathOperationsInt :
-        MathOperations<int>
+public class MathOperationsInt : MathOperations<int>
 {
     public int Add(int a, int b)
     {
@@ -122,10 +121,10 @@ public class MathOperationsInt :
     }
 }
 
-public class ConstantAdderModifierGeneric<Ops, T> : ValueModifier<T> where Ops : MathOperations<T>, new()
+public class Adder<Ops, T> : ValueModifier<T> where Ops : MathOperations<T>, new()
 {
     public T add;
-    public ConstantAdderModifierGeneric(T add)
+    public Adder(T add)
     {
         this.add = add;
     }
@@ -134,12 +133,10 @@ public class ConstantAdderModifierGeneric<Ops, T> : ValueModifier<T> where Ops :
         return new Ops().Add(original, add);
     }
 }
-public class ConstantMultiplierModifierGeneric<Ops, T> :
-        ValueModifier<T>
-        where Ops : MathOperations<T>, new()
+public class Multiplier<Ops, T> : ValueModifier<T> where Ops : MathOperations<T>, new()
 {
     public T mul;
-    public ConstantMultiplierModifierGeneric(T mul)
+    public Multiplier(T mul)
     {
         this.mul = mul;
     }
