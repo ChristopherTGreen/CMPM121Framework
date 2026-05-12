@@ -4,6 +4,7 @@ using System.Text;
 
 public class SpellStatContainer
 {
+    /*
     // store a dictionary containing all current modifiers being used
     private Dictionary<string, object> allCurrentMods = new Dictionary<string, object>();
 
@@ -22,4 +23,8 @@ public class SpellStatContainer
 
         return (List<ValueModifier<T>>)allCurrentMods[valueName];
     }
+    */
+
+    // I know we want a dictionary but I'm trying a list first
+    public static List<ValueModifier> DamageModifier = new List<ValueModifier>();
 }

@@ -2,9 +2,33 @@
 using System.Collections.Generic;
 using System.Text;
 
+//Jay's trying something else with the ValueModifier
+
+public class ValueModifier
+{
+
+    public float AddValue(float basevalue, float modifierinput)
+    {
+        return basevalue + modifierinput;
+    }
+
+    public float ScalarValue(float basevalue, float modifierinput)
+    {
+        return basevalue * modifierinput;
+    }
+
+    // Modulus??? Probably not but for scalability... maybe
+
+}
+
+
+//Chris' ValueModifier
+
+/*
 // may need to make this an "interface" and not a "class" - chris
 public class ValueModifier
 {
+    
     // don't know if we need anything in here, but we do need an interface - chris
     
 }
@@ -72,3 +96,4 @@ public class ConstantMultiplierModifierGeneric<Ops, T> :
         return new Ops().Mul(original, mul);
     }
 }
+*/

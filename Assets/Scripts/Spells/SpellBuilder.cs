@@ -52,6 +52,17 @@ public class SpellBuilder
 
 
 
+
+    // findValue()
+    // check if a field exists and collects the reference (experimental)
+    public static bool FindValue(SpellData givenSpell, string valueName, out object value)
+    {
+        value = givenSpell.GetType().GetProperty(valueName).GetValue(givenSpell, null);
+        return false;
+    }
+
+
+
     //Note: We don't need a spell factory in the spell builder.
 
     /*
@@ -77,17 +88,6 @@ public class SpellBuilder
         return newSpell;
     }
     */
-
-
-
-    // findValue()
-    // check if a field exists and collects the reference (experimental)
-    public static bool FindValue(SpellData givenSpell, string valueName, out object value)
-    {
-        value = givenSpell.GetType().GetProperty(valueName).GetValue(givenSpell, null);
-        return false;
-    }
-
 
 
     // saving this code for when making random functions for spell grabbing

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
+using System.Collections;
 
 // This is the SpellModifier wrapper Template. Any new spell modifier should inherit this class!
 public class SpellModifier : Spell
 {
+    
+
 
     // inner should be the spell being wrapped.
     Spell inner;
@@ -35,12 +39,12 @@ public class SpellModifier : Spell
 
 
 
-    //Editing the Cast Method from the Parent (Spell) class
-    protected override void Cast(ValueModifier modifier)
+    //Editing the Castroutine Method from the Parent (Spell) class
+    public override IEnumerator CastRoutine(Vector3 where, Vector3 target, Hittable.Team team)
     {
 
-        Modifier(modifier); //This should the modification to the spell
-        inner.Cast(); //call the cast of the next class
+        ApplyModifier(inner);
+        yield return inner.CastRoutine(where, target, team);
 
     }
 
@@ -48,6 +52,6 @@ public class SpellModifier : Spell
 
     //This is a editable method that the children of this class can edit
     // This is where the spell modifier will be
-    protected virtual void Modifier(ValueModifier modifier){}
+    protected virtual void ApplyModifier(Spell innerspell){}
 
 }
