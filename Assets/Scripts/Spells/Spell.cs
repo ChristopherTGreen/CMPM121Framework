@@ -8,6 +8,10 @@ using Newtonsoft.Json.Linq;
 // Lecture 11 - Reference the Slay the Spire structure
 // Lecture 12 - Take a look at lecture 12 later today...
 
+
+
+// A spell template
+// Base spell classes should be a child of this class
 public class Spell 
 {
     public float last_cast;
@@ -31,6 +35,8 @@ public class Spell
     public float baseDelay { get; set; } = -1;
     public float baseLifetime { get; set; } = -1;
 
+
+
     // Do not get rid of this, this is the Spell class' constructor. 
     // This also gets called in the SpellModifier COnstructor.
     public Spell(SpellCaster owner) // change this probably - chris
@@ -38,23 +44,45 @@ public class Spell
         this.owner = owner;
     }
 
+
+
+    // Not too sure if we should merge the cast here with the cast above - chris
+    // Nope don't merge it - Jay
+    public void Cast()
+    {
+
+        Cast(new ValueModifier());
+
+    }
+
+
+
+    // This is a editable method that the Children of the spell class can edit
+    // This should be edited in a base spell class - ArcaneBolt, Arcane Spray, Magic Missile, Arcane Explosion (See assignment)
+    // Do not edit this method in the SpellModifier class, this method is not for that class
+    protected virtual void Cast(ValueModifier modifier){}
+
+
+    
+    // This makes the projectile. I think this should be put in the base spell instead regarding projectiles
+    // Editable method
+    //Commenting out temporarily
+
+    /*
     public virtual IEnumerator CastRoutine(Vector3 where, Vector3 target, Hittable.Team team)
     {
         this.team = team;
         GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, target - where, GetSpeed(), OnHit);
         yield return new WaitForEndOfFrame();
     }
-    // Not too sure if we should merge the cast here with the cast above - chris
-    public void Cast()
-    {
-        Cast(new ValueModifier());
-    }
+    */
 
-    protected virtual void Cast(ValueModifier modifier)
-    {
-        
-    }
 
+
+    //Commenting out for now. Need to rework this so there's more customization over the spell
+    // Spell actions shouldn;t just happen upon a hit
+
+    /*
     void OnHit(Hittable other, Vector3 impact)
     {
         if (other.team != team)
@@ -64,6 +92,10 @@ public class Spell
         }
 
     }
+    */
+
+
+
 
     // Note: 
     // The original version of OnHit and IsReady has GetDamage(), not too sure if we need them to be get calls which can be overriden or not - chris
