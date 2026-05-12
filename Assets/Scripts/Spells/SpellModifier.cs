@@ -40,11 +40,11 @@ public class SpellModifier : Spell
 
 
     //Editing the Castroutine Method from the Parent (Spell) class
-    public override IEnumerator CastRoutine(Vector3 where, Vector3 target, Hittable.Team team)
+    protected override void Cast(ValueModifier valueModifier)
     {
 
         ApplyModifier(inner);
-        yield return inner.CastRoutine(where, target, team);
+        inner.Cast();
 
     }
 

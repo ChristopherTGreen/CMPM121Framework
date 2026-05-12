@@ -7,6 +7,7 @@ public class SpellStatContainer
 {
     
     // store a dictionary containing all current modifiers being used
+    // Object would store the methods ValueAdd(int or float), ValueMul(int or float), string would be the modifier name
     private Dictionary<string, object> allCurrentMods = new Dictionary<string, object>();
 
     public List<ValueModifier<T>> GetList<T>(string valueName)
@@ -18,6 +19,9 @@ public class SpellStatContainer
 
         return (List<ValueModifier<T>>)allCurrentMods[valueName];
     }
+
+
+
     // asuume valueMod is a list with respective type
     public void AddValue<T>(string valueName, object valueMod)
     {
@@ -26,7 +30,7 @@ public class SpellStatContainer
             List<ValueModifier<T>> newList = new List<ValueModifier<T>>();
             allCurrentMods[valueName] = newList;
         }
-        allCurrentMods[valueName]
+        //allCurrentMods[valueName]
 
 
 

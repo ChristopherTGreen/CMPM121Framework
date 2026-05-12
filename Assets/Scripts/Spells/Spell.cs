@@ -102,10 +102,8 @@ public class Spell
         Cast(new ValueModifier());
     }
 
-    protected virtual void Cast(ValueModifier modifier)
-    {
-        
-    }
+    // This gets edited by child methods
+    protected virtual void Cast(ValueModifier modifier){}
 
     void OnHit(Hittable other, Vector3 impact)
     {
