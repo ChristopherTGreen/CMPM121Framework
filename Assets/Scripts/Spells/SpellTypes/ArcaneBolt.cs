@@ -7,6 +7,7 @@ class ArcaneBolt : Spell
     public ArcaneBolt(SpellCaster owner) : base(owner)
     {
         SpellData data = GameManager.Instance.spells["Arcane Bolt"];
+        
         new SpellBuilder(this)
             .WithName(data.name)
             .WithDescription(data.description)

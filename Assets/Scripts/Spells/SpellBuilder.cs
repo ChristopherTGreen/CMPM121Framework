@@ -32,16 +32,31 @@ public class SpellBuilder
     public SpellBuilder WithDelay(string delay) { spell.baseDelay = RPNEvaluator.RPNEvaluator.Evaluatef(delay, variables); return this; }
     public SpellBuilder WithLifetime(string lifetime) { spell.baseLifetime = RPNEvaluator.RPNEvaluator.Evaluatef(lifetime, variables); return this; }
  
+
+ 
     public Spell Build(SpellCaster owner)
     {
+        spell.owner = owner;
         return spell;
     }
+
+
+
     // Acts as an interface and class call
+    // this is a constructor for the spell builder - Jay
+    // take a peek at SpellModifier.cs I did something similar regarding the constructors
     public SpellBuilder(Spell existingSpell)
     {
         this.spell = existingSpell;
     }
+
+
+
+    //Note: We don't need a spell factory in the spell builder.
+
+    /*
     // Temporary factory we may move outside this class
+    // we should move this outside of the class. This should be it's own class as we shouldn't be building a spell with the builder inside of the builder - Jay
     public Spell CreateSpell(SpellCaster owner, SpellData data)
     {
         Spell newSpell = new SpellBuilder(spell)
@@ -61,6 +76,9 @@ public class SpellBuilder
             .Build(owner);
         return newSpell;
     }
+    */
+
+
 
     // findValue()
     // check if a field exists and collects the reference (experimental)
@@ -69,6 +87,9 @@ public class SpellBuilder
         value = givenSpell.GetType().GetProperty(valueName).GetValue(givenSpell, null);
         return false;
     }
+
+
+
     // saving this code for when making random functions for spell grabbing
     /*
     public static void RandomFunc()
