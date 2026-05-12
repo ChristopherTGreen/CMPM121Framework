@@ -7,11 +7,23 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
+
 public class SpellBuilder 
 {
-    // still need someway to declare owner?
-    private Spell spell = new Spell(null);
-    public Dictionary<string, int> variables { get; private set; } = new Dictionary<string, int> { { "power", 10 } };
+    // still need someway to declare owner? 
+    // Probably a constructor is needed to get the owner? - Jay
+    private Spell spell = new Spell(null);  //owner null for now
+
+    public Dictionary<string, int> variables { get; private set; } = new Dictionary<string, int> 
+    { 
+
+        // RPN Expression variables
+        { "power", 10 } 
+
+    };
+
+
+    
     public SpellBuilder WithName(string name) { spell.name = name; return this; }
     public SpellBuilder WithDescription(string description) { spell.description = description; return this; }
     public SpellBuilder WithIcon(int icon) { spell.icon = icon; return this; }

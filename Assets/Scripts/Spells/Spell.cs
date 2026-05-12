@@ -51,7 +51,7 @@ public class Spell
     public void Cast()
     {
 
-        Cast(new ValueModifier());
+        Cast(new ValueModifier()); // This Case is the editable method below
 
     }
 
@@ -64,8 +64,9 @@ public class Spell
 
 
     
-    // This makes the projectile. I think this should be put in the base spell instead regarding projectiles
-    // Editable method
+    // This makes the projectile. I think this should be put in the base spell classes instead regarding projectiles
+    // or it's own method here and editable in the other classes
+    // Editable method for other spell classes NOT MODIFIER SPELLS
     //Commenting out temporarily
 
     /*
