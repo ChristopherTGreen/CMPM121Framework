@@ -1,22 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Unity.VisualScripting;
 
 
 // may need to make this an "interface" and not a "class" - chris
 public class ValueModifier
 {
-    
+
     // Call Spell Container class...
-    
+    // strict values
+    public List<ValueModifier<int>> amount = new List<ValueModifier<int>>();
+    public List<ValueModifier<int>> heal = new List<ValueModifier<int>>();
+    public List<ValueModifier<float>> speed = new List<ValueModifier<float>>();
+    public List<ValueModifier<int>> number = new List<ValueModifier<int>>();
+    public List<ValueModifier<int>> manaCost = new List<ValueModifier<int>>();
+    public List<ValueModifier<float>> cooldown = new List<ValueModifier<float>>();
+    public List<ValueModifier<float>> angle = new List<ValueModifier<float>>();
+    public List<ValueModifier<float>> delay = new List<ValueModifier<float>>();
+    public List<ValueModifier<float>> lifetime = new List<ValueModifier<float>>();
+
+
+    // strings, may not need?
+    public List<string> type;
+    public List<string> trajectory;
+
+        //var mod5 = ValueModifier<int>.GetValue(newList, potato);
+        //ValueModifier<int> damageMod = new ValueModifier<int>();
+        //Multiplier<MathOperationsInt, int> healthMod = new Multiplier<MathOperationsInt, int>(potato);
+        //AddValue<int>("damage", healthMod);
+
+    public void AddList(List<ValueModifier<int>> valueMod, string valueName)
+    {
+        if (valueName == "amount") amount.AddRange(valueMod);
+        else if (valueName == "heal") heal.AddRange(valueMod);
+        else if (valueName == "number") number.AddRange(valueMod);
+        else if (valueName == "manaCost") manaCost.AddRange(valueMod);
+        throw new Exception("Invalid value modifier int name for add list");
+    }
+    public void AddList(List<ValueModifier<float>> valueMod, string valueName)
+    {
+        if (valueName == "speed") speed.AddRange(valueMod);
+        else if (valueName == "cooldown") cooldown.AddRange(valueMod);
+        else if (valueName == "angle") angle.AddRange(valueMod);
+        else if (valueName == "delay") delay.AddRange(valueMod);
+        else if (valueName == "lifetime") lifetime.AddRange(valueMod);
+        throw new Exception("Invalid value modifier float name for add list");
+    }
+    public void AddValue(ValueModifier<int> valueMod, string valueName)
+    {
+        if (valueName == "amount") amount.Add(valueMod);
+        else if (valueName == "heal") heal.Add(valueMod);
+        else if (valueName == "number") number.Add(valueMod);
+        else if (valueName == "manaCost") manaCost.Add(valueMod);
+        throw new Exception("Invalid value modifier int name for add value");
+    }
+    public void AddValue(ValueModifier<float> valueMod, string valueName)
+    {
+        if (valueName == "speed") speed.Add(valueMod);
+        else if (valueName == "cooldown") cooldown.Add(valueMod);
+        else if (valueName == "angle") angle.Add(valueMod);
+        else if (valueName == "delay") delay.Add(valueMod);
+        else if (valueName == "lifetime") lifetime.Add(valueMod);
+        throw new Exception("Invalid value modifier float name for add value");
+    }
+
+    public static int GetValue(List<ValueModifier<int>> valueMod, int original)
+    {
+        return ValueModifier<int>.GetValue(valueMod, original);
+    }
+    public static float GetValue(List<ValueModifier<float>> valueMod, float original)
+    {
+        return ValueModifier<float>.GetValue(valueMod, original);
+    }
+
+
 }
 
 // Child of the ValueModifier class above
-public class ValueModifier<T> : ValueModifier
+public class ValueModifier<T> 
 {
 
-    // EDitable mathod
-    // is Original the base value?
+    // Editable method
+    // Original should be base value
     public virtual T GetValue(T original)
     {
         return original;

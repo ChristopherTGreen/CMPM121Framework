@@ -8,6 +8,7 @@ public class Spell
     public float last_cast;
     public SpellCaster owner;
     public Hittable.Team team;
+    public ValueModifier stats = new ValueModifier();
     // modifiable data below
     public int icon { get; set; } = 0;
     public string name { get; set; } = null; // should this be restricted to its own spell (not base class) - chris
@@ -87,7 +88,7 @@ public class Spell
     }
     public virtual float GetLifetime()
     {
-        return baseLifetime;
+        return ValueModifier.GetValue(stats.lifetime, baseLifetime);
     }
 
     // IsReady() 
@@ -111,7 +112,10 @@ public class Spell
     }
 
     // This gets edited by child methods
-    protected virtual void Cast(ValueModifier modifier){}
+    protected virtual void Cast(ValueModifier modifier)
+    {
+        
+    }
 
     void OnHit(Hittable other, Vector3 impact)
     {

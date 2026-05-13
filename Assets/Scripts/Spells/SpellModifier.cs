@@ -12,7 +12,7 @@ public class SpellModifier : Spell
     Spell inner;
     
     // Variables for base class (we need to find default values)
-    SpellStatContainer statContainer { get; set; } = new SpellStatContainer();
+    // inherit stats from spell which is what we pass
     
 
 
