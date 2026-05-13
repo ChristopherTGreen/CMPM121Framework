@@ -22,6 +22,8 @@ class RewardSpell : MonoBehaviour
         spellui.SetSpell(rewardSpell);
     }
 
+    // COmmented out because it's causing errors whilst testing
+    /*
     public void RandomFunc()
     {
         var keys = new List<string>(GameManager.Instance.spells.Keys);
@@ -29,4 +31,5 @@ class RewardSpell : MonoBehaviour
         Spell builtSpell = ;
         GameManager.Instance.spells[randomKey];
     }
+    */
 }

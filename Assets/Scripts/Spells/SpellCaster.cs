@@ -27,8 +27,8 @@ public class SpellCaster
         this.mana_reg = mana_reg;
         this.team = team;
         //spell = new SpellBuilder().Build(this);
-        spell = new ArcaneBolt(this);
-    }
+        spell = new ArcaneBolt(this); //testing the wrapping of the modifier spell
+    } 
 
     public IEnumerator Cast(Vector3 where, Vector3 target)
     {        
