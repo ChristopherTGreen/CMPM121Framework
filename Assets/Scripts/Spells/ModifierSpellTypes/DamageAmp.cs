@@ -4,13 +4,15 @@ using System.Collections;
 public class DamageAmpModifier : SpellModifier
 {
     //constructor
-    public DamageAmpModifier(Spell inner, SpellCaster owner) : base(inner, owner){}
-
-    protected override void ApplyModifier(Spell innerspell)
+    public DamageAmpModifier(Spell inner) : base(inner)
     {
-        
-        //testing the wrapper, this is hard coded - reoptimize with actual implementation later
-        
+        this.modData = GameManager.Instance.spells["damage-amplified"];
+    }
+
+    protected override void ApplyModifier(ValueModifier modifier)
+    {
+        new SpellModifierBuilder(modifier).SpellModifierQuickBuilder(this.modData);
+
 
     }
 

@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 // This is the SpellModifier wrapper Template. Any new spell modifier should inherit this class!
 public class SpellModifier : Spell
@@ -10,6 +11,7 @@ public class SpellModifier : Spell
 
     // inner should be the spell being wrapped.
     Spell inner;
+    public SpellData modData;
     
     // Variables for base class (we need to find default values)
     // inherit stats from spell which is what we pass
@@ -18,7 +20,7 @@ public class SpellModifier : Spell
 
     //This is SpellModifier class' constructor. So we can call it like SpellModifier()
     //I THINK this constructor inherits the Spell class (Parent class') Constructor with the "[This Class' Constructor] : base(owner)" where base is the parent class' constructor
-    public SpellModifier(Spell inner, SpellCaster owner) : base(owner)
+    public SpellModifier(Spell inner) : base(inner.owner)
     {
 
         this.inner = inner; //This line makes this constructor inherit the Spell Class' constructor.
@@ -40,15 +42,17 @@ public class SpellModifier : Spell
     protected override void Cast(ValueModifier valueModifier)
     {
 
-        ApplyModifier(inner);
-        inner.Cast();
-
+        ApplyModifier(valueModifier);
+        if (inner is ISpell spellInner)
+        {
+            spellInner.Cast(valueModifier);
+        }
     }
 
 
 
     //This is a editable method that the children of this class can edit
     // This is where the spell modifier will be
-    protected virtual void ApplyModifier(Spell innerspell){}
+    protected virtual void ApplyModifier(ValueModifier valueModifier) {}
 
 }

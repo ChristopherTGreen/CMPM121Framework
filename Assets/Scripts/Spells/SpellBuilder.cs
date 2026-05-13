@@ -11,28 +11,27 @@ public class SpellBuilder
 {
     // still need someway to declare owner?
     private Spell spell = new Spell(null);
-    public Dictionary<string, int> variables { get; private set; } = new Dictionary<string, int> { { "power", 10 } };
     public SpellBuilder WithName(string name) { spell.name = name; return this; }
     public SpellBuilder WithDescription(string description) { spell.description = description; return this; }
     public SpellBuilder WithIcon(int icon) { spell.icon = icon; return this; }
     public SpellBuilder WithDamage(string amount, string type)
     {
         // do dictionary values later
-        spell.baseDamage = new Damage(RPNEvaluator.RPNEvaluator.Evaluate(amount, variables), Damage.TypeFromString(type));
+        spell.baseDamage = new Damage(RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables), Damage.TypeFromString(type));
         return this;
     }
     public SpellBuilder WithTrajectory(string trajectory) { spell.baseTrajectory = trajectory; return this; }
-    public SpellBuilder WithSpeed(string speed) { spell.baseSpeed = RPNEvaluator.RPNEvaluator.Evaluatef(speed, variables); return this; }
+    public SpellBuilder WithSpeed(string speed) { spell.baseSpeed = RPNEvaluator.RPNEvaluator.Evaluatef(speed, GameManager.Instance.variables); return this; }
     public SpellBuilder WithSprite(int sprite) { spell.sprite = sprite; return this; }
-    public SpellBuilder WithHeal(string heal) { spell.baseHeal = RPNEvaluator.RPNEvaluator.Evaluate(heal, variables); return this; }
-    public SpellBuilder WithNumber(string number) { spell.baseNumber = RPNEvaluator.RPNEvaluator.Evaluate(number, variables); return this; }
-    public SpellBuilder WithManaCost(string manaCost) { spell.baseManaCost = RPNEvaluator.RPNEvaluator.Evaluate(manaCost, variables); return this; }
-    public SpellBuilder WithCooldown(string cooldown) { spell.baseCooldown = RPNEvaluator.RPNEvaluator.Evaluatef(cooldown, variables); return this; }
-    public SpellBuilder WithAngle(string angle) { spell.baseAngle = RPNEvaluator.RPNEvaluator.Evaluatef(angle, variables); return this; }
-    public SpellBuilder WithDelay(string delay) { spell.baseDelay = RPNEvaluator.RPNEvaluator.Evaluatef(delay, variables); return this; }
-    public SpellBuilder WithLifetime(string lifetime) { spell.baseLifetime = RPNEvaluator.RPNEvaluator.Evaluatef(lifetime, variables); return this; }
+    public SpellBuilder WithHeal(string heal) { spell.baseHeal = RPNEvaluator.RPNEvaluator.Evaluate(heal, GameManager.Instance.variables); return this; }
+    public SpellBuilder WithNumber(string number) { spell.baseNumber = RPNEvaluator.RPNEvaluator.Evaluate(number, GameManager.Instance.variables); return this; }
+    public SpellBuilder WithManaCost(string manaCost) { spell.baseManaCost = RPNEvaluator.RPNEvaluator.Evaluate(manaCost, GameManager.Instance.variables); return this; }
+    public SpellBuilder WithCooldown(string cooldown) { spell.baseCooldown = RPNEvaluator.RPNEvaluator.Evaluatef(cooldown, GameManager.Instance.variables); return this; }
+    public SpellBuilder WithAngle(string angle) { spell.baseAngle = RPNEvaluator.RPNEvaluator.Evaluatef(angle, GameManager.Instance.variables); return this; }
+    public SpellBuilder WithDelay(string delay) { spell.baseDelay = RPNEvaluator.RPNEvaluator.Evaluatef(delay, GameManager.Instance.variables); return this; }
+    public SpellBuilder WithLifetime(string lifetime) { spell.baseLifetime = RPNEvaluator.RPNEvaluator.Evaluatef(lifetime, GameManager.Instance.variables); return this; }
  
-
+    // Modifier
  
     public Spell Build(SpellCaster owner)
     {
@@ -49,6 +48,7 @@ public class SpellBuilder
     {
         this.spell = existingSpell;
     }
+
 
 
 

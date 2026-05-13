@@ -40,6 +40,11 @@ public class GameManager
     public Dictionary<string, EnemyData> enemyTypes; // (possibly convert to lists based on what prof said) - chris
     public Dictionary<string, LevelData> levels;
     public Dictionary<string, SpellData> spells;
+    public Dictionary<string, int> variables => new Dictionary<string, int>
+    {
+        { "power", GameManager.Instance.player.GetComponent<PlayerController>().power},
+        { "wave", GameManager.Instance.wave_count }, 
+    };
     public int enemy_count { get { return enemies.Count; } }
     public int enemy_spawns_left = 0;
     public int wave_count = 0;

@@ -18,22 +18,25 @@ public class SpellData
 
 
 
-    //multipliers
+    // multipliers
     public string damage_multiplier { get ; set; } = null;
     public string mana_multiplier { get ; set; } = null;
     public string speed_multiplier { get ; set; } = null;
     public string cooldown_multiplier { get ; set; } = null;
 
-    //angle
+    // angle
     public string angle { get ; set; } = null;
 
-    //delay
+    // delay
     public string delay { get; set; } = null;
 
-    //mana adder
+    // adders
+    public string damage_adder { get; set; } = null;
     public string mana_adder { get ; set;} = null;
+    public string speed_adder { get; set; } = null;
+    public string cooldown_adder { get; set; } = null;
 
-    //Singular projectile trajectory
+    // Singular projectile trajectory
     public string projectile_trajectory { get; set;} = null;
 }
 
@@ -57,7 +60,7 @@ public class SpellProjectileData
 
 
 
-//prgrammer can call RetrieveSpellData.SpellDictionary();
+// prgrammer can call RetrieveSpellData.SpellDictionary();
 public class RetrieveSpellData
 {
     

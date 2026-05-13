@@ -2,8 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using System;
 
-public class Spell 
+public interface ISpell
+{
+    void Cast(ValueModifier modifier);
+}
+
+public class Spell : ISpell
 {
     public float last_cast;
     public SpellCaster owner;
@@ -16,7 +22,7 @@ public class Spell
     public string baseTrajectory { get; set; } = null;
     public int sprite { get; set; } = 0;
     // Variables for base class (we need to find default values)
-    public Damage baseDamage { get; set; } = null;
+    public Damage baseDamage { get; set; } = new Damage(-1, 0);
     public int baseHeal { get; set; } = -1;
     public float baseSpeed { get; set; } = -1;
     public int baseNumber { get; set; } = -1;
@@ -38,14 +44,15 @@ public class Spell
         return icon;
     }
 
-    public virtual string GetTrajectory()
+    public string GetTrajectory()
     {
+        Debug.Log(baseTrajectory);
         return baseTrajectory;
     }
 
     public virtual int GetDamage()
-    {
-        return baseDamage.amount;
+    { 
+        return ValueModifier.GetValue(stats.amount, baseDamage.amount);
     }
 
     public virtual Damage.Type GetDamageType()
@@ -56,35 +63,35 @@ public class Spell
 
     public virtual int GetHeal()
     {
-        return baseHeal;
+        return ValueModifier.GetValue(stats.heal, baseHeal);
     }
 
     public virtual float GetSpeed()
     {
-        return baseSpeed;
+        return ValueModifier.GetValue(stats.speed, baseSpeed);
     }
 
     public virtual int GetNumber()
     {
-        return baseNumber;
+        return ValueModifier.GetValue(stats.number, baseNumber);
     }
 
     public virtual int GetManaCost()
     {
-        return baseManaCost;
+        return ValueModifier.GetValue(stats.manaCost, baseManaCost);
     }
 
     public virtual float GetCooldown()
     {
-        return baseCooldown;
+        return ValueModifier.GetValue(stats.cooldown, baseCooldown);
     }
     public virtual float GetAngle()
     {
-        return baseAngle;
+        return ValueModifier.GetValue(stats.angle, baseAngle);
     }
     public virtual float GetDelay()
     {
-        return baseDelay;
+        return ValueModifier.GetValue(stats.angle, baseAngle);
     }
     public virtual float GetLifetime()
     {
@@ -115,6 +122,12 @@ public class Spell
     protected virtual void Cast(ValueModifier modifier)
     {
         
+    }
+
+    void ISpell.Cast(ValueModifier modifier)
+    {
+
+        this.Cast(modifier);
     }
 
     void OnHit(Hittable other, Vector3 impact)

@@ -27,21 +27,16 @@ class RewardSpell : MonoBehaviour
         spellui.SetSpell(rewardSpell);
     }
 
-<<<<<<< Updated upstream
-    // COmmented out because it's causing errors whilst testing
-=======
     public void AcceptButtonHandler()
     {
-        Accept.onClick.RemoveAllListeners();
-        Accept.onClick.AddListener(() => 
+        //Accept.onClick.RemoveAllListeners();
+        //Accept.onClick.AddListener(() => 
         // if spell list not full, add
         // else highlight red for a bit?
-        ); //When pressed, and if not full, takes in new spell
+        //); //When pressed, and if not full, takes in new spell
     }
 
 
-
->>>>>>> Stashed changes
     /*
     public void RandomFunc()
     {

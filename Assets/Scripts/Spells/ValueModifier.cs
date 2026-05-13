@@ -53,7 +53,7 @@ public class ValueModifier
         else if (valueName == "heal") heal.Add(valueMod);
         else if (valueName == "number") number.Add(valueMod);
         else if (valueName == "manaCost") manaCost.Add(valueMod);
-        throw new Exception("Invalid value modifier int name for add value");
+        else throw new Exception("Invalid value modifier int name for add value");
     }
     public void AddValue(ValueModifier<float> valueMod, string valueName)
     {
@@ -62,7 +62,7 @@ public class ValueModifier
         else if (valueName == "angle") angle.Add(valueMod);
         else if (valueName == "delay") delay.Add(valueMod);
         else if (valueName == "lifetime") lifetime.Add(valueMod);
-        throw new Exception("Invalid value modifier float name for add value");
+        else throw new Exception("Invalid value modifier float name for add value");
     }
 
     public static int GetValue(List<ValueModifier<int>> valueMod, int original)

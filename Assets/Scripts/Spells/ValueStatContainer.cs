@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+/*
 public class ValueStatContainer
 {
 
     // store a dictionary containing all current modifiers being used
     // Object would store the methods ValueAdd(int or float), ValueMul(int or float), string would be the modifier name
-    /*private Dictionary<string, object> allCurrentStats = new Dictionary<string, object>
+    private Dictionary<string, object> allCurrentStats = new Dictionary<string, object>
     {
         { "amount", amount }
-    };*/
+    };
     // strict values
     public List<ValueModifier<int>> amount = new List<ValueModifier<int>>();
     public List<ValueModifier<int>> heal = new List<ValueModifier<int>>();
@@ -67,3 +67,4 @@ public class ValueStatContainer
     // I know we want a dictionary but I'm trying a list first
     //public static List<ValueModifier> DamageModifier = new List<ValueModifier>();
 }
+*/
