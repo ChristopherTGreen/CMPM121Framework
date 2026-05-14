@@ -14,6 +14,7 @@ public class SpellData
     public string mana_cost { get ; set; } = null;
     public string cooldown { get ; set; } = null;
     public string N { get; set; } = null;
+    public string repeat { get; set; } = null;
     public SpellProjectileData projectile { get ; set; } = null;
 
 

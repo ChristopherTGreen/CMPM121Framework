@@ -27,12 +27,13 @@ public class Spell : ISpell
     public Damage baseDamage { get; set; } = new Damage(-1, 0);
     public int baseHeal { get; set; } = -1;
     public float baseSpeed { get; set; } = -1;
-    public int baseNumber { get; set; } = -1;
+    public int baseNumber { get; set; } = 1;
     public int baseManaCost { get; set; } = -1;
     public float baseCooldown { get; set; } = -1;
-    public float baseAngle { get; set; } = 0;
-    public float baseDelay { get; set; } = -1;
+    public int baseAngle { get; set; } = 0;
+    public float baseDelay { get; set; } = 1;
     public float baseLifetime { get; set; } = -1;
+    public int baseRepeat { get; set; } = 1;
 
 
     // Constructor
@@ -52,7 +53,10 @@ public class Spell : ISpell
         Debug.Log("Ahhh");
         Debug.Log($"Amount: {ValueModifier.GetValue(this.stats.amount, this.baseDamage.amount)}");
         Debug.Log($"Amount: { ValueModifier.GetValue(stats.amount, this.baseDamage.amount) }");
-        return baseTrajectory;
+        Debug.Log($"projt: {ValueModifier.GetValue(stats.trajectory, baseTrajectory)}");
+        Debug.Log($"projt: {ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory)}");
+        Debug.Log(stats.projectile_trajectory.Count);
+        return ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory);
     }
 
     public virtual int GetDamage()
@@ -82,6 +86,11 @@ public class Spell : ISpell
     {
         return ValueModifier.GetValue(stats.number, baseNumber);
     }
+    public virtual int GetRepeat()
+    {
+        return ValueModifier.GetValue(stats.repeat, baseRepeat);
+    }
+
 
     public virtual int GetManaCost()
     {
@@ -119,8 +128,17 @@ public class Spell : ISpell
         this.team = team;
 
         Cast();
-        GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, target - where, GetSpeed(), OnHit);
-        
+        for (int i = 0; i < GetRepeat(); i++)
+        {
+            for (int j = 0; j < GetNumber(); j++)
+                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, target - where, GetSpeed(), OnHit);
+
+            // Wait before the next shot (but don't wait after the final shot)
+            if (i < (GetRepeat() - 1))
+            {
+                yield return new WaitForSeconds(GetDelay());
+            }
+        }
         yield return new WaitForEndOfFrame();
     }
 
@@ -142,7 +160,7 @@ public class Spell : ISpell
         this.Cast(modifier);
     }
 
-    void OnHit(Hittable other, Vector3 impact)
+    public void OnHit(Hittable other, Vector3 impact)
     {
         if (other.team != team)
         {
