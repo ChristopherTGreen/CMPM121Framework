@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using UnityEngine;
 
 class ArcaneBolt : Spell
 {
@@ -9,7 +10,10 @@ class ArcaneBolt : Spell
     {
         
         SpellData data = GameManager.Instance.spells["Arcane Bolt"];
-        new SpellBuilder(this)
+
+        Debug.Log("ArcaneBolt Constructor: Got Arcane Bolt from the GameManager");
+
+        Spell spell = new SpellBuilder(this)
             .WithName(data.name)
             .WithDescription(data.description)
             .WithIcon(data.icon)
@@ -20,7 +24,11 @@ class ArcaneBolt : Spell
             .WithSpeed(data.projectile.speed)
             .WithSprite(data.projectile.sprite)
             .Build(owner);
+
+        Debug.Log("ArcaneBolt Constructor: Finished Building Arcane Bolt");
+        Debug.Log("Arcane Bolt Spell Stats: " + spell.baseDamage.amount);
     }
+
     protected override void Cast(ValueModifier modifier)
     {
         // overrids here should apply any modifiers if there are any, if there aren't then this does nothing (base stats)

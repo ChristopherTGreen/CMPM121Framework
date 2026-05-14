@@ -46,7 +46,7 @@ public class Spell : ISpell
         return icon;
     }
 
-    public string GetTrajectory()
+    public virtual string GetTrajectory()
     {
         //GetValue(List < ValueModifier<float> > valueMod, float original)
         Debug.Log("Ahhh");

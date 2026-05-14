@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json.Bson;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ public class SpellModifier : Spell
 
     // inner should be the spell being wrapped.
     public Spell inner;
-    //public SpellModifier spellMod;
+
     public SpellData modData;
     
     // Variables for base class (we need to find default values)
@@ -53,6 +54,7 @@ public class SpellModifier : Spell
         Debug.Log($"Damage{this.stats.amount}");
         
         ((ISpell)inner).Cast(valueModifier);
+
     }
 
 
