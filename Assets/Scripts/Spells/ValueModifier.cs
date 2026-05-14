@@ -17,9 +17,10 @@ public class ValueModifier
     public List<ValueModifier<int>> heal = new List<ValueModifier<int>>();
     public List<ValueModifier<float>> speed = new List<ValueModifier<float>>();
     public List<ValueModifier<int>> number = new List<ValueModifier<int>>();
+    public List<ValueModifier<int>> repeat = new List<ValueModifier<int>>();
     public List<ValueModifier<float>> manaCost = new List<ValueModifier<float>>();
     public List<ValueModifier<float>> cooldown = new List<ValueModifier<float>>();
-    public List<ValueModifier<float>> angle = new List<ValueModifier<float>>();
+    public List<ValueModifier<int>> angle = new List<ValueModifier<int>>();
     public List<ValueModifier<float>> delay = new List<ValueModifier<float>>();
     public List<ValueModifier<float>> lifetime = new List<ValueModifier<float>>();
 
@@ -27,6 +28,7 @@ public class ValueModifier
     // strings, may not need?
     public List<string> type = new List<string>();
     public List<string> trajectory = new List<string>();
+    public List<string> projectile_trajectory = new List<string>();
 
         //var mod5 = ValueModifier<int>.GetValue(newList, potato);
         //ValueModifier<int> damageMod = new ValueModifier<int>();
@@ -40,7 +42,9 @@ public class ValueModifier
     {
         if (valueName == "amount") amount.AddRange(valueMod);
         else if (valueName == "heal") heal.AddRange(valueMod);
+        else if (valueName == "angle") angle.AddRange(valueMod);
         else if (valueName == "number") number.AddRange(valueMod);
+        else if (valueName == "repeat") repeat.AddRange(valueMod);
         else if (valueName == "manaCost") manaCost.AddRange(valueMod);
         else throw new Exception("Invalid value modifier int name for add list");
     }
@@ -50,7 +54,6 @@ public class ValueModifier
     {
         if (valueName == "speed") speed.AddRange(valueMod);
         else if (valueName == "cooldown") cooldown.AddRange(valueMod);
-        else if (valueName == "angle") angle.AddRange(valueMod);
         else if (valueName == "delay") delay.AddRange(valueMod);
         else if (valueName == "lifetime") lifetime.AddRange(valueMod);
         else throw new Exception("Invalid value modifier float name for add list");
@@ -58,7 +61,8 @@ public class ValueModifier
     public void AddList(List<string> valueMod, string valueName)
     {
         if (valueName == "type") type.AddRange(valueMod);
-        else if (valueName == "trajectory") type.AddRange(valueMod);
+        else if (valueName == "trajectory") trajectory.AddRange(valueMod);
+        else if (valueName == "projectile_trajectory") projectile_trajectory.AddRange(valueMod);
         else throw new Exception("Invalid value modifier string name for add list");
     }
 
@@ -70,8 +74,10 @@ public class ValueModifier
         //else if (valueName == "heal") heal.Add(valueMod);
         if (valueName == "heal") heal.Add(valueMod);
         else if (valueName == "number") number.Add(valueMod);
+        else if (valueName == "repeat") repeat.Add(valueMod);
+        else if (valueName == "angle") angle.Add(valueMod);
         //else if (valueName == "manaCost") manaCost.Add(valueMod);
-        else throw new Exception("Invalid value modifier int name for add value");
+        else throw new Exception("Invalid value modifier int name: " + valueName + " for add value");
     }
 
     // Same as method above but for floats
@@ -79,7 +85,6 @@ public class ValueModifier
     {
         if (valueName == "speed") speed.Add(valueMod);
         else if (valueName == "cooldown") cooldown.Add(valueMod);
-        else if (valueName == "angle") angle.Add(valueMod);
         else if (valueName == "delay") delay.Add(valueMod);
         else if (valueName == "lifetime") lifetime.Add(valueMod);
 
@@ -92,8 +97,9 @@ public class ValueModifier
     public void AddValue(string valueMod, string valueName)
     {
         if (valueName == "type") type.Add(valueMod);
-        else if (valueName == "trajectory") type.Add(valueMod);
-        else throw new Exception("Invalid value modifier int name: " + valueName + " for add value");
+        else if (valueName == "trajectory") trajectory.Add(valueMod);
+        else if (valueName == "projectile_trajectory") projectile_trajectory.Add(valueMod);
+        else throw new Exception("Invalid value modifier string name: " + valueName + " for add value");
     }
 
     // Parameters: A list of integer value modifiers, original is the basevalue of a spell.
