@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using Unity.VisualScripting;
+using UnityEngine;
 
 
 // may need to make this an "interface" and not a "class" - chris
@@ -24,8 +25,8 @@ public class ValueModifier
 
 
     // strings, may not need?
-    public List<string> type;
-    public List<string> trajectory;
+    public List<string> type = new List<string>();
+    public List<string> trajectory = new List<string>();
 
         //var mod5 = ValueModifier<int>.GetValue(newList, potato);
         //ValueModifier<int> damageMod = new ValueModifier<int>();
@@ -118,9 +119,10 @@ public class ValueModifier
     {
         if (other == null) return;
 
-        // all public fields
+        // collects all public fields in value modifier
         FieldInfo[] fields = typeof(ValueModifier).GetFields(BindingFlags.Public | BindingFlags.Instance);
 
+        // goes through each field
         foreach (FieldInfo field in fields)
         {
             // Cehecks if list)
@@ -131,9 +133,16 @@ public class ValueModifier
 
                 var targetList = field.GetValue(this);
 
-                // prevents null calls
-                if (targetList == null) continue; // target list doesn't exist
+                // does target list exist
+                if (targetList == null)
+                {
+                    // Create the list if it doesn't exist yet 
+                    targetList = Activator.CreateInstance(field.FieldType);
+                    field.SetValue(this, targetList);
+                }
 
+
+                Debug.Log("Successful merge");
 
                 MethodInfo addRangeMethod = targetList.GetType().GetMethod("AddRange");
                 addRangeMethod.Invoke(targetList, new[] { sourceList });

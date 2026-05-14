@@ -26,6 +26,10 @@ public class SpellModifier : Spell
     {
         this.inner = inner;
 
+
+        if (inner.stats == null) inner.stats = new ValueModifier();
+        if (this.stats == null) this.stats = new ValueModifier();
+
         //Syncs the data to the SpellModifier from the base spell.
         new SpellBuilder(this).SyncDataFrom(inner).Build(inner.owner);
 
