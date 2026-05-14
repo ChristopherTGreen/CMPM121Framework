@@ -27,11 +27,13 @@ public class SpellCaster
         this.mana_reg = mana_reg;
         this.team = team;
         //spell = new SpellBuilder().Build(this);
-        spell = new DamageAmpModifier(new ArcaneBolt(this));
+        spell = new ArcaneBolt(this);
+        spell = new DamageAmpModifier(spell);
+        
     } 
 
     public IEnumerator Cast(Vector3 where, Vector3 target)
-    {        
+    {         
         if (mana >= spell.GetManaCost() && spell.IsReady())
         {
             mana -= spell.GetManaCost();

@@ -8,8 +8,9 @@ using Unity.VisualScripting;
 public class ValueModifier
 {
 
-    // Call Spell Container class...
+    // Modifier storage:
     // strict values
+    // These lists track the value modifiers applied to the base spell.
     public List<ValueModifier<int>> amount = new List<ValueModifier<int>>();
     public List<ValueModifier<int>> heal = new List<ValueModifier<int>>();
     public List<ValueModifier<float>> speed = new List<ValueModifier<float>>();
@@ -30,6 +31,9 @@ public class ValueModifier
         //Multiplier<MathOperationsInt, int> healthMod = new Multiplier<MathOperationsInt, int>(potato);
         //AddValue<int>("damage", healthMod);
 
+    // Parameters: Takes a value modifier list that is a integer (such as "heal") and a string that is the name of the modifier type
+    // Call this when you want to store a list of integer value modifiers to a storage list defined at the top of this class
+    // If there are already stored value modifiers, then this method adds the new value modifiers to the existing list of value modifiers
     public void AddList(List<ValueModifier<int>> valueMod, string valueName)
     {
         if (valueName == "amount") amount.AddRange(valueMod);
@@ -38,6 +42,8 @@ public class ValueModifier
         else if (valueName == "manaCost") manaCost.AddRange(valueMod);
         throw new Exception("Invalid value modifier int name for add list");
     }
+
+    // Same as notes above but for floats
     public void AddList(List<ValueModifier<float>> valueMod, string valueName)
     {
         if (valueName == "speed") speed.AddRange(valueMod);
@@ -47,6 +53,9 @@ public class ValueModifier
         else if (valueName == "lifetime") lifetime.AddRange(valueMod);
         throw new Exception("Invalid value modifier float name for add list");
     }
+
+    // This method adds a ValueModifier int to a existing storage class defined at the top of this class.
+    // Do not call this for adding a list of modifiers to an existing list of modifiers, if you want to do this, call the above two methods
     public void AddValue(ValueModifier<int> valueMod, string valueName)
     {
         if (valueName == "amount") amount.Add(valueMod);
@@ -55,6 +64,8 @@ public class ValueModifier
         else if (valueName == "manaCost") manaCost.Add(valueMod);
         else throw new Exception("Invalid value modifier int name for add value");
     }
+
+    // Same as method above but for floats
     public void AddValue(ValueModifier<float> valueMod, string valueName)
     {
         if (valueName == "speed") speed.Add(valueMod);
@@ -65,10 +76,13 @@ public class ValueModifier
         else throw new Exception("Invalid value modifier float name for add value");
     }
 
+    // Parameters: A list of integer value modifiers, original is the basevalue of a spell.
     public static int GetValue(List<ValueModifier<int>> valueMod, int original)
     {
         return ValueModifier<int>.GetValue(valueMod, original);
     }
+
+    //
     public static float GetValue(List<ValueModifier<float>> valueMod, float original)
     {
         return ValueModifier<float>.GetValue(valueMod, original);

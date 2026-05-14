@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class SpellModifierBuilder
 {
     private ValueModifier valueMod = new ValueModifier();
+
     // Modifier
     public SpellModifierBuilder WithDamageAdder(string amount) { valueMod.AddValue(AddInt(amount), "amount"); return this; }
     public SpellModifierBuilder WithDamageMultiplier(string amount) { valueMod.AddValue(MulInt(amount), "amount"); return this; }
@@ -31,6 +32,8 @@ public class SpellModifierBuilder
     {
         this.valueMod = existingValueModifier;
     }
+
+
 
     // returns what type of modifier should be made (mul or add)
     public static string modify(string valueName)
