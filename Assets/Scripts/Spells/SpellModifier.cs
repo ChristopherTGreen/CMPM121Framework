@@ -56,10 +56,11 @@ public class SpellModifier : Spell
     //Editing the Castroutine Method from the Parent (Spell) class
     protected override void Cast(ValueModifier valueModifier)
     {
+        
         Debug.Log("SpellModifier.cs_Cast() >> Modifier Cast is running!");
-        Debug.Log("SpellModifier.cs_Cast() >> Pre Mod Damage" + this.stats.amount);
+        Debug.Log("SpellModifier.cs_Cast() >> Pre Mod Damage " + this.stats.amount);
         new SpellModifierBuilder(valueModifier).SpellModifierQuickBuilder(this.modData);
-        Debug.Log("SpellModifier.cs_Cast() >> Post Modifier Damage" + this.stats.amount);
+        Debug.Log("SpellModifier.cs_Cast() >> Post Modifier Damage " + this.stats.amount);
         
         ((ISpell)inner).Cast(valueModifier);
 

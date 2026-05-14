@@ -39,6 +39,10 @@ public class PlayerController : MonoBehaviour
         healthui.SetHealth(hp);
         manaui.SetSpellCaster(spellcaster);
         spellui.SetSpell(spellcaster.spell);
+
+        // Storing the first random spell created
+        GameManager.Instance.StoreActiveSpell(spellcaster.spell);
+        Debug.Log("PlayerController.cs_StartLevel() >> Stored: " + spellcaster.spell.name + " in activeSpells");
     }
 
     // Update is called once per frame
