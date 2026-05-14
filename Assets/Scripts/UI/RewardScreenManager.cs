@@ -17,8 +17,9 @@ public class RewardScreenManager : MonoBehaviour
     {
         GlobalRewardUI = rewardUI;
 
-        // Finds the Accept button.
+        // Finds the buttons.
         rewardSpell.Accept = rewardUI.transform.Find("Accept").GetComponent<Button>();
+        rewardSpell.Drop = rewardUI.transform.Find("spellReward/drop").GetComponent<Button>();
         
     }
 
@@ -29,6 +30,7 @@ public class RewardScreenManager : MonoBehaviour
         {
             NextWaveButtonHandler();
             rewardSpell.AcceptButtonHandler();
+            rewardSpell.DropButtonHandler();
             rewardUI.SetActive(true);
             
         }
@@ -36,6 +38,10 @@ public class RewardScreenManager : MonoBehaviour
         {
             RestartButtonHandler();
             rewardUI.SetActive(true);
+
+            //Hides the accept and drop buttons when the wave ends.
+            rewardUI.transform.Find("Accept").gameObject.SetActive(false);
+            rewardUI.transform.Find("spellReward").gameObject.SetActive(false);
         }
         else
         {
@@ -85,7 +91,7 @@ public class RewardScreenManager : MonoBehaviour
     public void RestartButtonHandler()
     {
 
-        Button NextWaveButton = rewardUI.GetComponentInChildren<Button>(); //finding the button component of the RewardUI
+        Button NextWaveButton = rewardUI.transform.Find("Next").GetComponent<Button>(); //finding the button component of the RewardUI
         TextMeshProUGUI NextButtonText = NextWaveButton.GetComponentInChildren<TextMeshProUGUI>(); //Finding the text component of the child of the button component
 
         NextButtonText.text = "Back to Selection"; //changing the button text

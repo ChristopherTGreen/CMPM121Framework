@@ -9,6 +9,7 @@ public class RewardSpell : MonoBehaviour
     public GameObject spellReward;
     public SpellUI spellui;
     public Button Accept; // might need to get respective gameobject in scene
+    public Button Drop;
     public PlayerController player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,7 +43,22 @@ public class RewardSpell : MonoBehaviour
 
     public void AcceptSpell()
     {
-        Debug.Log("Accept button clicked")
+        Debug.Log("Accept button clicked");
+    }
+
+
+
+    public void DropButtonHandler()
+    {
+        Drop.onClick.RemoveAllListeners();
+        Drop.onClick.AddListener(() => DropSpell());
+    }
+
+
+
+    public void DropSpell()
+    {
+        Debug.Log("Drop button clicked");
     }
 
 
