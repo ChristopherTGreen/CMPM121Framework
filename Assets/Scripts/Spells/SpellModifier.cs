@@ -26,13 +26,18 @@ public class SpellModifier : Spell
     {
         this.inner = inner;
 
+
         if (inner.stats == null) inner.stats = new ValueModifier();
         if (this.stats == null) this.stats = new ValueModifier();
 
+        //Syncs the data to the SpellModifier from the base spell.
         new SpellBuilder(this).SyncDataFrom(inner).Build(inner.owner);
 
+        //COmbining the stats from 2 modifier classes together
         this.stats.MergeFrom(inner.stats);
-        Debug.Log("ah2");
+
+        Debug.Log("Sucessfully Synced Data and COmbined stats from 2 modifier classes.");
+
         // copy object C#
 
 
