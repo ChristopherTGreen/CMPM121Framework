@@ -26,15 +26,18 @@ public class SpellCaster
         this.max_mana = mana;
         this.mana_reg = mana_reg;
         this.team = team;
-        spell = new SpellBuilder().Build(this);
-    }
+        //spell = new SpellBuilder().Build(this);
+        Spell baseSpell = new ArcaneBolt(this);
+        spell = new RandomModifier().CreateRandomModifier(baseSpell);
+        //spell = new DamageAmpModifier(spell);
+    } 
 
     public IEnumerator Cast(Vector3 where, Vector3 target)
     {        
         if (mana >= spell.GetManaCost() && spell.IsReady())
         {
             mana -= spell.GetManaCost();
-            yield return spell.Cast(where, target, team);
+            yield return spell.CastRoutine(where, target, team);
         }
         yield break;
     }

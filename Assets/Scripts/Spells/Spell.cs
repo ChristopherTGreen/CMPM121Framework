@@ -1,54 +1,143 @@
-using UnityEngine;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
+using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using static UnityEngine.UI.Image;
 
-public class Spell 
+public interface ISpell
+{
+    public void Cast(ValueModifier modifier);
+}
+
+public class Spell : ISpell
 {
     public float last_cast;
     public SpellCaster owner;
     public Hittable.Team team;
+    public ValueModifier stats = new ValueModifier();
+    // modifiable data below
+    public int icon { get; set; } = 0;
+    public string name { get; set; } = null; // should this be restricted to its own spell (not base class) - chris
+    public string description { get; set; } = null; // should this be restricted to its own spell (not base class) - chris
+    public string baseTrajectory { get; set; } = null;
+    public int sprite { get; set; } = 0;
+    // Variables for base class (we need to find default values)
+    public Damage baseDamage { get; set; } = new Damage(-1, 0);
+    public int baseHeal { get; set; } = -1;
+    public float baseSpeed { get; set; } = -1;
+    public int baseNumber { get; set; } = -1;
+    public int baseManaCost { get; set; } = -1;
+    public float baseCooldown { get; set; } = -1;
+    public float baseAngle { get; set; } = 0;
+    public float baseDelay { get; set; } = -1;
+    public float baseLifetime { get; set; } = -1;
 
-    public Spell(SpellCaster owner)
+
+    // Constructor
+    public Spell(SpellCaster owner = null) // change this probably - chris
     {
         this.owner = owner;
     }
 
-    public string GetName()
-    {
-        return "Bolt";
-    }
-
-    public int GetManaCost()
-    {
-        return 10;
-    }
-
-    public int GetDamage()
-    {
-        return 100;
-    }
-
-    public float GetCooldown()
-    {
-        return 0.75f;
-    }
-
     public virtual int GetIcon()
     {
-        return 0;
+        return icon;
     }
 
-    public bool IsReady()
+    public virtual string GetTrajectory()
     {
-        return (last_cast + GetCooldown() < Time.time);
+        //GetValue(List < ValueModifier<float> > valueMod, float original)
+        Debug.Log("Ahhh");
+        Debug.Log($"Amount: {ValueModifier.GetValue(this.stats.amount, this.baseDamage.amount)}");
+        Debug.Log($"Amount: { ValueModifier.GetValue(stats.amount, this.baseDamage.amount) }");
+        return baseTrajectory;
     }
 
-    public virtual IEnumerator Cast(Vector3 where, Vector3 target, Hittable.Team team)
+    public virtual int GetDamage()
+    { 
+        //force a int after damage multiplier - I dont like this...
+        // Spell.cs line 147 doesn't like when I change this method to a float
+        return (int)ValueModifier.GetValue(stats.amount, baseDamage.amount);
+    }
+
+    public virtual Damage.Type GetDamageType()
+    {
+        Damage.Type type = baseDamage.type;
+        return type;
+    }
+
+    public virtual int GetHeal()
+    {
+        return ValueModifier.GetValue(stats.heal, baseHeal);
+    }
+
+    public virtual float GetSpeed()
+    {
+        return ValueModifier.GetValue(stats.speed, baseSpeed);
+    }
+
+    public virtual int GetNumber()
+    {
+        return ValueModifier.GetValue(stats.number, baseNumber);
+    }
+
+    public virtual int GetManaCost()
+    {
+        // also force int after manaCost Multiplier - I don't like this either...
+        // SpellCaster.cs Line 39 doesn't like when I change this method to float
+        return (int)ValueModifier.GetValue(stats.manaCost, baseManaCost);
+    }
+
+    public virtual float GetCooldown()
+    {
+        return ValueModifier.GetValue(stats.cooldown, baseCooldown);
+    }
+    public virtual float GetAngle()
+    {
+        return ValueModifier.GetValue(stats.angle, baseAngle);
+    }
+    public virtual float GetDelay()
+    {
+        return ValueModifier.GetValue(stats.angle, baseAngle);
+    }
+    public virtual float GetLifetime()
+    {
+        return ValueModifier.GetValue(stats.lifetime, baseLifetime);
+    }
+
+    // IsReady() 
+    // Seems to return if the spell is ready to be spawned if player clicks a button
+    public bool IsReady() 
+    {
+        return (last_cast + baseCooldown < Time.time);
+    }
+
+    public virtual IEnumerator CastRoutine(Vector3 where, Vector3 target, Hittable.Team team)
     {
         this.team = team;
-        GameManager.Instance.projectileManager.CreateProjectile(0, "straight", where, target - where, 15f, OnHit);
+        GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, target - where, GetSpeed(), OnHit);
+        Cast();
         yield return new WaitForEndOfFrame();
+    }
+
+    // Not too sure if we should merge the cast here with the cast above - chris
+    public void Cast()
+    {
+        ((ISpell)this).Cast(new ValueModifier());
+    }
+
+    // This gets edited by child methods
+    protected virtual void Cast(ValueModifier modifier)
+    {
+        
+    }
+
+    void ISpell.Cast(ValueModifier modifier)
+    {
+        this.stats = modifier; // saving stats
+        this.Cast(modifier);
     }
 
     void OnHit(Hittable other, Vector3 impact)
@@ -60,5 +149,8 @@ public class Spell
         }
 
     }
+
+    // Note: 
+    // The original version of OnHit and IsReady has GetDamage(), not too sure if we need them to be get calls which can be overriden or not - chris
 
 }

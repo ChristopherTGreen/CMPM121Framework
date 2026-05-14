@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public SpellUI spellui;
 
     public int speed;
+    public int power;
 
     public Unit unit;
 

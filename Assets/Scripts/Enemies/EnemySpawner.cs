@@ -16,7 +16,6 @@ public class EnemySpawner : MonoBehaviour
     public GameObject button;
     public GameObject enemy;
     public SpawnPoint[] SpawnPoints;
-    public Dictionary<string, int> variables { get; private set; } = new Dictionary<string, int> { {"Wave", 1} };
     public LevelData levelReference; // this might not be necessary
     RewardScreenManager RewardScreenManagerClass;
 
@@ -32,7 +31,6 @@ public class EnemySpawner : MonoBehaviour
         GameManager.Instance.enemy_spawns_left = 0;
         GameManager.Instance.ClearEnemy();
         GameManager.Instance.wave_count = 1;
-        variables["wave"] = GameManager.Instance.wave_count; // there might be a better way to improve this - chris
         MenuSelectorController.DynamicMenuButtonSpawner(this);
         
     }
@@ -65,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
 
         //Updating wave count
         GameManager.Instance.wave_count++;
-        variables["wave"] = GameManager.Instance.wave_count;
+
 
         //Spawns the next wave
         StartCoroutine(SpawnWave(levelReference));
@@ -109,7 +107,6 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            RewardScreenManagerClass.RestartButtonHandler();
             yield return new WaitWhile(() => RewardScreenManager.RewardScreenActive() == true);
             GameManager.Instance.state = GameManager.GameState.GAMEOVER; // there might be a better state for this, pregame?
         }
@@ -136,7 +133,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemies(SpawnData spawnReference)
     {
-        int enemyCount = RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.count, variables);
+        int enemyCount = RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.count, GameManager.Instance.variables);
         GameManager.Instance.enemy_spawns_left += enemyCount;
 
         int sequenceIndex = 0; // will iterate through sequence 
@@ -157,7 +154,7 @@ public class EnemySpawner : MonoBehaviour
             currBuildCount = (enemyCount < spawnReference.sequence[sequenceIndex]) ? enemyCount % spawnReference.sequence[sequenceIndex] : spawnReference.sequence[sequenceIndex];
             // 2 remaining, but 3 sequence, its mod
             // 4 remaing, but 3 sequence, 3
-            if (spawnReference.delay != null) yield return new WaitForSeconds(RPNEvaluator.RPNEvaluator.Evaluatef(spawnReference.delay, variables));
+            if (spawnReference.delay != null) yield return new WaitForSeconds(RPNEvaluator.RPNEvaluator.Evaluatef(spawnReference.delay, GameManager.Instance.variables));
         }
         
     }
@@ -195,7 +192,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnModifyFlat(SpawnData spawnReference, EnemyController en)
     {
         // might be better not to do this?
-        en.hp.SetMaxHP(RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.hp, new Dictionary<string, int>(variables) { ["base"] = en.hp.max_hp}));
+        en.hp.SetMaxHP(RPNEvaluator.RPNEvaluator.Evaluate(spawnReference.hp, new Dictionary<string, int>(GameManager.Instance.variables) { ["base"] = en.hp.max_hp}));
 
         //en.speed = spawnReference.speed;
         //en.damage = spawnReference.damage;
