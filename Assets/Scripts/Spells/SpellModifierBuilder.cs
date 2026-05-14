@@ -17,7 +17,7 @@ public class SpellModifierBuilder
     public SpellModifierBuilder WithDamageMultiplier(string amount) { valueMod.AddValue(MulFloat(amount), "amount"); return this; }
     public SpellModifierBuilder WithSpeedAdder(string speed) { valueMod.AddValue(AddFloat(speed), "speed"); return this; }
     public SpellModifierBuilder WithSpeedMultiplier(string speed) { valueMod.AddValue(MulFloat(speed), "speed"); return this; }
-    public SpellModifierBuilder WithManaAdder(string mana) { valueMod.AddValue(AddInt(mana), "mana"); return this; }
+    public SpellModifierBuilder WithManaAdder(string mana) { valueMod.AddValue(AddFloat(mana), "mana"); return this; }
     public SpellModifierBuilder WithManaMultiplier(string mana) { valueMod.AddValue(MulFloat(mana), "mana"); return this; }
     public SpellModifierBuilder WithCooldownAdder(string cooldown) { valueMod.AddValue(MulFloat(cooldown), "cooldown"); return this; }
     public SpellModifierBuilder WithCooldownMultiplier(string cooldown) { valueMod.AddValue(MulFloat(cooldown), "cooldown"); return this; }
@@ -75,15 +75,21 @@ public class SpellModifierBuilder
 
     public ValueModifier SpellModifierQuickBuilder(SpellData data)
     {
-        ProcessInt(data.damage_adder, "amount", "adder");
+        ProcessFloat(data.damage_adder, "amount", "adder");
         ProcessFloat(data.damage_multiplier, "amount", "multiplier");
-        ProcessInt(data.mana_adder, "manaCost", "adder");
+        ProcessFloat(data.mana_adder, "manaCost", "adder");
         ProcessFloat(data.mana_multiplier, "manaCost", "multiplier");
 
         ProcessFloat(data.speed_adder, "speed", "adder");
         ProcessFloat(data.speed_multiplier, "speed", "multiplier");
         ProcessFloat(data.cooldown_adder, "cooldown", "adder");
         ProcessFloat(data.cooldown_multiplier, "cooldown", "multiplier");
+
+        valueMod.AddValue(data.projectile_trajectory, "projectile_trajectory");
+        if (data.N != null) valueMod.AddValue(AddInt(data.N), "number");
+        if (data.repeat != null) valueMod.AddValue(AddInt(data.repeat), "repeat");
+        if (data.delay != null) valueMod.AddValue(AddFloat(data.delay), "delay");
+        if (data.angle != null) valueMod.AddValue(AddInt(data.angle), "angle");
 
         return valueMod;
     }

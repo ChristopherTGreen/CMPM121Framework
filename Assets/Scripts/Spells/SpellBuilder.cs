@@ -29,7 +29,7 @@ public class SpellBuilder
     public SpellBuilder WithNumber(string number) { spell.baseNumber = RPNEvaluator.RPNEvaluator.Evaluate(number, GameManager.Instance.variables); return this; }
     public SpellBuilder WithManaCost(string manaCost) { spell.baseManaCost = RPNEvaluator.RPNEvaluator.Evaluate(manaCost, GameManager.Instance.variables); return this; }
     public SpellBuilder WithCooldown(string cooldown) { spell.baseCooldown = RPNEvaluator.RPNEvaluator.Evaluatef(cooldown, GameManager.Instance.variables); return this; }
-    public SpellBuilder WithAngle(string angle) { spell.baseAngle = RPNEvaluator.RPNEvaluator.Evaluatef(angle, GameManager.Instance.variables); return this; }
+    public SpellBuilder WithAngle(string angle) { spell.baseAngle = RPNEvaluator.RPNEvaluator.Evaluate(angle, GameManager.Instance.variables); return this; }
     public SpellBuilder WithDelay(string delay) { spell.baseDelay = RPNEvaluator.RPNEvaluator.Evaluatef(delay, GameManager.Instance.variables); return this; }
     public SpellBuilder WithLifetime(string lifetime) { spell.baseLifetime = RPNEvaluator.RPNEvaluator.Evaluatef(lifetime, GameManager.Instance.variables); return this; }
  

@@ -4,7 +4,10 @@ using System.Collections;
 public class HomingModifier : SpellModifier
 {
     //constructor
-    public HomingModifier(Spell inner, SpellCaster owner) : base(inner){}
+    public HomingModifier(Spell inner) : base(inner)
+    {
+        this.modData = GameManager.Instance.spells["homing"];
+    }
 
     
 
