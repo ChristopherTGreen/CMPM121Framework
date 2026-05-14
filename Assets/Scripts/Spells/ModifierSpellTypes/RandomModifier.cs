@@ -12,6 +12,8 @@ public class RandomModifier
     private Dictionary<string, SpellModifier> modDict = new Dictionary<string, SpellModifier>
     {
         { "DamageAmp", new DamageAmpModifier(null) }
+        
+        // Everytime we finish making a modifier, add the modifier to this dictionary
     };
 
     //constructor
