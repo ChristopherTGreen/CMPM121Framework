@@ -5,13 +5,13 @@ using System.Text;
 
 public class RandomModifier
 {
-    private Dictionary<string, Spell> spellDict = new Dictionary<string, Spell> 
+    private Dictionary<string, Func<SpellCaster, Spell>> spellDict = new Dictionary<string, Func<SpellCaster, Spell>>
     {
-        { "ArcaneBolt", new ArcaneBolt(null) }
+        { "ArcaneBolt", (owner) => new ArcaneBolt(owner) }
     };
-    private Dictionary<string, SpellModifier> modDict = new Dictionary<string, SpellModifier>
+    private Dictionary<string, Func<Spell, SpellModifier>> modDict = new Dictionary<string, Func<Spell, SpellModifier>>
     {
-        { "DamageAmp", new DamageAmpModifier(null) }
+        { "DamageAmp", (inner) => new DamageAmpModifier(inner) }
     };
 
     //constructor
@@ -19,24 +19,24 @@ public class RandomModifier
     {
         List<string> baseSpellKeys = spellDict.Keys.ToList();
         string randomKey = baseSpellKeys[UnityEngine.Random.Range(0, baseSpellKeys.Count)];
-        Spell randomSpell = spellDict[randomKey];
+        Spell randomSpell = spellDict[randomKey].Invoke(owner);
+        randomSpell.owner = owner;
 
 
-        int randomModCount = UnityEngine.Random.Range(0, GameManager.Instance.wave_count);
+        int randomModCount = 2;
         for (int i = 0; i < randomModCount; i++)
         {
             randomSpell = CreateRandomModifier(randomSpell);
         }
-        return spellDict[randomKey];
+        return randomSpell;
 
     }
-    private Spell CreateRandomModifier(Spell inner)
+    public SpellModifier CreateRandomModifier(Spell inner)
     {
         List<string> modKeys = modDict.Keys.ToList();
         string randomKey = modKeys[UnityEngine.Random.Range(0, modKeys.Count)];
-        SpellModifier randomMod = modDict[randomKey];
+        SpellModifier randomMod = modDict[randomKey].Invoke(inner);
 
-        randomMod.inner = inner;
         return randomMod;
 
     }

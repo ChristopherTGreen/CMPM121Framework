@@ -28,7 +28,7 @@ public class SpellCaster
         this.team = team;
         //spell = new SpellBuilder().Build(this);
         Spell baseSpell = new ArcaneBolt(this);
-        spell = new DamageAmpModifier(baseSpell);
+        spell = new RandomModifier().CreateRandomModifier(baseSpell);
         //spell = new DamageAmpModifier(spell);
     } 
 
