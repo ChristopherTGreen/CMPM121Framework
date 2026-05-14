@@ -26,6 +26,9 @@ public class SpellModifier : Spell
     {
         this.inner = inner;
 
+        if (inner.stats == null) inner.stats = new ValueModifier();
+        if (this.stats == null) this.stats = new ValueModifier();
+
         new SpellBuilder(this).SyncDataFrom(inner).Build(inner.owner);
 
         this.stats.MergeFrom(inner.stats);
