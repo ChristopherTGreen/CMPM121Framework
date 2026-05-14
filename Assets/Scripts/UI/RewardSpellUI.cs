@@ -24,9 +24,10 @@ public class RewardSpell : MonoBehaviour
     /// </summary>
     /// <param name="rewardSpell"></param>
     
+    // this will get called in the reward screen manager at wave end state with a randomly generated spell
     public void DisplaySpell(Spell rewardSpell)
     {
-        spellui.SetSpell(rewardSpell);
+        spellui.SetSpell(rewardSpell); //SetSpell is located in SpellUI.cs
     }
 
     public void AcceptButtonHandler()

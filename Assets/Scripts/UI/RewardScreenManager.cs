@@ -31,6 +31,10 @@ public class RewardScreenManager : MonoBehaviour
             NextWaveButtonHandler();
             rewardSpell.AcceptButtonHandler();
             rewardSpell.DropButtonHandler();
+
+            // DisplaySpell(Spell RewardSpell) is located in RewardSpellUI.cs
+            //rewardSpell.DisplaySpell(); // Need to store the randomly generated spell and call that randomly generated spell here
+            
             rewardUI.SetActive(true);
             
         }
