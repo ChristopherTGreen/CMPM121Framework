@@ -1,12 +1,14 @@
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using static UnityEngine.UI.Image;
 
 public interface ISpell
 {
-    void Cast(ValueModifier modifier);
+    public void Cast(ValueModifier modifier);
 }
 
 public class Spell : ISpell
@@ -46,7 +48,10 @@ public class Spell : ISpell
 
     public string GetTrajectory()
     {
-        Debug.Log(baseTrajectory);
+        //GetValue(List < ValueModifier<float> > valueMod, float original)
+        Debug.Log("Ahhh");
+        Debug.Log($"Amount: {ValueModifier.GetValue(this.stats.amount, this.baseDamage.amount)}");
+        Debug.Log($"Amount: { ValueModifier.GetValue(stats.amount, this.baseDamage.amount) }");
         return baseTrajectory;
     }
 
@@ -115,7 +120,7 @@ public class Spell : ISpell
     // Not too sure if we should merge the cast here with the cast above - chris
     public void Cast()
     {
-        Cast(new ValueModifier());
+        ((ISpell)this).Cast(new ValueModifier());
     }
 
     // This gets edited by child methods
@@ -126,7 +131,7 @@ public class Spell : ISpell
 
     void ISpell.Cast(ValueModifier modifier)
     {
-
+        this.stats = modifier; // saving stats
         this.Cast(modifier);
     }
 

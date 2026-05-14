@@ -1,10 +1,12 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 
 public class SpellBuilder 
@@ -50,16 +52,36 @@ public class SpellBuilder
     }
 
 
+    // Copies all values from a source spell and applies them to the current existing spell (C# clone creates a ghost)
+    public SpellBuilder SyncDataFrom(Spell source)
+    {
+        if (source == null) throw new Exception("invalid syncing data source");
+        PropertyInfo[] properties = typeof(Spell).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (PropertyInfo prop in properties)
+        {
+            // Only copy if we can read from source and write to target
+            if (prop.CanRead && prop.CanWrite)
+            {
+                object value = prop.GetValue(source);
+                prop.SetValue(spell, value);
+            }
+        }
+        return this;
+    }
 
 
 
+
+/*
     // findValue()
     // check if a field exists and collects the reference (experimental)
-    public static bool FindValue(SpellData givenSpell, string valueName, out object value)
+    public static bool FindValue(string valueName, out object value)
     {
-        value = givenSpell.GetType().GetProperty(valueName).GetValue(givenSpell, null);
+        //value = givenSpell.GetType().GetProperty(valueName).GetValue(givenSpell, null);
         return false;
     }
+*/
 
 
 

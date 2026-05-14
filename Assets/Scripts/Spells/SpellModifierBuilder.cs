@@ -26,6 +26,8 @@ public class SpellModifierBuilder
 
 
 
+
+
     // Acts as an interface and class call
     public SpellModifierBuilder(ValueModifier existingValueModifier)
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using Unity.VisualScripting;
 
@@ -36,7 +37,7 @@ public class ValueModifier
         else if (valueName == "heal") heal.AddRange(valueMod);
         else if (valueName == "number") number.AddRange(valueMod);
         else if (valueName == "manaCost") manaCost.AddRange(valueMod);
-        throw new Exception("Invalid value modifier int name for add list");
+        else throw new Exception("Invalid value modifier int name for add list");
     }
     public void AddList(List<ValueModifier<float>> valueMod, string valueName)
     {
@@ -45,7 +46,13 @@ public class ValueModifier
         else if (valueName == "angle") angle.AddRange(valueMod);
         else if (valueName == "delay") delay.AddRange(valueMod);
         else if (valueName == "lifetime") lifetime.AddRange(valueMod);
-        throw new Exception("Invalid value modifier float name for add list");
+        else throw new Exception("Invalid value modifier float name for add list");
+    }
+    public void AddList(List<string> valueMod, string valueName)
+    {
+        if (valueName == "type") type.AddRange(valueMod);
+        else if (valueName == "trajectory") type.AddRange(valueMod);
+        else throw new Exception("Invalid value modifier string name for add list");
     }
     public void AddValue(ValueModifier<int> valueMod, string valueName)
     {
@@ -64,6 +71,12 @@ public class ValueModifier
         else if (valueName == "lifetime") lifetime.Add(valueMod);
         else throw new Exception("Invalid value modifier float name for add value");
     }
+    public void AddValue(string valueMod, string valueName)
+    {
+        if (valueName == "type") type.Add(valueMod);
+        else if (valueName == "trajectory") type.Add(valueMod);
+        else throw new Exception("Invalid value modifier int name for add value");
+    }
 
     public static int GetValue(List<ValueModifier<int>> valueMod, int original)
     {
@@ -72,6 +85,40 @@ public class ValueModifier
     public static float GetValue(List<ValueModifier<float>> valueMod, float original)
     {
         return ValueModifier<float>.GetValue(valueMod, original);
+    }
+    public static string GetValue(List<string> valueMod, string original)
+    {
+        if (valueMod == null || valueMod.Count == 0) return original;
+        return valueMod[valueMod.Count - 1];
+    }
+
+
+    // Merge function for all possible lists currently
+    public void MergeFrom(ValueModifier other)
+    {
+        if (other == null) return;
+
+        // all public fields
+        FieldInfo[] fields = typeof(ValueModifier).GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (FieldInfo field in fields)
+        {
+            // Cehecks if list)
+            if (field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>))
+            {
+                var sourceList = field.GetValue(other);
+                if (sourceList == null) continue; // source list doesn't exist
+
+                var targetList = field.GetValue(this);
+
+                // prevents null calls
+                if (targetList == null) continue; // target list doesn't exist
+
+
+                MethodInfo addRangeMethod = targetList.GetType().GetMethod("AddRange");
+                addRangeMethod.Invoke(targetList, new[] { sourceList });
+            }
+        }
     }
 
 

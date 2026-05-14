@@ -10,7 +10,8 @@ public class SpellModifier : Spell
 {
 
     // inner should be the spell being wrapped.
-    Spell inner;
+    public Spell inner;
+    //public SpellModifier spellMod;
     public SpellData modData;
     
     // Variables for base class (we need to find default values)
@@ -22,9 +23,14 @@ public class SpellModifier : Spell
     //I THINK this constructor inherits the Spell class (Parent class') Constructor with the "[This Class' Constructor] : base(owner)" where base is the parent class' constructor
     public SpellModifier(Spell inner) : base(inner.owner)
     {
+        this.inner = inner;
 
-        this.inner = inner; //This line makes this constructor inherit the Spell Class' constructor.
-        // It should store the Spell class (Modifier wrapping the Spell)
+        new SpellBuilder(this).SyncDataFrom(inner).Build(inner.owner);
+
+        this.stats.MergeFrom(inner.stats);
+        Debug.Log("ah2");
+        // copy object C#
+
 
         // Doing this with the constructors allows you to do 
         //
@@ -41,18 +47,18 @@ public class SpellModifier : Spell
     //Editing the Castroutine Method from the Parent (Spell) class
     protected override void Cast(ValueModifier valueModifier)
     {
-
-        ApplyModifier(valueModifier);
-        if (inner is ISpell spellInner)
-        {
-            spellInner.Cast(valueModifier);
-        }
+        Debug.Log("Modifier Cast is running!");
+        Debug.Log($"Damage{this.stats.amount}");
+        new SpellModifierBuilder(valueModifier).SpellModifierQuickBuilder(this.modData);
+        Debug.Log($"Damage{this.stats.amount}");
+        
+        ((ISpell)inner).Cast(valueModifier);
     }
 
 
 
     //This is a editable method that the children of this class can edit
     // This is where the spell modifier will be
-    protected virtual void ApplyModifier(ValueModifier valueModifier) {}
+    //protected virtual void ApplyModifier(ValueModifier valueModifier) {}
 
 }

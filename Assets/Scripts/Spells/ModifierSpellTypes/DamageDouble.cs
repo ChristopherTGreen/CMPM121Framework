@@ -10,11 +10,6 @@ public class DamageDoubleModifier : SpellModifier
         this.modData = GameManager.Instance.spells["doubler"];
     }
 
-    protected override void ApplyModifier(ValueModifier modifier)
-    {
-        new SpellModifierBuilder(modifier).SpellModifierQuickBuilder(this.modData);
-
-
-    }
+    
 
 }
