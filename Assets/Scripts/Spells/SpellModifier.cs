@@ -36,7 +36,7 @@ public class SpellModifier : Spell
         //COmbining the stats from 2 modifier classes together
         this.stats.MergeFrom(inner.stats);
 
-        Debug.Log("Sucessfully Synced Data and COmbined stats from 2 modifier classes.");
+        Debug.Log("SpellModifier.cs_SpellModifier() >> Sucessfully Synced Data and Combined stats from 2 modifier classes with MergeFrom().");
 
         // copy object C#
 
@@ -56,10 +56,10 @@ public class SpellModifier : Spell
     //Editing the Castroutine Method from the Parent (Spell) class
     protected override void Cast(ValueModifier valueModifier)
     {
-        Debug.Log("Modifier Cast is running!");
-        Debug.Log($"Damage{this.stats.amount}");
+        Debug.Log("SpellModifier.cs_Cast() >> Modifier Cast is running!");
+        Debug.Log("SpellModifier.cs_Cast() >> Pre Mod Damage" + this.stats.amount);
         new SpellModifierBuilder(valueModifier).SpellModifierQuickBuilder(this.modData);
-        Debug.Log($"Damage{this.stats.amount}");
+        Debug.Log("SpellModifier.cs_Cast() >> Post Modifier Damage" + this.stats.amount);
         
         ((ISpell)inner).Cast(valueModifier);
 

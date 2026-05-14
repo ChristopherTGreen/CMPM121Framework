@@ -33,7 +33,7 @@ public class SpellCaster
         //spell = new RandomModifier().CreateRandomSpell(this);
         //spell = new DamageAmpModifier(spell);
 
-        spell = new DoublerModifier(new DoublerModifier(new HomingModifier(new ArcaneBolt(this))));
+        spell = new DamageAmpModifier(new DoublerModifier(new HomingModifier(new ArcaneBolt(this))));
     } 
 
     public IEnumerator Cast(Vector3 where, Vector3 target)

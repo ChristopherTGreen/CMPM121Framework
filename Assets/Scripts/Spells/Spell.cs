@@ -50,12 +50,12 @@ public class Spell : ISpell
     public virtual string GetTrajectory()
     {
         //GetValue(List < ValueModifier<float> > valueMod, float original)
-        Debug.Log("Ahhh");
-        Debug.Log($"Amount: {ValueModifier.GetValue(this.stats.amount, this.baseDamage.amount)}");
-        Debug.Log($"Amount: { ValueModifier.GetValue(stats.amount, this.baseDamage.amount) }");
-        Debug.Log($"projt: {ValueModifier.GetValue(stats.trajectory, baseTrajectory)}");
-        Debug.Log($"projt: {ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory)}");
-        Debug.Log(stats.projectile_trajectory.Count);
+        //Debug.Log("Ahhh");
+        Debug.Log($"Spell.cs_GetTrajectory() >> Base Damage Amount: {ValueModifier.GetValue(this.stats.amount, this.baseDamage.amount)}");
+        Debug.Log($"Spell.cs_GetTrajectory() >> Modified? Damage Amount: { ValueModifier.GetValue(stats.amount, this.baseDamage.amount) }");
+        Debug.Log($"Spell.cs_GetTrajectory() >> Standard Projectile Trajectory: {ValueModifier.GetValue(stats.trajectory, baseTrajectory)}");
+        Debug.Log($"Spell.cs_GetTrajectory() >> Specified Projectile Trajectory (projectile_trajectory): {ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory)}");
+        Debug.Log("Spell.cs_GetTrajectory() >> Projectile Trajectory Count: " + stats.projectile_trajectory.Count);
         return ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory);
     }
 
