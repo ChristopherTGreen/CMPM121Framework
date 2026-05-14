@@ -27,8 +27,7 @@ public class SpellCaster
         this.mana_reg = mana_reg;
         this.team = team;
         //spell = new SpellBuilder().Build(this);
-        spell = new ArcaneBolt(this);
-        spell = new DamageAmpModifier(spell);
+        spell = new DamageAmpModifier(new ArcaneBolt(this));
         
     } 
 

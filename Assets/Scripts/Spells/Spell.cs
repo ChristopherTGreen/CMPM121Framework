@@ -46,7 +46,7 @@ public class Spell : ISpell
 
     public virtual string GetTrajectory()
     {
-        Debug.Log(baseTrajectory);
+        Debug.Log("Debugging from GetTrajectory() in Spell.cs: " + baseTrajectory);
         return baseTrajectory;
     }
 

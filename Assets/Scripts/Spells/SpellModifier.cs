@@ -57,4 +57,67 @@ public class SpellModifier : Spell
     // This is where the spell modifier will be
     protected virtual void ApplyModifier(ValueModifier valueModifier) {}
 
+
+
+    // I don't like how we have to do this many overrides but this may be the fix to the data loss issue
+    public override int GetIcon()
+    {
+        return inner.icon;
+    }
+
+    public override string GetTrajectory()
+    {
+        Debug.Log("Debugging from GetTrajectory() in SpellModifier.cs: " + inner.baseTrajectory);
+        return inner.baseTrajectory;
+    }
+
+    public override int GetDamage()
+    { 
+        return ValueModifier.GetValue(stats.amount, inner.baseDamage.amount);
+    }
+
+    public override Damage.Type GetDamageType()
+    {
+        Damage.Type type = inner.baseDamage.type;
+        return type;
+    }
+
+    public override int GetHeal()
+    {
+        return ValueModifier.GetValue(stats.heal, inner.baseHeal);
+    }
+
+    public override float GetSpeed()
+    {
+        return ValueModifier.GetValue(stats.speed, inner.baseSpeed);
+    }
+
+    public override int GetNumber()
+    {
+        return ValueModifier.GetValue(stats.number, inner.baseNumber);
+    }
+
+    public override int GetManaCost()
+    {
+        return ValueModifier.GetValue(stats.manaCost, inner.baseManaCost);
+    }
+
+    public override float GetCooldown()
+    {
+        return ValueModifier.GetValue(stats.cooldown, inner.baseCooldown);
+    }
+    public override float GetAngle()
+    {
+        return ValueModifier.GetValue(stats.angle, inner.baseAngle);
+    }
+    public override float GetDelay()
+    {
+        return ValueModifier.GetValue(stats.angle, inner.baseAngle);
+    }
+    public override float GetLifetime()
+    {
+        return ValueModifier.GetValue(stats.lifetime, inner.baseLifetime);
+    }
+
+
 }
