@@ -114,6 +114,7 @@ public class Spell : ISpell
     {
         this.team = team;
         GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, target - where, GetSpeed(), OnHit);
+        Cast();
         yield return new WaitForEndOfFrame();
     }
 

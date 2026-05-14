@@ -11,7 +11,7 @@ class ArcaneBolt : Spell
         
         SpellData data = GameManager.Instance.spells["Arcane Bolt"];
 
-        Debug.Log("ArcaneBolt Constructor: Got Arcane Bolt from the GameManager");
+        //Debug.Log("ArcaneBolt Constructor: Got Arcane Bolt from the GameManager");
 
         Spell spell = new SpellBuilder(this)
             .WithName(data.name)
@@ -25,8 +25,8 @@ class ArcaneBolt : Spell
             .WithSprite(data.projectile.sprite)
             .Build(owner);
 
-        Debug.Log("ArcaneBolt Constructor: Finished Building Arcane Bolt");
-        Debug.Log("Arcane Bolt Spell Stats: " + spell.baseDamage.amount);
+        //Debug.Log("ArcaneBolt Constructor: Finished Building Arcane Bolt");
+        //Debug.Log("Arcane Bolt Spell Stats: " + spell.baseDamage.amount);
     }
 
     protected override void Cast(ValueModifier modifier)
