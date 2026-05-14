@@ -12,11 +12,13 @@ public class SpellModifierBuilder
 
     // Modifier
     public SpellModifierBuilder WithDamageAdder(string amount) { valueMod.AddValue(AddInt(amount), "amount"); return this; }
-    public SpellModifierBuilder WithDamageMultiplier(string amount) { valueMod.AddValue(MulInt(amount), "amount"); return this; }
+
+    //Changed MulInt to MulFloat since multipliers should be floats. This was causing a Key Dictionary error with the RPN Eval
+    public SpellModifierBuilder WithDamageMultiplier(string amount) { valueMod.AddValue(MulFloat(amount), "amount"); return this; }
     public SpellModifierBuilder WithSpeedAdder(string speed) { valueMod.AddValue(AddFloat(speed), "speed"); return this; }
     public SpellModifierBuilder WithSpeedMultiplier(string speed) { valueMod.AddValue(MulFloat(speed), "speed"); return this; }
     public SpellModifierBuilder WithManaAdder(string mana) { valueMod.AddValue(AddInt(mana), "mana"); return this; }
-    public SpellModifierBuilder WithManaMultiplier(string mana) { valueMod.AddValue(MulInt(mana), "mana"); return this; }
+    public SpellModifierBuilder WithManaMultiplier(string mana) { valueMod.AddValue(MulFloat(mana), "mana"); return this; }
     public SpellModifierBuilder WithCooldownAdder(string cooldown) { valueMod.AddValue(MulFloat(cooldown), "cooldown"); return this; }
     public SpellModifierBuilder WithCooldownMultiplier(string cooldown) { valueMod.AddValue(MulFloat(cooldown), "cooldown"); return this; }
 
@@ -74,9 +76,9 @@ public class SpellModifierBuilder
     public ValueModifier SpellModifierQuickBuilder(SpellData data)
     {
         ProcessInt(data.damage_adder, "amount", "adder");
-        ProcessInt(data.damage_multiplier, "amount", "multiplier");
+        ProcessFloat(data.damage_multiplier, "amount", "multiplier");
         ProcessInt(data.mana_adder, "manaCost", "adder");
-        ProcessInt(data.mana_multiplier, "manaCost", "multiplier");
+        ProcessFloat(data.mana_multiplier, "manaCost", "multiplier");
 
         ProcessFloat(data.speed_adder, "speed", "adder");
         ProcessFloat(data.speed_multiplier, "speed", "multiplier");

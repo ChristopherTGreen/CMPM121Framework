@@ -57,7 +57,9 @@ public class Spell : ISpell
 
     public virtual int GetDamage()
     { 
-        return ValueModifier.GetValue(stats.amount, baseDamage.amount);
+        //force a int after damage multiplier - I dont like this...
+        // Spell.cs line 147 doesn't like when I change this method to a float
+        return (int)ValueModifier.GetValue(stats.amount, baseDamage.amount);
     }
 
     public virtual Damage.Type GetDamageType()
@@ -83,7 +85,9 @@ public class Spell : ISpell
 
     public virtual int GetManaCost()
     {
-        return ValueModifier.GetValue(stats.manaCost, baseManaCost);
+        // also force int after manaCost Multiplier - I don't like this either...
+        // SpellCaster.cs Line 39 doesn't like when I change this method to float
+        return (int)ValueModifier.GetValue(stats.manaCost, baseManaCost);
     }
 
     public virtual float GetCooldown()

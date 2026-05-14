@@ -12,11 +12,11 @@ public class ValueModifier
     // Modifier storage:
     // strict values
     // These lists track the value modifiers applied to the base spell.
-    public List<ValueModifier<int>> amount = new List<ValueModifier<int>>();
+    public List<ValueModifier<float>> amount = new List<ValueModifier<float>>();
     public List<ValueModifier<int>> heal = new List<ValueModifier<int>>();
     public List<ValueModifier<float>> speed = new List<ValueModifier<float>>();
     public List<ValueModifier<int>> number = new List<ValueModifier<int>>();
-    public List<ValueModifier<int>> manaCost = new List<ValueModifier<int>>();
+    public List<ValueModifier<float>> manaCost = new List<ValueModifier<float>>();
     public List<ValueModifier<float>> cooldown = new List<ValueModifier<float>>();
     public List<ValueModifier<float>> angle = new List<ValueModifier<float>>();
     public List<ValueModifier<float>> delay = new List<ValueModifier<float>>();
@@ -65,10 +65,11 @@ public class ValueModifier
     // Do not call this for adding a list of modifiers to an existing list of modifiers, if you want to do this, call the above two methods
     public void AddValue(ValueModifier<int> valueMod, string valueName)
     {
-        if (valueName == "amount") amount.Add(valueMod);
-        else if (valueName == "heal") heal.Add(valueMod);
+        //if (valueName == "amount") amount.Add(valueMod);
+        //else if (valueName == "heal") heal.Add(valueMod);
+        if (valueName == "heal") heal.Add(valueMod);
         else if (valueName == "number") number.Add(valueMod);
-        else if (valueName == "manaCost") manaCost.Add(valueMod);
+        //else if (valueName == "manaCost") manaCost.Add(valueMod);
         else throw new Exception("Invalid value modifier int name for add value");
     }
 
@@ -80,13 +81,18 @@ public class ValueModifier
         else if (valueName == "angle") angle.Add(valueMod);
         else if (valueName == "delay") delay.Add(valueMod);
         else if (valueName == "lifetime") lifetime.Add(valueMod);
-        else throw new Exception("Invalid value modifier float name for add value");
+
+        else if (valueName == "amount") amount.Add(valueMod);
+        else if (valueName == "manaCost") manaCost.Add(valueMod);
+
+        else throw new Exception("Invalid value modifier float name: " + valueName + " for add value");
     }
+
     public void AddValue(string valueMod, string valueName)
     {
         if (valueName == "type") type.Add(valueMod);
         else if (valueName == "trajectory") type.Add(valueMod);
-        else throw new Exception("Invalid value modifier int name for add value");
+        else throw new Exception("Invalid value modifier int name: " + valueName + " for add value");
     }
 
     // Parameters: A list of integer value modifiers, original is the basevalue of a spell.
