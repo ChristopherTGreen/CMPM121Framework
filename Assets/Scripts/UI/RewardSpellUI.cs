@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-class RewardSpell : MonoBehaviour
+public class RewardSpell : MonoBehaviour
 {
     public GameObject spellReward;
     public SpellUI spellui;
@@ -22,6 +22,7 @@ class RewardSpell : MonoBehaviour
     ///  Display spell with take the generated random spell
     /// </summary>
     /// <param name="rewardSpell"></param>
+    
     public void DisplaySpell(Spell rewardSpell)
     {
         spellui.SetSpell(rewardSpell);
@@ -29,11 +30,19 @@ class RewardSpell : MonoBehaviour
 
     public void AcceptButtonHandler()
     {
-        //Accept.onClick.RemoveAllListeners();
-        //Accept.onClick.AddListener(() => 
+        Accept.onClick.RemoveAllListeners();
+        Accept.onClick.AddListener(() => AcceptSpell());
+
         // if spell list not full, add
         // else highlight red for a bit?
         //); //When pressed, and if not full, takes in new spell
+    }
+
+
+
+    public void AcceptSpell()
+    {
+        Debug.Log("Accept button clicked")
     }
 
 

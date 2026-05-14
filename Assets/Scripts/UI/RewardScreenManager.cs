@@ -2,20 +2,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class RewardScreenManager : MonoBehaviour
 {
     public static GameObject GlobalRewardUI;
     public GameObject rewardUI;
+    RewardSpell rewardSpell = new RewardSpell();
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GlobalRewardUI = rewardUI;
-        // below is me experimenting
-        //selector.GetComponent<MenuSelectorController>().spawner = EnemySpawnerClassReferences
-       // selector.GetComponent<MenuSelectorController>().SetLevel(difficulty.Key); //Sets the text on the button (selector)
+
+        // Finds the Accept button.
+        rewardSpell.Accept = rewardUI.transform.Find("Accept").GetComponent<Button>();
+        
     }
 
     // Update is called once per frame
@@ -24,6 +28,7 @@ public class RewardScreenManager : MonoBehaviour
         if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
         {
             NextWaveButtonHandler();
+            rewardSpell.AcceptButtonHandler();
             rewardUI.SetActive(true);
             
         }
@@ -58,14 +63,14 @@ public class RewardScreenManager : MonoBehaviour
     public void NextWaveButtonHandler()
     {
 
-        Button NextWaveButton = rewardUI.GetComponentInChildren<Button>(); //finding the button component of the RewardUI
+        Button NextWaveButton = rewardUI.transform.Find("Next").GetComponent<Button>(); //finding the button component of the RewardUI
         TextMeshProUGUI NextButtonText = NextWaveButton.GetComponentInChildren<TextMeshProUGUI>(); //Finding the text component of the child of the button component
 
         NextButtonText.text = "Continue"; //changing the button text
 
         // Centers the button in the rewardUI. For some reason, the y position is set at -158?!
-        RectTransform NextWaveButtonPosition = rewardUI.GetComponentInChildren<Button>().GetComponent<RectTransform>();
-        NextWaveButtonPosition.anchoredPosition = new Vector2(0, 0);
+        //RectTransform NextWaveButtonPosition = rewardUI.GetComponentInChildren<Button>().GetComponent<RectTransform>();
+        //NextWaveButtonPosition.anchoredPosition = new Vector2(0, 0);
         
         
         // RemoveAllListeners is so you dont spawn 5 waves at once at wave 5.
@@ -100,5 +105,5 @@ public class RewardScreenManager : MonoBehaviour
         });
     }
 
-    
+
 }
