@@ -44,7 +44,7 @@ public class Spell : ISpell
         return icon;
     }
 
-    public string GetTrajectory()
+    public virtual string GetTrajectory()
     {
         Debug.Log(baseTrajectory);
         return baseTrajectory;
