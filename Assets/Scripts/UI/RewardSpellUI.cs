@@ -70,7 +70,9 @@ public class RewardSpell
     {
         Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Accept button clicked");
 
-        GameManager.Instance.activeSpells[spell.name] = spell;
+        GameManager.Instance.activeSpells.Add(spell);
+        GameManager.Instance.spellUIcontainer.ShowActiveSpells(); //unhides the active spell icons in the bottom left based on number of active spells
+
         Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Stored " + spell.name + "as a active spell after player accepted the spell.");
     }
 
