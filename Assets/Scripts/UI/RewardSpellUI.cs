@@ -71,14 +71,32 @@ public class RewardSpell
     {
         Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Accept button clicked");
 
-        GameManager.Instance.activeSpells.Add(spell); //adds the newly generated spell to the active spells list
-        GameManager.Instance.spellUIcontainer.ShowActiveSpells(); //unhides the active spell icons in the bottom left based on number of active spells - Now sets the stats and icon
+        if (GameManager.Instance.activeSpells.Count < 2){ //for testing, set to 2
 
-        Accept.onClick.RemoveAllListeners(); //removes the ability for the button to call Accept Spell
-        AcceptButtonText = Accept.GetComponentInChildren<TextMeshProUGUI>();
-        AcceptButtonText.text = "Spell Collected";
+            GameManager.Instance.activeSpells.Add(spell); //adds the newly generated spell to the active spells list
+            GameManager.Instance.spellUIcontainer.ShowActiveSpells(); //unhides the active spell icons in the bottom left based on number of active spells - Now sets the stats and icon
 
-        Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Stored " + spell.name + "as a active spell after player accepted the spell.");
+            Accept.onClick.RemoveAllListeners(); //removes the ability for the button to call Accept Spell
+            AcceptButtonText = Accept.GetComponentInChildren<TextMeshProUGUI>();
+            AcceptButtonText.text = "Spell Collected";
+
+            Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Stored " + spell.name + "as a active spell after player accepted the spell.");
+
+        } 
+        else if (GameManager.Instance.activeSpells.Count < 1)
+        {
+            throw new Exception("RewardSpellUI.cs_AcceptSpell(Spell) >> SOMETHING IS WRONG YOU SHOULDN'T HAVE ZERO ACTIVE SPELLS!!!");
+        } 
+        else
+        {
+            //More than four spells
+            //Enable drop buttons
+            GameManager.Instance.spellUIcontainer.ShowDropButton();
+            AcceptButtonText = Accept.GetComponentInChildren<TextMeshProUGUI>();
+            AcceptButtonText.text = "Too Many Spells!";
+
+        }
+
     }
 
 
@@ -91,7 +109,7 @@ public class RewardSpell
 
 
 
-    public void DropSpell()
+    public static void DropSpell()
     {
         Debug.Log("Drop button clicked");
     }

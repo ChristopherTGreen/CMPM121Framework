@@ -9,6 +9,7 @@ public class RewardScreenManager : MonoBehaviour
     public static GameObject GlobalRewardUI;
     public GameObject rewardUI;
     public GameObject spellReward;
+    public SpellUIContainer spelluicontainer;
     RewardSpell rewardSpell = new RewardSpell();
 
 
@@ -94,6 +95,7 @@ public class RewardScreenManager : MonoBehaviour
         // If I didn't have this here, it would spawn the previous five waves and mess up the countdown
         NextWaveButton.onClick.RemoveAllListeners();
         NextWaveButton.onClick.AddListener(() => GameManager.Instance.state = GameManager.GameState.COUNTDOWN); //When Continue button click, trigger the next wave
+        NextWaveButton.onClick.AddListener(() => spelluicontainer.HideDropButtons());
 
     }
 
