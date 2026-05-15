@@ -47,7 +47,7 @@ public class RewardSpell
             // Find player controller here instead of start() - I don't like it but it's the only place where if can even find the playercontroller
             player = GameManager.Instance.player.GetComponent<PlayerController>(); 
 
-            Debug.Log($"player null? {player == null}");
+
 
             RewardSpellGenerated = true; // flag makes sure this conditional only runs once per wave end state 
             newRewardSpell = new RandomModifier().CreateRandomSpell(player.spellcaster); // not player.spellcaster.spell because that would replace the player's currently active spell - this makes a new spell

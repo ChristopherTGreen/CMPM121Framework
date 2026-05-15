@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UIElements;
 using static UnityEngine.UI.Image;
 
 public interface ISpell
@@ -130,12 +131,17 @@ public class Spell : ISpell
     public virtual IEnumerator CastRoutine(Vector3 where, Vector3 target, Hittable.Team team)
     {
         this.team = team;
+   
+        Vector3 direction = new Vector3();
+
+
 
         Cast();
         for (int i = 0; i < GetRepeat(); i++)
         {
             for (int j = 0; j < GetNumber(); j++)
-                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, target - where, GetSpeed(), OnHit);
+                direction = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-GetAngle() / 2.0f, GetAngle() / 2.0f)) * (target - where).normalized;
+                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit);
 
             // Wait before the next shot (but don't wait after the final shot)
             if (i < (GetRepeat() - 1))
