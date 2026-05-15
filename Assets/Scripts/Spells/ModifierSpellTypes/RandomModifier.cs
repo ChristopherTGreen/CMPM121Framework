@@ -49,7 +49,8 @@ public class RandomModifier
         string randomKey = modKeys[UnityEngine.Random.Range(0, modKeys.Count)];
         SpellModifier randomMod = modDict[randomKey].Invoke(inner);
 
-        GameManager.Instance.sessionStats.currentSpellModNames.Add(randomMod.name);
+        //updating session stats list with the mod name so it prints in the reward UI description
+        GameManager.Instance.sessionStats.currentSpellModNames.Add(randomKey);
 
         return randomMod;
 
