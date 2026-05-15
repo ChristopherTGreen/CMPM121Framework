@@ -15,6 +15,8 @@ public class SpellData
     public string cooldown { get ; set; } = null;
     public string N { get; set; } = null;
     public string repeat { get; set; } = null;
+    public string pierce { get; set; } = null;
+    public string bounce { get; set; } = null;
     public SpellProjectileData projectile { get ; set; } = null;
 
 
