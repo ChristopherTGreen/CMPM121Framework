@@ -4,6 +4,8 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.IO;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,11 +21,14 @@ public class PlayerController : MonoBehaviour
 
     public Unit unit;
 
+    public int activeSpellIndex;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         unit = GetComponent<Unit>();
         GameManager.Instance.player = gameObject;
+        activeSpellIndex = 4;
     }
 
     public void StartLevel()
@@ -41,16 +46,16 @@ public class PlayerController : MonoBehaviour
         healthui.SetHealth(hp);
         manaui.SetSpellCaster(spellcaster);
         spellui.SetSpell(spellcaster.spell);
-
-        // Storing the first random spell created
-        GameManager.Instance.StoreActiveSpell(spellcaster.spell);
-        Debug.Log("PlayerController.cs_StartLevel() >> Stored: " + spellcaster.spell.name + " in activeSpells");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //When player hit's tab, toggle the spell used
+        if (Keyboard.current[Key.Tab].wasPressedThisFrame)
+        {
+            SwitchSpell();
+        }
     }
 
     void OnAttack(InputValue value)
@@ -71,7 +76,36 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         GameManager.Instance.state = GameManager.GameState.GAMEOVER;
-        Debug.Log("You Lost");
+        
+        //Clearing active spells that the player has on death
+        GameManager.Instance.activeSpells.Clear();
+        GameManager.Instance.sessionStats.ClearModNamesList();
+
+        //Debug.Log("You Lost");
+    }
+
+    void SwitchSpell()
+    {
+
+        if (GameManager.Instance.activeSpells.Count > 0)
+        {
+            
+            // Should cycle, 1 2 3 0
+            activeSpellIndex = (activeSpellIndex + 1) % GameManager.Instance.activeSpells.Count;
+
+            UnityEngine.Debug.Log("Active Spell index: " + activeSpellIndex);
+
+            Spell activespell = GameManager.Instance.activeSpells[activeSpellIndex];
+            spellcaster.CurrentActiveSpell(activespell);
+
+            UnityEngine.Debug.Log("Equipped Spell: " + activespell.name + GameManager.Instance.activeSpells.IndexOf(activespell));
+
+        } 
+        else
+        {
+            throw new System.Exception("PlayerController.cs_SwitchSpell() >> MASSIVE ERROR! YOU SHOULD NOT HAVE LESS THAN 1 SPELL! CHECK SpellCaster.cs");
+        } 
+
     }
 
 }

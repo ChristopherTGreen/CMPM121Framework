@@ -27,7 +27,7 @@ public class SpellUIContainer : MonoBehaviour
     }
     
 
-    
+
     public void ShowActiveSpells()
     {
         // Get active spells
@@ -47,6 +47,44 @@ public class SpellUIContainer : MonoBehaviour
         }
 
         // also a way for the player to use that spell.
+    }
+
+
+
+    public void ShowDropButton()
+    {
+        activeSpellList = GameManager.Instance.activeSpells;
+        int numOfSpells = activeSpellList.Count; 
+        GameObject dropbuttonObject;
+        Button dropbuttonButton;
+
+        for (int i = 0; i < numOfSpells; ++i)
+        {
+            
+            dropbuttonObject = spellUIs[i].GetComponent<SpellUI>().dropbutton; //Getting the drop button game object from SpellUI.cs
+            dropbuttonObject.SetActive(true); //unhiding all of them
+
+            dropbuttonButton = spellUIs[i].GetComponentInChildren<Button>();
+            dropbuttonButton.onClick.RemoveAllListeners();
+            dropbuttonButton.onClick.AddListener(() => RewardSpell.DropSpell());
+    
+        }
+    }
+
+
+
+    public void HideDropButtons()
+    {
+        int numOfSpells = GameManager.Instance.activeSpells.Count; 
+        GameObject dropbuttonObject;
+
+        for (int i = 0; i < numOfSpells; ++i)
+        {
+            
+            dropbuttonObject = spellUIs[i].GetComponent<SpellUI>().dropbutton; //Getting the drop button game object from SpellUI.cs
+            dropbuttonObject.SetActive(false); //unhiding all of them
+    
+        }
     }
 
     // Update is called once per frame
