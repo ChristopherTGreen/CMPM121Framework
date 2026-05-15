@@ -19,23 +19,30 @@ public class WaveLabelController : MonoBehaviour
         }
         if (GameManager.Instance.state == GameManager.GameState.COUNTDOWN)
         {
+            tmp.fontSize = 36;
             tmp.text = "Starting in " + GameManager.Instance.countdown;
         }
         if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
         {
-            
-            tmp.text = "Wave " + GameManager.Instance.wave_count + " Cleared!\n";
-            tmp.text += GameManager.Instance.sessionStats.getStats();
+            //commenting out wave stats - reimplement later
+            //tmp.text = "Wave " + GameManager.Instance.wave_count + " Cleared!\n";
+            //tmp.text += GameManager.Instance.sessionStats.getStats();
+
+            //shrinking font size for spell description
+            tmp.fontSize = 15;
+            tmp.text = GameManager.Instance.sessionStats.getSpellDescription();
     
         }
         if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
         {
             if (GameManager.Instance.enemy_count <= 0)
             {
+                tmp.fontSize = 36;
                 tmp.text = "You Win!\n" + GameManager.Instance.sessionStats.getStats();
             }
             else
             {
+                tmp.fontSize = 36;
                 tmp.text = "You Lose!\n" + GameManager.Instance.sessionStats.getStats();
             }
         }

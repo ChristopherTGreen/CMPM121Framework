@@ -8,6 +8,7 @@ public class DoublerModifier : SpellModifier
     {
         this.modData = GameManager.Instance.spells["doubled"];
         this.modData.repeat = "1";
+        Debug.Log("Modifier: Doubler Constructed");
     }
 
     /*public override IEnumerator CastRoutine(Vector3 where, Vector3 target, Hittable.Team team)

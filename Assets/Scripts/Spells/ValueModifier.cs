@@ -46,7 +46,7 @@ public class ValueModifier
         else if (valueName == "number") number.AddRange(valueMod);
         else if (valueName == "repeat") repeat.AddRange(valueMod);
         else if (valueName == "manaCost") manaCost.AddRange(valueMod);
-        else throw new Exception("Invalid value modifier int name for add list");
+        else throw new Exception("ValueModifier.cs_AddList(List<ValueModifier<int>>, string) >> Invalid value modifier int name for add list");
     }
 
     // Same as notes above but for floats
@@ -56,14 +56,14 @@ public class ValueModifier
         else if (valueName == "cooldown") cooldown.AddRange(valueMod);
         else if (valueName == "delay") delay.AddRange(valueMod);
         else if (valueName == "lifetime") lifetime.AddRange(valueMod);
-        else throw new Exception("Invalid value modifier float name for add list");
+        else throw new Exception("ValueModifier.cs_AddList(List<ValueModifier<float>>, string) >> Invalid value modifier float name for add list");
     }
     public void AddList(List<string> valueMod, string valueName)
     {
         if (valueName == "type") type.AddRange(valueMod);
         else if (valueName == "trajectory") trajectory.AddRange(valueMod);
         else if (valueName == "projectile_trajectory") projectile_trajectory.AddRange(valueMod);
-        else throw new Exception("Invalid value modifier string name for add list");
+        else throw new Exception("ValueModifier.cs_AddList(List<string>, string) >> Invalid value modifier string name for add list");
     }
 
     // This method adds a ValueModifier int to a existing storage class defined at the top of this class.
@@ -77,7 +77,7 @@ public class ValueModifier
         else if (valueName == "repeat") repeat.Add(valueMod);
         else if (valueName == "angle") angle.Add(valueMod);
         //else if (valueName == "manaCost") manaCost.Add(valueMod);
-        else throw new Exception("Invalid value modifier int name: " + valueName + " for add value");
+        else throw new Exception("ValueModifier.cs_AddValue(ValueModifier<int>, string) >> Invalid value modifier int name: " + valueName + " for add value");
     }
 
     // Same as method above but for floats
@@ -91,7 +91,7 @@ public class ValueModifier
         else if (valueName == "amount") amount.Add(valueMod);
         else if (valueName == "manaCost") manaCost.Add(valueMod);
 
-        else throw new Exception("Invalid value modifier float name: " + valueName + " for add value");
+        else throw new Exception("ValueModifier.cs_AddValue(ValueModifier<float>, string) >> Invalid value modifier float name: " + valueName + " for add value");
     }
 
     public void AddValue(string valueMod, string valueName)
@@ -99,7 +99,7 @@ public class ValueModifier
         if (valueName == "type") type.Add(valueMod);
         else if (valueName == "trajectory") trajectory.Add(valueMod);
         else if (valueName == "projectile_trajectory") projectile_trajectory.Add(valueMod);
-        else throw new Exception("Invalid value modifier string name: " + valueName + " for add value");
+        else throw new Exception("ValueModifier.cs_AddValue(string, string) >> Invalid value modifier string name: " + valueName + " for add value");
     }
 
     // Parameters: A list of integer value modifiers, original is the basevalue of a spell.
@@ -148,7 +148,7 @@ public class ValueModifier
                 }
 
 
-                Debug.Log("Successful merge");
+                Debug.Log("ValueModifier.cs_MergeFrom(ValueModifier) >> Successful merge");
 
                 MethodInfo addRangeMethod = targetList.GetType().GetMethod("AddRange");
                 addRangeMethod.Invoke(targetList, new[] { sourceList });

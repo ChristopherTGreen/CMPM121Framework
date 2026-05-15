@@ -96,7 +96,20 @@
   },
   {
     "name": "Test",
-    "waves" :  1,
+    "waves": 1,
+    "spawns": [
+      {
+        "enemy": "zombie",
+        "count": "1 wave *",
+        "hp": "5 wave *",
+        "delay": "5",
+        "sequence": [ 1, 2, 3 ],
+        "location": "random"
+      }
+    ]
+  },
+  {
+    "name": "TestWaves",
     "spawns": [
       {
         "enemy": "zombie",

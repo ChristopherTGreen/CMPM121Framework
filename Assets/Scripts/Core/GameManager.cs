@@ -40,6 +40,9 @@ public class GameManager
     public Dictionary<string, EnemyData> enemyTypes; // (possibly convert to lists based on what prof said) - chris
     public Dictionary<string, LevelData> levels;
     public Dictionary<string, SpellData> spells;
+
+    public Dictionary<string, Spell> activeSpells = new Dictionary<string, Spell>(); //stores the player's current active spells
+
     public Dictionary<string, int> variables => new Dictionary<string, int>
     {
         { "power", GameManager.Instance.player.GetComponent<PlayerController>().power},
@@ -67,6 +70,13 @@ public class GameManager
         if (enemies == null || enemies.Count == 0) return null;
         if (enemies.Count == 1) return enemies[0];
         return enemies.Aggregate((a,b) => (a.transform.position - point).sqrMagnitude < (b.transform.position - point).sqrMagnitude ? a : b);
+    }
+
+    // Stores the active spell that the spellcaster makes.
+    public void StoreActiveSpell(Spell spell)
+    {
+        activeSpells[spell.name] = spell;
+        Debug.Log("GameManager.cs_StoreActiveSpell(Spell) >> sucessfully stored a spell " + spell.name);
     }
 
     private GameManager()

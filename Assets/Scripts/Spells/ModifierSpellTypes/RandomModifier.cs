@@ -11,23 +11,35 @@ public class RandomModifier
     };
     private Dictionary<string, Func<Spell, SpellModifier>> modDict = new Dictionary<string, Func<Spell, SpellModifier>>
     {
-        { "DamageAmp", (inner) => new DamageAmpModifier(inner) }
+        { "DamageAmp", (inner) => new DamageAmpModifier(inner) },
+        { "Chaos", (inner) => new ChaosModifier(inner) },
+        { "Doubler", (inner) => new DoublerModifier(inner) },
+        { "Homing", (inner) => new HomingModifier(inner) },
+        { "SpeedAmp", (inner) => new SpeedAmpModifier(inner) },
+
+        // Not yet completed - uncomment when completed
+        //{ "Splitter", (inner) => new SplitterModifier(inner) }
     };
 
     //constructor
     public Spell CreateRandomSpell(SpellCaster owner)
     {
+
+        // grabbing a random spell from the spellDict
         List<string> baseSpellKeys = spellDict.Keys.ToList();
         string randomKey = baseSpellKeys[UnityEngine.Random.Range(0, baseSpellKeys.Count)];
         Spell randomSpell = spellDict[randomKey].Invoke(owner);
         randomSpell.owner = owner;
 
-
+        // adding a # of random modifiers
         int randomModCount = 2;
         for (int i = 0; i < randomModCount; i++)
         {
             randomSpell = CreateRandomModifier(randomSpell);
         }
+
+        // Need to store the randomly modified spell to a dictionary.
+
         return randomSpell;
 
     }

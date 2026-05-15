@@ -7,7 +7,9 @@ public class ChaosModifier : SpellModifier
     public ChaosModifier(Spell inner) : base(inner)
     {
         this.modData = GameManager.Instance.spells["chaotic"];
+        Debug.Log("Modifier: Chaos Constructed");
     }
+
 }
 
     

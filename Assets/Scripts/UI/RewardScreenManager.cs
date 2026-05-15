@@ -2,20 +2,31 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class RewardScreenManager : MonoBehaviour
 {
     public static GameObject GlobalRewardUI;
     public GameObject rewardUI;
+    public GameObject spellReward;
+    RewardSpell rewardSpell = new RewardSpell();
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GlobalRewardUI = rewardUI;
-        // below is me experimenting
-        //selector.GetComponent<MenuSelectorController>().spawner = EnemySpawnerClassReferences
-       // selector.GetComponent<MenuSelectorController>().SetLevel(difficulty.Key); //Sets the text on the button (selector)
+
+        // attach game object spellReward to the class handler for spells
+        Debug.Log("Ahh");
+        Debug.Log(spellReward.GetComponent<SpellUI>());
+        rewardSpell.SetSpellUI(spellReward);
+
+        // Finds the buttons.
+        rewardSpell.Accept = rewardUI.transform.Find("Accept").GetComponent<Button>();
+        rewardSpell.Drop = rewardUI.transform.Find("spellReward/drop").GetComponent<Button>();
+        
     }
 
     // Update is called once per frame
@@ -24,6 +35,12 @@ public class RewardScreenManager : MonoBehaviour
         if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
         {
             NextWaveButtonHandler();
+            rewardSpell.AcceptButtonHandler();
+            rewardSpell.DropButtonHandler();
+
+            // DisplaySpell(Spell RewardSpell) is located in RewardSpellUI.cs
+            //rewardSpell.DisplaySpell(); // Need to store the randomly generated spell and call that randomly generated spell here
+            
             rewardUI.SetActive(true);
             
         }
@@ -31,9 +48,16 @@ public class RewardScreenManager : MonoBehaviour
         {
             RestartButtonHandler();
             rewardUI.SetActive(true);
+
+            //Hides the accept and drop buttons when the wave ends.
+            rewardUI.transform.Find("Accept").gameObject.SetActive(false);
+            rewardUI.transform.Find("spellReward").gameObject.SetActive(false);
         }
         else
         {
+            //When wave starts set the rewardSpellGenerated flag to false
+            rewardSpell.RewardSpellGenerated = false;
+
             rewardUI.SetActive(false);
         }
     }
@@ -58,14 +82,14 @@ public class RewardScreenManager : MonoBehaviour
     public void NextWaveButtonHandler()
     {
 
-        Button NextWaveButton = rewardUI.GetComponentInChildren<Button>(); //finding the button component of the RewardUI
+        Button NextWaveButton = rewardUI.transform.Find("Next").GetComponent<Button>(); //finding the button component of the RewardUI
         TextMeshProUGUI NextButtonText = NextWaveButton.GetComponentInChildren<TextMeshProUGUI>(); //Finding the text component of the child of the button component
 
         NextButtonText.text = "Continue"; //changing the button text
 
         // Centers the button in the rewardUI. For some reason, the y position is set at -158?!
-        RectTransform NextWaveButtonPosition = rewardUI.GetComponentInChildren<Button>().GetComponent<RectTransform>();
-        NextWaveButtonPosition.anchoredPosition = new Vector2(0, 0);
+        //RectTransform NextWaveButtonPosition = rewardUI.GetComponentInChildren<Button>().GetComponent<RectTransform>();
+        //NextWaveButtonPosition.anchoredPosition = new Vector2(0, 0);
         
         
         // RemoveAllListeners is so you dont spawn 5 waves at once at wave 5.
@@ -80,7 +104,7 @@ public class RewardScreenManager : MonoBehaviour
     public void RestartButtonHandler()
     {
 
-        Button NextWaveButton = rewardUI.GetComponentInChildren<Button>(); //finding the button component of the RewardUI
+        Button NextWaveButton = rewardUI.transform.Find("Next").GetComponent<Button>(); //finding the button component of the RewardUI
         TextMeshProUGUI NextButtonText = NextWaveButton.GetComponentInChildren<TextMeshProUGUI>(); //Finding the text component of the child of the button component
 
         NextButtonText.text = "Back to Selection"; //changing the button text
@@ -100,5 +124,5 @@ public class RewardScreenManager : MonoBehaviour
         });
     }
 
-    
+
 }

@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     public void StartLevel()
     {
+        // Parameters: 125 is the player's mana, 8 is the player's mana regen
+        // These are hardcoded, later have the scaling for mana be here
         spellcaster = new SpellCaster(125, 8, Hittable.Team.PLAYER);
         StartCoroutine(spellcaster.ManaRegeneration());
 
@@ -39,6 +41,10 @@ public class PlayerController : MonoBehaviour
         healthui.SetHealth(hp);
         manaui.SetSpellCaster(spellcaster);
         spellui.SetSpell(spellcaster.spell);
+
+        // Storing the first random spell created
+        GameManager.Instance.StoreActiveSpell(spellcaster.spell);
+        Debug.Log("PlayerController.cs_StartLevel() >> Stored: " + spellcaster.spell.name + " in activeSpells");
     }
 
     // Update is called once per frame

@@ -7,8 +7,7 @@ public class DamageAmpModifier : SpellModifier
     public DamageAmpModifier(Spell inner) : base(inner)
     {
         this.modData = GameManager.Instance.spells["damage-amplified"];
+        Debug.Log("Modifier: Damage Amp Constructed");
     }
-
-    
 
 }

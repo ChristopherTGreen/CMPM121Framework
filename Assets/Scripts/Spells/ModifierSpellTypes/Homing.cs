@@ -7,6 +7,7 @@ public class HomingModifier : SpellModifier
     public HomingModifier(Spell inner) : base(inner)
     {
         this.modData = GameManager.Instance.spells["homing"];
+        Debug.Log("Modifier: homing Constructed");
     }
 
     

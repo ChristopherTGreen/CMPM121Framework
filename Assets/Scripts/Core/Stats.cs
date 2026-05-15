@@ -20,4 +20,10 @@ public class Stats : MonoBehaviour
         return "Enemies Killed: " + enemiesKilled + "\nTotal Damage Dealt: " + totalDamageDealt;
 
     }
+
+    public string getSpellDescription()
+    {
+        // temporary hard coded description - this will later get the description of the randomly generated spell
+        return "Spell Description";
+    }
 }
