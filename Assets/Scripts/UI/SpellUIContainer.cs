@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using Unity.VisualScripting;
 
 public class SpellUIContainer : MonoBehaviour
 {
@@ -23,6 +26,8 @@ public class SpellUIContainer : MonoBehaviour
         GameManager.Instance.spellUIcontainer = this;
     }
     
+
+    
     public void ShowActiveSpells()
     {
         // Get active spells
@@ -31,8 +36,17 @@ public class SpellUIContainer : MonoBehaviour
 
         for (int i = 0; i < numOfSpells; ++i)
         {
-            spellUIs[i].SetActive(true);
+
+            // If a spell Ui is inactive, set it active and set the spell icon, manacost and damage and image
+            if (!spellUIs[i].activeSelf)
+            {
+                spellUIs[i].SetActive(true); //unhide the active spell UI component
+                spellUIs[i].GetComponent<SpellUI>().SetSpell(activeSpellList[i]); //Set the stats and icon of the new spell in the UI
+            }
+    
         }
+
+        // also a way for the player to use that spell.
     }
 
     // Update is called once per frame

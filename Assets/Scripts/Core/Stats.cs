@@ -33,7 +33,7 @@ public class Stats : MonoBehaviour
 
         foreach (string modname in currentSpellModNames)
         {
-            Debug.Log("Modifier name: " + modname);
+            //Debug.Log("Modifier name: " + modname);
             description += modname + ", ";
         }
 
