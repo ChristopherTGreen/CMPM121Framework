@@ -41,7 +41,9 @@ public class GameManager
     public Dictionary<string, LevelData> levels;
     public Dictionary<string, SpellData> spells;
 
-    public Dictionary<string, Spell> activeSpells = new Dictionary<string, Spell>(); //stores the player's current active spells
+    public List<Spell> activeSpells = new List<Spell>(); //stores the player's current active spells
+    public Spell currentRewardSpell;
+    public SpellUIContainer spellUIcontainer;
 
     public Dictionary<string, int> variables => new Dictionary<string, int>
     {
@@ -75,7 +77,7 @@ public class GameManager
     // Stores the active spell that the spellcaster makes.
     public void StoreActiveSpell(Spell spell)
     {
-        activeSpells[spell.name] = spell;
+        activeSpells.Add(spell);
         Debug.Log("GameManager.cs_StoreActiveSpell(Spell) >> sucessfully stored a spell " + spell.name);
     }
 

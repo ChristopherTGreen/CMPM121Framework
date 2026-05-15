@@ -30,6 +30,7 @@ public class ValueModifier
     public List<string> type = new List<string>();
     public List<string> trajectory = new List<string>();
     public List<string> projectile_trajectory = new List<string>();
+    public List<string> name = new List<string>();
 
         //var mod5 = ValueModifier<int>.GetValue(newList, potato);
         //ValueModifier<int> damageMod = new ValueModifier<int>();
@@ -65,6 +66,7 @@ public class ValueModifier
         if (valueName == "type") type.AddRange(valueMod);
         else if (valueName == "trajectory") trajectory.AddRange(valueMod);
         else if (valueName == "projectile_trajectory") projectile_trajectory.AddRange(valueMod);
+        else if (valueName == "name") name.AddRange(valueMod);
         else throw new Exception("ValueModifier.cs_AddList(List<string>, string) >> Invalid value modifier string name for add list");
     }
 
@@ -102,6 +104,7 @@ public class ValueModifier
         if (valueName == "type") type.Add(valueMod);
         else if (valueName == "trajectory") trajectory.Add(valueMod);
         else if (valueName == "projectile_trajectory") projectile_trajectory.Add(valueMod);
+        else if (valueName == "name") name.Add(valueMod);
         else throw new Exception("ValueModifier.cs_AddValue(string, string) >> Invalid value modifier string name: " + valueName + " for add value");
     }
 
@@ -151,7 +154,7 @@ public class ValueModifier
                 }
 
 
-                Debug.Log("ValueModifier.cs_MergeFrom(ValueModifier) >> Successful merge");
+                //Debug.Log("ValueModifier.cs_MergeFrom(ValueModifier) >> Successful merge");
 
                 MethodInfo addRangeMethod = targetList.GetType().GetMethod("AddRange");
                 addRangeMethod.Invoke(targetList, new[] { sourceList });

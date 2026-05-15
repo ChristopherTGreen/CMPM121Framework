@@ -44,6 +44,11 @@ public class Spell : ISpell
         this.owner = owner;
     }
 
+    public virtual List<string> GetModName()
+    {
+        return stats.name;
+    }
+
     public virtual int GetIcon()
     {
         return icon;

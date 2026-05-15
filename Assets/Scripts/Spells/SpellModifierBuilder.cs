@@ -87,6 +87,8 @@ public class SpellModifierBuilder
 
         valueMod.AddValue(data.projectile_trajectory, "projectile_trajectory");
 
+        valueMod.AddValue(data.name, "name");
+
         if (data.N != null) valueMod.AddValue(AddInt(data.N), "number");
         if (data.repeat != null) valueMod.AddValue(AddInt(data.repeat), "repeat");
         if (data.pierce != null) valueMod.AddValue(AddInt(data.pierce), "pierce");

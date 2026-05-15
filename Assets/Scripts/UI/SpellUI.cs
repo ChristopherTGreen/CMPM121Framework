@@ -24,8 +24,8 @@ public class SpellUI : MonoBehaviour
     {
         this.spell = spell;
 
-        Debug.Log($".GetIcon null? {spell.GetIcon()}");
-        Debug.Log($"icon.GetComponent null? {icon.GetComponent<Image>()}");
+        //Debug.Log($".GetIcon null? {spell.GetIcon()}");
+        //Debug.Log($"icon.GetComponent null? {icon.GetComponent<Image>()}");
 
         GameManager.Instance.spellIconManager.PlaceSprite(spell.GetIcon(), icon.GetComponent<Image>());
 

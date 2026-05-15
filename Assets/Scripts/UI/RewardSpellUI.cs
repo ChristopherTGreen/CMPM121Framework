@@ -36,7 +36,7 @@ public class RewardSpell
     public void DisplaySpell(Spell rewardSpell)
     {
         spellReward.GetComponent<SpellUI>().SetSpell(rewardSpell); //SetSpell is located in SpellUI.cs
-
+        GameManager.Instance.sessionStats.currentSpell = rewardSpell;
     }
 
     public void AcceptButtonHandler()
@@ -51,6 +51,7 @@ public class RewardSpell
 
             RewardSpellGenerated = true; // flag makes sure this conditional only runs once per wave end state 
             newRewardSpell = new RandomModifier().CreateRandomSpell(player.spellcaster); // not player.spellcaster.spell because that would replace the player's currently active spell - this makes a new spell
+            
             DisplaySpell(newRewardSpell); //Displays the icon and sprite of the new spell + manacost and damage text
         }
         
@@ -69,7 +70,9 @@ public class RewardSpell
     {
         Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Accept button clicked");
 
-        GameManager.Instance.activeSpells[spell.name] = spell;
+        GameManager.Instance.activeSpells.Add(spell);
+        GameManager.Instance.spellUIcontainer.ShowActiveSpells(); //unhides the active spell icons in the bottom left based on number of active spells
+
         Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Stored " + spell.name + "as a active spell after player accepted the spell.");
     }
 
