@@ -40,4 +40,10 @@ public class Stats : MonoBehaviour
         // temporary hard coded description - this will later get the description of the randomly generated spell
         return description;
     }
+
+    public void ClearModNamesList()
+    {
+        currentSpellModNames.Clear();
+    }
+    
 }

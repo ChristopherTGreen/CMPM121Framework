@@ -57,6 +57,15 @@ public class Spell : ISpell
 
     public virtual string GetTrajectory()
     {
+        //GetValue(List < ValueModifier<float> > valueMod, float original)
+        //Debug.Log("Ahhh");
+        //Debug.Log($"Spell.cs_GetTrajectory() >> Base Damage Amount: {ValueModifier.GetValue(this.stats.amount, this.baseDamage.amount)}");
+        //Debug.Log($"Spell.cs_GetTrajectory() >> Modified? Damage Amount: { ValueModifier.GetValue(stats.amount, this.baseDamage.amount) }");
+        //Debug.Log($"Spell.cs_GetTrajectory() >> Standard Projectile Trajectory: {ValueModifier.GetValue(stats.trajectory, baseTrajectory)}");
+        //Debug.Log($"Spell.cs_GetTrajectory() >> Specified Projectile Trajectory (projectile_trajectory): {ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory)}");
+        //Debug.Log("Spell.cs_GetTrajectory() >> Projectile Trajectory Count: " + stats.projectile_trajectory.Count);
+
+        // if a random spell doesn't have a projectile_trajectory, then it throws a reference error. Hence why I added the conditional
 
         if (ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory) != null) return ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory);
         else return ValueModifier.GetValue(stats.trajectory, baseTrajectory); // else return the basespell's trajectory
