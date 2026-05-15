@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 public class RandomModifier
 {
@@ -16,9 +17,10 @@ public class RandomModifier
         { "Doubler", (inner) => new DoublerModifier(inner) },
         { "Homing", (inner) => new HomingModifier(inner) },
         { "SpeedAmp", (inner) => new SpeedAmpModifier(inner) },
-
-        // Not yet completed - uncomment when completed
-        //{ "Splitter", (inner) => new SplitterModifier(inner) }
+        { "Splitter", (inner) => new SplitterModifier(inner) },
+        { "Bounce", (inner) => new BounceModifier(inner) },
+        { "Piercing", (inner) => new PierceAmpModifier(inner) },
+        { "HealAmp", (inner) => new HealAmpModifier(inner) }
     };
 
     //constructor
@@ -32,7 +34,7 @@ public class RandomModifier
         randomSpell.owner = owner;
 
         // adding a # of random modifiers
-        int randomModCount = 2;
+        int randomModCount = UnityEngine.Random.Range(1, 5);
         for (int i = 0; i < randomModCount; i++)
         {
             randomSpell = CreateRandomModifier(randomSpell);
