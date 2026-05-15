@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         GameManager.Instance.state = GameManager.GameState.GAMEOVER;
-        Debug.Log("You Lost");
+        //Debug.Log("You Lost");
     }
 
 }

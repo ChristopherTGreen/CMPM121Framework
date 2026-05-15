@@ -80,7 +80,7 @@ public class RewardSpell
             AcceptButtonText = Accept.GetComponentInChildren<TextMeshProUGUI>();
             AcceptButtonText.text = "Spell Collected";
 
-            Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Stored " + spell.name + "as a active spell after player accepted the spell.");
+            Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> " + spell.name + "Collected");
 
         } 
         else if (GameManager.Instance.activeSpells.Count < 1)
@@ -89,6 +89,8 @@ public class RewardSpell
         } 
         else
         {
+            Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Too Many Spells, please drop");
+
             //More than four spells
             //Enable drop buttons
             GameManager.Instance.spellUIcontainer.ShowDropButton();

@@ -96,6 +96,7 @@ public class RewardScreenManager : MonoBehaviour
         NextWaveButton.onClick.RemoveAllListeners();
         NextWaveButton.onClick.AddListener(() => GameManager.Instance.state = GameManager.GameState.COUNTDOWN); //When Continue button click, trigger the next wave
         NextWaveButton.onClick.AddListener(() => spelluicontainer.HideDropButtons());
+        NextWaveButton.onClick.AddListener(() => GameManager.Instance.sessionStats.ClearModNamesList());
 
     }
 
