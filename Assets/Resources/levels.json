@@ -96,7 +96,6 @@
   },
   {
     "name": "Test",
-    "waves" :  1,
     "spawns": [
       {
         "enemy": "zombie",

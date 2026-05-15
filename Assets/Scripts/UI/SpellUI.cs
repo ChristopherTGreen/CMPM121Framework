@@ -18,6 +18,7 @@ public class SpellUI : MonoBehaviour
     void Start()
     {
         last_text_update = 0;
+        GameManager.Instance.spellUI = this;
     }
 
     public void SetSpell(Spell spell)
