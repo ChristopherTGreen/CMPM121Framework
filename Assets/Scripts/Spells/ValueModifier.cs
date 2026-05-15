@@ -23,6 +23,7 @@ public class ValueModifier
     public List<ValueModifier<int>> angle = new List<ValueModifier<int>>();
     public List<ValueModifier<float>> delay = new List<ValueModifier<float>>();
     public List<ValueModifier<float>> lifetime = new List<ValueModifier<float>>();
+    public List<ValueModifier<int>> pierce = new List<ValueModifier<int>>();
 
 
     // strings, may not need?
@@ -46,6 +47,7 @@ public class ValueModifier
         else if (valueName == "number") number.AddRange(valueMod);
         else if (valueName == "repeat") repeat.AddRange(valueMod);
         else if (valueName == "manaCost") manaCost.AddRange(valueMod);
+        else if (valueName == "pierce") pierce.AddRange(valueMod);
         else throw new Exception("ValueModifier.cs_AddList(List<ValueModifier<int>>, string) >> Invalid value modifier int name for add list");
     }
 
@@ -76,6 +78,7 @@ public class ValueModifier
         else if (valueName == "number") number.Add(valueMod);
         else if (valueName == "repeat") repeat.Add(valueMod);
         else if (valueName == "angle") angle.Add(valueMod);
+        else if (valueName == "pierce") pierce.Add(valueMod);
         //else if (valueName == "manaCost") manaCost.Add(valueMod);
         else throw new Exception("ValueModifier.cs_AddValue(ValueModifier<int>, string) >> Invalid value modifier int name: " + valueName + " for add value");
     }

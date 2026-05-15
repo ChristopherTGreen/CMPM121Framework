@@ -5,6 +5,7 @@ using System.Collections;
 public class ProjectileController : MonoBehaviour
 {
     public float lifetime;
+    public int pierceAmount = 1;
     public event Action<Hittable,Vector3> OnHit;
     public ProjectileMovement movement;
     
@@ -41,12 +42,21 @@ public class ProjectileController : MonoBehaviour
             }
 
         }
-        Destroy(gameObject);
+        pierce();
+        if (pierceAmount <= 0) Destroy(gameObject);
+    }
+    public void pierce()
+    {
+        pierceAmount -= 1;
     }
 
     public void SetLifetime(float lifetime)
     {
         StartCoroutine(Expire(lifetime));
+    }
+    public void SetPierce(int pierce)
+    {
+        pierceAmount = pierce;
     }
 
     IEnumerator Expire(float lifetime)

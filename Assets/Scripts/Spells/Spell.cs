@@ -33,7 +33,8 @@ public class Spell : ISpell
     public float baseCooldown { get; set; } = -1;
     public int baseAngle { get; set; } = 0;
     public float baseDelay { get; set; } = 1;
-    public float baseLifetime { get; set; } = -1;
+    public float baseLifetime { get; set; } = 5;
+    public int basePierce { get; set; } = 1;
     public int baseRepeat { get; set; } = 1;
 
 
@@ -50,15 +51,6 @@ public class Spell : ISpell
 
     public virtual string GetTrajectory()
     {
-        //GetValue(List < ValueModifier<float> > valueMod, float original)
-        //Debug.Log("Ahhh");
-        Debug.Log($"Spell.cs_GetTrajectory() >> Base Damage Amount: {ValueModifier.GetValue(this.stats.amount, this.baseDamage.amount)}");
-        Debug.Log($"Spell.cs_GetTrajectory() >> Modified? Damage Amount: { ValueModifier.GetValue(stats.amount, this.baseDamage.amount) }");
-        Debug.Log($"Spell.cs_GetTrajectory() >> Standard Projectile Trajectory: {ValueModifier.GetValue(stats.trajectory, baseTrajectory)}");
-        Debug.Log($"Spell.cs_GetTrajectory() >> Specified Projectile Trajectory (projectile_trajectory): {ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory)}");
-        Debug.Log("Spell.cs_GetTrajectory() >> Projectile Trajectory Count: " + stats.projectile_trajectory.Count);
-
-        // if a random spell doesn't have a projectile_trajectory, then it throws a reference error. Hence why I added the conditional
 
         if (ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory) != null) return ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory);
         else return ValueModifier.GetValue(stats.trajectory, baseTrajectory); // else return the basespell's trajectory
@@ -120,6 +112,10 @@ public class Spell : ISpell
     {
         return ValueModifier.GetValue(stats.lifetime, baseLifetime);
     }
+    public virtual int GetPierce()
+    {
+        return ValueModifier.GetValue(stats.pierce, basePierce);
+    }
 
     // IsReady() 
     // Seems to return if the spell is ready to be spawned if player clicks a button
@@ -141,7 +137,7 @@ public class Spell : ISpell
         {
             for (int j = 0; j < GetNumber(); j++)
                 direction = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-GetAngle() / 2.0f, GetAngle() / 2.0f)) * (target - where).normalized;
-                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit);
+                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit, GetLifetime(), GetPierce());
 
             // Wait before the next shot (but don't wait after the final shot)
             if (i < (GetRepeat() - 1))
