@@ -42,7 +42,7 @@ public class GameManager
     public Dictionary<string, SpellData> spells;
     public Dictionary<string, ClassData> classTypes;
 
-    public List<Spell> activeSpells = new List<Spell>(); //stores the player's current active spells
+    public Spell[] activeSpells = new Spell[4]; //stores the player's current active spells
     public Spell currentRewardSpell;
     public SpellUIContainer spellUIcontainer;
 
@@ -79,9 +79,33 @@ public class GameManager
     // Stores the active spell that the spellcaster makes.
     public void StoreActiveSpell(Spell spell)
     {
-        activeSpells.Add(spell);
-        Debug.Log("GameManager.cs_StoreActiveSpell(Spell) >> sucessfully stored a spell " + spell.name);
+        
+        for (int i = 0; i < activeSpells.Length; i++)
+        {
+            if (activeSpells[i] == null)
+            {
+                activeSpells[i] = spell; // Insert item
+                
+                Debug.Log("GameManager.cs_StoreActiveSpell(Spell) >> sucessfully stored a spell " + spell.name);
+                break;                  // Stop looking further
+            }
+                
+        }
     }
+
+    public int GetFilledSlotCount()
+    {
+        int count = 0;
+        for (int i = 0; i < activeSpells.Length; i++)
+        {
+            if (activeSpells[i] != null)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+        
 
     private GameManager()
     {

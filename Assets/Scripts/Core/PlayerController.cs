@@ -115,8 +115,9 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.state = GameManager.GameState.GAMEOVER;
         
         //Clearing active spells that the player has on death
-        GameManager.Instance.activeSpells.Clear();
-        GameManager.Instance.sessionStats.ClearModNamesList();
+        System.Array.Clear(GameManager.Instance.activeSpells, 0, GameManager.Instance.activeSpells.Length);
+
+        
 
         //Debug.Log("You Lost");
     }
@@ -124,18 +125,23 @@ public class PlayerController : MonoBehaviour
     void SwitchSpell()
     {
 
-        if (GameManager.Instance.activeSpells.Count > 0)
+        if (GameManager.Instance.activeSpells.Length > 0)
         {
             
             // Should cycle, 1 2 3 0
-            activeSpellIndex = (activeSpellIndex + 1) % GameManager.Instance.activeSpells.Count;
+            activeSpellIndex = (activeSpellIndex + 1) % GameManager.Instance.activeSpells.Length;
+            while (GameManager.Instance.activeSpells[activeSpellIndex] == null)
+            {
+                activeSpellIndex = (activeSpellIndex + 1) % GameManager.Instance.activeSpells.Length;
+            }
+            
 
             UnityEngine.Debug.Log("Active Spell index: " + activeSpellIndex);
 
             Spell activespell = GameManager.Instance.activeSpells[activeSpellIndex];
             spellcaster.CurrentActiveSpell(activespell);
 
-            UnityEngine.Debug.Log("Equipped Spell: " + activespell.name + GameManager.Instance.activeSpells.IndexOf(activespell));
+            UnityEngine.Debug.Log("Equipped Spell: " + activespell.name + System.Array.IndexOf(GameManager.Instance.activeSpells, activespell));
 
         } 
         else

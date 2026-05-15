@@ -70,10 +70,10 @@ public class RewardSpell
     public void AcceptSpell(Spell spell)
     {
         Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Accept button clicked");
+        int size = GameManager.Instance.GetFilledSlotCount();
+        if (size < 4){ //for testing, set to 2
 
-        if (GameManager.Instance.activeSpells.Count < 4){ //for testing, set to 2
-
-            GameManager.Instance.activeSpells.Add(spell); //adds the newly generated spell to the active spells list
+            GameManager.Instance.StoreActiveSpell(spell); //adds the newly generated spell to the active spells list
             GameManager.Instance.spellUIcontainer.ShowActiveSpells(); //unhides the active spell icons in the bottom left based on number of active spells - Now sets the stats and icon
 
             Accept.onClick.RemoveAllListeners(); //removes the ability for the button to call Accept Spell
@@ -83,7 +83,7 @@ public class RewardSpell
             Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> " + spell.name + "Collected");
 
         } 
-        else if (GameManager.Instance.activeSpells.Count < 1)
+        else if (size < 1)
         {
             throw new Exception("RewardSpellUI.cs_AcceptSpell(Spell) >> SOMETHING IS WRONG YOU SHOULDN'T HAVE ZERO ACTIVE SPELLS!!!");
         } 
@@ -113,8 +113,11 @@ public class RewardSpell
 
     public static void DropSpell()
     {
+        //GameManager.Instance.sessionStats.clearSpell
         Debug.Log("Drop button clicked");
-    }
+    } 
+
+
 
 
     /*
