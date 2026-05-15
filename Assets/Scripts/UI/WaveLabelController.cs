@@ -38,12 +38,11 @@ public class WaveLabelController : MonoBehaviour
 
             rewardSpellDescription.text = GameManager.Instance.sessionStats.getSpellDescription();
 
-            /*
+            
             if (rewardSpellDescriptionFlag)
             {
-        
+                rewardSpellDescription.text = GameManager.Instance.sessionStats.getSpellDescription();
             }
-            */
     
         }
         if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
