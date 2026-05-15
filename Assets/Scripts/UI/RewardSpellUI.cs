@@ -71,7 +71,7 @@ public class RewardSpell
     {
         Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Accept button clicked");
 
-        if (GameManager.Instance.activeSpells.Count < 2){ //for testing, set to 2
+        if (GameManager.Instance.activeSpells.Count < 4){ //for testing, set to 2
 
             GameManager.Instance.activeSpells.Add(spell); //adds the newly generated spell to the active spells list
             GameManager.Instance.spellUIcontainer.ShowActiveSpells(); //unhides the active spell icons in the bottom left based on number of active spells - Now sets the stats and icon

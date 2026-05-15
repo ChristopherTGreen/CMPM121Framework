@@ -27,14 +27,27 @@ public class SpellCaster
         this.mana_reg = mana_reg;
         this.team = team;
         //spell = new SpellBuilder().Build(this);
-        spell = new ArcaneBolt(this);
+        //spell = new ArcaneBolt(this);
         //spell = new DamageAmpModifier(new DamageAmpModifier(baseSpell));
         //spell = new RandomModifier().CreateRandomModifier(baseSpell);
-        //spell = new RandomModifier().CreateRandomSpell(this);
+        spell = new RandomModifier().CreateRandomSpell(this);
         //spell = new DamageAmpModifier(spell);
 
         //spell = new DamageAmpModifier(new DoublerModifier(new HomingModifier(new ArcaneBolt(this))));
+
+        // Storing the first random spell created
+        GameManager.Instance.StoreActiveSpell(spell);
+        Debug.Log("SpellCaster.cs_SpellCaster(mana, mana_reg, team) >> Stored: " + spell.name + " in activeSpells");
     } 
+
+
+
+    public void CurrentActiveSpell(Spell spell)
+    {
+        this.spell = spell;
+    }
+
+
 
     public IEnumerator Cast(Vector3 where, Vector3 target)
     {        
