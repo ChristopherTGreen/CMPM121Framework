@@ -235,39 +235,3 @@ public class MathOperationsFloat : MathOperations<float>
 }
 
 
-// Adder is a child of the ValueModifier<T> class and Ops is a child of the interface.
-// new just means that new Ops().Add(original, add) is possible in the return statement below
-// if Ops was filled in with MathOperationsInt, then the return statement is "return new MathOperationsInt().Add(original, add)"
-public class Adder<Ops, T> : ValueModifier<T> where Ops : MathOperations<T>, new()
-{
-
-    public T add;
-
-    // Constructor? I think
-    public Adder(T add)
-    {
-        this.add = add;
-    }
-
-    // edited version of ValueModifier<T>'s GetValue
-    public override T GetValue(T original)
-    {
-        return new Ops().Add(original, add);
-    }
-
-}
-
-
-// Multiplier version
-public class Multiplier<Ops, T> : ValueModifier<T> where Ops : MathOperations<T>, new()
-{
-    public T mul;
-    public Multiplier(T mul)
-    {
-        this.mul = mul;
-    }
-    public override T GetValue(T original)
-    {
-        return new Ops().Mul(original, mul);
-    }
-}
