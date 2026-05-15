@@ -8,6 +8,8 @@ public class Stats : MonoBehaviour
 {
     public int enemiesKilled { get; set; } = 0;
     public int totalDamageDealt { get; set; } = 0;
+    public Spell currentSpell { get ; set ; }
+    public List<string> currentSpellModNames = new List<string>();
     
 
     public void resetStats()
@@ -25,9 +27,11 @@ public class Stats : MonoBehaviour
     public string getSpellDescription()
     {
 
-        string description = "Spell Description: " + GameManager.Instance.currentRewardSpell.description + "\n\n" + "Modifiers: ";
+        string description = "Spell Description: " + currentSpell.description + "\n\n" + "Modifiers: ";
 
-        foreach (string modname in GameManager.Instance.currentRewardSpell.stats.name)
+        //Debug.Log("Getting current spell: " + currentSpell.name);
+
+        foreach (string modname in currentSpellModNames)
         {
             Debug.Log("Modifier name: " + modname);
             description += modname + ", ";
