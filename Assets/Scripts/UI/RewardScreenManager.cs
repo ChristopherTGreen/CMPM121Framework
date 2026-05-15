@@ -19,8 +19,6 @@ public class RewardScreenManager : MonoBehaviour
         GlobalRewardUI = rewardUI;
 
         // attach game object spellReward to the class handler for spells
-        Debug.Log("Ahh");
-        Debug.Log(spellReward.GetComponent<SpellUI>());
         rewardSpell.SetSpellUI(spellReward);
 
         // Finds the buttons.
