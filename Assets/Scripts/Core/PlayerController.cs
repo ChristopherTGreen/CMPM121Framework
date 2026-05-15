@@ -23,12 +23,16 @@ public class PlayerController : MonoBehaviour
 
     public int activeSpellIndex;
 
+    private bool PlayerScaledFlag;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         unit = GetComponent<Unit>();
         GameManager.Instance.player = gameObject;
         activeSpellIndex = 4;
+
+        PlayerScaledFlag = false;
     }
 
     public void StartLevel()
@@ -38,7 +42,8 @@ public class PlayerController : MonoBehaviour
         spellcaster = new SpellCaster(125, 8, Hittable.Team.PLAYER);
         StartCoroutine(spellcaster.ManaRegeneration());
 
-        hp = new Hittable(100, Hittable.Team.PLAYER, gameObject);
+        int start_health = RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, GameManager.Instance.variables);
+        hp = new Hittable(start_health, Hittable.Team.PLAYER, gameObject);
         hp.OnDeath += Die;
         hp.team = Hittable.Team.PLAYER;
 
@@ -56,6 +61,38 @@ public class PlayerController : MonoBehaviour
         {
             SwitchSpell();
         }
+
+        if (GameManager.Instance.state == GameManager.GameState.INWAVE)
+        {
+            if (!PlayerScaledFlag)
+            {
+                PlayerScaledFlag = true;
+                PlayerClassScaling.ScalePlayer(GameManager.Instance.classTypes["player"]);
+
+                UnityEngine.Debug.Log("Player Scaled");
+
+                //updating player with new scaling
+                spellcaster.max_mana = RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].mana, GameManager.Instance.variables);
+                spellcaster.mana_reg = RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].mana_regeneration, GameManager.Instance.variables);
+                
+                hp.SetMaxHP(RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, GameManager.Instance.variables));
+                hp.team = Hittable.Team.PLAYER;
+
+                healthui.SetHealth(hp);
+                manaui.SetSpellCaster(spellcaster);
+                spellui.SetSpell(spellcaster.spell);
+
+                UnityEngine.Debug.Log("Wave Count: " + RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, GameManager.Instance.variables));
+                UnityEngine.Debug.Log("health Scaling: " + hp.max_hp);
+                UnityEngine.Debug.Log("mana Scaling: " + spellcaster.max_mana);
+
+            }
+        }
+        else 
+        {
+            PlayerScaledFlag = false;
+        }
+
     }
 
     void OnAttack(InputValue value)

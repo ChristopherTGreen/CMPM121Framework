@@ -40,6 +40,7 @@ public class GameManager
     public Dictionary<string, EnemyData> enemyTypes; // (possibly convert to lists based on what prof said) - chris
     public Dictionary<string, LevelData> levels;
     public Dictionary<string, SpellData> spells;
+    public Dictionary<string, ClassData> classTypes;
 
     public Spell[] activeSpells = new Spell[4]; //stores the player's current active spells
     public Spell currentRewardSpell;
@@ -112,6 +113,7 @@ public class GameManager
         levels = RetrieveLevelData.LevelDictionary();
         enemyTypes = RetrieveEnemyData.EnemyDictionary();
         spells = RetrieveSpellData.SpellDictionary();
+        classTypes = RetrieveClassData.ClassDictionary();
         Debug.Log(string.Join(", ", spells));
     }
 }
