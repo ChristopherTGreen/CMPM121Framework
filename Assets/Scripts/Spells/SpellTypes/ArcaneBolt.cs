@@ -17,7 +17,7 @@ class ArcaneBolt : Spell
             .WithName(data.name)
             .WithDescription(data.description)
             .WithIcon(data.icon)
-            .WithDamage(data.damage.amount, data.damage.type)
+            .WithDamage("70", data.damage.type)
             .WithManaCost(data.mana_cost)
             .WithCooldown(data.cooldown)
             .WithTrajectory(data.projectile.trajectory)
