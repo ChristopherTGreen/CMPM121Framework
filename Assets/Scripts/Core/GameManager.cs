@@ -42,6 +42,7 @@ public class GameManager
     public Dictionary<string, SpellData> spells;
 
     public Dictionary<string, Spell> activeSpells = new Dictionary<string, Spell>(); //stores the player's current active spells
+    public Spell currentRewardSpell;
 
     public Dictionary<string, int> variables => new Dictionary<string, int>
     {

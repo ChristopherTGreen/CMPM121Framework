@@ -21,9 +21,9 @@ public class Stats : MonoBehaviour
 
     }
 
-    public string getSpellDescription()
+    public string getSpellDescription(Spell spell)
     {
         // temporary hard coded description - this will later get the description of the randomly generated spell
-        return "Spell Description";
+        return "Spell Description: " + spell.description;
     }
 }
