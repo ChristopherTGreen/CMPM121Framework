@@ -8,6 +8,7 @@ public class Stats : MonoBehaviour
 {
     public int enemiesKilled { get; set; } = 0;
     public int totalDamageDealt { get; set; } = 0;
+    
 
     public void resetStats()
     {
@@ -21,9 +22,18 @@ public class Stats : MonoBehaviour
 
     }
 
-    public string getSpellDescription(Spell spell)
+    public string getSpellDescription()
     {
+
+        string description = "Spell Description: " + GameManager.Instance.currentRewardSpell.description + "\n\n" + "Modifiers: ";
+
+        foreach (string modname in GameManager.Instance.currentRewardSpell.stats.name)
+        {
+            Debug.Log("Modifier name: " + modname);
+            description += modname + ", ";
+        }
+
         // temporary hard coded description - this will later get the description of the randomly generated spell
-        return "Spell Description: " + spell.description;
+        return description;
     }
 }

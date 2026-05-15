@@ -51,7 +51,9 @@ public class RewardSpell
 
             RewardSpellGenerated = true; // flag makes sure this conditional only runs once per wave end state 
             newRewardSpell = new RandomModifier().CreateRandomSpell(player.spellcaster); // not player.spellcaster.spell because that would replace the player's currently active spell - this makes a new spell
+
             GameManager.Instance.currentRewardSpell = newRewardSpell;
+            
             DisplaySpell(newRewardSpell); //Displays the icon and sprite of the new spell + manacost and damage text
         }
         
