@@ -4,10 +4,9 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RewardSpell : MonoBehaviour
+public class RewardSpell
 {
     public GameObject spellReward;
-    public SpellUI spellui;
     public Button Accept; // might need to get respective gameobject in scene
     public Button Drop;
     public PlayerController player; //for the player's spellcaster
@@ -17,9 +16,14 @@ public class RewardSpell : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public RewardSpell()
     {
         //spellReward.SetActive(false); // should be set false when game is over
+    }
+
+    public void SetSpellUI(GameObject spellObject)
+    {
+        spellReward = spellObject;
     }
 
     // No need for update loop
@@ -31,7 +35,8 @@ public class RewardSpell : MonoBehaviour
     // this will get called in the reward screen manager at wave end state with a randomly generated spell
     public void DisplaySpell(Spell rewardSpell)
     {
-        spellui.SetSpell(rewardSpell); //SetSpell is located in SpellUI.cs
+        spellReward.GetComponent<SpellUI>().SetSpell(rewardSpell); //SetSpell is located in SpellUI.cs
+
     }
 
     public void AcceptButtonHandler()

@@ -8,6 +8,7 @@ public class RewardScreenManager : MonoBehaviour
 {
     public static GameObject GlobalRewardUI;
     public GameObject rewardUI;
+    public GameObject spellReward;
     RewardSpell rewardSpell = new RewardSpell();
 
 
@@ -16,6 +17,11 @@ public class RewardScreenManager : MonoBehaviour
     void Start()
     {
         GlobalRewardUI = rewardUI;
+
+        // attach game object spellReward to the class handler for spells
+        Debug.Log("Ahh");
+        Debug.Log(spellReward.GetComponent<SpellUI>());
+        rewardSpell.SetSpellUI(spellReward);
 
         // Finds the buttons.
         rewardSpell.Accept = rewardUI.transform.Find("Accept").GetComponent<Button>();
