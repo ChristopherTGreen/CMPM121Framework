@@ -8,7 +8,7 @@ public class SpellUIContainer : MonoBehaviour
 {
     public GameObject[] spellUIs;
     public PlayerController player;
-    private List<Spell> activeSpellList;
+    private Spell[] activeSpellList = new Spell[4];
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,11 +32,11 @@ public class SpellUIContainer : MonoBehaviour
     {
         // Get active spells
         activeSpellList = GameManager.Instance.activeSpells;
-        int numOfSpells = activeSpellList.Count;
+        int numOfSpells = activeSpellList.Length;
 
         for (int i = 0; i < numOfSpells; ++i)
         {
-
+            if (GameManager.Instance.activeSpells[i] == null) continue;
             // If a spell Ui is inactive, set it active and set the spell icon, manacost and damage and image
             if (!spellUIs[i].activeSelf)
             {
@@ -54,13 +54,14 @@ public class SpellUIContainer : MonoBehaviour
     public void ShowDropButton()
     {
         activeSpellList = GameManager.Instance.activeSpells;
-        int numOfSpells = activeSpellList.Count; 
+        int numOfSpells = activeSpellList.Length; 
         GameObject dropbuttonObject;
         Button dropbuttonButton;
 
         for (int i = 0; i < numOfSpells; ++i)
         {
-            
+            if (GameManager.Instance.activeSpells[i] == null) continue;
+            //if (spellUIs[i].activeSelf && spellUIs[i].GetComponent<SpellUI>().spell != null)
             dropbuttonObject = spellUIs[i].GetComponent<SpellUI>().dropbutton; //Getting the drop button game object from SpellUI.cs
             dropbuttonObject.SetActive(true); //unhiding all of them
 
@@ -75,12 +76,12 @@ public class SpellUIContainer : MonoBehaviour
 
     public void HideDropButtons()
     {
-        int numOfSpells = GameManager.Instance.activeSpells.Count; 
+        int numOfSpells = GameManager.Instance.activeSpells.Length; 
         GameObject dropbuttonObject;
 
         for (int i = 0; i < numOfSpells; ++i)
         {
-            
+            if (GameManager.Instance.activeSpells[i] == null) continue;
             dropbuttonObject = spellUIs[i].GetComponent<SpellUI>().dropbutton; //Getting the drop button game object from SpellUI.cs
             dropbuttonObject.SetActive(false); //unhiding all of them
     

@@ -41,9 +41,14 @@ public class Stats : MonoBehaviour
         return description;
     }
 
-    public void ClearModNamesList()
+    public void ClearSpell(Spell spell)
     {
+        int index = System.Array.IndexOf(GameManager.Instance.activeSpells, spell);
+        GameManager.Instance.activeSpells[index] = null;
+
+        GameManager.Instance.spellUIcontainer.spellUIs[index].GetComponent<SpellUI>().spell = null;
+        GameManager.Instance.spellUIcontainer.spellUIs[index].SetActive(false);
         currentSpellModNames.Clear();
     }
-    
+
 }
