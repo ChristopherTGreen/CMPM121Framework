@@ -113,6 +113,7 @@ public class RewardSpell
 
     public static void DropSpell()
     {
+        //GameManager.Instance.sessionStats.clearSpell
         Debug.Log("Drop button clicked");
     } 
 

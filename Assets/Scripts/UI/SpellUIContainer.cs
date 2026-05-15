@@ -65,9 +65,15 @@ public class SpellUIContainer : MonoBehaviour
             dropbuttonObject = spellUIs[i].GetComponent<SpellUI>().dropbutton; //Getting the drop button game object from SpellUI.cs
             dropbuttonObject.SetActive(true); //unhiding all of them
 
+            int index = i;
+
+            //Debug.Log("ShowDropButton() Iteration: " + i);
+            //Debug.Log(">> " + numOfSpells);
+
             dropbuttonButton = spellUIs[i].GetComponentInChildren<Button>();
             dropbuttonButton.onClick.RemoveAllListeners();
-            dropbuttonButton.onClick.AddListener(() => RewardSpell.DropSpell());
+        
+            dropbuttonButton.onClick.AddListener(() => GameManager.Instance.sessionStats.ClearSpell(index));
     
         }
     }
