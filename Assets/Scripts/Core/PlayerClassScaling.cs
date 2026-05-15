@@ -7,27 +7,22 @@ public class PlayerClassScaling
 {
 
     // Getting all the player class type - should be redone later for other classes
-    public static int health;
-    public static int mana_regeneration;
-    public static int mana;
-    public static int spellpower;
-    public static int speed;
+    public int health;
+    public int mana_regeneration;
+    public int mana;
+    public int spellpower;
+    public int speed;
 
-    public static void ScalePlayer(ClassData playerclass) 
+    public PlayerClassScaling(ClassData playerclass) 
     {
-
+        ClassData newData = playerclass;
         health = RPNEvaluator.RPNEvaluator.Evaluate(playerclass.health, GameManager.Instance.variables);
         mana_regeneration = RPNEvaluator.RPNEvaluator.Evaluate(playerclass.mana_regeneration, GameManager.Instance.variables);
         mana = RPNEvaluator.RPNEvaluator.Evaluate(playerclass.mana, GameManager.Instance.variables);
         spellpower = RPNEvaluator.RPNEvaluator.Evaluate(playerclass.spellpower, GameManager.Instance.variables);
         speed = RPNEvaluator.RPNEvaluator.Evaluate(playerclass.speed, GameManager.Instance.variables);
 
-        GameManager.Instance.classTypes["player"].health = health.ToString(); //updating game manager
-        GameManager.Instance.classTypes["player"].mana_regeneration = mana_regeneration.ToString();
-        GameManager.Instance.classTypes["player"].mana = mana.ToString();
-        GameManager.Instance.classTypes["player"].spellpower = spellpower.ToString();
-        GameManager.Instance.classTypes["player"].speed = speed.ToString();
-
+      
     }
 
 }

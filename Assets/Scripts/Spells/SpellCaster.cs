@@ -38,7 +38,14 @@ public class SpellCaster
         // Storing the first random spell created
         GameManager.Instance.StoreActiveSpell(spell);
         Debug.Log("SpellCaster.cs_SpellCaster(mana, mana_reg, team) >> Stored: " + spell.name + " in activeSpells");
-    } 
+    }
+
+    public void SetMaxMana(int max_mana)
+    {
+        float perc = this.mana * 1.0f / this.max_mana; // converts to float
+        this.max_mana = max_mana;
+        this.mana = Mathf.RoundToInt(perc * max_mana);
+    }
 
 
 

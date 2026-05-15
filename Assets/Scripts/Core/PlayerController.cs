@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour
         activeSpellIndex = 4;
 
         PlayerScaledFlag = false;
+
+        UnityEngine.Debug.Log("Initial player health: " + GameManager.Instance.classTypes["player"].health);
+        UnityEngine.Debug.Log("Initial player mana: " + GameManager.Instance.classTypes["player"].mana);
+        UnityEngine.Debug.Log("Initial player mana regen: " + GameManager.Instance.classTypes["player"].mana_regeneration);
     }
 
     public void StartLevel()
@@ -67,23 +71,26 @@ public class PlayerController : MonoBehaviour
             if (!PlayerScaledFlag)
             {
                 PlayerScaledFlag = true;
-                PlayerClassScaling.ScalePlayer(GameManager.Instance.classTypes["player"]);
+      
+                PlayerClassScaling newData = new PlayerClassScaling(GameManager.Instance.classTypes["player"]);
 
                 UnityEngine.Debug.Log("Player Scaled");
 
                 //updating player with new scaling
-                spellcaster.max_mana = RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].mana, GameManager.Instance.variables);
-                spellcaster.mana_reg = RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].mana_regeneration, GameManager.Instance.variables);
+                spellcaster.SetMaxMana(newData.mana);
+                spellcaster.mana_reg = newData.mana_regeneration;
+                power = newData.spellpower;
+                speed = newData.speed;
                 
-                hp.SetMaxHP(RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, GameManager.Instance.variables));
+                hp.SetMaxHP(newData.health);
                 hp.team = Hittable.Team.PLAYER;
 
                 healthui.SetHealth(hp);
                 manaui.SetSpellCaster(spellcaster);
                 spellui.SetSpell(spellcaster.spell);
 
-                UnityEngine.Debug.Log("Wave Count: " + RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, GameManager.Instance.variables));
-                UnityEngine.Debug.Log("health Scaling: " + hp.max_hp);
+                UnityEngine.Debug.Log("Health Count: " + RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, new Dictionary<string, int> { { "wave", GameManager.Instance.wave_count} }));
+                UnityEngine.Debug.Log("health Scaling: " + hp);
                 UnityEngine.Debug.Log("mana Scaling: " + spellcaster.max_mana);
 
             }
