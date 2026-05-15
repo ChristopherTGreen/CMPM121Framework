@@ -422,5 +422,12 @@
       <Field Name="classdictionary" />
     </ShowAsCollectionAssociation>
   </Class>
+  <Class Name="PlayerClassScaling">
+    <Position X="16.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQgAIAAAAAAAACg=</HashCode>
+      <FileName>Assets\Scripts\Core\PlayerClassScaling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
