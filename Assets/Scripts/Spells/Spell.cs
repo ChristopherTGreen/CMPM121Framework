@@ -34,8 +34,9 @@ public class Spell : ISpell
     public int baseAngle { get; set; } = 0;
     public float baseDelay { get; set; } = 1;
     public float baseLifetime { get; set; } = 5;
-    public int basePierce { get; set; } = 1;
     public int baseRepeat { get; set; } = 1;
+    public int basePierce { get; set; } = 1;
+    public int baseBounce { get; set; } = 0;
 
 
     // Constructor
@@ -76,7 +77,7 @@ public class Spell : ISpell
 
     public virtual int GetHeal()
     {
-        return ValueModifier.GetValue(stats.heal, baseHeal);
+        return (int)ValueModifier.GetValue(stats.heal, baseHeal);
     }
 
     public virtual float GetSpeed()
@@ -121,6 +122,10 @@ public class Spell : ISpell
     {
         return ValueModifier.GetValue(stats.pierce, basePierce);
     }
+    public virtual int GetBounce()
+    {
+        return ValueModifier.GetValue(stats.bounce, baseBounce);
+    }
 
     // IsReady() 
     // Seems to return if the spell is ready to be spawned if player clicks a button
@@ -135,15 +140,17 @@ public class Spell : ISpell
    
         Vector3 direction = new Vector3();
 
-
-
         Cast();
-        for (int i = 0; i < GetRepeat(); i++)
-        {
-            for (int j = 0; j < GetNumber(); j++)
-                direction = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-GetAngle() / 2.0f, GetAngle() / 2.0f)) * (target - where).normalized;
-                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit, GetLifetime(), GetPierce());
 
+        int repeat = GetRepeat();
+        int number = GetNumber();
+        for (int i = 0; i < repeat; i++)
+        {
+            for (int j = 0; j < number; j++)
+            {
+                direction = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-GetAngle() / 2.0f, GetAngle() / 2.0f)) * (target - where).normalized;
+                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit, GetLifetime(), GetPierce(), GetBounce());
+            }
             // Wait before the next shot (but don't wait after the final shot)
             if (i < (GetRepeat() - 1))
             {
@@ -177,6 +184,7 @@ public class Spell : ISpell
         {
             other.Damage(new Damage(GetDamage(), Damage.Type.ARCANE));
             GameManager.Instance.sessionStats.totalDamageDealt += GetDamage();
+            if (GetHeal() >= 0) GameManager.Instance.player.GetComponent<PlayerController>().hp.SetCurrentHP(GetHeal());
         }
 
     }

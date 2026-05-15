@@ -6,6 +6,7 @@ public class ProjectileController : MonoBehaviour
 {
     public float lifetime;
     public int pierceAmount = 1;
+    public int bounceAmount = 0;
     public event Action<Hittable,Vector3> OnHit;
     public ProjectileMovement movement;
     
@@ -30,7 +31,19 @@ public class ProjectileController : MonoBehaviour
             var ec = collision.gameObject.GetComponent<EnemyController>();
             if (ec != null)
             {
+                Debug.Log("Damage loop");
+                Debug.Log(ec.hp.hp);
                 OnHit(ec.hp, transform.position);
+                Debug.Log(ec.hp.hp);
+                pierce();
+                while (ec.hp.hp > 0 && bounceAmount > 0 && pierceAmount > 0)
+                {
+                    Debug.Log(ec.hp.hp);
+                    OnHit(ec.hp, transform.position);
+                    pierce();
+
+                }
+                
             }
             else
             {
@@ -41,13 +54,31 @@ public class ProjectileController : MonoBehaviour
                 }
             }
 
+
+            if (bounceAmount > 0) bounce();
         }
-        pierce();
+
+        
+
         if (pierceAmount <= 0) Destroy(gameObject);
     }
     public void pierce()
     {
         pierceAmount -= 1;
+    }
+    public void bounce()
+    {
+        GameObject closest = GameManager.Instance.GetClosestEnemy(transform.position);
+        if (closest == null) return;
+        // original angle and direction
+
+        Vector3 new_direction = (closest.transform.position - transform.position).normalized;
+
+
+        //new_direction = new Vector3(Mathf.Cos(new_angle), Mathf.Sin(new_angle), 0);
+        transform.right = new_direction;
+        
+        
     }
 
     public void SetLifetime(float lifetime)
@@ -57,6 +88,10 @@ public class ProjectileController : MonoBehaviour
     public void SetPierce(int pierce)
     {
         pierceAmount = pierce;
+    }
+    public void SetBounce(int bounce)
+    {
+        bounceAmount = bounce;
     }
 
     IEnumerator Expire(float lifetime)

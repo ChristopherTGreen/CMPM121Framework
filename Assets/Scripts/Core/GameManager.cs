@@ -67,10 +67,11 @@ public class GameManager
         enemies.Clear();
     }
 
-    public GameObject GetClosestEnemy(Vector3 point)
+    public GameObject GetClosestEnemy(Vector3 point, bool second = false)
     {
         if (enemies == null || enemies.Count == 0) return null;
         if (enemies.Count == 1) return enemies[0];
+   
         return enemies.Aggregate((a,b) => (a.transform.position - point).sqrMagnitude < (b.transform.position - point).sqrMagnitude ? a : b);
     }
 

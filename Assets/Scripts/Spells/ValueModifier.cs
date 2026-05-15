@@ -14,7 +14,7 @@ public class ValueModifier
     // strict values
     // These lists track the value modifiers applied to the base spell.
     public List<ValueModifier<float>> amount = new List<ValueModifier<float>>();
-    public List<ValueModifier<int>> heal = new List<ValueModifier<int>>();
+    public List<ValueModifier<float>> heal = new List<ValueModifier<float>>();
     public List<ValueModifier<float>> speed = new List<ValueModifier<float>>();
     public List<ValueModifier<int>> number = new List<ValueModifier<int>>();
     public List<ValueModifier<int>> repeat = new List<ValueModifier<int>>();
@@ -24,6 +24,7 @@ public class ValueModifier
     public List<ValueModifier<float>> delay = new List<ValueModifier<float>>();
     public List<ValueModifier<float>> lifetime = new List<ValueModifier<float>>();
     public List<ValueModifier<int>> pierce = new List<ValueModifier<int>>();
+    public List<ValueModifier<int>> bounce = new List<ValueModifier<int>>();
 
 
     // strings, may not need?
@@ -76,11 +77,12 @@ public class ValueModifier
     {
         //if (valueName == "amount") amount.Add(valueMod);
         //else if (valueName == "heal") heal.Add(valueMod);
-        if (valueName == "heal") heal.Add(valueMod);
-        else if (valueName == "number") number.Add(valueMod);
+        
+        if (valueName == "number") number.Add(valueMod);
         else if (valueName == "repeat") repeat.Add(valueMod);
         else if (valueName == "angle") angle.Add(valueMod);
         else if (valueName == "pierce") pierce.Add(valueMod);
+        else if (valueName == "bounce") bounce.Add(valueMod);
         //else if (valueName == "manaCost") manaCost.Add(valueMod);
         else throw new Exception("ValueModifier.cs_AddValue(ValueModifier<int>, string) >> Invalid value modifier int name: " + valueName + " for add value");
     }
@@ -94,6 +96,7 @@ public class ValueModifier
         else if (valueName == "lifetime") lifetime.Add(valueMod);
 
         else if (valueName == "amount") amount.Add(valueMod);
+        else  if (valueName == "heal") heal.Add(valueMod);
         else if (valueName == "manaCost") manaCost.Add(valueMod);
 
         else throw new Exception("ValueModifier.cs_AddValue(ValueModifier<float>, string) >> Invalid value modifier float name: " + valueName + " for add value");

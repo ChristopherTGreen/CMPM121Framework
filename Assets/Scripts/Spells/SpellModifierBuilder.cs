@@ -89,9 +89,11 @@ public class SpellModifierBuilder
 
         valueMod.AddValue(data.name, "name");
 
+        if (data.heal != null) valueMod.AddValue(AddFloat(data.heal), "heal");
         if (data.N != null) valueMod.AddValue(AddInt(data.N), "number");
         if (data.repeat != null) valueMod.AddValue(AddInt(data.repeat), "repeat");
         if (data.pierce != null) valueMod.AddValue(AddInt(data.pierce), "pierce");
+        if (data.bounce != null) valueMod.AddValue(AddInt(data.bounce), "bounce");
         if (data.delay != null) valueMod.AddValue(AddFloat(data.delay), "delay");
         if (data.angle != null) valueMod.AddValue(AddInt(data.angle), "angle");
 

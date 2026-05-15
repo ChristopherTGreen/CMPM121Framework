@@ -39,4 +39,10 @@ public class Hittable
         this.max_hp = max_hp;
         this.hp = Mathf.RoundToInt(perc * max_hp);
     }
+
+    public void SetCurrentHP(int current_hp)
+    {
+        if (this.hp + this.max_hp >= this.max_hp) this.hp = Mathf.RoundToInt(this.max_hp);
+        else this.hp = Mathf.RoundToInt(this.hp + current_hp);
+    }
 }
