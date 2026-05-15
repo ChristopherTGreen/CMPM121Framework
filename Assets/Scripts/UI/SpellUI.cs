@@ -23,11 +23,15 @@ public class SpellUI : MonoBehaviour
     public void SetSpell(Spell spell)
     {
         this.spell = spell;
+
+        Debug.Log($".GetIcon null? {spell.GetIcon()}");
+        Debug.Log($"icon.GetComponent null? {icon.GetComponent<Image>()}");
+
         GameManager.Instance.spellIconManager.PlaceSprite(spell.GetIcon(), icon.GetComponent<Image>());
 
         // hypothetically, this should edit the manaCost and spell damage displays on the reward screen
-        //manacost.text = spell.GetManaCost().ToString();
-        //damage.text = spell.GetDamage().ToString();
+        manacost.text = spell.GetManaCost().ToString();
+        damage.text = spell.GetDamage().ToString();
     }
 
     // Update is called once per frame

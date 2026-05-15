@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     public void StartLevel()
     {
+        // Parameters: 125 is the player's mana, 8 is the player's mana regen
+        // These are hardcoded, later have the scaling for mana be here
         spellcaster = new SpellCaster(125, 8, Hittable.Team.PLAYER);
         StartCoroutine(spellcaster.ManaRegeneration());
 

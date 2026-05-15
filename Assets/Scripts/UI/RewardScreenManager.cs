@@ -49,6 +49,9 @@ public class RewardScreenManager : MonoBehaviour
         }
         else
         {
+            //When wave starts set the rewardSpellGenerated flag to false
+            rewardSpell.RewardSpellGenerated = false;
+
             rewardUI.SetActive(false);
         }
     }
