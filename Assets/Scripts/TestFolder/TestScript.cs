@@ -24,7 +24,7 @@ public class TestScript : MonoBehaviour
         Debug.Log("Enemies Dictionary: " + JsonConvert.SerializeObject(RetrieveEnemyData.EnemyDictionary(), Formatting.Indented));
         Debug.Log("Levels Dictionary: " + JsonConvert.SerializeObject(RetrieveLevelData.LevelDictionary(), Formatting.Indented));
         Debug.Log("Spell Dictionary: " + JsonConvert.SerializeObject(RetrieveSpellData.SpellDictionary(), Formatting.Indented));
-
+        Debug.Log("Class Dictionary: " + JsonConvert.SerializeObject(RetrieveClassData.ClassDictionary(), Formatting.Indented));
     }
 
 

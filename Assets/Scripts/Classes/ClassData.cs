@@ -15,33 +15,19 @@ public class ClassData
     public string spellpower { get; set; } = null;
     public string speed { get; set; } = null;
 
-    [JsonConstructor]
-    public ClassData(string initName, int initSprite, string initHealth, string initMana, string initManaRegen, string initSpellPower, string initSpeed)
-    {
-
-        name = initName;
-        sprite = initSprite;
-        health = initHealth;
-        mana = initMana;
-        mana_regeneration = initManaRegen;
-        spellpower = initSpellPower;
-        speed = initSpeed;
-
-    }
-
 }
 
 
 
-// call this class to retrieve the dictionary with all the enemy data
+// call this class to retrieve the dictionary with all the class data
 public class RetrieveClassData
 {
 
     private static ClassParsing ClassParse = new ClassParsing();
     private static Dictionary<string, ClassData> classdictionary = new Dictionary<string, ClassData>();
 
-    // Programmer can now call Dictionary<string, EnemyData> enemy_dictionary = RetrieveEnemyData.EnemyDictionary();
-    public static Dictionary<string, ClassData> EnemyDictionary()
+    // Programmer can now call Dictionary<string, ClassData> enemy_dictionary = RetrieveClassData.ClassDictionary();
+    public static Dictionary<string, ClassData> ClassDictionary()
     {
 
         classdictionary = ClassParse.StoreData(Resources.Load<TextAsset>("classes").text);

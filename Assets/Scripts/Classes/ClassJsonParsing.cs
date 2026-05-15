@@ -10,7 +10,7 @@ public class ClassParsing : JsonProcessingTemplate<ClassData>
     {
 
         JObject jsonObject = JObject.Parse(jsonfile); //gets all of the objects from the Json file
-
+        
         foreach (var classType in jsonObject.Properties())
         {
 
