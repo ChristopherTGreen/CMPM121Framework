@@ -764,6 +764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardUI: {fileID: 1709288111}
   spellReward: {fileID: 882227329}
+  spelluicontainer: {fileID: 1982188287}
 --- !u!4 &220180078
 Transform:
   m_ObjectHideFlags: 0
@@ -6261,6 +6262,7 @@ MonoBehaviour:
   speed: 5
   power: 0
   unit: {fileID: 0}
+  activeSpellIndex: 0
 --- !u!4 &1718273953
 Transform:
   m_ObjectHideFlags: 0
