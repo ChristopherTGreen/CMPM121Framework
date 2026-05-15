@@ -86,6 +86,8 @@ public class SpellModifierBuilder
         ProcessFloat(data.cooldown_multiplier, "cooldown", "multiplier");
 
         valueMod.AddValue(data.projectile_trajectory, "projectile_trajectory");
+        valueMod.AddValue(data.name, "name");
+        
         if (data.N != null) valueMod.AddValue(AddInt(data.N), "number");
         if (data.repeat != null) valueMod.AddValue(AddInt(data.repeat), "repeat");
         if (data.delay != null) valueMod.AddValue(AddFloat(data.delay), "delay");

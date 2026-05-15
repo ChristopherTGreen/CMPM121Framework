@@ -4,6 +4,9 @@ using TMPro;
 public class WaveLabelController : MonoBehaviour
 {
     TextMeshProUGUI tmp;
+    public TextMeshProUGUI rewardSpellDescription;
+    private bool rewardSpellDescriptionFlag = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,11 +18,14 @@ public class WaveLabelController : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.GameState.INWAVE)
         {
+            rewardSpellDescriptionFlag = true;
+            rewardSpellDescription.text = "";
             tmp.text = "Enemies left: " + GameManager.Instance.enemy_count;
         }
         if (GameManager.Instance.state == GameManager.GameState.COUNTDOWN)
         {
-            tmp.fontSize = 36;
+            rewardSpellDescriptionFlag = false;
+            rewardSpellDescription.text = "";
             tmp.text = "Starting in " + GameManager.Instance.countdown;
         }
         if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
@@ -28,21 +34,30 @@ public class WaveLabelController : MonoBehaviour
             //tmp.text = "Wave " + GameManager.Instance.wave_count + " Cleared!\n";
             //tmp.text += GameManager.Instance.sessionStats.getStats();
 
-            //shrinking font size for spell description
-            tmp.fontSize = 15;
-            tmp.text = GameManager.Instance.sessionStats.getSpellDescription();
+            tmp.text = "";
+
+            rewardSpellDescription.text = GameManager.Instance.sessionStats.getSpellDescription();
+
+            /*
+            if (rewardSpellDescriptionFlag)
+            {
+        
+            }
+            */
     
         }
         if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
         {
             if (GameManager.Instance.enemy_count <= 0)
             {
-                tmp.fontSize = 36;
+                rewardSpellDescriptionFlag = false;
+                rewardSpellDescription.text = "";
                 tmp.text = "You Win!\n" + GameManager.Instance.sessionStats.getStats();
             }
             else
             {
-                tmp.fontSize = 36;
+                rewardSpellDescriptionFlag = false;
+                rewardSpellDescription.text = "";
                 tmp.text = "You Lose!\n" + GameManager.Instance.sessionStats.getStats();
             }
         }
