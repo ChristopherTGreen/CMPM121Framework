@@ -23,12 +23,16 @@ public class PlayerController : MonoBehaviour
 
     public int activeSpellIndex;
 
+    private bool PlayerScaledFlag;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         unit = GetComponent<Unit>();
         GameManager.Instance.player = gameObject;
         activeSpellIndex = 4;
+
+        PlayerScaledFlag = false;
     }
 
     public void StartLevel()
@@ -56,6 +60,22 @@ public class PlayerController : MonoBehaviour
         {
             SwitchSpell();
         }
+
+        if (GameManager.Instance.state == GameManager.GameState.INWAVE)
+        {
+            if (!PlayerScaledFlag)
+            {
+                PlayerScaledFlag = true;
+                PlayerClassScaling.ScalePlayer(GameManager.Instance.classTypes["player"]);
+
+                UnityEngine.Debug.Log("Player Scaled");
+            }
+        }
+        else 
+        {
+            PlayerScaledFlag = false;
+        }
+
     }
 
     void OnAttack(InputValue value)
