@@ -33,7 +33,7 @@ public class SpellCaster
         //spell = new RandomModifier().CreateRandomSpell(this);
         //spell = new DamageAmpModifier(spell);
 
-        //spell = new DamageAmpModifier(new DoublerModifier(new HomingModifier(new ArcaneBolt(this))));
+        spell = new DamageAmpModifier(new DoublerModifier(new HomingModifier(new ArcaneBolt(this))));
 
         // Storing the first random spell created
         GameManager.Instance.StoreActiveSpell(spell);
