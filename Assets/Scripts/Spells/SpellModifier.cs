@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json.Bson;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 // This is the SpellModifier wrapper Template. Any new spell modifier should inherit this class!
 public class SpellModifier : Spell
 {
-
+    
     // inner should be the spell being wrapped.
     public Spell inner;
 
@@ -25,13 +26,14 @@ public class SpellModifier : Spell
     public SpellModifier(Spell inner) : base(inner.owner)
     {
         this.inner = inner;
-
+        
 
         if (inner.stats == null) inner.stats = new ValueModifier();
         if (this.stats == null) this.stats = new ValueModifier();
 
         //Syncs the data to the SpellModifier from the base spell.
         new SpellBuilder(this).SyncDataFrom(inner).Build(inner.owner);
+        
 
         //COmbining the stats from 2 modifier classes together
         this.stats.MergeFrom(inner.stats);

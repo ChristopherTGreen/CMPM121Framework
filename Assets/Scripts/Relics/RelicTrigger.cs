@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Assets.Scripts.Relics
+public class RelicTrigger
 {
-    internal class RelicTrigger
-    {
-    }
+
 }
