@@ -21,10 +21,12 @@ public class TestScript : MonoBehaviour
         //Call any class you want to test in here.
 
         //Testing Json reading, parsing and storing
-        Debug.Log("Enemies Dictionary: " + JsonConvert.SerializeObject(RetrieveEnemyData.EnemyDictionary(), Formatting.Indented));
-        Debug.Log("Levels Dictionary: " + JsonConvert.SerializeObject(RetrieveLevelData.LevelDictionary(), Formatting.Indented));
-        Debug.Log("Spell Dictionary: " + JsonConvert.SerializeObject(RetrieveSpellData.SpellDictionary(), Formatting.Indented));
-        Debug.Log("Class Dictionary: " + JsonConvert.SerializeObject(RetrieveClassData.ClassDictionary(), Formatting.Indented));
+        //Debug.Log("Enemies Dictionary: " + JsonConvert.SerializeObject(RetrieveEnemyData.EnemyDictionary(), Formatting.Indented));
+        //Debug.Log("Levels Dictionary: " + JsonConvert.SerializeObject(RetrieveLevelData.LevelDictionary(), Formatting.Indented));
+        //Debug.Log("Spell Dictionary: " + JsonConvert.SerializeObject(RetrieveSpellData.SpellDictionary(), Formatting.Indented));
+        //Debug.Log("Class Dictionary: " + JsonConvert.SerializeObject(RetrieveClassData.ClassDictionary(), Formatting.Indented));
+
+        Debug.Log("Relic Triggers Dictionary: " + JsonConvert.SerializeObject(RetrieveRelicTriggersData.RelicTriggersDictionary(), Formatting.Indented));
     }
 
 

@@ -50,3 +50,23 @@ public class Effect
     public string until { get; set; } = null;
 
 }
+
+
+
+public class RetrieveRelicTriggersData
+{
+    
+    private static RelicTriggersParsing TriggersParse = new RelicTriggersParsing();
+    private static Dictionary<string, RelicTriggersData> relictriggersdictionary = new Dictionary<string, RelicTriggersData>();
+
+    // Programmer can now call Dictionary<string, LevelData> level_dictionary = RetrieveLevelData.LevelDictionary();
+    public static Dictionary<string, RelicTriggersData> RelicTriggersDictionary()
+    {
+        
+        // Loading levels.json
+        relictriggersdictionary = TriggersParse.StoreData(Resources.Load<TextAsset>("relics").text);
+        return relictriggersdictionary;
+
+    }
+
+}
