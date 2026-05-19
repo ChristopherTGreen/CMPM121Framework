@@ -10,10 +10,10 @@ using System.Linq;
 
 
 // parses the relic triggers data
-public class RelicTriggersParsing : JsonProcessingTemplate<RelicTriggersData>
+public class RelicParsing : JsonProcessingTemplate<RelicData>
 {
 
-    protected override void ParseData(string jsonfile, Dictionary<string, RelicTriggersData> dictionary)
+    protected override void ParseData(string jsonfile, Dictionary<string, RelicData> dictionary)
     {
 
         JObject jsonObject = JObject.Parse(jsonfile); //gets all of the objects from the Json file
@@ -21,31 +21,8 @@ public class RelicTriggersParsing : JsonProcessingTemplate<RelicTriggersData>
         foreach (var relicType in jsonObject.Properties())
         {
 
-            RelicTriggersData relicTriggersData = relicType.Value.ToObject<RelicTriggersData>();
-            dictionary[relicTriggersData.name] = relicTriggersData;
-
-        }
-
-    }
-
-}
-
-
-
-// Parses the relic events data
-public class RelicEventsParsing : JsonProcessingTemplate<RelicEventsData>
-{
-
-    protected override void ParseData(string jsonfile, Dictionary<string, RelicEventsData> dictionary)
-    {
-
-        JObject jsonObject = JObject.Parse(jsonfile); //gets all of the objects from the Json file
-        
-        foreach (var relicType in jsonObject.Properties())
-        {
-
-            RelicEventsData relicEventsData = relicType.Value.ToObject<RelicEventsData>();
-            dictionary[relicEventsData.name] = relicEventsData;
+            RelicData relicData = relicType.Value.ToObject<RelicData>();
+            dictionary[relicData.name] = relicData;
 
         }
 

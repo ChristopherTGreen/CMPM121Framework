@@ -7,21 +7,11 @@ using UnityEngine;
 
 
 
-public class RelicTriggersData
+public class RelicData
 {
     public string name { get; set; } = null;
     public int sprite { get; set; } = -1;
     public Trigger trigger { get; set; } = null;
-
-}
-
-
-
-public class RelicEventsData
-{
-    
-    public string name { get; set; } = null;
-    public int sprite { get; set; } = -1;
     public Effect effect { get; set; } = null;
 
 }
@@ -40,7 +30,6 @@ public class Trigger
 
 
 
-// Type Effect - used in the RelicEventsData class
 public class Effect
 {
     
@@ -53,19 +42,20 @@ public class Effect
 
 
 
-public class RetrieveRelicTriggersData
+// rework this to return separated trigger and event data
+public class RetrieveRelicData
 {
     
-    private static RelicTriggersParsing TriggersParse = new RelicTriggersParsing();
-    private static Dictionary<string, RelicTriggersData> relictriggersdictionary = new Dictionary<string, RelicTriggersData>();
+    private static RelicParsing RelicParse = new RelicParsing();
+    private static Dictionary<string, RelicData> relicdictionary = new Dictionary<string, RelicData>();
 
     // Programmer can now call Dictionary<string, LevelData> level_dictionary = RetrieveLevelData.LevelDictionary();
-    public static Dictionary<string, RelicTriggersData> RelicTriggersDictionary()
+    public static Dictionary<string, RelicData> RelicsDictionary()
     {
         
         // Loading levels.json
-        relictriggersdictionary = TriggersParse.StoreData(Resources.Load<TextAsset>("relics").text);
-        return relictriggersdictionary;
+        relicdictionary = RelicParse.StoreData(Resources.Load<TextAsset>("relics").text);
+        return relicdictionary;
 
     }
 

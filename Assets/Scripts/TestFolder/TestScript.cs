@@ -26,7 +26,7 @@ public class TestScript : MonoBehaviour
         //Debug.Log("Spell Dictionary: " + JsonConvert.SerializeObject(RetrieveSpellData.SpellDictionary(), Formatting.Indented));
         //Debug.Log("Class Dictionary: " + JsonConvert.SerializeObject(RetrieveClassData.ClassDictionary(), Formatting.Indented));
 
-        Debug.Log("Relic Triggers Dictionary: " + JsonConvert.SerializeObject(RetrieveRelicTriggersData.RelicTriggersDictionary(), Formatting.Indented));
+        Debug.Log("Relic Triggers Dictionary: " + JsonConvert.SerializeObject(RetrieveRelicData.RelicsDictionary(), Formatting.Indented));
     }
 
 
