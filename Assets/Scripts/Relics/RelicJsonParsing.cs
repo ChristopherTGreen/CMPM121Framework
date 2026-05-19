@@ -16,12 +16,12 @@ public class RelicParsing : JsonProcessingTemplate<RelicData>
     protected override void ParseData(string jsonfile, Dictionary<string, RelicData> dictionary)
     {
 
-        JObject jsonObject = JObject.Parse(jsonfile); //gets all of the objects from the Json file
+        JToken jsonObject = JToken.Parse(jsonfile); //    gets all of the objects from the Json file
         
-        foreach (var relicType in jsonObject.Properties())
+        foreach (var relicType in jsonObject)
         {
 
-            RelicData relicData = relicType.Value.ToObject<RelicData>();
+            RelicData relicData = relicType.ToObject<RelicData>();
             dictionary[relicData.name] = relicData;
 
         }
