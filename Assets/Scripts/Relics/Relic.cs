@@ -6,7 +6,7 @@ public class Relic
 {
     public string name { get; set; } = null;
     public int sprite { get; set; } = -1;
-    public RelicTrigger;
+    public RelicTrigger = new RelicTrigger<int>;
     public RelicEffect = ;
 
 

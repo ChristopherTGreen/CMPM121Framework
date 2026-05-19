@@ -9,7 +9,7 @@ using UnityEngine;
 // may need to make this an "interface" and not a "class" - chris
 public class ValueModifier
 {
-
+    public Dictionaru
     // Modifier storage:
     // strict values
     // These lists track the value modifiers applied to the base spell.
@@ -116,8 +116,6 @@ public class ValueModifier
     {
         return ValueModifier<int>.GetValue(valueMod, original);
     }
-
-    //
     public static float GetValue(List<ValueModifier<float>> valueMod, float original)
     {
         return ValueModifier<float>.GetValue(valueMod, original);
@@ -126,6 +124,17 @@ public class ValueModifier
     {
         if (valueMod == null || valueMod.Count == 0) return original;
         return valueMod[valueMod.Count - 1];
+    }
+    // findType returns the type of the name given in respect to the value modifier's lists
+    public Type GetType(string valueName) 
+    {
+        PropertyInfo[] properties = GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        foreach (PropertyInfo property in properties)
+        {
+            if (property.Name == valueName) return property.PropertyType;
+            
+        }
+        throw new Exception("Value Modifier: GetType(valueName) provided property value which doesn't exist");
     }
 
 

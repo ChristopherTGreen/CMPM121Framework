@@ -13,6 +13,8 @@ public class EventBus
             return theInstance;
         }
     }
+
+    // should we put this somewhere else?
     // Action list below (all called once, not constantly) (relative to the player)
     // DoDamage called when dealing damage
     public event Action<Vector3, Damage, Hittable> OnDamage;
@@ -51,10 +53,10 @@ public class EventBus
         OnStop?.Invoke(where, owner);
     }
     // OnWave called when a wave ends
-    public event Action<Vector3, SpellCaster> OnWave;
+    public event Action OnWave;
     public void DoWave(Vector3 where, SpellCaster owner)
     {
-        OnWave?.Invoke(where, owner);
+        OnWave?.Invoke();
     }
 
 
