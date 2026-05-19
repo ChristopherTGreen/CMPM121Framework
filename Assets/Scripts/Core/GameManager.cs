@@ -41,6 +41,7 @@ public class GameManager
     public Dictionary<string, LevelData> levels;
     public Dictionary<string, SpellData> spells;
     public Dictionary<string, ClassData> classTypes;
+    public Dictionary<string, RelicData> relics;
 
     public Spell[] activeSpells = new Spell[4]; //stores the player's current active spells
     public Spell currentRewardSpell;
@@ -114,6 +115,7 @@ public class GameManager
         enemyTypes = RetrieveEnemyData.EnemyDictionary();
         spells = RetrieveSpellData.SpellDictionary();
         classTypes = RetrieveClassData.ClassDictionary();
-        Debug.Log(string.Join(", ", spells));
+        relics = RetrieveRelicData.RelicsDictionary();
+        Debug.Log(string.Join(", ", relics));
     }
 }
