@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class RelicTrigger : MonoBehaviour
+public class RelicTrigger
 {
     // name of the relic event
     protected string eventName { get; set; } = null;
@@ -16,23 +17,26 @@ public class RelicTrigger : MonoBehaviour
     // amount applied
     protected string amountToApply { get; set; } = null;
     // general event for all triggers (probably useless)
-    protected Action action { get; set; } = null;
+    protected Action trigger { get; set; } = null;
     // effect given
-    protected RelicEffect effect { get; set; } = null;
+    public Delegate operation { get; set; } = null;
    
 
 
     public RelicTrigger(Action trigger, RelicEffect effect)
     {
-        action = trigger;
-        this.action += ConditionCheck; // if possible, put effect as parameter?
-        this.effect = effect;
+        this.trigger = trigger;
+        this.trigger += ConditionCheck; // if possible, put effect as parameter?
     }
 
     /*public void DoAction()
     {
         ConditionCheck();
     }*/
+    public void TestCheck()
+    {
+        ConditionCheck();
+    }
 
     protected virtual void ConditionCheck()
     {
@@ -41,13 +45,15 @@ public class RelicTrigger : MonoBehaviour
 
     protected virtual void OnAction()
     {
-        // base action (helpful for events, reset timers, etc)
+        // base action (helpful for any events which must be executed at the end of the full operation)
     }
 
     public void OnDestroy() 
     {
-        action -= ConditionCheck;
+        trigger -= ConditionCheck;
     }
+
+
 
     // method to find dedicated trigger based on type given
 }

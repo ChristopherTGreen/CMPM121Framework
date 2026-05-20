@@ -15,7 +15,7 @@ public class RelicInstant : RelicTrigger
     public RelicInstant(Action trigger, RelicEffect effect) : base(trigger, effect) { }
 
     
-    protected override void ConditionCheck()
+    protected override bool ConditionCheck()
     {
         if (amountToCheck == check) OnAction();
     }
