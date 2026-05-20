@@ -34,8 +34,6 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.player = gameObject;
         activeSpellIndex = 4;
 
-        chosenClass = GameManager.Instance.chosenClass;
-
         PlayerScaledFlag = false;
 
     }
@@ -44,6 +42,8 @@ public class PlayerController : MonoBehaviour
     {
 
         // need to get the class from the PlayerClassSelector.cs
+        chosenClass = GameManager.Instance.chosenClass;
+        UnityEngine.Debug.Log("PlayerControler.cs_StartLevel() >> choseClass: " + chosenClass.name);
 
         // Parameters: 125 is the player's mana, 8 is the player's mana regen
         // These are hardcoded, later have the scaling for mana be here
