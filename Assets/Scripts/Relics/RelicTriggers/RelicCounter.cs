@@ -8,15 +8,16 @@ public class RelicCounter : RelicTrigger
     public int counter { get; set; } = 0;
     public RelicCounter(Action trigger, RelicEffect effect) : base(trigger, effect) { }
 
-    protected override void ConditionCheck()
+    protected override bool ConditionCheck(string amountToCheck)
     {
         
         if (counter <= RPNEvaluator.RPNEvaluator.Evaluatef(amountToCheck, GameManager.Instance.variables))
         {
             counter = 0;
-            OnAction();
+            return true;
         }
         counter += 1;
+        return false;
     }
 
     protected override void OnAction()

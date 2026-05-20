@@ -17,9 +17,7 @@ public class RelicTimer
 
     public IEnumerator CountDown(float amount)
     {
-        running = true;
         yield return new WaitForSeconds(amount);
-        running = false;
         OnTimerFinished?.Invoke();
     }
 

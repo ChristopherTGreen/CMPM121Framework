@@ -15,8 +15,9 @@ public class RelicInstant : RelicTrigger
     public RelicInstant(Action trigger, RelicEffect effect) : base(trigger, effect) { }
 
     
-    protected override bool ConditionCheck()
+    protected override bool ConditionCheck(string amountToCheck)
     {
-        if (amountToCheck == check) OnAction();
+        if (amountToCheck == check) return true;
+        return false;
     }
 }

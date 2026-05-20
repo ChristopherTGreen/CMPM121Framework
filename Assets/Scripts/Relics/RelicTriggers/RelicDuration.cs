@@ -6,8 +6,12 @@ using UnityEngine;
 
 public class RelicCountdown : RelicTrigger
 {
-    // Essentially a tracker to count up instances of event calls
+
+    // might be able to scrap this so it can be used in conjunction with other checks??'
+    // might not be able to be used with effects, since we probably don't want condiitonals
+    // but for condiitonals, yes ish? probably not, its its own feature, so yeah
     public Action triggerInitial { get; set; } = null;
+    public bool running;
     public RelicTimer timer;
     // If trigger front does not exist or is null, it is an until, meaning the effect is applied until needing to be reversed
     // if trigger front does exist, it is a condition check, which then starts timing for an action unless the triggerBack is called, resetting the condition
@@ -16,42 +20,15 @@ public class RelicCountdown : RelicTrigger
     // but, the action has started, and lasts for a duration, then it needs to know when it stops early (or reaches countdown) since it might reset early
     public RelicCountdown(Action trigger, RelicEffect effect, Action triggerInitial = null) : base(trigger, effect)
     {
-        this.triggerInitial = triggerInitial;
-        if (this.triggerInitial != null)
-        {
-            this.triggerInitial += ConditionCheck;
-            RelicTimeCheck();
-            this.trigger -= ConditionCheck; // reverses what was done in parent constructor
-            
-        }
         
     }
 
-    protected override void ConditionCheck()
+    protected override bool ConditionCheck(string amountToCheck)
     {
-        if (triggerInitial != null)
-        {
-            // create temporary timer action, switching current reading of actions
-            if (timer.running)
-            {
-                this.trigger -= ConditionCheck;
-                this.triggerInitial += ConditionCheck;
-            }
-            RelicTimeCheck();
-        }
-        else
-        {
-            OnAction();
-        }
+        if (RPNEvaluator.RPNEvaluator.Evaluatef(amountToCheck, GameManager.Instance.variables) < time) return true;
+        return false;
+            
 
-
-    }
-    // Coroutine running (calls action after what would be all frames being run
-    // Checks for complete call back of the coroutine
-    protected virtual IEnumerator ConditionCheckRoutine()
-    {
-        yield return new WaitForSeconds(RPNEvaluator.RPNEvaluator.Evaluatef(amountToCheck, GameManager.Instance.variables));
-        OnAction();
     }
 
     /*public virtual void RelicTimeCheck()
@@ -66,12 +43,6 @@ public class RelicCountdown : RelicTrigger
         timer = new RelicTimer(RPNEvaluator.RPNEvaluator.Evaluatef(amountToCheck, GameManager.Instance.variables));
         timer.OnTimerFinished += OnAction;
     }*/
-
-
-    protected override void OnAction()
-    {
-        
-    }
 }
 
 
