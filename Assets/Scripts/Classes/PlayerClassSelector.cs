@@ -48,6 +48,7 @@ public class PlayerClassSelector : MonoBehaviour
             y_pos += buttonGap;
 
             selector.GetComponent<MenuSelectorController>().label.text = "Class: " + playerclass.name;
+            selector.GetComponent<MenuSelectorController>().spawner = null; //sets the spawner to null so the StartLevel() in the MenuSelectorController just returns instead of staating the level
             selector.GetComponent<Button>().onClick.AddListener(() => AssignClass(playerclass));
 
         }
@@ -65,6 +66,12 @@ public class PlayerClassSelector : MonoBehaviour
         Debug.Log("Assign Class Button Clicked");
 
         HideClassSelectionUI();
+
+        //send the classData name to the playercontroller somehow.
+        // Gamemanager
+        GameManager.Instance.chosenClass = classData;
+        Debug.Log("PlayerClassSelector.cs_AssignClass(ClassData) >> Chosen Class: " + GameManager.Instance.chosenClass.name);
+
     }
 
 

@@ -47,6 +47,8 @@ public class GameManager
     public Spell currentRewardSpell;
     public SpellUIContainer spellUIcontainer;
 
+    public ClassData chosenClass;
+
     public Dictionary<string, int> variables => new Dictionary<string, int>
     {
         { "power", GameManager.Instance.player.GetComponent<PlayerController>().power},
