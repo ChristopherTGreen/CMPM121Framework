@@ -10,7 +10,7 @@ public class PlayerClassSelector : MonoBehaviour
 
     void Start()
     {
-        
+
         class_selector = GetComponent<Image>();
 
         // spawn all the buttons and add listener. 
@@ -47,7 +47,7 @@ public class PlayerClassSelector : MonoBehaviour
             selector.transform.localPosition = new Vector3(0, initialButtonPosition - y_pos);
             y_pos += buttonGap;
 
-            selector.GetComponent<MenuSelectorController>().label.text = playerclass.name;
+            selector.GetComponent<MenuSelectorController>().label.text = "Class: " + playerclass.name;
             selector.GetComponent<Button>().onClick.AddListener(() => AssignClass(playerclass));
 
         }
@@ -63,6 +63,16 @@ public class PlayerClassSelector : MonoBehaviour
     public void AssignClass(ClassData classData)
     {
         Debug.Log("Assign Class Button Clicked");
+
+        HideClassSelectionUI();
+    }
+
+
+
+    // Hide the player class selection UI
+    public void HideClassSelectionUI()
+    {
+        class_selector.gameObject.SetActive(false);
     }
 
 }

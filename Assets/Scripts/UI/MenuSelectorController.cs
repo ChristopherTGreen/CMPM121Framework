@@ -30,7 +30,17 @@ public class MenuSelectorController : MonoBehaviour
 
     public void StartLevel()
     {
-        spawner.StartLevel(level);
+
+        // if the enemy spawner is null, it's the class selection UI
+        if (spawner == null)
+        {
+            return;
+        }
+        else
+        {
+            spawner.StartLevel(level);
+        }
+
     }
 
 
