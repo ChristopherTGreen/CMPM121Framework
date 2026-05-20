@@ -10,9 +10,12 @@ public class PlayerClassSelector : MonoBehaviour
 
     void Start()
     {
+        
         class_selector = GetComponent<Image>();
 
         // spawn all the buttons and add listener. 
+        DynamicButtonSpawner();
+
     }
 
 
@@ -33,11 +36,19 @@ public class PlayerClassSelector : MonoBehaviour
         Dictionary<string, ClassData> class_dictionary = RetrieveClassData.ClassDictionary();
         int y_pos = 0;
 
-        foreach (var playerclass in class_dictionary)
+        const int initialButtonPosition = 70;
+        const int buttonGap = 40;
+
+        foreach (ClassData playerclass in class_dictionary.Values)
         {
             
             //creates a button using the button prefab in the engine and the class_selector's bg position
             GameObject selector = Instantiate(buttonprefab, class_selector.transform);
+            selector.transform.localPosition = new Vector3(0, initialButtonPosition - y_pos);
+            y_pos += buttonGap;
+
+            selector.GetComponent<MenuSelectorController>().label.text = playerclass.name;
+            selector.GetComponent<Button>().onClick.AddListener(() => AssignClass(playerclass));
 
         }
 
@@ -51,7 +62,7 @@ public class PlayerClassSelector : MonoBehaviour
     // maybe make it it's own class?
     public void AssignClass(ClassData classData)
     {
-        
+        Debug.Log("Assign Class Button Clicked");
     }
 
 }
