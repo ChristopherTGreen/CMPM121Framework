@@ -36,7 +36,7 @@ public class MenuSelectorController : MonoBehaviour
         {
             return;
         }
-        else
+        else //it's the difficulty selection UI calling this method and therefore start the level
         {
             spawner.StartLevel(level);
         }
