@@ -34,19 +34,22 @@ public class PlayerController : MonoBehaviour
 
         PlayerScaledFlag = false;
 
-        UnityEngine.Debug.Log("Initial player health: " + GameManager.Instance.classTypes["player"].health);
-        UnityEngine.Debug.Log("Initial player mana: " + GameManager.Instance.classTypes["player"].mana);
-        UnityEngine.Debug.Log("Initial player mana regen: " + GameManager.Instance.classTypes["player"].mana_regeneration);
     }
 
     public void StartLevel()
     {
         // Parameters: 125 is the player's mana, 8 is the player's mana regen
         // These are hardcoded, later have the scaling for mana be here
-        spellcaster = new SpellCaster(125, 8, Hittable.Team.PLAYER);
+        spellcaster = new SpellCaster(
+            RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].mana, GameManager.Instance.variables), 
+            RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].mana_regeneration, GameManager.Instance.variables), 
+            Hittable.Team.PLAYER
+        );
+        
         StartCoroutine(spellcaster.ManaRegeneration());
 
         int start_health = RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, GameManager.Instance.variables);
+
         hp = new Hittable(start_health, Hittable.Team.PLAYER, gameObject);
         hp.OnDeath += Die;
         hp.team = Hittable.Team.PLAYER;
@@ -55,6 +58,10 @@ public class PlayerController : MonoBehaviour
         healthui.SetHealth(hp);
         manaui.SetSpellCaster(spellcaster);
         spellui.SetSpell(spellcaster.spell);
+
+        UnityEngine.Debug.Log("Initial player health: " + hp.max_hp);
+        UnityEngine.Debug.Log("Initial player max mana: " + spellcaster.max_mana);
+        UnityEngine.Debug.Log("Initial player mana regen: " + spellcaster.mana_reg);
     }
 
     // Update is called once per frame
@@ -74,7 +81,7 @@ public class PlayerController : MonoBehaviour
       
                 PlayerClassScaling newData = new PlayerClassScaling(GameManager.Instance.classTypes["player"]);
 
-                UnityEngine.Debug.Log("Player Scaled");
+                UnityEngine.Debug.Log(">> Player Scaled");
 
                 //updating player with new scaling
                 spellcaster.SetMaxMana(newData.mana);
@@ -89,9 +96,10 @@ public class PlayerController : MonoBehaviour
                 manaui.SetSpellCaster(spellcaster);
                 spellui.SetSpell(spellcaster.spell);
 
-                UnityEngine.Debug.Log("Health Count: " + RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, new Dictionary<string, int> { { "wave", GameManager.Instance.wave_count} }));
-                UnityEngine.Debug.Log("health Scaling: " + hp);
-                UnityEngine.Debug.Log("mana Scaling: " + spellcaster.max_mana);
+                UnityEngine.Debug.Log("New Health Count: " + RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, new Dictionary<string, int> { { "wave", GameManager.Instance.wave_count} }));
+                UnityEngine.Debug.Log("New max health Scaling: " + hp.max_hp);
+                UnityEngine.Debug.Log("New max mana Scaling: " + spellcaster.max_mana);
+                UnityEngine.Debug.Log("New mana regen Scaling: " + spellcaster.mana_reg);
 
             }
         }
