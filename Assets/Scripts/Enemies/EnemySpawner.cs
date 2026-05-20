@@ -32,6 +32,8 @@ public class EnemySpawner : MonoBehaviour
         GameManager.Instance.ClearEnemy();
         GameManager.Instance.wave_count = 1;
         MenuSelectorController.DynamicMenuButtonSpawner(this);
+
+        // Add the Class Selector Controller call here for button spawning.
         
     }
 
