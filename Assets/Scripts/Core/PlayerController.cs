@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private bool PlayerScaledFlag;
 
+    public ClassData chosenClass;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,23 +34,28 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.player = gameObject;
         activeSpellIndex = 4;
 
+        chosenClass = GameManager.Instance.chosenClass;
+
         PlayerScaledFlag = false;
 
     }
 
     public void StartLevel()
     {
+
+        // need to get the class from the PlayerClassSelector.cs
+
         // Parameters: 125 is the player's mana, 8 is the player's mana regen
         // These are hardcoded, later have the scaling for mana be here
         spellcaster = new SpellCaster(
-            RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].mana, GameManager.Instance.variables), 
-            RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].mana_regeneration, GameManager.Instance.variables), 
+            RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes[chosenClass.name].mana, GameManager.Instance.variables), 
+            RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes[chosenClass.name].mana_regeneration, GameManager.Instance.variables), 
             Hittable.Team.PLAYER
         );
         
         StartCoroutine(spellcaster.ManaRegeneration());
 
-        int start_health = RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, GameManager.Instance.variables);
+        int start_health = RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes[chosenClass.name].health, GameManager.Instance.variables);
 
         hp = new Hittable(start_health, Hittable.Team.PLAYER, gameObject);
         hp.OnDeath += Die;
@@ -79,7 +86,7 @@ public class PlayerController : MonoBehaviour
             {
                 PlayerScaledFlag = true;
       
-                PlayerClassScaling newData = new PlayerClassScaling(GameManager.Instance.classTypes["player"]);
+                PlayerClassScaling newData = new PlayerClassScaling(GameManager.Instance.classTypes[chosenClass.name]);
 
                 UnityEngine.Debug.Log(">> Player Scaled");
 
