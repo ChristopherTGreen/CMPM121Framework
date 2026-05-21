@@ -4,20 +4,29 @@ using System.Text;
 using Unity.VisualScripting;
 
 public class RelicEffect
-{   
-    //protected Action triggerInitial { get; set; } = null;
-    protected RelicTrigger removeTrigger;
+{
+    public string description;
+    public string type;
+    public string amount;
+    public string until;
+
+    public SpellCaster caster;
+
     // constructor given the relevant trigger 
     public RelicEffect(RelicTrigger relicTrigger)
     {
-        this.removeTrigger = relicTrigger;
-        this.removeTrigger.OnTrigger += RemoveEffect; 
+        
     }
-
-    public void CallEffect()
+    // sub interfaces to prevent messing with apply effects and remove effects
+    public void StartEffect()
     {
         ApplyEffect();
     }
+    public void EndEffect()
+    {
+        RemoveEffect();
+    }
+
 
     protected virtual void ApplyEffect()
     {
@@ -27,4 +36,7 @@ public class RelicEffect
     protected virtual void RemoveEffect()
     {
     }
+
+    // potential effect locations?
+
 }

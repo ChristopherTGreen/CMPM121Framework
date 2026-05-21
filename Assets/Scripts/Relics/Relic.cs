@@ -4,18 +4,19 @@ using System.Text;
 
 public class Relic
 {
-    RelicEffect relicEffect; // actual effect itself
-    RelicTrigger relicCondition;
-    
-    public Relic(RelicTrigger relicTrigger, RelicEffect relicEffect)
-    {
-        relicCondition = relicTrigger;
-        relicCondition.OnTrigger += relicEffect.CallEffect;
-    }
+    public RelicEffect relicEffect; // actual effect itself
+    public RelicTrigger applyTrigger;
+    public RelicTrigger completeTrigger;
 
-    public void RelicCondition()
+    public Relic(RelicEffect relicEffect, RelicTrigger effectStartTrigger, RelicTrigger effectEndTrigger)
     {
+        applyTrigger = effectStartTrigger;
+        applyTrigger.OnTrigger += relicEffect.StartEffect;
 
+        this.relicEffect = relicEffect;
+
+        completeTrigger = effectEndTrigger;
+        completeTrigger.OnTrigger += relicEffect.EndEffect;
     }
     
 
