@@ -73,6 +73,9 @@ public class RewardRelicDisplay : MonoBehaviour
     {
         //handles taking a relic and blocks off the other buttons from being clicked.
         Debug.Log("RewardRelicDisplay.cs_TakeRelicHandler() >> Took " + relic.name);
+
+        // if we have a active relics list or dictionary in the game manager, all you need to do is add 'relic' to that list or dictionary
+        // Reference the 'AssignClass' method in PlayerClassSelector.cs for how I handled the player's selected class
     }
 
 }
