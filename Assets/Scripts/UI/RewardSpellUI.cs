@@ -69,7 +69,7 @@ public class RewardSpell
 
     public void AcceptSpell(Spell spell)
     {
-        Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Accept button clicked");
+        //Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Accept button clicked");
         int size = GameManager.Instance.GetFilledSlotCount();
         if (size < 4){ //for testing, set to 2
 
@@ -80,7 +80,7 @@ public class RewardSpell
             AcceptButtonText = Accept.GetComponentInChildren<TextMeshProUGUI>();
             AcceptButtonText.text = "Spell Collected";
 
-            Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> " + spell.name + "Collected");
+            //Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> " + spell.name + "Collected");
 
         } 
         else if (size < 1)
@@ -89,7 +89,7 @@ public class RewardSpell
         } 
         else
         {
-            Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Too Many Spells, please drop");
+            //Debug.Log("RewardSpellUI.cs_AcceptSpell(Spell) >> Too Many Spells, please drop");
 
             //More than four spells
             //Enable drop buttons
@@ -114,7 +114,7 @@ public class RewardSpell
     public static void DropSpell()
     {
         //GameManager.Instance.sessionStats.clearSpell
-        Debug.Log("Drop button clicked");
+        //Debug.Log("Drop button clicked");
     } 
 
 

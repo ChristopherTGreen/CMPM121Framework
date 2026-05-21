@@ -31,14 +31,14 @@ public class ProjectileController : MonoBehaviour
             var ec = collision.gameObject.GetComponent<EnemyController>();
             if (ec != null)
             {
-                Debug.Log("Damage loop");
-                Debug.Log(ec.hp.hp);
+                //Debug.Log("Damage loop");
+                //Debug.Log(ec.hp.hp);
                 OnHit(ec.hp, transform.position);
-                Debug.Log(ec.hp.hp);
+                //Debug.Log(ec.hp.hp);
                 pierce();
                 while (ec.hp.hp > 0 && bounceAmount > 0 && pierceAmount > 0)
                 {
-                    Debug.Log(ec.hp.hp);
+                    //Debug.Log(ec.hp.hp);
                     OnHit(ec.hp, transform.position);
                     pierce();
 

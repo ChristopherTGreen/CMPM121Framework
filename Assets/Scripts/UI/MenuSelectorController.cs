@@ -13,7 +13,7 @@ public class MenuSelectorController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -30,7 +30,18 @@ public class MenuSelectorController : MonoBehaviour
 
     public void StartLevel()
     {
-        spawner.StartLevel(level);
+
+        if (spawner == null) //The class selection UI calls this part of the conditional and therefore does not start the level
+        {
+            Debug.Log("Are you even called?");
+
+            return;
+        }
+        else //The difficulty selection UI calls this part of the conditional and therefore starts the level
+        {
+            spawner.StartLevel(level);
+        }
+
     }
 
 

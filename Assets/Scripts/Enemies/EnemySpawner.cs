@@ -32,6 +32,8 @@ public class EnemySpawner : MonoBehaviour
         GameManager.Instance.ClearEnemy();
         GameManager.Instance.wave_count = 1;
         MenuSelectorController.DynamicMenuButtonSpawner(this);
+
+        // Add the Class Selector Controller call here for button spawning.
         
     }
 
@@ -45,6 +47,9 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartLevel(string levelname)
     {
+
+        
+
         level_selector.gameObject.SetActive(false);
         // this is not nice: we should not have to be required to tell the player directly that the level is starting
         GameManager.Instance.player.GetComponent<PlayerController>().StartLevel();
