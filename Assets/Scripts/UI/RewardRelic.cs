@@ -76,11 +76,15 @@ public class RewardRelicDisplay : MonoBehaviour
             selector.GetComponent<Button>().onClick.RemoveAllListeners();
             selector.GetComponent<Button>().onClick.AddListener(() => TakeRelicHandler(relic));
 
+
+
             //Icon handling
             GameObject relicdisplay = Instantiate(relicPrefab, rewardscreen.transform);
             relicdisplay.transform.localPosition = new Vector3(initialButtonPositionx + x_pos, -10);
 
             GameManager.Instance.relicIconManager.PlaceSprite(relic.sprite, relicdisplay.GetComponentInChildren<Image>()); //should place icon
+
+
 
             //description handling
             Debug.Log("Getting relic.trigger.description: " + relic.trigger.description);
@@ -90,7 +94,7 @@ public class RewardRelicDisplay : MonoBehaviour
             relicdisplay.GetComponentInChildren<TextMeshProUGUI>().transform.localPosition = new Vector3(0, -30); // position is based off the parent relicdisplay.transform.localPosition
 
 
-            x_pos += buttonGapx; // update at end
+            x_pos += buttonGapx; // update at end - shifts all the displays over
 
         }
 
