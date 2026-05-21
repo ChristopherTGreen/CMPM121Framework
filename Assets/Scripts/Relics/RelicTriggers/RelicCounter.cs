@@ -6,7 +6,10 @@ public class RelicCounter : RelicTrigger
 {
     // Essentially a tracker to count up instances of event calls
     public int counter { get; set; } = 0;
-    public RelicCounter(Action trigger, RelicEffect effect) : base(trigger, effect) { }
+    public RelicCounter(int counter) : base()
+    {
+        this.counter = counter;
+    }
 
     protected override bool ConditionCheck(string amountToCheck)
     {

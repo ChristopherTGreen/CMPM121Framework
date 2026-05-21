@@ -8,19 +8,8 @@ using UnityEngine;
 
 public class RelicTrigger
 {
-    // name of the relic event
-    protected string eventName { get; set; } = null;
-    // name of the property to be applied to
-    protected string eventPropertyName { get; set; } = null;
-    
-    // amount applied
-    protected string amountToApply { get; set; } = null;
-    // Default is off
-    public int time { get; set; } = -1;
-    // general event for all triggers (probably useless)
-    protected Action trigger { get; set; } = null;
 
-    public RelicTrigger(Action trigger, RelicEffect effect)
+    public RelicTrigger()
     {
         
     }

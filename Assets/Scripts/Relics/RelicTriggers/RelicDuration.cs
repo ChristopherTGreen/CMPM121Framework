@@ -18,9 +18,14 @@ public class RelicCountdown : RelicTrigger
     // trigger front doesnt always exist, trigger back will
     // say, if you stop moving for 4 seconds, then do this action, the issue is the trigger back is the opposite reaction
     // but, the action has started, and lasts for a duration, then it needs to know when it stops early (or reaches countdown) since it might reset early
-    public RelicCountdown(Action trigger, RelicEffect effect, Action triggerInitial = null) : base(trigger, effect)
+    public RelicCountdown(Action trigger, Action triggerBreak = null) : base(trigger)
     {
-        
+        GameManager.
+    }
+
+    public override void StartListening()
+    {
+
     }
 
     protected override bool ConditionCheck(string amountToCheck)

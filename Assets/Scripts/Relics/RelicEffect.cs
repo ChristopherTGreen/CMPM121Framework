@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.VisualScripting;
 
+public interface IRelicEffect
+{
+    void ApplyEffect();
+    void RemoveEffect(); 
+}
+
 public class RelicEffect
 {
     // amount applied
     protected string amountToApply { get; set; } = null;
     // amount to check
     protected string amountToCheck { get; set; } = null;
+    // time (incase duration)
+    protected string time { get; set; } = null;
 
     protected Action trigger { get; set; } = null;
     
     //protected Action triggerInitial { get; set; } = null;
-    protected RelicTrigger relicTrigger { get; set; } = new RelicTrigger(null, null);
+    protected RelicTrigger relicTrigger { get; set; } = new RelicTrigger();
     public RelicTimer timer;
 
     public RelicEffect(Action trigger, RelicTrigger relicTrigger)
@@ -21,11 +29,16 @@ public class RelicEffect
         this.trigger = trigger;
         //this.triggerInitial = triggerInitial;
         this.relicTrigger = relicTrigger;
-        if (this.relicTrigger.time >= 0)
+    }
+
+    // Called in place of the action inside a trigger
+    public void ApplyEffect()
+    {
+        if (time != null)
         {
             //this.triggerInitial += RelicTimeCheck;
             OnRelicTimeCheck();
-            this.trigger += OnCheck;
+            this.trigger += OnAction;
 
         }
         else
@@ -33,16 +46,10 @@ public class RelicEffect
             this.trigger += OnCheck;
         }
     }
-
-    // Called in place of the action inside a trigger
-    protected virtual void ApplyEffect()
-    {
-        // place RPN eval and which value being adjusted
-    }
     protected virtual void OnCheck()
     {
         // calls internal check, if true OnAction()
-        if (relicTrigger.TestCheck(amountToCheck)) ApplyEffect();
+        if (relicTrigger.TestCheck(amountToCheck)) OnAction();
     }
 
     // Early exit condition for effect (removes timer, but since its effect, reverses given effect, so either way both lead to end of effect)
@@ -50,13 +57,17 @@ public class RelicEffect
     {
         if (timer != null)
         {
-            ApplyEffect();
-            timer.OnTimerFinished -= ApplyEffect;
+            OnAction();
+            timer.OnTimerFinished -= OnAction;
             timer.Cancel();
             timer = null;
         }
 
         timer = new RelicTimer(RPNEvaluator.RPNEvaluator.Evaluatef(amountToCheck, GameManager.Instance.variables));
-        timer.OnTimerFinished += OnCheck;
+        timer.OnTimerFinished += OnAction;
+    }
+    // should reverse all values
+    protected virtual void OnAction()
+    {
     }
 }
