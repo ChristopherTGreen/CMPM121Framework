@@ -49,6 +49,7 @@ public class PlayerClassSelector : MonoBehaviour
 
             selector.GetComponent<MenuSelectorController>().label.text = "Class: " + playerclass.name;
             selector.GetComponent<MenuSelectorController>().spawner = null; //sets the spawner to null so the StartLevel() in the MenuSelectorController just returns instead of staating the level
+            selector.GetComponent<Button>().onClick.RemoveAllListeners();
             selector.GetComponent<Button>().onClick.AddListener(() => AssignClass(playerclass));
 
         }
