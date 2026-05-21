@@ -16,6 +16,7 @@ public class RewardRelicDisplay : MonoBehaviour
     public List<RelicData> relicrewards = new List<RelicData>();
 
     public bool relicsDisplayedFlag = false;
+    private bool relicsLoadedFlag = false; //TESTING
     
     public void RelicRewards()
     {
@@ -25,17 +26,26 @@ public class RewardRelicDisplay : MonoBehaviour
             rewardscreen = GetComponent<Image>();
 
             // Get the generated relics list from the game manager
-            // For now, manually adding relics to the list for testing
+            // TESTING: For now, manually adding relics to the list for testing
             
-            foreach (RelicData relic in GameManager.Instance.relics.Values)
+            if (!relicsLoadedFlag)
             {
-                Debug.Log("RelicReward.cs_Start() >> Adding " + relic.name + " to the relicrewards list.");
+                
+                relicsLoadedFlag = true;
+                foreach (RelicData relic in GameManager.Instance.relics.Values)
+                {
+                    Debug.Log("RelicReward.cs_Start() >> Adding " + relic.name + " to the relicrewards list.");
 
-                relicrewards.Add(relic);
+                    relicrewards.Add(relic);
+                }
+
             }
+
+            // End of test segment
 
             //Displays all the relics
             DisplayRelicRewards(relicrewards);
+
         } else
         {
             return;
