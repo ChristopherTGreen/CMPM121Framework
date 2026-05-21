@@ -11,16 +11,17 @@ public class RelicInstant : RelicTrigger
     // meaning it naturally has an extra need for condition checks because it needs a reference
     // The reference might be what the current projectile type is, which is not an internally tracking variable
     // SO in short this is an external checker for any values outside, meaning no RPN
-    public string amountChecked { get; set; }
-    public RelicInstant(string amountChecked) : base() 
+    public string amountCurrent { get; set; } = null;// value which is the current amount
+    // the amountToCheck might be what projectile we want
+    public RelicInstant(Action trigger, string amountToCheck, string givenCurrent) : base(trigger, amountToCheck)
     {
-        this.amountChecked = amountChecked;
+        this.amountCurrent = givenCurrent;
     }
 
     
-    protected override bool ConditionCheck(string amountToCheck)
+    protected override bool TriggerCheck(string amountToCheck)
     {
-        if (amountToCheck == amountChecked) return true;
+        if (amountToCheck == amountCurrent) return true;
         return false;
     }
 }

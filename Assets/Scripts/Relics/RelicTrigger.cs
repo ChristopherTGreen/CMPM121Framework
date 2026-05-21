@@ -8,22 +8,36 @@ using UnityEngine;
 
 public class RelicTrigger
 {
+    public string amountToCheck { get; set; } = null;
 
-    public RelicTrigger()
+    // Connect the relic effect or condition to this to tell it to call its action
+    public event Action OnTrigger;
+
+    // Given trigger from eventbus
+    public event Action triggerMain;
+    public RelicTrigger(Action trigger, string amountToCheck)
     {
-        
+        triggerMain = trigger;
+        this.amountToCheck = amountToCheck;
+        triggerMain += Check;
     }
 
     /*public void DoAction()
     {
         ConditionCheck();
     }*/
-    public bool TestCheck(string amountToCheck)
+    public void Check()
     {
-        return ConditionCheck(amountToCheck);
+        if (TriggerCheck(amountToCheck))
+        {
+            // 2. If true, shout it out! 
+            OnTrigger?.Invoke();
+            //return true;
+        }
+        //return false;
     }
 
-    protected virtual bool ConditionCheck(string amountToCheck)
+    protected virtual bool TriggerCheck(string amountToCheck)
     {
         return true;
     }

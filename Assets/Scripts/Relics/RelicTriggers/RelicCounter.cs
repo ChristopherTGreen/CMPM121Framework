@@ -4,14 +4,15 @@ using System.Text;
 
 public class RelicCounter : RelicTrigger
 {
-    // Essentially a tracker to count up instances of event calls
+    // Essentially a live tracker to count up instances of event calls
     public int counter { get; set; } = 0;
-    public RelicCounter(int counter) : base()
+    public RelicCounter(Action trigger, string amountToCheck) : base(trigger, amountToCheck)
     {
+
         this.counter = counter;
     }
 
-    protected override bool ConditionCheck(string amountToCheck)
+    protected override bool TriggerCheck(string amountToCheck)
     {
         
         if (counter <= RPNEvaluator.RPNEvaluator.Evaluatef(amountToCheck, GameManager.Instance.variables))
