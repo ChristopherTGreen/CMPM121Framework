@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 
 
@@ -65,14 +66,31 @@ public class RewardRelicDisplay : MonoBehaviour
         {
             
             //creates a button using the button prefab in the engine and the class_selector's bg position
+
+            //buttons
             GameObject selector = Instantiate(buttonPrefab, rewardscreen.transform);
             selector.transform.localPosition = new Vector3(initialButtonPositionx + x_pos, -65); //testing position - adjust x later
-            x_pos += buttonGapx;
 
             selector.GetComponent<MenuSelectorController>().label.text = "Take";
             selector.GetComponent<MenuSelectorController>().spawner = null; //sets the spawner to null so the StartLevel() in the MenuSelectorController just returns instead of staating the level
             selector.GetComponent<Button>().onClick.RemoveAllListeners();
             selector.GetComponent<Button>().onClick.AddListener(() => TakeRelicHandler(relic));
+
+            //Icon handling
+            GameObject relicdisplay = Instantiate(relicPrefab, rewardscreen.transform);
+            relicdisplay.transform.localPosition = new Vector3(initialButtonPositionx + x_pos, -10);
+
+            GameManager.Instance.relicIconManager.PlaceSprite(relic.sprite, relicdisplay.GetComponentInChildren<Image>()); //should place icon
+
+            //description handling
+            Debug.Log("Getting relic.trigger.description: " + relic.trigger.description);
+            Debug.Log("Getting relic.effect.description: " + relic.effect.description);
+
+            relicdisplay.GetComponentInChildren<TextMeshProUGUI>().text = "Description: " + relic.trigger.description + ", " + relic.effect.description;
+            relicdisplay.GetComponentInChildren<TextMeshProUGUI>().transform.localPosition = new Vector3(0, -30); // position is based off the parent relicdisplay.transform.localPosition
+
+
+            x_pos += buttonGapx; // update at end
 
         }
 
