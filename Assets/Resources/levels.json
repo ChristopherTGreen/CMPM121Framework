@@ -117,7 +117,7 @@
         "hp": "5 wave *",
         "delay": "5",
         "sequence": [ 1, 2, 3 ],
-        "location": "random"
+        "location": "random red"
       }
     ]
   }

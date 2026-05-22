@@ -49,6 +49,8 @@ public class GameManager
 
     public ClassData chosenClass;
 
+    public Dictionary<string, RelicData> tempActiveRelics = new Dictionary<string, RelicData>();
+
     public Dictionary<string, int> variables => new Dictionary<string, int>
     {
         { "power", GameManager.Instance.player.GetComponent<PlayerController>().power},

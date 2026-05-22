@@ -6,6 +6,9 @@ TagManager:
   tags:
   - unit
   - projectile
+  - NextWaveButton
+  - AcceptSpellButton
+  - RelicDisplay
   layers:
   - Default
   - TransparentFX

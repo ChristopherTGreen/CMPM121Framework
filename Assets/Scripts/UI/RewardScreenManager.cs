@@ -38,7 +38,12 @@ public class RewardScreenManager : MonoBehaviour
         {
 
             // TESTING FOR NOW:
-            rewardRelicDisplay.RelicRewards();
+
+            // % 3 for every 3 waves
+            if (GameManager.Instance.wave_count % 1 == 0) //set at 1 for testing
+            {
+                rewardRelicDisplay.RelicRewards();
+            }
 
             NextWaveButtonHandler();
             rewardSpell.AcceptButtonHandler();
@@ -64,6 +69,7 @@ public class RewardScreenManager : MonoBehaviour
             //When wave starts set the rewardSpellGenerated flag to false
             rewardSpell.RewardSpellGenerated = false;
             rewardRelicDisplay.relicsDisplayedFlag = false;
+            rewardRelicDisplay.relicSelectedFlag = false;
 
             rewardUI.SetActive(false);
         }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class RelicUI : MonoBehaviour
 {
@@ -11,9 +12,14 @@ public class RelicUI : MonoBehaviour
     public GameObject highlight;
     public TextMeshProUGUI label;
 
+    //public Dictionary<string, RelicData> activeRelics;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
+        //activeRelics = GameManager.Instance.tempActiveRelics;
+
         // if a player has relics, this is how you *could* show them
         /*
         Relic r = player.relics[index];
