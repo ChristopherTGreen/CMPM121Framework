@@ -33,7 +33,7 @@ public class SpellCaster
         //spell = new RandomModifier().CreateRandomSpell(this);
         //spell = new DamageAmpModifier(spell);
 
-        spell = new DamageAmpModifier(new DoublerModifier(new HomingModifier(new ArcaneBolt(this))));
+        //spell = new DamageAmpModifier(new DoublerModifier(new HomingModifier(new ArcaneBolt(this))));
 
         // Storing the first random spell created
         GameManager.Instance.StoreActiveSpell(spell);
@@ -45,6 +45,12 @@ public class SpellCaster
         float perc = this.mana * 1.0f / this.max_mana; // converts to float
         this.max_mana = max_mana;
         this.mana = Mathf.RoundToInt(perc * max_mana);
+    }
+
+    public void SetMana(int mana)
+    {
+        if (mana >= max_mana) this.mana = max_mana;
+        else this.mana = mana;
     }
 
 

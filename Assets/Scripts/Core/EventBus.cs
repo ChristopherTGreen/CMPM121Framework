@@ -23,9 +23,9 @@ public class EventBus
     {
         OnDamage?.Invoke(where, dmg, target);
     }
-    // OnDamaged called when dealt damage
-    public event Action<Vector3, Hittable> OnDamageTaken;
-    public void DoDamageTaken(Vector3 where, Hittable target)
+    // OnDamaged called when dealt damage (assumes subject is player)
+    public event Action<Vector3, PlayerController> OnDamageTaken;
+    public void DoDamageTaken(Vector3 where, PlayerController target)
     {
         OnDamageTaken?.Invoke(where, target);
     }
@@ -61,12 +61,12 @@ public class EventBus
     }
 
 
-
+    
 
     // helper methods to help map events
     public void RegisterEmpty(string eventName, Action listener)
     {
-        //if (eventName == "move") OnPlayerMoved += listener;
+        //if (eventName == "move") OnPlayerMoved += listener;\
     }
 
     public void RegisterFloat(string eventName, Action listener)
@@ -86,7 +86,7 @@ public class EventBus
                 OnDamage += handlerOnDamage;
                 break;
             case "take-damage":
-                Action<Vector3, Hittable> handlerTakeDamage = (handlerWhere, handlerHittable) => listener(new EventContext { where = handlerWhere, hittable = handlerHittable });
+                Action<Vector3, PlayerController> handlerTakeDamage = (handlerWhere, handlerPlayer) => listener(new EventContext { where = handlerWhere, player = handlerPlayer });
                 OnDamageTaken += handlerTakeDamage;
                 break;
             case "on-kill":
@@ -106,7 +106,7 @@ public class EventBus
                     OnDamage -= (Action<Vector3, Damage, Hittable>)wrapper;
                     break;
                 case "take-damage":
-                    OnDamageTaken -= (Action<Vector3, Hittable>)wrapper;
+                    OnDamageTaken -= (Action<Vector3, PlayerController>)wrapper;
                     break;
                 case "on-kill":
                     OnKill -= (Action<Vector3, GameObject>)wrapper;
@@ -129,6 +129,7 @@ public class EventContext
     public float value; // given value, say damage, mana, etc
 
     // custom variables
+    public PlayerController player; // I didn't like doing connections like this, we should probably change this at some point - chris
     public SpellCaster owner;
     public Hittable hittable;
     public Damage damage;

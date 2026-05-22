@@ -125,5 +125,6 @@ public class GameManager
 
 
         activeRelics.Add("Green Gem", new GreenGem(relics["Green Gem"]));
+        activeRelics["Green Gem"].Enable();
     }
 }
