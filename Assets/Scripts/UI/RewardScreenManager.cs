@@ -58,6 +58,7 @@ public class RewardScreenManager : MonoBehaviour
         else if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
         {
             RestartButtonHandler();
+            rewardRelicDisplay.ClearRewardRelicDisplays(rewardUI); // deletes the relic rewards at the game over screen. 
             rewardUI.SetActive(true);
 
             //Hides the accept and drop buttons when the wave ends.
@@ -70,6 +71,8 @@ public class RewardScreenManager : MonoBehaviour
             rewardSpell.RewardSpellGenerated = false;
             rewardRelicDisplay.relicsDisplayedFlag = false;
             rewardRelicDisplay.relicSelectedFlag = false;
+
+            rewardRelicDisplay.ClearRewardRelicDisplays(rewardUI);
 
             rewardUI.SetActive(false);
         }
