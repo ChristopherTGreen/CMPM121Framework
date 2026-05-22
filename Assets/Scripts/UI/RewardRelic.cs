@@ -139,23 +139,23 @@ public class RewardRelicDisplay : MonoBehaviour
     }
 
 
-    /* Gets called in the RewardScreenManager
+    
     public void ClearRewardRelicDisplays(GameObject rewardScreen)
     {
 
-        foreach (GameObject obj in rewardScreen.GetComponentInChildren<GameObject>())
+        foreach (Transform childobj in rewardScreen.transform)
         {
 
-            if (obj.tag == "RelicDisplay")
+            if (childobj.gameObject.CompareTag("RelicDisplay"))
             {
                 
-
+                Destroy(childobj.gameObject);
 
             }
 
         }
 
     }
-    */
+    
 
 }
