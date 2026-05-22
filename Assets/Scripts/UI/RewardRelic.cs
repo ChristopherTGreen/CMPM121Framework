@@ -97,12 +97,20 @@ public class RewardRelicDisplay : MonoBehaviour
             relicdisplay.GetComponentInChildren<TextMeshProUGUI>().transform.localPosition = new Vector3(0, -30); // position is based off the parent relicdisplay.transform.localPosition
 
 
+
+            //add a tag to the display button and icon + description so the clear method can clear them without clearing the other stuff
+            selector.tag = "RelicDisplay";
+            relicdisplay.tag = "RelicDisplay";
+
+
             x_pos += buttonGapx; // update at end - shifts all the displays over
 
         }
 
         // Add listeners to each button
     }
+
+
 
     public void TakeRelicHandler(RelicData relic, MenuSelectorController buttonlabel)
     {
@@ -129,5 +137,25 @@ public class RewardRelicDisplay : MonoBehaviour
         }
         
     }
+
+
+    /* Gets called in the RewardScreenManager
+    public void ClearRewardRelicDisplays(GameObject rewardScreen)
+    {
+
+        foreach (GameObject obj in rewardScreen.GetComponentInChildren<GameObject>())
+        {
+
+            if (obj.tag == "RelicDisplay")
+            {
+                
+
+
+            }
+
+        }
+
+    }
+    */
 
 }
