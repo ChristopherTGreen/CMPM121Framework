@@ -1,14 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class DamageAmpModifier : SpellModifier
 {
     //constructor
     public DamageAmpModifier(Spell inner) : base(inner)
     {
-        this.modData = GameManager.Instance.spells["damage-amplified"];
-        this.modData.damage_adder = "0";
-        this.modData.damage_multiplier = "2";
+        //SpellData template = GameManager.Instance.spells["damage-amplified"];
+        //this.modData = GameManager.Instance.spells["damage-amplified"].MemberwiseClone()
+        this.modData = GameManager.Instance.spells["damage-amplified"].Clone();
         Debug.Log("Modifier: Damage Amp Constructed");
     }
 

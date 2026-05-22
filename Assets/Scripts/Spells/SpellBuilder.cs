@@ -60,7 +60,12 @@ public class SpellBuilder
 
         foreach (PropertyInfo prop in properties)
         {
+            Debug.Log("prop");
+            Debug.Log(prop.Name);
+            // no stats, modData or inner
             if (prop.Name == "stats") continue;
+            if (prop.Name == "modData") continue;
+            if (prop.Name == "inner") continue;
             // Only copy if we can read from source and write to target
             if (prop.CanRead && prop.CanWrite)
             {

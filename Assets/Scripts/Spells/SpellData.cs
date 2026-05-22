@@ -41,6 +41,11 @@ public class SpellData
 
     // Singular projectile trajectory
     public string projectile_trajectory { get; set;} = null;
+
+    public SpellData Clone()
+    {
+        return (SpellData)this.MemberwiseClone();
+    }
 }
 
 public class SpellDamageData

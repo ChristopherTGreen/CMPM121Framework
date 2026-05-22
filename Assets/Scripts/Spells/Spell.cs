@@ -76,8 +76,7 @@ public class Spell : ISpell
         //Debug.Log("Damage");
         //force a int after damage multiplier - I dont like this...
         // Spell.cs line 147 doesn't like when I change this method to a float
-        Debug.Log(stats.amount.Count);
-        if (stats.amount != null && stats.amount.Count > 3) Debug.Log(ValueModifier.GetValue(new List<ValueModifier<float>>{ stats.amount[3] }, 1.0f));
+
         return (int)ValueModifier.GetValue(stats.amount, baseDamage.amount);
     }
 
@@ -183,13 +182,11 @@ public class Spell : ISpell
     // Not too sure if we should merge the cast here with the cast above - chris
     public void Cast()
     {
-        Debug.Log("VOID CAST");
         ((ISpell)this).Cast(new ValueModifier());
     }
 
     void ISpell.Cast(ValueModifier modifier)
     {
-        Debug.Log("ISPELL.CAST");
         this.stats = modifier; // saving stats
         this.Cast(modifier);
     }
