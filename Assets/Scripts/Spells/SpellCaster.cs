@@ -27,12 +27,13 @@ public class SpellCaster
         this.mana_reg = mana_reg;
         this.team = team;
         //spell = new SpellBuilder().Build(this);
-        spell = new ArcaneBolt(this);
+        //spell = new ArcaneBolt(this);
         //spell = new DamageAmpModifier(new DamageAmpModifier(baseSpell));
         //spell = new RandomModifier().CreateRandomModifier(baseSpell);
         //spell = new RandomModifier().CreateRandomSpell(this);
         //spell = new DamageAmpModifier(spell);
-
+        spell = new DamageMulModifier(new DamageMulModifier(new DamageAmpModifier(new ArcaneBolt(this))));
+        //spell = new DamageAmpModifier(new DamageMulModifier(new ArcaneBolt(this)));
         //spell = new DamageAmpModifier(new DoublerModifier(new HomingModifier(new ArcaneBolt(this))));
 
         // Storing the first random spell created

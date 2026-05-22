@@ -13,11 +13,11 @@ class ArcaneBolt : Spell
 
         //Debug.Log("ArcaneBolt Constructor: Got Arcane Bolt from the GameManager");
 
-        Spell spell = new SpellBuilder(this)
+        new SpellBuilder(this)
             .WithName(data.name)
             .WithDescription(data.description)
             .WithIcon(data.icon)
-            .WithDamage("70", data.damage.type)
+            .WithDamage(data.damage.amount, data.damage.type)
             .WithManaCost(data.mana_cost)
             .WithCooldown(data.cooldown)
             .WithTrajectory(data.projectile.trajectory)
@@ -34,5 +34,6 @@ class ArcaneBolt : Spell
         // overrids here should apply any modifiers if there are any, if there aren't then this does nothing (base stats)
         // Jay Testing something:
         //GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, target - where, GetSpeed(), OnHit);
+        //Cast(modifier);
     }
 }

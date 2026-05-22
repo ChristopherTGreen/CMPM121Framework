@@ -36,20 +36,7 @@ public class SpellModifier : Spell
         
 
         //COmbining the stats from 2 modifier classes together
-        this.stats.MergeFrom(inner.stats);
-
-        //Debug.Log("SpellModifier.cs_SpellModifier() >> Sucessfully Synced Data and Combined stats from 2 modifier classes with MergeFrom().");
-
-        // copy object C#
-
-
-        // Doing this with the constructors allows you to do 
-        //
-        // SpellModifier(
-        //  Spell(owner), owner
-        // ) 
-        //
-        // I Vaguely remember this from CSE 101 this also should be the decorator pattern - I think...
+        //this.stats.MergeFrom(inner.stats);
 
     }
 
@@ -63,7 +50,7 @@ public class SpellModifier : Spell
         //Debug.Log("SpellModifier.cs_Cast() >> Pre Mod Damage " + this.stats.amount);
         new SpellModifierBuilder(valueModifier).SpellModifierQuickBuilder(this.modData);
         //Debug.Log("SpellModifier.cs_Cast() >> Post Modifier Damage " + this.stats.amount);
-        
+        //Debug.Log(stats.amount.Count);
         ((ISpell)inner).Cast(valueModifier);
 
     }

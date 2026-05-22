@@ -41,7 +41,7 @@ public class EnemyController : MonoBehaviour
             // warning assumes this target is player
             PlayerController targetObject = target.gameObject.GetComponent<PlayerController>();
             targetObject.hp.Damage(new Damage(5, Damage.Type.PHYSICAL));
-            Debug.Log(targetObject);
+            //Debug.Log(targetObject);
             EventBus.Instance.DoDamageTaken(target.transform.position, targetObject);
         }
     }

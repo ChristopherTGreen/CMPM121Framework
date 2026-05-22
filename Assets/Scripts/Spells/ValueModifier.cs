@@ -194,13 +194,14 @@ public class ValueModifier<T>
 
         // Modifies specific value (base value of a spell) with current list of mods
         T result = original;
-
+        //Debug.Log("GetValue");
         foreach (ValueModifier<T> mod in mods)
         {
             // Calculating the addition and/or multiplication of the base value?
             result = mod.GetValue(result); // this GetValue is a edited version of ValueModifier<T>.GetValue. Edited below in Adder and Multiplier
+            //Debug.Log(result);
         }
-
+        //Debug.Log("done");
         return result;
     }
 }

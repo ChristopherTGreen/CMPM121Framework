@@ -4,7 +4,6 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.IO;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
@@ -93,7 +92,13 @@ public class PlayerController : MonoBehaviour
                 //updating player with new scaling
                 spellcaster.SetMaxMana(newData.mana);
                 spellcaster.mana_reg = newData.mana_regeneration;
+
+                Debug.Log("Power before: " + power);
+                
                 power = newData.spellpower;
+
+                Debug.Log("Power after: " + power);
+
                 speed = newData.speed;
                 
                 hp.SetMaxHP(newData.health);
