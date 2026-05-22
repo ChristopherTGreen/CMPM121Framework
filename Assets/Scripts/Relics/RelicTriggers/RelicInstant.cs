@@ -13,13 +13,13 @@ public class RelicInstant : RelicTrigger
     // SO in short this is an external checker for any values outside, meaning no RPN
     public string amountCurrent { get; set; } = null;// value which is the current amount
     // the amountToCheck might be what projectile we want
-    public RelicInstant(Action trigger, string amountToCheck, string givenCurrent) : base(trigger, amountToCheck)
+    public RelicInstant(string trigger, string amountToCheck, string givenCurrent) : base(trigger, amountToCheck)
     {
         this.amountCurrent = givenCurrent;
     }
 
     
-    protected override bool TriggerCheck(string amountToCheck)
+    protected override bool TriggerCheck(string amountToCheck, EventContext context)
     {
         if (amountToCheck == amountCurrent) return true;
         return false;

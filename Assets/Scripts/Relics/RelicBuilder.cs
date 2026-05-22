@@ -1,70 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 
 public class RelicBuilder
 {
-    public Relic relic;
-    public RelicData relicData
+    public Relic relic = new Relic();
+    public RelicData relicData;
 
 
     public RelicBuilder(RelicData relicData)
     {
         this.relicData = relicData;
-        RelicTriggerBuilder(relic);
     }
-
-
-    public RelicTrigger ConditionTriggerBuilder()
-    {
-        RelicTrigger trig = new RelicTrigger(EventBus.Instance.OnDamageTaken, "50");
-    }
-    public RelicTrigger EffectTriggerBuilder()
-    {
-
-    }
-
-    public void RelicEffectBuilder(=)
-    {
-        string description;
-        string amount;
-        
-    }
-
-    // used for type finding in conditions, or until finding in effects
-    public Action findAction(string action) 
-    {
-        switch (action)
-        {
-            case "take-damage":
-                return EventBus.Instance.OnDamageTaken;
-            case "on-damage":
-            case "stand-still":
-            case "cast-spell":
-            case "move":
-
-
-
-        }
-    }
-
-
-
-
     public Relic Build()
     {
         return relic;
     }
 
-
-
-
-
-    // Acts as an interface and class call
-    public SpellModifierBuilder(ValueModifier existingValueModifier)
+    public void RelicQuickBuilder() 
     {
-        this.valueMod = existingValueModifier;
+        relic.conditionDescription = relicData.trigger.description;
+        relic.sprite = relicData.sprite;
+
+        relic.relicEffect = RelicEffectBuilder();
+        relic.applyTrigger = ConditionTriggerBuilder();
+        relic.completeTrigger = EffectTriggerBuilder();
     }
 
 
+    public RelicTrigger ConditionTriggerBuilder()
+    {
+        return new RelicTrigger(relicData.trigger.type, relicData.trigger.amount);
+    }
+    public RelicTrigger EffectTriggerBuilder()
+    {
+        return new RelicTrigger(relicData.effect.until, relicData.effect.check);
+    }
+    public RelicEffect RelicEffectBuilder() 
+    {
+        RelicEffect relicEffect = RelicEffectFinder();
+        relicEffect.amount = relicData.effect.amount;
+        relicEffect.description = relicData.effect.description;
+        return relicEffect;
+    }
+    public RelicEffect RelicEffectFinder()
+    {
+        switch (relicData.effect.type)
+        {
+            case "gain-mana": return new GainMana();
+
+        }
+        throw new Exception("Relic Error: Relic effect type does not exist");
+
+
+
+    }
 }

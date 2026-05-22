@@ -6,21 +6,21 @@ using UnityEngine;
 
 public class RelicCountdown : RelicTrigger
 {
-    public Action triggerBreak;
+    public string triggerBreak;
     public bool running;
     public RelicTimer timer;
 
     // decides if a break call should start the action or not (should be false if condition, but if effect true since needs to deapply effects)
     public bool earlyCall;
 
-    public RelicCountdown(Action trigger, string amountToCheck, Action triggerSecondary, bool endActionEarly = false) : base(trigger, amountToCheck)
+    public RelicCountdown(string trigger, string amountToCheck, string triggerSecondary, bool endActionEarly = false) : base(trigger, amountToCheck)
     {
         this.triggerBreak = triggerSecondary;
-        triggerBreak += BreakCall;
+        EventBus.Instance.Register(triggerSecondary, BreakCall);
         this.earlyCall = endActionEarly;
     }
 
-    private void BreakCall()
+    private void BreakCall(EventContext context)
     {
         // if timer is not running, why are you here, go back
         if (timer == null) return;
@@ -29,7 +29,7 @@ public class RelicCountdown : RelicTrigger
         switch (earlyCall)
         {
             case true:
-                Check();
+                Check(context);
                 break;
             case false:
                 timer.OnTimerFinished -= base.Check;
@@ -39,13 +39,13 @@ public class RelicCountdown : RelicTrigger
         }
     }
 
-    protected override bool TriggerCheck(string amountToCheck)
+    protected override bool TriggerCheck(string amountToCheck, EventContext context)
     {
         // inital call, starts timer, and if followed through, returns true
         if (timer == null)
         {
             float duration = RPNEvaluator.RPNEvaluator.Evaluatef(amountToCheck, GameManager.Instance.variables);
-            timer = new RelicTimer(duration);
+            timer = new RelicTimer(duration, context);
 
             timer.OnTimerFinished += base.Check;
         }

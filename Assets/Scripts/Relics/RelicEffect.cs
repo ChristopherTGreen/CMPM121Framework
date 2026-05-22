@@ -5,35 +5,33 @@ using Unity.VisualScripting;
 
 public class RelicEffect
 {
-    public string description;
-    public string type;
     public string amount;
-    public string until;
+    public string description;
 
-    public SpellCaster caster;
+    //public SpellCaster caster;
 
     // constructor given the relevant trigger 
-    public RelicEffect(RelicTrigger relicTrigger)
+    public RelicEffect()
     {
         
     }
     // sub interfaces to prevent messing with apply effects and remove effects
-    public void StartEffect()
+    public void StartEffect(EventContext context)
     {
-        ApplyEffect();
+        ApplyEffect(context);
     }
-    public void EndEffect()
+    public void EndEffect(EventContext context)
     {
-        RemoveEffect();
+        RemoveEffect(context);
     }
 
 
-    protected virtual void ApplyEffect()
+    protected virtual void ApplyEffect(EventContext context)
     {
         
     }
 
-    protected virtual void RemoveEffect()
+    protected virtual void RemoveEffect(EventContext context)
     {
     }
 

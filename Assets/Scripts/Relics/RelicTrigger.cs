@@ -5,25 +5,22 @@ using System.Text;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RelicTrigger
 {
     public string amountToCheck { get; set; } = null;
 
     // Connect the relic effect or condition to this to tell it to call its action
-    public event Action OnTrigger;
+    public event Action<EventContext> OnTrigger;
 
-    // Given trigger from eventbus
-    public event Action triggerMain;
-    public RelicTrigger(Action<Action> trigger, string amountToCheck)
+    // Given name trigger for event bus
+    public string triggerMain;
+    public RelicTrigger(string eventName, string amountToCheck)
     {
-        triggerMain = trigger;
+        this.triggerMain = eventName;
         this.amountToCheck = amountToCheck;
-        triggerMain += Check;
-        triggerMain = EventBus.Instance.OnDamageTaken;
-        EventBus.Instance.OnDamageTaken += Check;
-        subscribeMethod(Check);
-
+        EventBus.Instance.Register(eventName, Check);
     }
 
     /*public void DoAction()
@@ -35,7 +32,7 @@ public class RelicTrigger
         if (TriggerCheck(amountToCheck, context))
         {
             // 2. If true, shout it out! 
-            OnTrigger?.Invoke();
+            OnTrigger?.Invoke(context);
             //return true;
         }
         //return false;
@@ -51,4 +48,10 @@ public class RelicTrigger
         // base action (helpful for any events which must be executed at the end of the full operation)
     }
     // method to find dedicated trigger based on type given
+
+    public void Unequip()
+    {
+        // used to disconnect observers
+       
+    }
 }

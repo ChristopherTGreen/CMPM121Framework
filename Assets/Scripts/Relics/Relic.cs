@@ -7,8 +7,15 @@ public class Relic
     public RelicEffect relicEffect; // actual effect itself
     public RelicTrigger applyTrigger;
     public RelicTrigger completeTrigger;
+    public string conditionDescription;
+    public int sprite;
 
-    public Relic(RelicEffect relicEffect, RelicTrigger effectStartTrigger, RelicTrigger effectEndTrigger)
+    public Relic()
+    {
+        
+    }
+
+    public void SetupRelic(RelicEffect relicEffect, RelicTrigger effectStartTrigger, RelicTrigger effectEndTrigger)
     {
         applyTrigger = effectStartTrigger;
         applyTrigger.OnTrigger += relicEffect.StartEffect;

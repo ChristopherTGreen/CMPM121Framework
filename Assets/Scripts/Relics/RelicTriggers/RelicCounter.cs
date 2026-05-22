@@ -6,13 +6,13 @@ public class RelicCounter : RelicTrigger
 {
     // Essentially a live tracker to count up instances of event calls
     public int counter { get; set; } = 0;
-    public RelicCounter(Action trigger, string amountToCheck) : base(trigger, amountToCheck)
+    public RelicCounter(string trigger, string amountToCheck) : base(trigger, amountToCheck)
     {
 
         this.counter = counter;
     }
 
-    protected override bool TriggerCheck(string amountToCheck)
+    protected override bool TriggerCheck(string amountToCheck, EventContext context)
     {
         
         if (counter <= RPNEvaluator.RPNEvaluator.Evaluatef(amountToCheck, GameManager.Instance.variables))

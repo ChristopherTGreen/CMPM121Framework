@@ -7,18 +7,18 @@ using UnityEngine;
 public class RelicTimer
 {
     // general relic timer class, used for the relic 
-    public event Action OnTimerFinished;
+    public event Action<EventContext> OnTimerFinished;
     private Coroutine timer;
     public bool running { get; private set; } = false;
-    public RelicTimer(float amount)
+    public RelicTimer(float amount, EventContext context)
     {
-        timer = CoroutineManager.Instance.StartCoroutine(CountDown(amount));
+        timer = CoroutineManager.Instance.StartCoroutine(CountDown(amount, context));
     }
 
-    public IEnumerator CountDown(float amount)
+    public IEnumerator CountDown(float amount, EventContext context)
     {
         yield return new WaitForSeconds(amount);
-        OnTimerFinished?.Invoke();
+        OnTimerFinished?.Invoke(context);
     }
 
     public void Cancel()
