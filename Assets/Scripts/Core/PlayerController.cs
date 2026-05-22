@@ -18,11 +18,15 @@ public class PlayerController : MonoBehaviour
     public int speed;
     public int power;
 
+
     public Unit unit;
 
     public int activeSpellIndex;
 
+    private string PlayerState = "IDLE";
+
     private bool PlayerScaledFlag;
+    private bool PlayerStillFlag;
 
     public ClassData chosenClass;
 
@@ -65,6 +69,7 @@ public class PlayerController : MonoBehaviour
         manaui.SetSpellCaster(spellcaster);
         spellui.SetSpell(spellcaster.spell);
 
+
         UnityEngine.Debug.Log("Initial player health: " + hp.max_hp);
         UnityEngine.Debug.Log("Initial player max mana: " + spellcaster.max_mana);
         UnityEngine.Debug.Log("Initial player mana regen: " + spellcaster.mana_reg);
@@ -73,6 +78,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        
         //When player hit's tab, toggle the spell used
         if (Keyboard.current[Key.Tab].wasPressedThisFrame)
         {
@@ -120,6 +128,34 @@ public class PlayerController : MonoBehaviour
             PlayerScaledFlag = false;
         }
 
+
+
+        switch (PlayerState)
+        {
+            case "IDLE":
+
+
+
+                if (!PlayerStillFlag) PlayerState = "MOVING";
+                break;
+
+            case "MOVING":
+
+                if (unit.movement == new Vector2(0, 0))
+                {
+                    EventBus.Instance.DoStop(transform.position, this);
+                    PlayerStillFlag = true;
+                    PlayerState = "IDLE";
+                }
+                break;
+        }
+
+
+    }
+
+    void MovingCall()
+    {
+
     }
 
     void OnAttack(InputValue value)
@@ -135,6 +171,9 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.GameState.PREGAME || GameManager.Instance.state == GameManager.GameState.GAMEOVER) return;
         unit.movement = value.Get<Vector2>()*speed;
+        PlayerStillFlag = false;
+
+        EventBus.Instance.DoMove(transform.position, this);
     }
 
     void Die()

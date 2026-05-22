@@ -6,8 +6,15 @@ public class ReduceManaCost : RelicEffect
 {
     protected override void ApplyEffect(EventContext context)
     {
-        int manaGain = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
+        int reduceManaCost = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
 
-        context.player.spellcaster.SetMana(manaGain);
+        context.player.spellcaster.mana_cost_extra -= reduceManaCost;
+    }
+
+    protected override void RemoveEffect(EventContext context)
+    {
+        int reduceManaCost = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
+
+        context.player.spellcaster.mana_cost_extra += reduceManaCost;
     }
 }

@@ -6,8 +6,14 @@ public class GainSpellPower : RelicEffect
 {
     protected override void ApplyEffect(EventContext context)
     {
-        int manaGain = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
+        int gainPower = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
 
-        context.player.spellcaster.SetMana(manaGain);
+        context.player.power += gainPower;
+    }
+    protected override void RemoveEffect(EventContext context)
+    {
+        int gainPower = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
+
+        context.player.power -= gainPower;
     }
 }

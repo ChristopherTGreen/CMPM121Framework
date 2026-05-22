@@ -8,13 +8,7 @@ public class GainDamage : RelicEffect
     {
         int damageGain = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
 
-        //context.player.spellcaster.spell += spellcaster.spell(manaGain);
-    }
 
-    protected override void RemoveEffect(EventContext context)
-    {
-        int damageGain = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
-
-        //context.player.spellcaster.SetMana(manaGain);
+        context.damage.amount += damageGain;
     }
 }

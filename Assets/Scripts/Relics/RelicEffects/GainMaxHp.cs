@@ -6,8 +6,8 @@ public class GainMaxHp : RelicEffect
 {
     protected override void ApplyEffect(EventContext context)
     {
-        int manaGain = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
+        int hpGain = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
 
-        context.player.spellcaster.SetMana(manaGain);
+        context.hittable.SetMaxHP(hpGain);
     }
 }

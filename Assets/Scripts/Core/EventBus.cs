@@ -30,50 +30,38 @@ public class EventBus
         OnDamageTaken?.Invoke(where, target);
     }
     // OnKill called when killing
-    public event Action<Vector3, GameObject> OnKill;
-    public void DoKill(Vector3 where, GameObject owner)
+    public event Action<Vector3, PlayerController> OnKill;
+    public void DoKill(Vector3 where, PlayerController owner)
     {
         OnKill?.Invoke(where, owner);
     }
     // OnCast called when casting
-    public event Action<Vector3, SpellCaster> OnCast;
-    public void DoCast(Vector3 where, SpellCaster owner)
+    public event Action<Vector3, PlayerController> OnCast;
+    public void DoCast(Vector3 where, PlayerController owner)
     {
         OnCast?.Invoke(where, owner);
     }
     // OnMove called when moving
-    public event Action<Vector3, SpellCaster> OnMove;
-    public void DoMove(Vector3 where, SpellCaster owner)
+    public event Action<Vector3, PlayerController> OnMove;
+    public void DoMove(Vector3 where, PlayerController owner)
     {
         OnMove?.Invoke(where, owner);
     }
     // OnStill called when stopped
-    public event Action<Vector3, SpellCaster> OnStop;
-    public void DoStop(Vector3 where, SpellCaster owner)
+    public event Action<Vector3, PlayerController> OnStop;
+    public void DoStop(Vector3 where, PlayerController owner)
     {
         OnStop?.Invoke(where, owner);
     }
     // OnWave called when a wave ends
     public event Action OnWave;
-    public void DoWave(Vector3 where, SpellCaster owner)
+    public void DoWave()
     {
         OnWave?.Invoke();
     }
 
 
-    
-
-    // helper methods to help map events
-    public void RegisterEmpty(string eventName, Action listener)
-    {
-        //if (eventName == "move") OnPlayerMoved += listener;\
-    }
-
-    public void RegisterFloat(string eventName, Action listener)
-    {
-        //if (eventName == "move") OnPlayerMoved += listener;
-    }
-
+   
 
     private Dictionary<Action<EventContext>, Delegate> activeWrappers = new();
     // register an action
@@ -90,8 +78,24 @@ public class EventBus
                 OnDamageTaken += handlerTakeDamage;
                 break;
             case "on-kill":
-                Action<Vector3, GameObject> handlerOnKill = (handlerWhere, handlerKill) => listener(new EventContext { where = handlerWhere, source = handlerKill });
+                Action<Vector3, PlayerController> handlerOnKill = (handlerWhere, handlerKiller) => listener(new EventContext { where = handlerWhere, player = handlerKiller });
                 OnKill += handlerOnKill;
+                break;
+            case "on-cast":
+                Action<Vector3, PlayerController> handlerOnCast = (handlerWhere, handlerCaster) => listener(new EventContext { where = handlerWhere, player = handlerCaster });
+                OnCast += handlerOnCast;
+                break;
+            case "on-move":
+                Action<Vector3, PlayerController> handlerOnMove = (handlerWhere, handlerMover) => listener(new EventContext { where = handlerWhere, player = handlerMover });
+                OnMove += handlerOnMove;
+                break;
+            case "on-stop":
+                Action<Vector3, PlayerController> handlerOnStop = (handlerWhere, handlerStopper) => listener(new EventContext { where = handlerWhere, player = handlerStopper });
+                OnStop += handlerOnStop;
+                break;
+            case "on-wave":
+                Action handlerOnWave = () => listener(new EventContext { });
+                OnWave += handlerOnWave;
                 break;
         }
     }
@@ -109,7 +113,19 @@ public class EventBus
                     OnDamageTaken -= (Action<Vector3, PlayerController>)wrapper;
                     break;
                 case "on-kill":
-                    OnKill -= (Action<Vector3, GameObject>)wrapper;
+                    OnKill -= (Action<Vector3, PlayerController>)wrapper;
+                    break;
+                case "on-cast":
+                    OnCast -= (Action<Vector3, PlayerController>)wrapper;
+                    break;
+                case "on-move":
+                    OnMove -= (Action<Vector3, PlayerController>)wrapper;
+                    break;
+                case "on-stop":
+                    OnStop -= (Action<Vector3, PlayerController>)wrapper;
+                    break;
+                case "on-wave":
+                    OnWave -= (Action)wrapper;
                     break;
             }
         }
@@ -135,16 +151,4 @@ public class EventContext
     public Damage damage;
 }
 
-// helps with creating connections dynamically without needing to worry about anything else
-public struct EventConnection
-{
-    public Action<Action<EventContext>> Subscribe;
-    public Action<Action<EventContext>> Unsubscribe;
-
-    public EventConnection(Action<Action<EventContext>> subscribe, Action<Action<EventContext>> unsubscribe)
-    {
-        Subscribe = subscribe;
-        Unsubscribe = unsubscribe;
-    }
-}
 

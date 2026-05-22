@@ -52,6 +52,11 @@ public class RelicBuilder
         switch (relicData.effect.type)
         {
             case "gain-mana": return new GainMana();
+            case "gain-damage": return new GainDamage();
+            case "gain-spellpower": return new GainSpellPower();
+            case "gain-hp": return new GainHp();
+            case "gain-maxhp": return new GainMaxHp();
+            case "reduce-manacost": return new ReduceManaCost();
 
         }
         throw new Exception("Relic Error: Relic effect type does not exist");
