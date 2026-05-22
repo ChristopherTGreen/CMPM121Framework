@@ -7,45 +7,47 @@ using UnityEditor.PackageManager;
 public class RelicBuilder
 {
     public Relic relic = new Relic();
-    public RelicData relicData;
 
 
-    public RelicBuilder(RelicData relicData)
+    public RelicBuilder(Relic relic)
     {
-        this.relicData = relicData;
+        this.relic = relic;
     }
     public Relic Build()
     {
         return relic;
     }
 
-    public void RelicQuickBuilder() 
+    public RelicBuilder RelicQuickBuilder(RelicData relicData) 
     {
         relic.conditionDescription = relicData.trigger.description;
         relic.sprite = relicData.sprite;
 
-        relic.relicEffect = RelicEffectBuilder();
-        relic.applyTrigger = ConditionTriggerBuilder();
-        relic.completeTrigger = EffectTriggerBuilder();
+        relic.relicEffect = RelicEffectBuilder(relicData);
+        relic.applyTrigger = ConditionTriggerBuilder(relicData);
+        relic.completeTrigger = EffectTriggerBuilder(relicData);
+
+
+        return this;
     }
 
 
-    public RelicTrigger ConditionTriggerBuilder()
+    public RelicTrigger ConditionTriggerBuilder(RelicData relicData)
     {
         return new RelicTrigger(relicData.trigger.type, relicData.trigger.amount);
     }
-    public RelicTrigger EffectTriggerBuilder()
+    public RelicTrigger EffectTriggerBuilder(RelicData relicData)
     {
         return new RelicTrigger(relicData.effect.until, relicData.effect.check);
     }
-    public RelicEffect RelicEffectBuilder() 
+    public RelicEffect RelicEffectBuilder(RelicData relicData) 
     {
-        RelicEffect relicEffect = RelicEffectFinder();
+        RelicEffect relicEffect = RelicEffectFinder(relicData);
         relicEffect.amount = relicData.effect.amount;
         relicEffect.description = relicData.effect.description;
         return relicEffect;
     }
-    public RelicEffect RelicEffectFinder()
+    public RelicEffect RelicEffectFinder(RelicData relicData)
     {
         switch (relicData.effect.type)
         {

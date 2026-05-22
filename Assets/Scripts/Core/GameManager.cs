@@ -49,6 +49,7 @@ public class GameManager
 
     public ClassData chosenClass;
 
+    public Dictionary<string, Relic> activeRelics = new Dictionary<string, Relic>();
     public Dictionary<string, RelicData> tempActiveRelics = new Dictionary<string, RelicData>();
 
     public Dictionary<string, int> variables => new Dictionary<string, int>
@@ -121,5 +122,8 @@ public class GameManager
         classTypes = RetrieveClassData.ClassDictionary();
         relics = RetrieveRelicData.RelicsDictionary();
         Debug.Log(string.Join(", ", relics));
+
+
+        activeRelics.Add("Green Gem", new GreenGem(relics["Green Gem"]));
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine;
 // may need to make this an "interface" and not a "class" - chris
 public class ValueModifier
 {
-    public Dictionaru
+    
     // Modifier storage:
     // strict values
     // These lists track the value modifiers applied to the base spell.

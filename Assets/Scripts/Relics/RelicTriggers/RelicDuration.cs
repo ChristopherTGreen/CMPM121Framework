@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class RelicCountdown : RelicTrigger
 {
-    public string triggerBreak;
     public bool running;
     public RelicTimer timer;
 
@@ -35,7 +34,6 @@ public class RelicCountdown : RelicTrigger
                 timer.OnTimerFinished -= base.Check;
                 timer = null;
                 break;
-            default: break;
         }
     }
 

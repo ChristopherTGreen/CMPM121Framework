@@ -23,9 +23,4 @@ public class RelicCounter : RelicTrigger
         counter += 1;
         return false;
     }
-
-    protected override void OnAction()
-    {
-
-    }
 }

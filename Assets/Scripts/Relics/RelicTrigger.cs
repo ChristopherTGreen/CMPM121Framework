@@ -10,23 +10,19 @@ using UnityEngine.UIElements;
 public class RelicTrigger
 {
     public string amountToCheck { get; set; } = null;
+    public string triggerBreak { get; set; } = null;
 
     // Connect the relic effect or condition to this to tell it to call its action
     public event Action<EventContext> OnTrigger;
 
     // Given name trigger for event bus
-    public string triggerMain;
+    public string triggerMain { get; set; } = null;
     public RelicTrigger(string eventName, string amountToCheck)
     {
         this.triggerMain = eventName;
         this.amountToCheck = amountToCheck;
-        EventBus.Instance.Register(eventName, Check);
     }
 
-    /*public void DoAction()
-    {
-        ConditionCheck();
-    }*/
     public void Check(EventContext context)
     {
         if (TriggerCheck(amountToCheck, context))
@@ -42,16 +38,17 @@ public class RelicTrigger
     {
         return true;
     }
-
-    protected virtual void OnAction()
+    
+    public void AddObserver()
     {
-        // base action (helpful for any events which must be executed at the end of the full operation)
+        EventBus.Instance.Register(triggerMain, Check);
     }
-    // method to find dedicated trigger based on type given
-
-    public void Unequip()
+    public void RemoveObserver() 
     {
-        // used to disconnect observers
-       
+        EventBus.Instance.Deregister(triggerMain, Check);
+
     }
+
+
+
 }
