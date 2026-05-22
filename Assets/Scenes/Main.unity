@@ -6216,6 +6216,7 @@ GameObject:
   - component: {fileID: 1709288114}
   - component: {fileID: 1709288113}
   - component: {fileID: 1709288112}
+  - component: {fileID: 1709288115}
   m_Layer: 5
   m_Name: RewardScreen
   m_TagString: Untagged
@@ -6283,6 +6284,21 @@ RectTransform:
   m_AnchoredPosition: {x: 2.2000427, y: -20}
   m_SizeDelta: {x: -195.5999, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1709288115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709288111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd30e10cf91f134597fc23adc7aaf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewardRelicDisplay
+  relicPrefab: {fileID: 7557543120329724951, guid: 0fc6ca25fb4ca524ab2a9d7d17db72de, type: 3}
+  buttonPrefab: {fileID: 6791571272867747119, guid: 47865e4d0d1669541a3aa2992225a687, type: 3}
+  rewardscreen: {fileID: 1709288112}
 --- !u!1 &1718273950
 GameObject:
   m_ObjectHideFlags: 0

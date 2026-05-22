@@ -11,6 +11,7 @@ public class RewardScreenManager : MonoBehaviour
     public GameObject spellReward;
     public SpellUIContainer spelluicontainer;
     RewardSpell rewardSpell = new RewardSpell();
+    RewardRelicDisplay rewardRelicDisplay;
 
 
 
@@ -18,6 +19,8 @@ public class RewardScreenManager : MonoBehaviour
     void Start()
     {
         GlobalRewardUI = rewardUI;
+
+        rewardRelicDisplay = rewardUI.GetComponent<RewardRelicDisplay>();
 
         // attach game object spellReward to the class handler for spells
         rewardSpell.SetSpellUI(spellReward);
@@ -33,6 +36,15 @@ public class RewardScreenManager : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
         {
+
+            // TESTING FOR NOW:
+
+            // % 3 for every 3 waves
+            if (GameManager.Instance.wave_count % 1 == 0) //set at 1 for testing
+            {
+                rewardRelicDisplay.RelicRewards();
+            }
+
             NextWaveButtonHandler();
             rewardSpell.AcceptButtonHandler();
             rewardSpell.DropButtonHandler();
@@ -56,6 +68,8 @@ public class RewardScreenManager : MonoBehaviour
         {
             //When wave starts set the rewardSpellGenerated flag to false
             rewardSpell.RewardSpellGenerated = false;
+            rewardRelicDisplay.relicsDisplayedFlag = false;
+            rewardRelicDisplay.relicSelectedFlag = false;
 
             rewardUI.SetActive(false);
         }
