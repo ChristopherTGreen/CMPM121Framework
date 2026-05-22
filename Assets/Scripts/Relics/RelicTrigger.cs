@@ -15,20 +15,24 @@ public class RelicTrigger
 
     // Given trigger from eventbus
     public event Action triggerMain;
-    public RelicTrigger(Action trigger, string amountToCheck)
+    public RelicTrigger(Action<Action> trigger, string amountToCheck)
     {
         triggerMain = trigger;
         this.amountToCheck = amountToCheck;
         triggerMain += Check;
+        triggerMain = EventBus.Instance.OnDamageTaken;
+        EventBus.Instance.OnDamageTaken += Check;
+        subscribeMethod(Check);
+
     }
 
     /*public void DoAction()
     {
         ConditionCheck();
     }*/
-    public void Check()
+    public void Check(EventContext context)
     {
-        if (TriggerCheck(amountToCheck))
+        if (TriggerCheck(amountToCheck, context))
         {
             // 2. If true, shout it out! 
             OnTrigger?.Invoke();
@@ -37,7 +41,7 @@ public class RelicTrigger
         //return false;
     }
 
-    protected virtual bool TriggerCheck(string amountToCheck)
+    protected virtual bool TriggerCheck(string amountToCheck, EventContext context)
     {
         return true;
     }
