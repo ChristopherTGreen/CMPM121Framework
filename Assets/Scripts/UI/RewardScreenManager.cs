@@ -64,6 +64,7 @@ public class RewardScreenManager : MonoBehaviour
             //When wave starts set the rewardSpellGenerated flag to false
             rewardSpell.RewardSpellGenerated = false;
             rewardRelicDisplay.relicsDisplayedFlag = false;
+            rewardRelicDisplay.relicSelectedFlag = false;
 
             rewardUI.SetActive(false);
         }

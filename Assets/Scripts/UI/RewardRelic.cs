@@ -18,6 +18,9 @@ public class RewardRelicDisplay : MonoBehaviour
 
     public bool relicsDisplayedFlag = false;
     private bool relicsLoadedFlag = false; //TESTING
+    public bool relicSelectedFlag = false;
+
+    public Dictionary<string, RelicData> tempActiveRelics;
     
     public void RelicRewards()
     {
@@ -74,7 +77,7 @@ public class RewardRelicDisplay : MonoBehaviour
             selector.GetComponent<MenuSelectorController>().label.text = "Take";
             selector.GetComponent<MenuSelectorController>().spawner = null; //sets the spawner to null so the StartLevel() in the MenuSelectorController just returns instead of staating the level
             selector.GetComponent<Button>().onClick.RemoveAllListeners();
-            selector.GetComponent<Button>().onClick.AddListener(() => TakeRelicHandler(relic));
+            selector.GetComponent<Button>().onClick.AddListener(() => TakeRelicHandler(relic, selector.GetComponent<MenuSelectorController>()   ));
 
 
 
@@ -101,13 +104,30 @@ public class RewardRelicDisplay : MonoBehaviour
         // Add listeners to each button
     }
 
-    public void TakeRelicHandler(RelicData relic)
+    public void TakeRelicHandler(RelicData relic, MenuSelectorController buttonlabel)
     {
         //handles taking a relic and blocks off the other buttons from being clicked.
-        Debug.Log("RewardRelicDisplay.cs_TakeRelicHandler() >> Took " + relic.name);
 
         // if we have a active relics list or dictionary in the game manager, all you need to do is add 'relic' to that list or dictionary
         // Reference the 'AssignClass' method in PlayerClassSelector.cs for how I handled the player's selected class
+
+        if (!relicSelectedFlag)
+        {
+            
+            GameManager.Instance.tempActiveRelics.Add(relic.name, relic);
+
+            Debug.Log("RewardRelicDisplay.cs_TakeRelicHandler() >> Took " + relic.name);
+
+            buttonlabel.label.text = "Relic Selected";
+            relicSelectedFlag = true;
+        }
+        else
+        {
+
+            Debug.Log("RewardRelicDisplay.cs_TakeRelicHandler() >> You already took a relic!");
+            return;
+        }
+        
     }
 
 }
