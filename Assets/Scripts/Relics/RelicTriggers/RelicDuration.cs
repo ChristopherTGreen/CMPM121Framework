@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class RelicCountdown : RelicTrigger
+public class RelicDuration : RelicTrigger
 {
     public bool running;
     public RelicTimer timer;
@@ -12,7 +12,7 @@ public class RelicCountdown : RelicTrigger
     // decides if a break call should start the action or not (should be false if condition, but if effect true since needs to deapply effects)
     public bool earlyCall;
 
-    public RelicCountdown(string trigger, string amountToCheck, string triggerSecondary, bool endActionEarly = false) : base(trigger, amountToCheck)
+    public RelicDuration(string trigger, string amountToCheck, string triggerSecondary, bool endActionEarly = false) : base(trigger, amountToCheck)
     {
         this.triggerBreak = triggerSecondary;
         EventBus.Instance.Register(triggerSecondary, BreakCall);

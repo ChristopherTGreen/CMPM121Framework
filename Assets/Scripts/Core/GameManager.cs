@@ -124,7 +124,7 @@ public class GameManager
         Debug.Log(string.Join(", ", relics));
 
 
-        activeRelics.Add("Green Gem", new GreenGem(relics["Green Gem"]));
-        activeRelics["Green Gem"].Enable();
+        activeRelics.Add("Jade Elephant", new GreenGem(relics["Jade Elephant"]));
+        activeRelics["Jade Elephant"].Enable();
     }
 }

@@ -18,28 +18,39 @@ public class RelicBuilder
         return relic;
     }
 
-    public RelicBuilder RelicQuickBuilder(RelicData relicData) 
+    public RelicBuilder RelicQuickBuilder(RelicData relicData, string triggerType) 
     {
         relic.conditionDescription = relicData.trigger.description;
         relic.sprite = relicData.sprite;
 
         relic.relicEffect = RelicEffectBuilder(relicData);
-        relic.applyTrigger = ConditionTriggerBuilder(relicData);
-        relic.completeTrigger = EffectTriggerBuilder(relicData);
+        relic.applyTrigger = ConditionTriggerBuilder(relicData, triggerType);
+        relic.completeTrigger = EffectTriggerBuilder(relicData, triggerType);
 
 
         return this;
     }
 
 
-    public RelicTrigger ConditionTriggerBuilder(RelicData relicData)
+    public RelicTrigger ConditionTriggerBuilder(RelicData relicData, string triggerType)
     {
-        return new RelicTrigger(relicData.trigger.type, relicData.trigger.amount);
+        switch (triggerType)
+        {
+            case "counter": return new RelicCounter(relicData.trigger.type, relicData.trigger.amount);
+            case "duration": return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, relicData.trigger.until, false);
+            case "instant": return new RelicInstant(relicData.trigger.type, relicData.trigger.amount, relicData.trigger.check);
+            default: return new RelicTrigger(triggerType, relicData.trigger.amount);
+        }
+        
+        
     }
-    public RelicTrigger EffectTriggerBuilder(RelicData relicData)
+    public RelicTrigger EffectTriggerBuilder(RelicData relicData, string triggerType)
     {
-        return new RelicTrigger(relicData.effect.until, relicData.effect.check);
-    }
+        case "counter": return new RelicCounter(relicData.trigger.type, relicData.trigger.amount);
+        case "duration": return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, relicData.trigger.until, true);
+        case "instant": return new RelicInstant(relicData.trigger.type, relicData.trigger.amount, relicData.trigger.check);
+        default: return new RelicTrigger(triggerType, relicData.trigger.amount);
+        }
     public RelicEffect RelicEffectBuilder(RelicData relicData) 
     {
         RelicEffect relicEffect = RelicEffectFinder(relicData);
