@@ -17,6 +17,7 @@ public class RelicTrigger
 
     // Given name trigger for event bus
     public string triggerMain { get; set; } = null;
+   
     public RelicTrigger(string eventName, string amountToCheck)
     {
         this.triggerMain = eventName;

@@ -10,4 +10,5 @@ public class GainMana : RelicEffect
         
         context.player.spellcaster.SetMana(manaGain);
     }
+  
 }

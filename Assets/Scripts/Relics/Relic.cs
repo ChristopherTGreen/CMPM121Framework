@@ -9,6 +9,8 @@ public class Relic
     public RelicTrigger applyTrigger;
     public RelicTrigger completeTrigger;
     public string conditionDescription;
+
+    
     // actual information for relic class
     public string name { get; set; } = null;
     public int sprite { get; set; } = 0;
@@ -39,6 +41,12 @@ public class Relic
         applyTrigger.OnTrigger -= relicEffect.StartEffect;
         completeTrigger.OnTrigger -= relicEffect.EndEffect;
     }
+
+
+    
+
+
+
 
 
     // get call methods

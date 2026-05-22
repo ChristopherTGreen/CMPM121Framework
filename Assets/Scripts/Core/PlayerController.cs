@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
                 spellcaster.mana_reg = newData.mana_regeneration;
 
                 Debug.Log("Power before: " + power);
-                
+
                 power = newData.spellpower;
 
                 Debug.Log("Power after: " + power);
@@ -215,6 +215,15 @@ public class PlayerController : MonoBehaviour
             throw new System.Exception("PlayerController.cs_SwitchSpell() >> MASSIVE ERROR! YOU SHOULD NOT HAVE LESS THAN 1 SPELL! CHECK SpellCaster.cs");
         } 
 
+    }
+
+    public int GetPower()
+    {
+        return power;
+    }
+    public void SetPower(int power)
+    {
+        this.power = power;
     }
 
 }

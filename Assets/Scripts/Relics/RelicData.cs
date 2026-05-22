@@ -25,8 +25,6 @@ public class Trigger
     public string description { get; set; } = null;
     public string type { get; set; } = null;
     public string amount { get; set; } = null;
-    public string check { get; set; } = null;
-    public string until { get; set; } = null;
 
 }
 
@@ -39,7 +37,7 @@ public class Effect
     public string type { get; set; } = null;
     public string amount { get; set; } = null;
     public string until { get; set; } = null;
-    public string check { get; set; } = null;
+
 
 }
 

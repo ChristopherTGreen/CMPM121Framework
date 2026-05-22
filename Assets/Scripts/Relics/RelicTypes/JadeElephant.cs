@@ -7,6 +7,8 @@ public class JadeElephant : Relic
     public JadeElephant(RelicData relicData) : base()
     {
         Build(relicData);
+
+
     }
 
 

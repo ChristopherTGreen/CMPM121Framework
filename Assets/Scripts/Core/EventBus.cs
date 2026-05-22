@@ -45,12 +45,14 @@ public class EventBus
     public event Action<Vector3, PlayerController> OnMove;
     public void DoMove(Vector3 where, PlayerController owner)
     {
+        Debug.Log("Player Move");
         OnMove?.Invoke(where, owner);
     }
     // OnStill called when stopped
     public event Action<Vector3, PlayerController> OnStop;
     public void DoStop(Vector3 where, PlayerController owner)
     {
+        Debug.Log("Player Stop");
         OnStop?.Invoke(where, owner);
     }
     // OnWave called when a wave ends
@@ -85,11 +87,11 @@ public class EventBus
                 Action<Vector3, PlayerController> handlerOnCast = (handlerWhere, handlerCaster) => listener(new EventContext { where = handlerWhere, player = handlerCaster });
                 OnCast += handlerOnCast;
                 break;
-            case "on-move":
+            case "move":
                 Action<Vector3, PlayerController> handlerOnMove = (handlerWhere, handlerMover) => listener(new EventContext { where = handlerWhere, player = handlerMover });
                 OnMove += handlerOnMove;
                 break;
-            case "on-stop":
+            case "stand-still":
                 Action<Vector3, PlayerController> handlerOnStop = (handlerWhere, handlerStopper) => listener(new EventContext { where = handlerWhere, player = handlerStopper });
                 OnStop += handlerOnStop;
                 break;

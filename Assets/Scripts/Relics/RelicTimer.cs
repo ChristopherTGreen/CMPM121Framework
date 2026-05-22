@@ -17,7 +17,9 @@ public class RelicTimer
 
     public IEnumerator CountDown(float amount, EventContext context)
     {
+        Debug.Log("COUNTDOWN " + amount);
         yield return new WaitForSeconds(amount);
+        Debug.Log("COUNTDOWN FINISHED");
         OnTimerFinished?.Invoke(context);
     }
 

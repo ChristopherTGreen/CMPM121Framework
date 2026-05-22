@@ -18,39 +18,85 @@ public class RelicBuilder
         return relic;
     }
 
-    public RelicBuilder RelicQuickBuilder(RelicData relicData, string triggerType) 
+    public RelicBuilder RelicQuickBuilder(RelicData relicData) 
     {
         relic.conditionDescription = relicData.trigger.description;
         relic.sprite = relicData.sprite;
 
         relic.relicEffect = RelicEffectBuilder(relicData);
-        relic.applyTrigger = ConditionTriggerBuilder(relicData, triggerType);
-        relic.completeTrigger = EffectTriggerBuilder(relicData, triggerType);
+        relic.applyTrigger = ConditionTriggerBuilder(relicData);
+        relic.completeTrigger = EffectTriggerBuilder(relicData);
 
 
         return this;
     }
 
 
-    public RelicTrigger ConditionTriggerBuilder(RelicData relicData, string triggerType)
+    public RelicTrigger ConditionTriggerBuilder(RelicData relicData)
     {
-        switch (triggerType)
+        string currentType = relicData.trigger.type;
+        // most likely triggers which don't need checks or comparisons
+        if (relicData.trigger.amount == null) 
         {
+            switch (currentType)
+            {
+                case ("take-damage"): return new RelicTrigger(relicData.trigger.type, null);
+            }
+        }
+
+
+
+        // most likely different special types
+        switch (currentType)
+        {
+            case ("stand-still"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, "move"); // technically "move" cold be the effect.until, research this more - chris
+        }
+
+        throw new Exception("Relic Condition Trigger: Could not find condition trigger");
+
+        /*
+        switch (relicData.trigger.type)
+        {
+            // ignore below
             case "counter": return new RelicCounter(relicData.trigger.type, relicData.trigger.amount);
             case "duration": return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, relicData.trigger.until, false);
             case "instant": return new RelicInstant(relicData.trigger.type, relicData.trigger.amount, relicData.trigger.check);
-            default: return new RelicTrigger(triggerType, relicData.trigger.amount);
+            default: return new RelicTrigger(relicData.trigger.type, relicData.trigger.amount);
         }
-        
+        */
         
     }
-    public RelicTrigger EffectTriggerBuilder(RelicData relicData, string triggerType)
+    public RelicTrigger EffectTriggerBuilder(RelicData relicData)
     {
-        case "counter": return new RelicCounter(relicData.trigger.type, relicData.trigger.amount);
-        case "duration": return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, relicData.trigger.until, true);
-        case "instant": return new RelicInstant(relicData.trigger.type, relicData.trigger.amount, relicData.trigger.check);
-        default: return new RelicTrigger(triggerType, relicData.trigger.amount);
+        if (relicData.effect.until == null) return new RelicTrigger(null, null);
+        string currentType = relicData.effect.until;
+        // most likely triggers which don't need checks or comparisons (this is so far all of them for json)
+        if (relicData.effect.until != null)
+        {
+            switch (currentType)
+            {
+                case ("move"): return new RelicTrigger(currentType, null);
+            }
         }
+
+        /*
+
+        // most likely different special types
+        switch (relicData.trigger.type)
+        {
+            case ("stand-still"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, "move");
+        }
+        */
+        throw new Exception("Relic Condition Trigger: Could not find condition trigger");
+
+        /*switch (triggerName)
+        {
+            case "counter": return new RelicCounter(relicData.trigger.type, relicData.trigger.amount);
+            case "duration": return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, relicData.trigger.until, true);
+            case "instant": return new RelicInstant(relicData.trigger.type, relicData.trigger.amount, relicData.trigger.check);
+            default: return new RelicTrigger(relicData.trigger.type, relicData.trigger.amount);
+        }*/
+    }
     public RelicEffect RelicEffectBuilder(RelicData relicData) 
     {
         RelicEffect relicEffect = RelicEffectFinder(relicData);
@@ -75,4 +121,5 @@ public class RelicBuilder
 
 
     }
+
 }
