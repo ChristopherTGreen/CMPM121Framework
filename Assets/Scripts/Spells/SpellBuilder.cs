@@ -19,19 +19,20 @@ public class SpellBuilder
     public SpellBuilder WithDamage(string amount, string type)
     {
         // do dictionary values later
-        spell.baseDamage = new Damage(RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables), Damage.TypeFromString(type));
+        spell.baseDamage = amount; 
+        spell.baseDamageType = Damage.TypeFromString(type);
         return this;
     }
     public SpellBuilder WithTrajectory(string trajectory) { spell.baseTrajectory = trajectory; return this; }
-    public SpellBuilder WithSpeed(string speed) { spell.baseSpeed = RPNEvaluator.RPNEvaluator.Evaluatef(speed, GameManager.Instance.variables); return this; }
+    public SpellBuilder WithSpeed(string speed) { spell.baseSpeed = speed; return this; }
     public SpellBuilder WithSprite(int sprite) { spell.sprite = sprite; return this; }
-    public SpellBuilder WithHeal(string heal) { spell.baseHeal = RPNEvaluator.RPNEvaluator.Evaluate(heal, GameManager.Instance.variables); return this; }
-    public SpellBuilder WithNumber(string number) { spell.baseNumber = RPNEvaluator.RPNEvaluator.Evaluate(number, GameManager.Instance.variables); return this; }
-    public SpellBuilder WithManaCost(string manaCost) { spell.baseManaCost = RPNEvaluator.RPNEvaluator.Evaluate(manaCost, GameManager.Instance.variables); return this; }
-    public SpellBuilder WithCooldown(string cooldown) { spell.baseCooldown = RPNEvaluator.RPNEvaluator.Evaluatef(cooldown, GameManager.Instance.variables); return this; }
-    public SpellBuilder WithAngle(string angle) { spell.baseAngle = RPNEvaluator.RPNEvaluator.Evaluate(angle, GameManager.Instance.variables); return this; }
-    public SpellBuilder WithDelay(string delay) { spell.baseDelay = RPNEvaluator.RPNEvaluator.Evaluatef(delay, GameManager.Instance.variables); return this; }
-    public SpellBuilder WithLifetime(string lifetime) { spell.baseLifetime = RPNEvaluator.RPNEvaluator.Evaluatef(lifetime, GameManager.Instance.variables); return this; }
+    public SpellBuilder WithHeal(string heal) { spell.baseHeal = heal; return this; }
+    public SpellBuilder WithNumber(string number) { spell.baseNumber = number; return this; }
+    public SpellBuilder WithManaCost(string manaCost) { spell.baseManaCost = manaCost; return this; }
+    public SpellBuilder WithCooldown(string cooldown) { spell.baseCooldown = cooldown; return this; }
+    public SpellBuilder WithAngle(string angle) { spell.baseAngle = angle; return this; }
+    public SpellBuilder WithDelay(string delay) { spell.baseDelay = delay; return this; }
+    public SpellBuilder WithLifetime(string lifetime) { spell.baseLifetime = lifetime; return this; }
  
     // Modifier
  
