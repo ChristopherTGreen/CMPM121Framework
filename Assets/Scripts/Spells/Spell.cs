@@ -203,7 +203,7 @@ public class Spell : ISpell
         {
             other.Damage(new Damage(damage, GetDamageType()));
             GameManager.Instance.sessionStats.totalDamageDealt += damage;
-            if (GetHeal() >= 0) GameManager.Instance.player.GetComponent<PlayerController>().hp.SetCurrentHP(GetHeal());
+            if (GetHeal() > 0) GameManager.Instance.player.GetComponent<PlayerController>().hp.SetCurrentHP(GetHeal());
         }
 
     }
