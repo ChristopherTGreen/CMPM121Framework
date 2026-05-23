@@ -145,6 +145,10 @@ public class RewardRelicDisplay : MonoBehaviour
             {
                 rewardedrelic = new WaveHeal(relic);
                 rewardedrelic.Enable();
+            } else if (relic.name == "Life Steal")
+            {
+                rewardedrelic = new LifeSteal(relic);
+                rewardedrelic.Enable();
             }
 
             GameManager.Instance.RelicDataActiveRelics.Add(relic.name, relic); // stores the relic daat for the active relic display

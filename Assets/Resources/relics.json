@@ -66,5 +66,18 @@
             "type": "gain-hp",
             "amount": "10"
         }
+    },
+    {
+        "name": "Life Steal",
+        "sprite": 11,
+        "trigger": {
+            "description": "When you do damage to an enemy",
+            "type": "dealt-damage"
+        },
+        "effect": {
+            "description": "gain 1 health",
+            "type": "gain-hp",
+            "amount": "1"
+        }
     }
 ]
