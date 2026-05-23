@@ -33,7 +33,7 @@ public class MenuSelectorController : MonoBehaviour
 
         if (spawner == null) //The class selection UI calls this part of the conditional and therefore does not start the level
         {
-            Debug.Log("Are you even called?");
+            //Debug.Log("Are you even called?");
 
             return;
         }

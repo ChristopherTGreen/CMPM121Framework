@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
         // need to get the class from the PlayerClassSelector.cs
         chosenClass = GameManager.Instance.chosenClass;
-        UnityEngine.Debug.Log("PlayerControler.cs_StartLevel() >> choseClass: " + chosenClass.name);
+        //UnityEngine.Debug.Log("PlayerControler.cs_StartLevel() >> choseClass: " + chosenClass.name);
 
         // Parameters: 125 is the player's mana, 8 is the player's mana regen
         // These are hardcoded, later have the scaling for mana be here
@@ -66,9 +66,9 @@ public class PlayerController : MonoBehaviour
         manaui.SetSpellCaster(spellcaster);
         spellui.SetSpell(spellcaster.spell);
 
-        UnityEngine.Debug.Log("Initial player health: " + hp.max_hp);
-        UnityEngine.Debug.Log("Initial player max mana: " + spellcaster.max_mana);
-        UnityEngine.Debug.Log("Initial player mana regen: " + spellcaster.mana_reg);
+        //UnityEngine.Debug.Log("Initial player health: " + hp.max_hp);
+        //UnityEngine.Debug.Log("Initial player max mana: " + spellcaster.max_mana);
+        //UnityEngine.Debug.Log("Initial player mana regen: " + spellcaster.mana_reg);
     }
 
     // Update is called once per frame
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
       
                 PlayerClassScaling newData = new PlayerClassScaling(GameManager.Instance.classTypes[chosenClass.name]);
 
-                UnityEngine.Debug.Log(">> Player Scaled");
+                //UnityEngine.Debug.Log(">> Player Scaled");
 
                 //updating player with new scaling
                 spellcaster.SetMaxMana(newData.mana);
@@ -103,10 +103,10 @@ public class PlayerController : MonoBehaviour
                 manaui.SetSpellCaster(spellcaster);
                 spellui.SetSpell(spellcaster.spell);
 
-                UnityEngine.Debug.Log("New Health Count: " + RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, new Dictionary<string, int> { { "wave", GameManager.Instance.wave_count} }));
-                UnityEngine.Debug.Log("New max health Scaling: " + hp.max_hp);
-                UnityEngine.Debug.Log("New max mana Scaling: " + spellcaster.max_mana);
-                UnityEngine.Debug.Log("New mana regen Scaling: " + spellcaster.mana_reg);
+                //UnityEngine.Debug.Log("New Health Count: " + RPNEvaluator.RPNEvaluator.Evaluate(GameManager.Instance.classTypes["player"].health, new Dictionary<string, int> { { "wave", GameManager.Instance.wave_count} }));
+                //UnityEngine.Debug.Log("New max health Scaling: " + hp.max_hp);
+               // UnityEngine.Debug.Log("New max mana Scaling: " + spellcaster.max_mana);
+                //UnityEngine.Debug.Log("New mana regen Scaling: " + spellcaster.mana_reg);
 
             }
         }
@@ -158,12 +158,12 @@ public class PlayerController : MonoBehaviour
             }
             
 
-            UnityEngine.Debug.Log("Active Spell index: " + activeSpellIndex);
+            //UnityEngine.Debug.Log("Active Spell index: " + activeSpellIndex);
 
             Spell activespell = GameManager.Instance.activeSpells[activeSpellIndex];
             spellcaster.CurrentActiveSpell(activespell);
 
-            UnityEngine.Debug.Log("Equipped Spell: " + activespell.name + System.Array.IndexOf(GameManager.Instance.activeSpells, activespell));
+            //UnityEngine.Debug.Log("Equipped Spell: " + activespell.name + System.Array.IndexOf(GameManager.Instance.activeSpells, activespell));
 
         } 
         else
