@@ -91,7 +91,7 @@ public class GameManager
             {
                 activeSpells[i] = spell; // Insert item
                 
-                Debug.Log("GameManager.cs_StoreActiveSpell(Spell) >> sucessfully stored a spell " + spell.name);
+                //Debug.Log("GameManager.cs_StoreActiveSpell(Spell) >> sucessfully stored a spell " + spell.name);
                 break;                  // Stop looking further
             }
                 
@@ -120,6 +120,6 @@ public class GameManager
         spells = RetrieveSpellData.SpellDictionary();
         classTypes = RetrieveClassData.ClassDictionary();
         relics = RetrieveRelicData.RelicsDictionary();
-        Debug.Log(string.Join(", ", relics));
+        //Debug.Log(string.Join(", ", relics));
     }
 }
