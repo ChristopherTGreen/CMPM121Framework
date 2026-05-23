@@ -39,7 +39,7 @@ public class SpellCaster
 
         // Storing the first random spell created
         GameManager.Instance.StoreActiveSpell(spell);
-        Debug.Log("SpellCaster.cs_SpellCaster(mana, mana_reg, team) >> Stored: " + spell.name + " in activeSpells");
+        //Debug.Log("SpellCaster.cs_SpellCaster(mana, mana_reg, team) >> Stored: " + spell.name + " in activeSpells");
     }
 
     public void SetMaxMana(int max_mana)

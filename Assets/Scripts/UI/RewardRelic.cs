@@ -14,7 +14,8 @@ public class RewardRelicDisplay : MonoBehaviour
     public GameObject relicPrefab;
     public GameObject buttonPrefab;
     public Image rewardscreen;
-    public List<RelicData> relicrewards = new List<RelicData>();
+    public List<RelicData> relicrewardpool = new List<RelicData>();
+    public List<RelicData> threeRelicRewards = new List<RelicData>();
 
     public bool relicsDisplayedFlag = false;
     private bool relicsLoadedFlag = false; //TESTING
@@ -32,23 +33,20 @@ public class RewardRelicDisplay : MonoBehaviour
             // Get the generated relics list from the game manager
             // TESTING: For now, manually adding relics to the list for testing
             
+            // random 3 relic rewards
             if (!relicsLoadedFlag)
             {
                 
-                relicsLoadedFlag = true;
-                foreach (RelicData relic in GameManager.Instance.relics.Values)
-                {
-                    Debug.Log("RelicReward.cs_Start() >> Adding " + relic.name + " to the relicrewards list.");
-
-                    relicrewards.Add(relic);
-                }
+                LoadAllRelicsToList(); // load all the relics from the json file to a list
 
             }
 
             // End of test segment
 
+            ThreeRandomRelics(); //load three random relics 
+
             //Displays all the relics
-            DisplayRelicRewards(relicrewards);
+            DisplayRelicRewards(threeRelicRewards);
 
         } else
         {
@@ -127,6 +125,9 @@ public class RewardRelicDisplay : MonoBehaviour
             Debug.Log("RewardRelicDisplay.cs_TakeRelicHandler() >> Took " + relic.name);
 
             buttonlabel.label.text = "Relic Selected";
+
+            RemoveRelicFromRewardPool(relic); // removes from the reward pool so it doesn't get randomly rolled later
+
             relicSelectedFlag = true;
         }
         else
@@ -154,6 +155,109 @@ public class RewardRelicDisplay : MonoBehaviour
             }
 
         }
+
+    }
+
+
+
+    public void LoadAllRelicsToList()
+    {
+
+        relicsLoadedFlag = true;
+
+        foreach (RelicData relic in GameManager.Instance.relics.Values)
+        {
+            Debug.Log("RelicReward.cs_Start() >> Adding " + relic.name + " to the relicrewards list.");
+
+            relicrewardpool.Add(relic);
+        }
+
+    }
+
+
+
+    public void ThreeRandomRelics()
+    {
+
+        threeRelicRewards.Clear(); //clear the three random relic rewards 
+        int unusedRelicCount = relicrewardpool.Count;
+
+        Debug.Log("Unused relic count: " + unusedRelicCount);
+
+
+        if (unusedRelicCount == 1) // 1 relic only
+        {
+
+            System.Random rnd = new System.Random();
+            int Index = rnd.Next(0, unusedRelicCount);
+            
+            // if the relic is not already in the rewards list, add the relic to the rewards list
+            Debug.Log("Random Relic Reward: " + relicrewardpool[Index].name);
+            threeRelicRewards.Add(relicrewardpool[Index]);
+        
+        }
+        else if (unusedRelicCount == 2)
+        {
+            for (int i = 0; i < 2; i++) // 0, 1 - 2 relics
+                {
+
+                    System.Random rnd = new System.Random();
+                    int Index = rnd.Next(0, unusedRelicCount);
+                    
+                    if (threeRelicRewards.Contains(relicrewardpool[Index]))
+                    {
+                        // if the relic is already in the rewards list, reroll the index
+                        Debug.Log("Duplicate Relic Reward: " + relicrewardpool[Index].name);
+                        i -= 1;
+                        continue;
+                    } 
+                    else
+                    {
+                        // if the relic is not already in the rewards list, add the relic to the rewards list
+                        Debug.Log("Random Relic Reward: " + relicrewardpool[Index].name);
+                        threeRelicRewards.Add(relicrewardpool[Index]);
+                    }
+
+                }
+        } else if (unusedRelicCount == 0)
+        {
+            return; // do nothing
+        }
+        else if (unusedRelicCount >= 3)
+        {
+            for (int i = 0; i < 3; i++) // 0, 1, 2 - 3 relics
+            {
+
+                System.Random rnd = new System.Random();
+                int Index = rnd.Next(0, unusedRelicCount);
+                
+                if (threeRelicRewards.Contains(relicrewardpool[Index]))
+                {
+                    // if the relic is already in the rewards list, reroll the index
+                    Debug.Log("Duplicate Relic Reward: " + relicrewardpool[Index].name);
+                    i -= 1;
+                    continue;
+                } 
+                else
+                {
+                    // if the relic is not already in the rewards list, add the relic to the rewards list
+                    Debug.Log("Random Relic Reward: " + relicrewardpool[Index].name);
+                    threeRelicRewards.Add(relicrewardpool[Index]);
+                }
+
+            }
+
+        }
+
+    }
+
+
+
+    public void RemoveRelicFromRewardPool(RelicData relic)
+    {
+        
+        Debug.Log("Removed relic form reward pool: " + relic.name);
+        relicrewardpool.Remove(relic); // should remove the equipped relic from the pool
 
     }
     

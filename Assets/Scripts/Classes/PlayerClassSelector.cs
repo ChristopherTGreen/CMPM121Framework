@@ -64,14 +64,14 @@ public class PlayerClassSelector : MonoBehaviour
     // maybe make it it's own class?
     public void AssignClass(ClassData classData)
     {
-        Debug.Log("Assign Class Button Clicked");
+        //Debug.Log("Assign Class Button Clicked");
 
         HideClassSelectionUI();
 
         //send the classData name to the playercontroller somehow.
         // Gamemanager
         GameManager.Instance.chosenClass = classData;
-        Debug.Log("PlayerClassSelector.cs_AssignClass(ClassData) >> Chosen Class: " + GameManager.Instance.chosenClass.name);
+        //Debug.Log("PlayerClassSelector.cs_AssignClass(ClassData) >> Chosen Class: " + GameManager.Instance.chosenClass.name);
 
     }
 
