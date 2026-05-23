@@ -121,5 +121,12 @@ public class GameManager
         classTypes = RetrieveClassData.ClassDictionary();
         relics = RetrieveRelicData.RelicsDictionary();
         Debug.Log(string.Join(", ", relics));
+<<<<<<< Updated upstream
+=======
+
+        // temporary hard code
+        activeRelics.Add("Green Gem", new GreenGem(relics["Green Gem"]));
+        activeRelics["Green Gem"].Enable();
+>>>>>>> Stashed changes
     }
 }

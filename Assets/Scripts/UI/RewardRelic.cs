@@ -35,13 +35,7 @@ public class RewardRelicDisplay : MonoBehaviour
             if (!relicsLoadedFlag)
             {
                 
-                relicsLoadedFlag = true;
-                foreach (RelicData relic in GameManager.Instance.relics.Values)
-                {
-                    Debug.Log("RelicReward.cs_Start() >> Adding " + relic.name + " to the relicrewards list.");
-
-                    relicrewards.Add(relic);
-                }
+                LoadAllRelicsToList(); // load all the relics from the json file to a list
 
             }
 
@@ -153,6 +147,22 @@ public class RewardRelicDisplay : MonoBehaviour
 
             }
 
+        }
+
+    }
+
+
+
+    public void LoadAllRelicsToList()
+    {
+
+        relicsLoadedFlag = true;
+
+        foreach (RelicData relic in GameManager.Instance.relics.Values)
+        {
+            Debug.Log("RelicReward.cs_Start() >> Adding " + relic.name + " to the relicrewards list.");
+
+            relicrewards.Add(relic);
         }
 
     }
