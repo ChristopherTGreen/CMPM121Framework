@@ -141,6 +141,10 @@ public class RewardRelicDisplay : MonoBehaviour
             {
                 rewardedrelic = new CursedScroll(relic);
                 rewardedrelic.Enable();
+            } else if (relic.name == "Wave Heal")
+            {
+                rewardedrelic = new WaveHeal(relic);
+                rewardedrelic.Enable();
             }
 
             GameManager.Instance.RelicDataActiveRelics.Add(relic.name, relic); // stores the relic daat for the active relic display

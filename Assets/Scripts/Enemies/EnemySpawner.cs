@@ -90,7 +90,7 @@ public class EnemySpawner : MonoBehaviour
 
         //Inwave state handling - Put it in it's own method or class?
         GameManager.Instance.state = GameManager.GameState.INWAVE;
-        EventBus.Instance.DoWave();
+        EventBus.Instance.DoWave(GameManager.Instance.player.GetComponent<PlayerController>().hp);
         int enemyTypeCount = levelReference.spawns.Count;
         // This for loop should create every enemy type with enemy type number amount of programs running, but all halting individually depending on delays
         for (int i = 0; i < enemyTypeCount; ++i)
