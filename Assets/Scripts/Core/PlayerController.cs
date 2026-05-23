@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     public SpellCaster spellcaster;
     public SpellUI spellui;
 
-    public int speed;
-    public int power;
+    public int speed { get; set; } = 0; // I added the 0 here, might remove - chris
+    public int power { get; set; } = 0;
 
 
     public Unit unit;
@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
 
                 if (unit.movement == new Vector2(0, 0))
                 {
+                    Debug.Log("STOP");
                     EventBus.Instance.DoStop(transform.position, this);
                     PlayerStillFlag = true;
                     PlayerState = "IDLE";

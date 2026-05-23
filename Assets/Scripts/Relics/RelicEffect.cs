@@ -21,20 +21,18 @@ public class RelicEffect
     // sub interfaces to prevent messing with apply effects and remove effects
     public void StartEffect(EventContext context)
     {
-        Debug.Log(applied);
         if (this.applied) return;
         this.applied = true;
-        Debug.Log("START EFFECT");
+
         ApplyEffect(context);
     }
     public void EndEffect(EventContext context)
     {
-        Debug.Log(this.applied);
         if (!this.applied) return;
         this.applied = false;
 
-        Debug.Log("END EFFECT");
         RemoveEffect(context);
+
     }
 
 

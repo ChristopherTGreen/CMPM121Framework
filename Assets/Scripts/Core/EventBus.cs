@@ -99,7 +99,9 @@ public class EventBus
                 Action handlerOnWave = () => listener(new EventContext { });
                 OnWave += handlerOnWave;
                 break;
+            default: throw new Exception("Failed Register: Given eventName does not exist as a register - " + eventName);
         }
+       
     }
     // unregister an action
     public void Deregister(string eventName, Action<EventContext> listener)
@@ -120,7 +122,7 @@ public class EventBus
                 case "on-cast":
                     OnCast -= (Action<Vector3, PlayerController>)wrapper;
                     break;
-                case "on-move":
+                case "move":
                     OnMove -= (Action<Vector3, PlayerController>)wrapper;
                     break;
                 case "on-stop":
@@ -129,6 +131,8 @@ public class EventBus
                 case "on-wave":
                     OnWave -= (Action)wrapper;
                     break;
+                default:
+                throw new Exception("Failed Deregister: Given eventName does not exist as a Deregister - " + eventName);
             }
         }
         activeWrappers.Remove(listener);

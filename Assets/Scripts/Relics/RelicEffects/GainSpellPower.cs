@@ -8,14 +8,16 @@ public class GainSpellPower : RelicEffect
     {
         int gainPower = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
         Debug.Log(context.player.power);
-        context.player.SetPower(context.player.GetPower() + gainPower);
+        GameManager.Instance.player.GetComponent<PlayerController>().SetPower(context.player.GetPower() + gainPower);
+        //context.player.SetPower(context.player.GetPower() + gainPower);
         Debug.Log(context.player.power);
     }
     protected override void RemoveEffect(EventContext context)
     {
         int gainPower = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
         Debug.Log(context.player.power);
-        context.player.SetPower(context.player.GetPower() - gainPower);
+        //context.player.SetPower(context.player.GetPower() - gainPower);
         Debug.Log(context.player.power);
+        GameManager.Instance.player.GetComponent<PlayerController>().SetPower(context.player.GetPower() - gainPower);
     }
 }

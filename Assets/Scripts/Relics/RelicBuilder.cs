@@ -71,7 +71,7 @@ public class RelicBuilder
         if (relicData.effect.until == null) return new RelicTrigger(null, null);
         string currentType = relicData.effect.until;
         // most likely triggers which don't need checks or comparisons (this is so far all of them for json)
-        if (relicData.effect.until != null)
+        if (currentType != null)
         {
             switch (currentType)
             {
