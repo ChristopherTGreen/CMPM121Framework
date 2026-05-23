@@ -46,7 +46,7 @@
         "sprite": 3,
         "trigger": {
             "description": "When you kill an enemy",
-            "type": "on-kill",
+            "type": "on-kill"
         },
         "effect": {
             "description": "you gain 25 mana.",

@@ -22,6 +22,7 @@ public class RewardRelicDisplay : MonoBehaviour
     public bool relicSelectedFlag = false;
 
     public Dictionary<string, RelicData> tempActiveRelics;
+    public Relic rewardedrelic;
     
     public void RelicRewards()
     {
@@ -117,12 +118,33 @@ public class RewardRelicDisplay : MonoBehaviour
         // if we have a active relics list or dictionary in the game manager, all you need to do is add 'relic' to that list or dictionary
         // Reference the 'AssignClass' method in PlayerClassSelector.cs for how I handled the player's selected class
 
+
         if (!relicSelectedFlag)
         {
-            
-            GameManager.Instance.tempActiveRelics.Add(relic.name, relic);
 
             Debug.Log("RewardRelicDisplay.cs_TakeRelicHandler() >> Took " + relic.name);
+
+            // everytime we add a new relic, add it here
+            if (relic.name == "Green Gem")
+            {
+                rewardedrelic = new GreenGem(relic);
+                rewardedrelic.Enable();
+            } else if (relic.name == "Jade Elephant")
+            {
+                rewardedrelic = new JadeElephant(relic);
+                rewardedrelic.Enable();
+            } else if (relic.name == "Golden Mask")
+            {
+                rewardedrelic = new GoldenMask(relic);
+                rewardedrelic.Enable();
+            } else if (relic.name == "Cursed Scroll")
+            {
+                rewardedrelic = new CursedScroll(relic);
+                rewardedrelic.Enable();
+            }
+
+            GameManager.Instance.RelicDataActiveRelics.Add(relic.name, relic); // stores the relic daat for the active relic display
+            GameManager.Instance.activeRelics.Add(relic.name, rewardedrelic); //stores the actual enabled Relic
 
             buttonlabel.label.text = "Relic Selected";
 
