@@ -124,7 +124,7 @@ public class GameManager
         Debug.Log(string.Join(", ", relics));
 
 
-        activeRelics.Add("Jade Elephant", new GreenGem(relics["Jade Elephant"]));
-        activeRelics["Jade Elephant"].Enable();
+        activeRelics.Add("Cursed Scroll", new GreenGem(relics["Cursed Scroll"]));
+        activeRelics["Cursed Scroll"].Enable();
     }
 }

@@ -9,7 +9,7 @@
         "effect": {
             "description": "you gain 5 mana",
             "type": "gain-mana",
-            "amount": "100"
+            "amount": "5"
         }
     },
     {

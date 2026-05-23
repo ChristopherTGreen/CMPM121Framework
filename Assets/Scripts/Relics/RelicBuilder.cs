@@ -41,6 +41,10 @@ public class RelicBuilder
             switch (currentType)
             {
                 case ("take-damage"): return new RelicTrigger(relicData.trigger.type, null);
+                case ("dealt-damage"): return new RelicTrigger(relicData.trigger.type, null);
+                case ("on-kill"): return new RelicTrigger(relicData.trigger.type, null);
+                case ("cast-spell"): return new RelicTrigger(relicData.trigger.type, null);
+                case ("on-wave"): return new RelicTrigger(relicData.trigger.type, null);
             }
         }
 
@@ -50,6 +54,7 @@ public class RelicBuilder
         switch (currentType)
         {
             case ("stand-still"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, "move"); // technically "move" cold be the effect.until, research this more - chris
+            case ("move"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, "stand-still"); 
         }
 
         throw new Exception("Relic Condition Trigger: Could not find condition trigger");
@@ -68,14 +73,18 @@ public class RelicBuilder
     }
     public RelicTrigger EffectTriggerBuilder(RelicData relicData)
     {
-        if (relicData.effect.until == null) return new RelicTrigger(null, null);
+        if (relicData.effect.until == null) return null;
         string currentType = relicData.effect.until;
+        
+        
         // most likely triggers which don't need checks or comparisons (this is so far all of them for json)
         if (currentType != null)
         {
             switch (currentType)
             {
                 case ("move"): return new RelicTrigger(currentType, null);
+                case ("stand-still"): return new RelicTrigger(currentType, null);
+                case ("cast-spell"): return new RelicTrigger(currentType, null);
             }
         }
 

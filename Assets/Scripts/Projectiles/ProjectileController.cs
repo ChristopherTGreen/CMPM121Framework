@@ -7,7 +7,8 @@ public class ProjectileController : MonoBehaviour
     public float lifetime;
     public int pierceAmount = 1;
     public int bounceAmount = 0;
-    public event Action<Hittable,Vector3> OnHit;
+    public int damageAmount = 0;
+    public event Action<Hittable,Vector3, int> OnHit;
     public ProjectileMovement movement;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,13 +34,13 @@ public class ProjectileController : MonoBehaviour
             {
                 //Debug.Log("Damage loop");
                 //Debug.Log(ec.hp.hp);
-                OnHit(ec.hp, transform.position);
+                OnHit(ec.hp, transform.position, damageAmount);
                 //Debug.Log(ec.hp.hp);
                 pierce();
                 while (ec.hp.hp > 0 && bounceAmount > 0 && pierceAmount > 0)
                 {
                     //Debug.Log(ec.hp.hp);
-                    OnHit(ec.hp, transform.position);
+                    OnHit(ec.hp, transform.position, damageAmount);
                     pierce();
 
                 }
@@ -50,7 +51,7 @@ public class ProjectileController : MonoBehaviour
                 var pc = collision.gameObject.GetComponent<PlayerController>();
                 if (pc != null)
                 {
-                    OnHit(pc.hp, transform.position);
+                    OnHit(pc.hp, transform.position, damageAmount);
                 }
             }
 
@@ -92,6 +93,10 @@ public class ProjectileController : MonoBehaviour
     public void SetBounce(int bounce)
     {
         bounceAmount = bounce;
+    }
+    public void SetDamage(int damage)
+    {
+        damageAmount = damage;
     }
 
     IEnumerator Expire(float lifetime)

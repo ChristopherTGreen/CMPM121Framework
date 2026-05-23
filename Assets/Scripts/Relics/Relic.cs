@@ -30,17 +30,17 @@ public class Relic
     public void Enable()
     {
         applyTrigger.AddObserver();
-        completeTrigger.AddObserver();
+        if (completeTrigger != null) completeTrigger.AddObserver();
         applyTrigger.OnTrigger += relicEffect.StartEffect;
-        completeTrigger.OnTrigger += relicEffect.EndEffect;
+        if (completeTrigger != null) completeTrigger.OnTrigger += relicEffect.EndEffect;
     }
 
     public void Disable()
     {
         applyTrigger.RemoveObserver();
-        completeTrigger.RemoveObserver();
+        if (completeTrigger != null) completeTrigger.RemoveObserver();
         applyTrigger.OnTrigger -= relicEffect.StartEffect;
-        completeTrigger.OnTrigger -= relicEffect.EndEffect;
+        if (completeTrigger != null) completeTrigger.OnTrigger -= relicEffect.EndEffect;
     }
 
 

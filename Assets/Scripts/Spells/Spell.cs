@@ -152,6 +152,7 @@ public class Spell : ISpell
    
         Vector3 direction = new Vector3();
 
+        
         Cast();
 
         int repeat = GetRepeat();
@@ -161,7 +162,7 @@ public class Spell : ISpell
             for (int j = 0; j < number; j++)
             {
                 direction = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-GetAngle() / 2.0f, GetAngle() / 2.0f)) * (target - where).normalized;
-                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit, GetLifetime(), GetPierce(), GetBounce());
+                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit, GetLifetime(), GetPierce(), GetBounce(), GetDamage());
             }
             // Wait before the next shot (but don't wait after the final shot)
             if (i < (GetRepeat() - 1))
@@ -169,7 +170,11 @@ public class Spell : ISpell
                 yield return new WaitForSeconds(GetDelay());
             }
         }
+
+
+
         yield return new WaitForEndOfFrame();
+        EventBus.Instance.DoCast(where, GameManager.Instance.player.GetComponent<PlayerController>());
     }
 
   
@@ -192,12 +197,12 @@ public class Spell : ISpell
         this.Cast(modifier);
     }
 
-    public void OnHit(Hittable other, Vector3 impact)
+    public void OnHit(Hittable other, Vector3 impact, int damage)
     {
         if (other.team != team)
         {
-            other.Damage(new Damage(GetDamage(), Damage.Type.ARCANE));
-            GameManager.Instance.sessionStats.totalDamageDealt += GetDamage();
+            other.Damage(new Damage(damage, GetDamageType()));
+            GameManager.Instance.sessionStats.totalDamageDealt += damage;
             if (GetHeal() >= 0) GameManager.Instance.player.GetComponent<PlayerController>().hp.SetCurrentHP(GetHeal());
         }
 

@@ -83,7 +83,7 @@ public class EventBus
                 Action<Vector3, PlayerController> handlerOnKill = (handlerWhere, handlerKiller) => listener(new EventContext { where = handlerWhere, player = handlerKiller });
                 OnKill += handlerOnKill;
                 break;
-            case "on-cast":
+            case "cast-spell":
                 Action<Vector3, PlayerController> handlerOnCast = (handlerWhere, handlerCaster) => listener(new EventContext { where = handlerWhere, player = handlerCaster });
                 OnCast += handlerOnCast;
                 break;
@@ -119,7 +119,7 @@ public class EventBus
                 case "on-kill":
                     OnKill -= (Action<Vector3, PlayerController>)wrapper;
                     break;
-                case "on-cast":
+                case "cast-spell":
                     OnCast -= (Action<Vector3, PlayerController>)wrapper;
                     break;
                 case "move":

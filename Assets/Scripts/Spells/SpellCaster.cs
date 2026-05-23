@@ -69,7 +69,6 @@ public class SpellCaster
         if (mana >= spell.GetManaCost() + mana_cost_extra && spell.IsReady())
         {
             mana -= spell.GetManaCost() + mana_cost_extra;
-            EventBus.Instance.DoCast(where, GameManager.Instance.player.GetComponent<PlayerController>());
             yield return spell.CastRoutine(where, target, team);
         }
         yield break;

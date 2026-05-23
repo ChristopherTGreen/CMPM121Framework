@@ -17,14 +17,14 @@ public class ProjectileManager : MonoBehaviour
         
     }
 
-    public void CreateProjectile(int which, string trajectory, Vector3 where, Vector3 direction, float speed, Action<Hittable,Vector3> onHit)
+    public void CreateProjectile(int which, string trajectory, Vector3 where, Vector3 direction, float speed, Action<Hittable,Vector3, int> onHit)
     {
         GameObject new_projectile = Instantiate(projectiles[which], where + direction.normalized*1.1f, Quaternion.Euler(0,0,Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg));
         new_projectile.GetComponent<ProjectileController>().movement = MakeMovement(trajectory, speed);
         new_projectile.GetComponent<ProjectileController>().OnHit += onHit;
     }
 
-    public void CreateProjectile(int which, string trajectory, Vector3 where, Vector3 direction, float speed, Action<Hittable, Vector3> onHit, float lifetime, int pierce, int bounce)
+    public void CreateProjectile(int which, string trajectory, Vector3 where, Vector3 direction, float speed, Action<Hittable, Vector3, int> onHit, float lifetime, int pierce, int bounce, int damage)
     {
         GameObject new_projectile = Instantiate(projectiles[which], where + direction.normalized * 1.1f, Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
         new_projectile.GetComponent<ProjectileController>().movement = MakeMovement(trajectory, speed);
@@ -32,6 +32,7 @@ public class ProjectileManager : MonoBehaviour
         new_projectile.GetComponent<ProjectileController>().SetLifetime(lifetime);
         new_projectile.GetComponent<ProjectileController>().SetPierce(pierce);
         new_projectile.GetComponent<ProjectileController>().SetBounce(bounce);
+        new_projectile.GetComponent<ProjectileController>().SetDamage(damage);
     }
 
     public ProjectileMovement MakeMovement(string name, float speed)
