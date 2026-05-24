@@ -9,7 +9,18 @@ public class RelicEffect
     public string amount;
     public string description;
     // Check before effect trigger so it doesn't accidentally end effect before even starting it
-    public bool applied = false;
+    private bool effectApplied;
+    public bool applied
+    {
+        get => effectApplied;
+        set
+        {
+            // Add a stack trace here. This prints the EXACT chain of code 
+            // that is calling this line.
+            //Debug.Log($"Applied changed to '{value}' by: {System.Environment.StackTrace}");
+            effectApplied = value;
+        }
+    }
 
     //public SpellCaster caster;
 
@@ -23,6 +34,7 @@ public class RelicEffect
     {
         if (this.applied) return;
         this.applied = true;
+        Debug.Log("start");
 
         ApplyEffect(context);
     }
@@ -30,7 +42,7 @@ public class RelicEffect
     {
         if (!this.applied) return;
         this.applied = false;
-
+        Debug.Log("end");
         RemoveEffect(context);
 
     }
@@ -43,6 +55,7 @@ public class RelicEffect
 
     protected virtual void RemoveEffect(EventContext context)
     {
+        
     }
 
     // potential effect locations?

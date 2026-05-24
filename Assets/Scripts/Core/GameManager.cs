@@ -122,5 +122,7 @@ public class GameManager
         classTypes = RetrieveClassData.ClassDictionary();
         relics = RetrieveRelicData.RelicsDictionary();
         //Debug.Log(string.Join(", ", relics));
+        
+
     }
 }

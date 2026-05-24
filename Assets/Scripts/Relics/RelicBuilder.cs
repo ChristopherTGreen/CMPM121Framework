@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
+using UnityEngine;
 
 public class RelicBuilder
 {
@@ -20,10 +21,14 @@ public class RelicBuilder
 
     public RelicBuilder RelicQuickBuilder(RelicData relicData) 
     {
+        Debug.Log("1. Kings Charge constructor started");
         relic.conditionDescription = relicData.trigger.description;
         relic.sprite = relicData.sprite;
 
+
         relic.relicEffect = RelicEffectBuilder(relicData);
+
+        Debug.Log("2. Setup code finished");
         relic.applyTrigger = ConditionTriggerBuilder(relicData);
         relic.completeTrigger = EffectTriggerBuilder(relicData);
 
@@ -54,7 +59,9 @@ public class RelicBuilder
         switch (currentType)
         {
             case ("stand-still"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, "move"); // technically "move" cold be the effect.until, research this more - chris
-            case ("move"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, "stand-still"); 
+            case ("move"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, "stand-still");
+            case ("on-update"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, relicData.trigger.check);
+            case ("take-damage"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, "take-damage");
         }
 
         throw new Exception("Relic Condition Trigger: Could not find condition trigger");
@@ -85,6 +92,7 @@ public class RelicBuilder
                 case ("move"): return new RelicTrigger(currentType, null);
                 case ("stand-still"): return new RelicTrigger(currentType, null);
                 case ("cast-spell"): return new RelicTrigger(currentType, null);
+                case ("take-damage"): return new RelicTrigger(currentType, null);
             }
         }
 

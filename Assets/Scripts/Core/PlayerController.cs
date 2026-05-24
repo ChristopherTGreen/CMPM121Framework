@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        EventBus.Instance.DoUpdate(this);
 
         
         //When player hit's tab, toggle the spell used
@@ -100,11 +100,11 @@ public class PlayerController : MonoBehaviour
                 spellcaster.SetMaxMana(newData.mana);
                 spellcaster.mana_reg = newData.mana_regeneration;
 
-                Debug.Log("Power before: " + power);
+                //Debug.Log("Power before: " + power);
 
                 power = newData.spellpower;
 
-                Debug.Log("Power after: " + power);
+                //Debug.Log("Power after: " + power);
 
                 speed = newData.speed;
                 
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
 
                 if (unit.movement == new Vector2(0, 0))
                 {
-                    Debug.Log("STOP");
+                    //Debug.Log("STOP");
                     EventBus.Instance.DoStop(transform.position, this);
                     PlayerStillFlag = true;
                     PlayerState = "IDLE";

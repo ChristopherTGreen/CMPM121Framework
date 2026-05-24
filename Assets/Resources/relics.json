@@ -53,6 +53,21 @@
             "type": "gain-mana",
             "amount": "25"
         }
+     },
+     {
+        "name": "Kings Charge",
+        "sprite": 9,
+        "trigger": {
+            "description": "If you don’t take damage for 30 seconds",
+            "type": "on-update",
+            "amount": 10,
+            "check": "take-damage"
+        },
+        "effect": {
+            "description": "you gain 10 spell power until you take damage.",
+            "amount": 10,
+            "type": "gain-spellpower",
+            "until": "take-damage"
     },
     {
         "name": "Wave Heal",
