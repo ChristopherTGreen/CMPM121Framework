@@ -46,6 +46,12 @@ public class RelicUIManager : MonoBehaviour
 
         int activeRelicGap = 50;
 
+        // clear the active relics bar
+        foreach (Transform child in activeRelicDisplayUI.transform) {
+            Destroy(child.gameObject);
+        }
+
+        // respawn relics
         foreach (RelicData activerelic in GameManager.Instance.RelicDataActiveRelics.Values)
         {
 
