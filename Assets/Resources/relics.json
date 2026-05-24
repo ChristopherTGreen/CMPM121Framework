@@ -68,6 +68,7 @@
             "amount": 10,
             "type": "gain-spellpower",
             "until": "take-damage"
+        }
     },
     {
         "name": "Wave Heal",

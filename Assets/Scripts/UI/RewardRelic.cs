@@ -149,6 +149,10 @@ public class RewardRelicDisplay : MonoBehaviour
             {
                 rewardedrelic = new LifeSteal(relic);
                 rewardedrelic.Enable();
+            } else if (relic.name == "Kings Charge")
+            {
+                rewardedrelic = new KingsCharge(relic);
+                rewardedrelic.Enable();
             }
 
             GameManager.Instance.RelicDataActiveRelics.Add(relic.name, relic); // stores the relic daat for the active relic display
