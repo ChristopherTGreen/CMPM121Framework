@@ -92,6 +92,7 @@ public class RelicBuilder
                 case ("move"): return new RelicTrigger(currentType, null);
                 case ("stand-still"): return new RelicTrigger(currentType, null);
                 case ("cast-spell"): return new RelicTrigger(currentType, null);
+                case ("take-damage"): return new RelicTrigger(currentType, null);
             }
         }
 

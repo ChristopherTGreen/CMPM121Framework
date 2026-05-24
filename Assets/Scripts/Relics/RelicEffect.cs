@@ -17,7 +17,7 @@ public class RelicEffect
         {
             // Add a stack trace here. This prints the EXACT chain of code 
             // that is calling this line.
-            Debug.Log($"Applied changed to '{value}' by: {System.Environment.StackTrace}");
+            //Debug.Log($"Applied changed to '{value}' by: {System.Environment.StackTrace}");
             effectApplied = value;
         }
     }
@@ -50,12 +50,12 @@ public class RelicEffect
 
     protected virtual void ApplyEffect(EventContext context)
     {
-        this.applied = true;
+        
     }
 
     protected virtual void RemoveEffect(EventContext context)
     {
-        this.applied = false;
+        
     }
 
     // potential effect locations?
