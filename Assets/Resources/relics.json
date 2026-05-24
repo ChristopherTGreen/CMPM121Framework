@@ -60,12 +60,12 @@
         "trigger": {
             "description": "If you don’t take damage for 30 seconds",
             "type": "on-update",
-            "amount": 30,
+            "amount": "30",
             "check": "take-damage"
         },
         "effect": {
             "description": "you gain 10 spell power until you take damage.",
-            "amount": 10,
+            "amount": "10",
             "type": "gain-spellpower",
             "until": "take-damage"
         }

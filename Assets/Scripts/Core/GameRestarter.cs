@@ -11,6 +11,18 @@ public class GameRestarter: MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene();
 
+        foreach (string relicName in GameManager.Instance.activeRelics.Keys) 
+        {
+            GameManager.Instance.activeRelics[relicName].applyTrigger.RemoveObserver();
+            GameManager.Instance.activeRelics[relicName].Disable();
+            
+
+        }
+        GameManager.Instance.activeRelics.Clear();
+        GameManager.Instance.RelicDataActiveRelics.Clear();
+
+
+
         SceneManager.LoadScene(currentScene.name);
     }
 }
