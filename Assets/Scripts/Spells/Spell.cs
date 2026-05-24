@@ -212,7 +212,7 @@ public class Spell : ISpell
     // The original version of OnHit and IsReady has GetDamage(), not too sure if we need them to be get calls which can be overriden or not - chris
     public int IntRPN(string value)
     {
-        Debug.Log(value);
+        //Debug.Log(value);
         return RPNEvaluator.RPNEvaluator.Evaluate(value, GameManager.Instance.variables);
     }
     public float FloatRPN(string value)

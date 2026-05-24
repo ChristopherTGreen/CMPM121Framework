@@ -40,7 +40,6 @@ public class RelicDuration : RelicTrigger
 
     protected override bool TriggerCheck(string amountToCheck, EventContext context)
     {
-        Debug.Log("Trig check duration");
         // inital call, starts timer, and if followed through, returns true
         if (timer == null)
         {
@@ -52,6 +51,7 @@ public class RelicDuration : RelicTrigger
             timer.OnTimerFinished += base.Check;
             return false;
         }
+        if (timer.running == true) return false;
         // later call, if the timer exists (not broken call) then we completed countdown
         Debug.Log("completed countdown");
         timer.OnTimerFinished -= base.Check;

@@ -6,6 +6,7 @@ public class GainSpellPower : RelicEffect
 {
     protected override void ApplyEffect(EventContext context)
     {
+        base.ApplyEffect(context);
         int gainPower = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
 
         context.player.SetPower(context.player.GetPower() + gainPower);
@@ -13,6 +14,7 @@ public class GainSpellPower : RelicEffect
     }
     protected override void RemoveEffect(EventContext context)
     {
+        base.ApplyEffect(context);
         int gainPower = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
 
         context.player.SetPower(context.player.GetPower() - gainPower);

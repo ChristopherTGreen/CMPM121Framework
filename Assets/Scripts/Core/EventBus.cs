@@ -45,14 +45,14 @@ public class EventBus
     public event Action<Vector3, PlayerController> OnMove;
     public void DoMove(Vector3 where, PlayerController owner)
     {
-        Debug.Log("Player Move");
+        //Debug.Log("Player Move");
         OnMove?.Invoke(where, owner);
     }
     // OnStill called when stopped
     public event Action<Vector3, PlayerController> OnStop;
     public void DoStop(Vector3 where, PlayerController owner)
     {
-        Debug.Log("Player Stop");
+        //Debug.Log("Player Stop");
         OnStop?.Invoke(where, owner);
     }
     // OnWave called when a wave ends
@@ -74,30 +74,42 @@ public class EventBus
             case "dealt-damage":
                 Action<Vector3, Damage, Hittable> handlerOnDamage = (handlerWhere, handlerDmg, handlerHittable) => listener(new EventContext { where = handlerWhere, damage = handlerDmg, hittable = handlerHittable });
                 OnDamage += handlerOnDamage;
+                activeWrappers[listener] = handlerOnDamage;
                 break;
             case "take-damage":
                 Action<Vector3, PlayerController> handlerTakeDamage = (handlerWhere, handlerPlayer) => listener(new EventContext { where = handlerWhere, player = handlerPlayer });
                 OnDamageTaken += handlerTakeDamage;
+                activeWrappers[listener] = handlerTakeDamage;
                 break;
             case "on-kill":
                 Action<Vector3, PlayerController> handlerOnKill = (handlerWhere, handlerKiller) => listener(new EventContext { where = handlerWhere, player = handlerKiller });
                 OnKill += handlerOnKill;
+                activeWrappers[listener] = handlerOnKill;
                 break;
             case "cast-spell":
                 Action<Vector3, PlayerController> handlerOnCast = (handlerWhere, handlerCaster) => listener(new EventContext { where = handlerWhere, player = handlerCaster });
                 OnCast += handlerOnCast;
+                activeWrappers[listener] = handlerOnCast;
                 break;
             case "move":
                 Action<Vector3, PlayerController> handlerOnMove = (handlerWhere, handlerMover) => listener(new EventContext { where = handlerWhere, player = handlerMover });
                 OnMove += handlerOnMove;
+                activeWrappers[listener] = handlerOnMove;
                 break;
             case "stand-still":
                 Action<Vector3, PlayerController> handlerOnStop = (handlerWhere, handlerStopper) => listener(new EventContext { where = handlerWhere, player = handlerStopper });
                 OnStop += handlerOnStop;
+                activeWrappers[listener] = handlerOnStop;
                 break;
             case "on-wave":
                 Action handlerOnWave = () => listener(new EventContext { });
                 OnWave += handlerOnWave;
+                activeWrappers[listener] = handlerOnWave;
+                break;
+            case "on-update": // updates every frame
+                Action<PlayerController> handlerOnUpdate = (handlerPlayer) => listener(new EventContext { player = handlerPlayer });
+                OnUpdate += handlerOnUpdate;
+                activeWrappers[listener] = handlerOnUpdate;
                 break;
             default: throw new Exception("Failed Register: Given eventName does not exist as a register - " + eventName);
         }
@@ -125,7 +137,7 @@ public class EventBus
                 case "move":
                     OnMove -= (Action<Vector3, PlayerController>)wrapper;
                     break;
-                case "on-stop":
+                case "stand-still":
                     OnStop -= (Action<Vector3, PlayerController>)wrapper;
                     break;
                 case "on-wave":
