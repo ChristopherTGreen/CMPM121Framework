@@ -56,10 +56,10 @@ public class EventBus
         OnStop?.Invoke(where, owner);
     }
     // OnWave called when a wave ends
-    public event Action OnWave;
-    public void DoWave()
+    public event Action<Hittable> OnWave;
+    public void DoWave(Hittable playerhp)
     {
-        OnWave?.Invoke();
+        OnWave?.Invoke(playerhp);
     }
     // OnWave called when a wave ends
     public event Action<PlayerController> OnUpdate;
@@ -108,7 +108,7 @@ public class EventBus
                 activeWrappers[listener] = handlerOnStop;
                 break;
             case "on-wave":
-                Action handlerOnWave = () => listener(new EventContext { });
+                Action<Hittable> handlerOnWave = (playerhp) => listener(new EventContext { hittable = playerhp });
                 OnWave += handlerOnWave;
                 activeWrappers[listener] = handlerOnWave;
                 break;
@@ -147,7 +147,7 @@ public class EventBus
                     OnStop -= (Action<Vector3, PlayerController>)wrapper;
                     break;
                 case "on-wave":
-                    OnWave -= (Action)wrapper;
+                    OnWave -= (Action<Hittable>)wrapper;
                     break;
                 case "on-update":
                     OnUpdate -= (Action<PlayerController>)wrapper;

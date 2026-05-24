@@ -26,6 +26,13 @@ public class RelicTrigger
 
     public void Check(EventContext context)
     {
+
+        if (context.hittable != null && context.hittable.team == Hittable.Team.PLAYER)
+        {
+            return; //return empty and don't move onto the triggercheck if the enemy hit the player
+            // this si for the life steal spell specifically for the 'dealt-damage' trigger
+        }
+
         if (TriggerCheck(amountToCheck, context))
         {
             // 2. If true, shout it out! 
