@@ -60,7 +60,7 @@
         "trigger": {
             "description": "If you don’t take damage for 30 seconds",
             "type": "on-update",
-            "amount": 10,
+            "amount": 30,
             "check": "take-damage"
         },
         "effect": {
