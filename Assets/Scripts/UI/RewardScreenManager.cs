@@ -40,7 +40,7 @@ public class RewardScreenManager : MonoBehaviour
             // TESTING FOR NOW:
 
             // % 3 for every 3 waves
-            if (GameManager.Instance.wave_count % 1 == 0) //set at 1 for testing
+            if (GameManager.Instance.wave_count % 3 == 0) //set at 1 for testing
             {
                 rewardRelicDisplay.RelicRewards();
             }
