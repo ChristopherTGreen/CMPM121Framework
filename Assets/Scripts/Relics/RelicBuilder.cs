@@ -34,6 +34,7 @@ public class RelicBuilder
 
     public RelicTrigger ConditionTriggerBuilder(RelicData relicData)
     {
+        if (relicData.trigger.type == null) return null;
         string currentType = relicData.trigger.type;
         // most likely triggers which don't need checks or comparisons
         if (relicData.trigger.amount == null) 
@@ -45,6 +46,7 @@ public class RelicBuilder
                 case ("on-kill"): return new RelicTrigger(relicData.trigger.type, null);
                 case ("cast-spell"): return new RelicTrigger(relicData.trigger.type, null);
                 case ("on-wave"): return new RelicTrigger(relicData.trigger.type, null);
+                
             }
         }
 
@@ -54,7 +56,8 @@ public class RelicBuilder
         switch (currentType)
         {
             case ("stand-still"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, "move"); // technically "move" cold be the effect.until, research this more - chris
-            case ("move"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, "stand-still"); 
+            case ("move"): return new RelicDuration(relicData.trigger.type, relicData.trigger.amount, "stand-still");
+            case ("on-update"): return new RelicConstantDuration(relicData.trigger.type, relicData.trigger.amount, "take-damage");
         }
 
         throw new Exception("Relic Condition Trigger: Could not find condition trigger");
@@ -85,6 +88,7 @@ public class RelicBuilder
                 case ("move"): return new RelicTrigger(currentType, null);
                 case ("stand-still"): return new RelicTrigger(currentType, null);
                 case ("cast-spell"): return new RelicTrigger(currentType, null);
+                case ("take-damage"): return new RelicTrigger(currentType, null);
             }
         }
 

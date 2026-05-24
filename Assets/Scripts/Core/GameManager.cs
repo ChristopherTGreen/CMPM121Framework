@@ -122,5 +122,8 @@ public class GameManager
         classTypes = RetrieveClassData.ClassDictionary();
         relics = RetrieveRelicData.RelicsDictionary();
         //Debug.Log(string.Join(", ", relics));
+
+        activeRelics.Add("Kings Charge", new KingsCharge(GameManager.Instance.relics["Kings Charge"]));
+        //activeRelics["Kings Charge"].Enable();
     }
 }

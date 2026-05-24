@@ -61,9 +61,15 @@ public class EventBus
     {
         OnWave?.Invoke();
     }
+    // OnWave called when a wave ends
+    public event Action<PlayerController> OnUpdate;
+    public void DoUpdate(PlayerController owner)
+    {
+        OnUpdate?.Invoke(owner);
+    }
 
 
-   
+
 
     private Dictionary<Action<EventContext>, Delegate> activeWrappers = new();
     // register an action
@@ -99,6 +105,10 @@ public class EventBus
                 Action handlerOnWave = () => listener(new EventContext { });
                 OnWave += handlerOnWave;
                 break;
+            case "on-update": // updates every frame
+                Action<PlayerController> handlerOnUpdate = (handlerPlayer) => listener(new EventContext { player = handlerPlayer });
+                OnUpdate += handlerOnUpdate;
+                break;
             default: throw new Exception("Failed Register: Given eventName does not exist as a register - " + eventName);
         }
        
@@ -130,6 +140,9 @@ public class EventBus
                     break;
                 case "on-wave":
                     OnWave -= (Action)wrapper;
+                    break;
+                case "on-update":
+                    OnUpdate -= (Action<PlayerController>)wrapper;
                     break;
                 default:
                 throw new Exception("Failed Deregister: Given eventName does not exist as a Deregister - " + eventName);
