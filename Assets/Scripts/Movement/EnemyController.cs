@@ -38,7 +38,11 @@ public class EnemyController : MonoBehaviour
         if (last_attack + 2 < Time.time)
         {
             last_attack = Time.time;
-            target.gameObject.GetComponent<PlayerController>().hp.Damage(new Damage(5, Damage.Type.PHYSICAL));
+            // warning assumes this target is player
+            PlayerController targetObject = target.gameObject.GetComponent<PlayerController>();
+            targetObject.hp.Damage(new Damage(5, Damage.Type.PHYSICAL));
+            //Debug.Log(targetObject);
+            EventBus.Instance.DoDamageTaken(target.transform.position, targetObject);
         }
     }
 
@@ -47,7 +51,12 @@ public class EnemyController : MonoBehaviour
     {
         if (!dead)
         {
+            // event calls
+            hp.OnDeath += Die;
+            EventBus.Instance.DoKill(target.position, target.gameObject.GetComponent<PlayerController>());
+
             GameManager.Instance.sessionStats.enemiesKilled += 1;
+        
             dead = true;
             GameManager.Instance.RemoveEnemy(gameObject);
             Destroy(gameObject);

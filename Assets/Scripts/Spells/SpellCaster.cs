@@ -7,6 +7,7 @@ public class SpellCaster
     public int mana;
     public int max_mana;
     public int mana_reg;
+    public int mana_cost_extra = 0; // may reduce or increase mana cost given
     public Hittable.Team team;
     public Spell spell;
 
@@ -27,12 +28,13 @@ public class SpellCaster
         this.mana_reg = mana_reg;
         this.team = team;
         //spell = new SpellBuilder().Build(this);
-        spell = new ArcaneBolt(this);
+        //spell = new ArcaneBolt(this);
         //spell = new DamageAmpModifier(new DamageAmpModifier(baseSpell));
         //spell = new RandomModifier().CreateRandomModifier(baseSpell);
         //spell = new RandomModifier().CreateRandomSpell(this);
         //spell = new DamageAmpModifier(spell);
-
+        spell = new ArcaneBolt(this);
+        //spell = new DamageAmpModifier(new DamageMulModifier(new ArcaneBolt(this)));
         //spell = new DamageAmpModifier(new DoublerModifier(new HomingModifier(new ArcaneBolt(this))));
 
         // Storing the first random spell created
@@ -47,6 +49,12 @@ public class SpellCaster
         this.mana = Mathf.RoundToInt(perc * max_mana);
     }
 
+    public void SetMana(int mana)
+    {
+        if (mana >= max_mana) this.mana = max_mana;
+        else this.mana = mana;
+    }
+
 
 
     public void CurrentActiveSpell(Spell spell)
@@ -58,9 +66,9 @@ public class SpellCaster
 
     public IEnumerator Cast(Vector3 where, Vector3 target)
     {        
-        if (mana >= spell.GetManaCost() && spell.IsReady())
+        if (mana >= spell.GetManaCost() + mana_cost_extra && spell.IsReady())
         {
-            mana -= spell.GetManaCost();
+            mana -= spell.GetManaCost() + mana_cost_extra;
             yield return spell.CastRoutine(where, target, team);
         }
         yield break;

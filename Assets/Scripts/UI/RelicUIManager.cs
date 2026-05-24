@@ -46,7 +46,7 @@ public class RelicUIManager : MonoBehaviour
 
         int activeRelicGap = 50;
 
-        foreach (RelicData activerelic in GameManager.Instance.tempActiveRelics.Values)
+        foreach (RelicData activerelic in GameManager.Instance.RelicDataActiveRelics.Values)
         {
 
             //Spawns a duplicate of the relic prefab (Instantiate)

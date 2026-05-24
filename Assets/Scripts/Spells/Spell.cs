@@ -25,18 +25,19 @@ public class Spell : ISpell
     public string baseTrajectory { get; set; } = null;
     public int sprite { get; set; } = 0;
     // Variables for base class (we need to find default values)
-    public Damage baseDamage { get; set; } = new Damage(-1, 0);
-    public int baseHeal { get; set; } = -1;
-    public float baseSpeed { get; set; } = -1;
-    public int baseNumber { get; set; } = 1;
-    public int baseManaCost { get; set; } = -1;
-    public float baseCooldown { get; set; } = -1;
-    public int baseAngle { get; set; } = 0;
-    public float baseDelay { get; set; } = 1;
-    public float baseLifetime { get; set; } = 5;
-    public int baseRepeat { get; set; } = 1;
-    public int basePierce { get; set; } = 1;
-    public int baseBounce { get; set; } = 0;
+    public string baseDamage { get; set; } = "0";
+    public Damage.Type baseDamageType { get; set; } = 0;
+    public string baseHeal { get; set; } = "0";
+    public string baseSpeed { get; set; } = "0";
+    public string baseNumber { get; set; } = "1";
+    public string baseManaCost { get; set; } = "0";
+    public string baseCooldown { get; set; } = "0";
+    public string baseAngle { get; set; } = "0";
+    public string baseDelay { get; set; } = "1";
+    public string baseLifetime { get; set; } = "5";
+    public string baseRepeat { get; set; } = "1";
+    public string basePierce { get; set; } = "1";
+    public string baseBounce { get; set; } = "0";
 
 
     // Constructor
@@ -72,35 +73,37 @@ public class Spell : ISpell
     }
 
     public virtual int GetDamage()
-    { 
+    {
+        //Debug.Log("Damage");
         //force a int after damage multiplier - I dont like this...
         // Spell.cs line 147 doesn't like when I change this method to a float
-        return (int)ValueModifier.GetValue(stats.amount, baseDamage.amount);
+
+        return (int)ValueModifier.GetValue(stats.amount, IntRPN(baseDamage));
     }
 
     public virtual Damage.Type GetDamageType()
     {
-        Damage.Type type = baseDamage.type;
+        Damage.Type type = baseDamageType;
         return type;
     }
 
     public virtual int GetHeal()
     {
-        return (int)ValueModifier.GetValue(stats.heal, baseHeal);
+        return (int)ValueModifier.GetValue(stats.heal, IntRPN(baseHeal));
     }
 
     public virtual float GetSpeed()
     {
-        return ValueModifier.GetValue(stats.speed, baseSpeed);
+        return ValueModifier.GetValue(stats.speed, FloatRPN(baseSpeed));
     }
 
     public virtual int GetNumber()
     {
-        return ValueModifier.GetValue(stats.number, baseNumber);
+        return ValueModifier.GetValue(stats.number, IntRPN(baseNumber));
     }
     public virtual int GetRepeat()
     {
-        return ValueModifier.GetValue(stats.repeat, baseRepeat);
+        return ValueModifier.GetValue(stats.repeat, IntRPN(baseRepeat));
     }
 
 
@@ -108,39 +111,39 @@ public class Spell : ISpell
     {
         // also force int after manaCost Multiplier - I don't like this either...
         // SpellCaster.cs Line 39 doesn't like when I change this method to float
-        return (int)ValueModifier.GetValue(stats.manaCost, baseManaCost);
+        return (int)ValueModifier.GetValue(stats.manaCost, IntRPN(baseManaCost));
     }
 
     public virtual float GetCooldown()
     {
-        return ValueModifier.GetValue(stats.cooldown, baseCooldown);
+        return ValueModifier.GetValue(stats.cooldown, FloatRPN(baseCooldown));
     }
     public virtual float GetAngle()
     {
-        return ValueModifier.GetValue(stats.angle, baseAngle);
+        return ValueModifier.GetValue(stats.angle, IntRPN(baseAngle));
     }
     public virtual float GetDelay()
     {
-        return ValueModifier.GetValue(stats.angle, baseAngle);
+        return ValueModifier.GetValue(stats.delay, FloatRPN(baseDelay));
     }
     public virtual float GetLifetime()
     {
-        return ValueModifier.GetValue(stats.lifetime, baseLifetime);
+        return ValueModifier.GetValue(stats.lifetime, FloatRPN(baseLifetime));
     }
     public virtual int GetPierce()
     {
-        return ValueModifier.GetValue(stats.pierce, basePierce);
+        return ValueModifier.GetValue(stats.pierce, IntRPN(basePierce));
     }
     public virtual int GetBounce()
     {
-        return ValueModifier.GetValue(stats.bounce, baseBounce);
+        return ValueModifier.GetValue(stats.bounce, IntRPN(baseBounce));
     }
 
     // IsReady() 
     // Seems to return if the spell is ready to be spawned if player clicks a button
     public bool IsReady() 
     {
-        return (last_cast + baseCooldown < Time.time);
+        return (last_cast + GetCooldown() < Time.time);
     }
 
     public virtual IEnumerator CastRoutine(Vector3 where, Vector3 target, Hittable.Team team)
@@ -149,6 +152,7 @@ public class Spell : ISpell
    
         Vector3 direction = new Vector3();
 
+        
         Cast();
 
         int repeat = GetRepeat();
@@ -158,7 +162,7 @@ public class Spell : ISpell
             for (int j = 0; j < number; j++)
             {
                 direction = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-GetAngle() / 2.0f, GetAngle() / 2.0f)) * (target - where).normalized;
-                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit, GetLifetime(), GetPierce(), GetBounce());
+                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit, GetLifetime(), GetPierce(), GetBounce(), GetDamage());
             }
             // Wait before the next shot (but don't wait after the final shot)
             if (i < (GetRepeat() - 1))
@@ -166,7 +170,19 @@ public class Spell : ISpell
                 yield return new WaitForSeconds(GetDelay());
             }
         }
+
+
+
         yield return new WaitForEndOfFrame();
+        EventBus.Instance.DoCast(where, GameManager.Instance.player.GetComponent<PlayerController>());
+    }
+
+  
+
+    // This gets edited by child methods
+    protected virtual void Cast(ValueModifier modifier)
+    {
+        
     }
 
     // Not too sure if we should merge the cast here with the cast above - chris
@@ -175,30 +191,32 @@ public class Spell : ISpell
         ((ISpell)this).Cast(new ValueModifier());
     }
 
-    // This gets edited by child methods
-    protected virtual void Cast(ValueModifier modifier)
-    {
-        
-    }
-
     void ISpell.Cast(ValueModifier modifier)
     {
         this.stats = modifier; // saving stats
         this.Cast(modifier);
     }
 
-    public void OnHit(Hittable other, Vector3 impact)
+    public void OnHit(Hittable other, Vector3 impact, int damage)
     {
         if (other.team != team)
         {
-            other.Damage(new Damage(GetDamage(), Damage.Type.ARCANE));
-            GameManager.Instance.sessionStats.totalDamageDealt += GetDamage();
-            if (GetHeal() >= 0) GameManager.Instance.player.GetComponent<PlayerController>().hp.SetCurrentHP(GetHeal());
+            other.Damage(new Damage(damage, GetDamageType()));
+            GameManager.Instance.sessionStats.totalDamageDealt += damage;
+            if (GetHeal() > 0) GameManager.Instance.player.GetComponent<PlayerController>().hp.SetCurrentHP(GetHeal());
         }
 
     }
 
     // Note: 
     // The original version of OnHit and IsReady has GetDamage(), not too sure if we need them to be get calls which can be overriden or not - chris
-
+    public int IntRPN(string value)
+    {
+        Debug.Log(value);
+        return RPNEvaluator.RPNEvaluator.Evaluate(value, GameManager.Instance.variables);
+    }
+    public float FloatRPN(string value)
+    {
+        return RPNEvaluator.RPNEvaluator.Evaluatef(value, GameManager.Instance.variables);
+    }
 }

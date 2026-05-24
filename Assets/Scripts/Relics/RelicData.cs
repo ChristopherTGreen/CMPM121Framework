@@ -38,6 +38,7 @@ public class Effect
     public string amount { get; set; } = null;
     public string until { get; set; } = null;
 
+
 }
 
 

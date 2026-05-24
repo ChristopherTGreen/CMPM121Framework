@@ -53,5 +53,31 @@
             "type": "gain-mana",
             "amount": "25"
         }
+    },
+    {
+        "name": "Wave Heal",
+        "sprite": 7,
+        "trigger": {
+            "description": "When you finish a wave",
+            "type": "on-wave"
+        },
+        "effect": {
+            "description": "you gain 10 health.",
+            "type": "gain-hp",
+            "amount": "10"
+        }
+    },
+    {
+        "name": "Life Steal",
+        "sprite": 11,
+        "trigger": {
+            "description": "When you do damage to an enemy",
+            "type": "dealt-damage"
+        },
+        "effect": {
+            "description": "gain 1 health",
+            "type": "gain-hp",
+            "amount": "1"
+        }
     }
 ]

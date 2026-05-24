@@ -6,7 +6,7 @@ public class DoublerModifier : SpellModifier
     //constructor
     public DoublerModifier(Spell inner) : base(inner)
     {
-        this.modData = GameManager.Instance.spells["doubled"];
+        this.modData = GameManager.Instance.spells["doubled"].Clone();
         this.modData.repeat = "1";
         Debug.Log("Modifier: Doubler Constructed");
     }

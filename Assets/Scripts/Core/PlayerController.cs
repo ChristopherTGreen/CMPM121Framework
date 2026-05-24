@@ -4,7 +4,6 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.IO;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
@@ -16,14 +15,18 @@ public class PlayerController : MonoBehaviour
     public SpellCaster spellcaster;
     public SpellUI spellui;
 
-    public int speed;
-    public int power;
+    public int speed { get; set; } = 0; // I added the 0 here, might remove - chris
+    public int power { get; set; } = 0;
+
 
     public Unit unit;
 
     public int activeSpellIndex;
 
+    private string PlayerState = "IDLE";
+
     private bool PlayerScaledFlag;
+    private bool PlayerStillFlag;
 
     public ClassData chosenClass;
 
@@ -74,6 +77,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        
         //When player hit's tab, toggle the spell used
         if (Keyboard.current[Key.Tab].wasPressedThisFrame)
         {
@@ -93,7 +99,13 @@ public class PlayerController : MonoBehaviour
                 //updating player with new scaling
                 spellcaster.SetMaxMana(newData.mana);
                 spellcaster.mana_reg = newData.mana_regeneration;
+
+                Debug.Log("Power before: " + power);
+
                 power = newData.spellpower;
+
+                Debug.Log("Power after: " + power);
+
                 speed = newData.speed;
                 
                 hp.SetMaxHP(newData.health);
@@ -115,6 +127,35 @@ public class PlayerController : MonoBehaviour
             PlayerScaledFlag = false;
         }
 
+
+
+        switch (PlayerState)
+        {
+            case "IDLE":
+
+
+
+                if (!PlayerStillFlag) PlayerState = "MOVING";
+                break;
+
+            case "MOVING":
+
+                if (unit.movement == new Vector2(0, 0))
+                {
+                    Debug.Log("STOP");
+                    EventBus.Instance.DoStop(transform.position, this);
+                    PlayerStillFlag = true;
+                    PlayerState = "IDLE";
+                }
+                break;
+        }
+
+
+    }
+
+    void MovingCall()
+    {
+
     }
 
     void OnAttack(InputValue value)
@@ -130,6 +171,9 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.GameState.PREGAME || GameManager.Instance.state == GameManager.GameState.GAMEOVER) return;
         unit.movement = value.Get<Vector2>()*speed;
+        PlayerStillFlag = false;
+
+        EventBus.Instance.DoMove(transform.position, this);
     }
 
     void Die()
@@ -171,6 +215,15 @@ public class PlayerController : MonoBehaviour
             throw new System.Exception("PlayerController.cs_SwitchSpell() >> MASSIVE ERROR! YOU SHOULD NOT HAVE LESS THAN 1 SPELL! CHECK SpellCaster.cs");
         } 
 
+    }
+
+    public int GetPower()
+    {
+        return power;
+    }
+    public void SetPower(int power)
+    {
+        this.power = power;
     }
 
 }
