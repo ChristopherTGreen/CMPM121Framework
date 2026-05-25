@@ -33,6 +33,8 @@ public class Relic
         if (completeTrigger != null) completeTrigger.AddObserver();
         applyTrigger.OnTrigger += relicEffect.StartEffect;
         if (completeTrigger != null) completeTrigger.OnTrigger += relicEffect.EndEffect;
+
+        if (completeTrigger != null) relicEffect.onlyApply = false;
     }
 
     public void Disable()

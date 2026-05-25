@@ -122,7 +122,8 @@ public class GameManager
         classTypes = RetrieveClassData.ClassDictionary();
         relics = RetrieveRelicData.RelicsDictionary();
         //Debug.Log(string.Join(", ", relics));
-        
 
+        activeRelics.Add("Life Steal", new LifeSteal(relics["Life Steal"]));
+        activeRelics["Life Steal"].Enable();
     }
 }

@@ -65,7 +65,7 @@ public class EnemySpawner : MonoBehaviour
     // Calls for the next wave, with relevant level
     public void NextWave(LevelData levelReference)
     {
-        Debug.Log(GameManager.Instance.activeSpells.Length);
+        
         
         //Updating wave count
         GameManager.Instance.wave_count++;

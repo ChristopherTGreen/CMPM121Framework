@@ -17,11 +17,17 @@ public class EventBus
 
     // should we put this somewhere else?
     // Action list below (all called once, not constantly) (relative to the player)
-    // DoDamage called when dealing damage
+    // DoDamage called when dealing damage (only one that enemies also call)
     public event Action<Vector3, Damage, Hittable> OnDamage;
     public void DoDamage(Vector3 where, Damage dmg, Hittable target)
     {
         OnDamage?.Invoke(where, dmg, target);
+    }
+    // DoDamage called when dealing damage (only one that enemies also call)
+    public event Action<Hittable> OnDamageDealt;
+    public void DoDamageDealt(Hittable target)
+    {
+        OnDamageDealt?.Invoke(target);
     }
     // OnDamaged called when dealt damage (assumes subject is player)
     public event Action<Vector3, PlayerController> OnDamageTaken;
@@ -78,8 +84,8 @@ public class EventBus
         switch (eventName)
         {
             case "dealt-damage":
-                Action<Vector3, Damage, Hittable> handlerOnDamage = (handlerWhere, handlerDmg, handlerHittable) => listener(new EventContext { where = handlerWhere, damage = handlerDmg, hittable = handlerHittable });
-                OnDamage += handlerOnDamage;
+                Action<Hittable> handlerOnDamage = (handlerHittable) => listener(new EventContext { hittable = handlerHittable });
+                OnDamageDealt += handlerOnDamage;
                 activeWrappers[listener] = handlerOnDamage;
                 break;
             case "take-damage":
@@ -129,7 +135,7 @@ public class EventBus
             switch (eventName)
             {
                 case "dealt-damage":
-                    OnDamage -= (Action<Vector3, Damage, Hittable>)wrapper;
+                    OnDamageDealt -= (Action<Hittable>)wrapper;
                     break;
                 case "take-damage":
                     OnDamageTaken -= (Action<Vector3, PlayerController>)wrapper;

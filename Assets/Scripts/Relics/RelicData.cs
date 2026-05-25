@@ -14,6 +14,11 @@ public class RelicData
     public Trigger trigger { get; set; } = null;
     public Effect effect { get; set; } = null;
 
+    public RelicData Clone()
+    {
+        return (RelicData)this.MemberwiseClone();
+    }
+
 }
 
 

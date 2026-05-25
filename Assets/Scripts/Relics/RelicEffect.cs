@@ -8,6 +8,7 @@ public class RelicEffect
 {
     public string amount;
     public string description;
+    public bool onlyApply = true;
     // Check before effect trigger so it doesn't accidentally end effect before even starting it
     private bool effectApplied;
     public bool applied
@@ -33,7 +34,7 @@ public class RelicEffect
     public void StartEffect(EventContext context)
     {
         if (this.applied) return;
-        this.applied = true;
+        if (!onlyApply) this.applied = true;
         Debug.Log("start");
 
         ApplyEffect(context);
@@ -42,7 +43,7 @@ public class RelicEffect
     {
         if (!this.applied) return;
         this.applied = false;
-        Debug.Log("end");
+        //Debug.Log("end");
         RemoveEffect(context);
 
     }

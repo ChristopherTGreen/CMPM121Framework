@@ -42,7 +42,7 @@ public class Hittable
 
     public void SetCurrentHP(int current_hp)
     {
-        if (this.hp + this.max_hp >= this.max_hp) this.hp = Mathf.RoundToInt(this.max_hp);
+        if (current_hp + this.hp >= this.max_hp) this.hp = Mathf.RoundToInt(this.max_hp);
         else this.hp = Mathf.RoundToInt(this.hp + current_hp);
     }
 }

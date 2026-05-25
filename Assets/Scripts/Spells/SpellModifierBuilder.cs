@@ -85,9 +85,9 @@ public class SpellModifierBuilder
         ProcessFloat(data.cooldown_adder, "cooldown", "adder");
         ProcessFloat(data.cooldown_multiplier, "cooldown", "multiplier");
 
-        valueMod.AddValue(data.projectile_trajectory, "projectile_trajectory");
+        if (data.projectile_trajectory != null) valueMod.AddValue(data.projectile_trajectory, "projectile_trajectory");
 
-        valueMod.AddValue(data.name, "name");
+        if (data.name != null) valueMod.AddValue(data.name, "name");
 
         if (data.heal != null) valueMod.AddValue(AddFloat(data.heal), "heal");
         if (data.N != null) valueMod.AddValue(AddInt(data.N), "number");

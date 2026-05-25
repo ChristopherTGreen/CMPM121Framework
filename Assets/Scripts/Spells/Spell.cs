@@ -2,6 +2,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
@@ -65,11 +66,12 @@ public class Spell : ISpell
         //Debug.Log($"Spell.cs_GetTrajectory() >> Standard Projectile Trajectory: {ValueModifier.GetValue(stats.trajectory, baseTrajectory)}");
         //Debug.Log($"Spell.cs_GetTrajectory() >> Specified Projectile Trajectory (projectile_trajectory): {ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory)}");
         //Debug.Log("Spell.cs_GetTrajectory() >> Projectile Trajectory Count: " + stats.projectile_trajectory.Count);
+        //if (stats.projectile_trajectory.Count >= 4) Debug.Log(stats.projectile_trajectory[3]);
 
         // if a random spell doesn't have a projectile_trajectory, then it throws a reference error. Hence why I added the conditional
 
         if (ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory) != null) return ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory);
-        else return ValueModifier.GetValue(stats.trajectory, baseTrajectory); // else return the basespell's trajectory
+        else return ValueModifier.GetValue(stats.projectile_trajectory, baseTrajectory); // else return the basespell's trajectory
     }
 
     public virtual int GetDamage()
@@ -202,6 +204,7 @@ public class Spell : ISpell
         if (other.team != team)
         {
             other.Damage(new Damage(damage, GetDamageType()));
+            EventBus.Instance.DoDamageDealt(GameManager.Instance.player.GetComponent<PlayerController>().hp);
             GameManager.Instance.sessionStats.totalDamageDealt += damage;
             if (GetHeal() > 0) GameManager.Instance.player.GetComponent<PlayerController>().hp.SetCurrentHP(GetHeal());
         }

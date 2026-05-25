@@ -21,6 +21,7 @@ public class RelicBuilder
 
     public RelicBuilder RelicQuickBuilder(RelicData relicData) 
     {
+        
         Debug.Log("1. Kings Charge constructor started");
         relic.conditionDescription = relicData.trigger.description;
         relic.sprite = relicData.sprite;
