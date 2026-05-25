@@ -35,7 +35,7 @@ public class RelicEffect
     {
         if (this.applied) return;
         if (!onlyApply) this.applied = true;
-        Debug.Log("start");
+        //ebug.Log("start");
 
         ApplyEffect(context);
     }

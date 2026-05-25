@@ -22,14 +22,14 @@ public class RelicBuilder
     public RelicBuilder RelicQuickBuilder(RelicData relicData) 
     {
         
-        Debug.Log("1. Kings Charge constructor started");
+        //Debug.Log("1. Kings Charge constructor started");
         relic.conditionDescription = relicData.trigger.description;
         relic.sprite = relicData.sprite;
 
 
         relic.relicEffect = RelicEffectBuilder(relicData);
 
-        Debug.Log("2. Setup code finished");
+        //Debug.Log("2. Setup code finished");
         relic.applyTrigger = ConditionTriggerBuilder(relicData);
         relic.completeTrigger = EffectTriggerBuilder(relicData);
 
