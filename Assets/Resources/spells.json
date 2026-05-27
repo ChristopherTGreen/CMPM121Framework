@@ -125,6 +125,29 @@
     "damage_multiplier": "0.75",
     "mana_adder": "10",
     "projectile_trajectory": "homing"
-  }
+  },
+  
+  "broken":{
+        "name": "Broken-wand",
+        "description": "Not as strong. But half as costly",
+        "damage_multiplier": "0.1",
+        "mana_multiplier": "0.5"
+   },
+   "massive":{
+        "name": "massive",
+        "description": "Yo mama so fat she cost all my mana.",
+        "damage_multiplier": "2.0",
+        "mana_multiplier": "2.0",
+        "size_multiplier": "500",
+        "speed_multiplier": "0.3"
+   },
+   "bubble":{
+        "name": "Bubble-wand",
+       "description": "what ever floats your boat",
+       "damage_multiplier": "1",
+       "mana_multiplier": "1.25",
+       "projectile_trajectory": "withering",
+       "size_multiplier": "5.0"
+   }
 
 }
