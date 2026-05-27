@@ -23,6 +23,13 @@
         "count": "3 wave 2 * +",
         "hp": "5 10 wave * +",
         "location": "random bone"
+      },
+      {
+        "enemy": "yoshi",
+        "count": "1",
+        "hp": "base 5 wave * +",
+        "delay": "5",
+        "location": "random"
       }
     ]
   },
@@ -57,6 +64,13 @@
         "count": "2 wave 3 * +",
         "hp": "10 20 wave * +",
         "location": "random"
+      },
+      {
+        "enemy": "yoshi",
+        "count": "1",
+        "hp": "base 5 wave * +",
+        "delay": "5",
+        "location": "random"
       }
     ]
   },
@@ -89,6 +103,13 @@
         "enemy": "eyeball",
         "count": "5 wave 5 * +",
         "hp": "15 25 wave * +",
+        "location": "random"
+      },
+      {
+        "enemy": "yoshi",
+        "count": "wave 2 /",
+        "hp": "base 5 wave * +",
+        "delay": "5",
         "location": "random"
       }
     ]
