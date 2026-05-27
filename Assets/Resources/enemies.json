@@ -26,6 +26,13 @@
         "hp": 5,
         "speed": 10,
         "damage": 2
+   },
+   {
+       "name": "yoshi",
+       "sprite": 2,
+       "hp": 500,
+       "speed": 3,
+       "damage": 100
    }
  
 ]
