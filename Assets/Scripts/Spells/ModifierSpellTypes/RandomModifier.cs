@@ -22,7 +22,8 @@ public class RandomModifier
         { "Piercing", (inner) => new PierceAmpModifier(inner) },
         { "HealAmp", (inner) => new HealAmpModifier(inner) },
         { "Broken", (inner) => new Broken(inner) },
-        { "Massive", (inner) => new Massive(inner) }
+        { "Massive", (inner) => new Massive(inner) },
+        { "Bubble", (inner) => new BubbleModifier(inner) }
     };
 
     //constructor

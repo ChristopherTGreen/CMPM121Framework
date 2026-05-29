@@ -113,13 +113,13 @@
     "angle": "10",
     "mana_multiplier": "1.5"
   },
-  "broken":{
+  "broken": {
     "name": "Broken",
     "description": "Not as strong, but half as costly.",
     "damage_multiplier": "0.1",
     "mana_multiplier": "0.5"
   },
-  "massive":{
+  "massive": {
     "name": "Massive",
     "description": "Yo mama so fat she cost all my mana",
     "damage_multiplier": "2.0",
@@ -139,6 +139,13 @@
     "damage_multiplier": "0.75",
     "mana_adder": "10",
     "projectile_trajectory": "homing"
+  },
+  "bubble": {
+    "name": "bubble",
+    "description": "what ever floats your boat",
+    "damage_multiplier": "1",
+    "mana_multiplier": "1.25",
+    "projectile_trajectory": "withering",
+    "size_multiplier": "2.0"
   }
-
 }
