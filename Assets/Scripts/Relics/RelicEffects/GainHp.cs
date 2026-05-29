@@ -17,7 +17,12 @@ public class GainHp : RelicEffect
         int hpGain = RPNEvaluator.RPNEvaluator.Evaluate(amount, GameManager.Instance.variables);
         //Debug.Log(hpGain);
         //Debug.Log(context.hittable.hp);
-        context.hittable.SetCurrentHP(hpGain);
+        if (context.hittable != null) context.hittable.SetCurrentHP(hpGain);
+        else if (context.player != null) context.player.hp.SetCurrentHP(hpGain);
+        else
+        {
+            throw new Exception("Apply Effect: Gain Hp was given invalid context");
+        }
         //Debug.Log(context.hittable.hp);
     }
 }

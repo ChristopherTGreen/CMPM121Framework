@@ -53,6 +53,7 @@ public class EnemyController : MonoBehaviour
         {
             // event calls
             hp.OnDeath += Die;
+
             EventBus.Instance.DoKill(target.position, target.gameObject.GetComponent<PlayerController>());
 
             GameManager.Instance.sessionStats.enemiesKilled += 1;
