@@ -20,7 +20,9 @@ public class RandomModifier
         { "Splitter", (inner) => new SplitterModifier(inner) },
         { "Bounce", (inner) => new BounceModifier(inner) },
         { "Piercing", (inner) => new PierceAmpModifier(inner) },
-        { "HealAmp", (inner) => new HealAmpModifier(inner) }
+        { "HealAmp", (inner) => new HealAmpModifier(inner) },
+        { "Broken", (inner) => new Broken(inner) },
+        { "Massive", (inner) => new Massive(inner) }
     };
 
     //constructor

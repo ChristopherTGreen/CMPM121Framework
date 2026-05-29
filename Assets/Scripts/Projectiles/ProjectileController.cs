@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class ProjectileController : MonoBehaviour
 {
@@ -97,6 +98,10 @@ public class ProjectileController : MonoBehaviour
     public void SetDamage(int damage)
     {
         damageAmount = damage;
+    }
+    public void SetSize(float size)
+    {
+        this.gameObject.transform.localScale *= size;
     }
 
     IEnumerator Expire(float lifetime)

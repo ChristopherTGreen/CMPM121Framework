@@ -26,6 +26,7 @@ public class SpellData
     public string mana_multiplier { get ; set; } = null;
     public string speed_multiplier { get ; set; } = null;
     public string cooldown_multiplier { get ; set; } = null;
+    public string size_multiplier { get; set; } = null;
 
     // angle
     public string angle { get ; set; } = null;
@@ -38,6 +39,7 @@ public class SpellData
     public string mana_adder { get ; set;} = null;
     public string speed_adder { get; set; } = null;
     public string cooldown_adder { get; set; } = null;
+    public string size_adder { get; set; } = null;
 
     // Singular projectile trajectory
     public string projectile_trajectory { get; set;} = null;
