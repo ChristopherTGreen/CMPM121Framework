@@ -50,6 +50,10 @@ public class ProjectileManager : MonoBehaviour
         {
             return new SpiralingProjectileMovement(speed);
         }
+        if (name == "withering")
+        {
+            return new WitheringProjectileMovement(speed);
+        }
         return null;
     }
 
