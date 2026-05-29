@@ -153,7 +153,20 @@ public class RewardRelicDisplay : MonoBehaviour
             {
                 rewardedrelic = new KingsCharge(relic);
                 rewardedrelic.Enable();
-            }
+            } else if (relic.name == "Mana Bubble")
+            {
+                rewardedrelic = new KingsCharge(relic);
+                rewardedrelic.Enable();
+            } else if (relic.name == "Warlocks Tome")
+            {
+                rewardedrelic = new KingsCharge(relic);
+                rewardedrelic.Enable();
+            } else if (relic.name == "Blood Amulet")
+            {
+                rewardedrelic = new KingsCharge(relic);
+                rewardedrelic.Enable();
+            } 
+
 
             GameManager.Instance.RelicDataActiveRelics.Add(relic.name, relic); // stores the relic daat for the active relic display
             GameManager.Instance.activeRelics.Add(relic.name, rewardedrelic); //stores the actual enabled Relic

@@ -71,8 +71,8 @@
         }
     },
     {
-        "name": "Wave Heal",
-        "sprite": 7,
+        "name": "Armlet Replenish",
+        "sprite": 14,
         "trigger": {
             "description": "When you finish a wave",
             "type": "on-wave"
@@ -94,6 +94,46 @@
             "description": "gain 1 health",
             "type": "gain-hp",
             "amount": "1"
+        }
+    },
+    {
+        "name":  "Mana Bubble",
+        "sprite":  13,
+        "trigger":  {
+            "description": "Whenever you cast a spell",
+            "type": "cast-spell"
+        },
+        "effect":  {
+            "description":  "you gain 10 mana",
+            "type":  "gain-mana",
+            "amount": "10"
+        }
+
+    },
+    {
+        "name":  "Warlocks Tome",
+        "sprite":  10,
+        "trigger":  {
+            "description":  "Whenever you kill an enemy",
+            "type":  "on-kill"
+        },
+        "effect":  {
+            "description": "you heal 10 health",
+            "type":  "gain-hp",
+            "amount": "10"
+        }
+    },
+    {
+        "name":  "Blood Amulet",
+        "sprite":  7,
+        "trigger": {
+            "description":  "Whenever you take damage",
+            "type": "take-damage"
+        },
+        "effect":  {
+            "description": "you heal 5 health",
+            "type": "gain-hp",
+            "amount":  "5"
         }
     }
 ]
