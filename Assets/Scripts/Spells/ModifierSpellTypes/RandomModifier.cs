@@ -14,13 +14,13 @@ public class RandomModifier
     {
        // { "DamageAmp", (inner) => new DamageAmpModifier(inner) },
        // { "Chaos", (inner) => new ChaosModifier(inner) },
-      //  { "Doubler", (inner) => new DoublerModifier(inner) },
-      //  { "Homing", (inner) => new HomingModifier(inner) },
-      //  { "SpeedAmp", (inner) => new SpeedAmpModifier(inner) },
-      //  { "Splitter", (inner) => new SplitterModifier(inner) },
+       // { "Doubler", (inner) => new DoublerModifier(inner) },
+       // { "Homing", (inner) => new HomingModifier(inner) },
+       // { "SpeedAmp", (inner) => new SpeedAmpModifier(inner) },
+       // { "Splitter", (inner) => new SplitterModifier(inner) },
        // { "Bounce", (inner) => new BounceModifier(inner) },
        // { "Piercing", (inner) => new PierceAmpModifier(inner) },
-      //  { "HealAmp", (inner) => new HealAmpModifier(inner) },
+       // { "HealAmp", (inner) => new HealAmpModifier(inner) },
        // { "Broken", (inner) => new Broken(inner) },
         { "Massive", (inner) => new Broken(inner) }
     };
