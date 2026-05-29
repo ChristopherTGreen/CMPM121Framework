@@ -25,6 +25,7 @@ public class ValueModifier
     public List<ValueModifier<float>> lifetime = new List<ValueModifier<float>>();
     public List<ValueModifier<int>> pierce = new List<ValueModifier<int>>();
     public List<ValueModifier<int>> bounce = new List<ValueModifier<int>>();
+    public List<ValueModifier<float>> size = new List<ValueModifier<float>>();
 
 
     // strings, may not need?
@@ -98,6 +99,7 @@ public class ValueModifier
         else if (valueName == "amount") amount.Add(valueMod);
         else  if (valueName == "heal") heal.Add(valueMod);
         else if (valueName == "manaCost") manaCost.Add(valueMod);
+        else if (valueName == "size") size.Add(valueMod);
 
         else throw new Exception("ValueModifier.cs_AddValue(ValueModifier<float>, string) >> Invalid value modifier float name: " + valueName + " for add value");
     }

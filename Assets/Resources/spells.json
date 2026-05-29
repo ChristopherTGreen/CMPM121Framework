@@ -119,6 +119,14 @@
     "damage_multiplier": "0.1",
     "mana_multiplier": "0.5"
   },
+  "massive":{
+    "name": "Massive",
+    "description": "Yo mama so fat she cost all my mana",
+    "damage_multiplier": "2.0",
+    "mana_multiplier": "2.0",
+    "size_multiplier": "10",
+    "speed_multiplier": "0.3"
+  },
   "chaos": {
     "name": "chaotic",
     "description": "Significantly increased damage, but projectile is spiraling.",

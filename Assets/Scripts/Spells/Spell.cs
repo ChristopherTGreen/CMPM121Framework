@@ -39,6 +39,7 @@ public class Spell : ISpell
     public string baseRepeat { get; set; } = "1";
     public string basePierce { get; set; } = "1";
     public string baseBounce { get; set; } = "0";
+    public string baseSize { get; set; } = "1";
 
 
     // Constructor
@@ -140,6 +141,10 @@ public class Spell : ISpell
     {
         return ValueModifier.GetValue(stats.bounce, IntRPN(baseBounce));
     }
+    public virtual float GetSize()
+    {
+        return ValueModifier.GetValue(stats.size, FloatRPN(baseSize));
+    }
 
     // IsReady() 
     // Seems to return if the spell is ready to be spawned if player clicks a button
@@ -164,7 +169,7 @@ public class Spell : ISpell
             for (int j = 0; j < number; j++)
             {
                 direction = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-GetAngle() / 2.0f, GetAngle() / 2.0f)) * (target - where).normalized;
-                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit, GetLifetime(), GetPierce(), GetBounce(), GetDamage());
+                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit, GetLifetime(), GetPierce(), GetBounce(), GetDamage(),GetSize());
             }
             // Wait before the next shot (but don't wait after the final shot)
             if (i < (GetRepeat() - 1))
