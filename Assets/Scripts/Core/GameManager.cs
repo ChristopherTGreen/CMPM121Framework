@@ -124,5 +124,6 @@ public class GameManager
         //Debug.Log(string.Join(", ", relics));
 
         
+
     }
 }
