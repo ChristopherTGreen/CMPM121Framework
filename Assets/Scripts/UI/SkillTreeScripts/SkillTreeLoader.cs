@@ -28,9 +28,10 @@ public class SkillTreeLoader : MonoBehaviour
         
         //positioning the button:
         RectTransform buttonRectTransform = selector.GetComponent<RectTransform>();
-        buttonRectTransform.pivot = new Vector2(1.0f, 1.0f); // button's pivot is now the upper right
-        buttonRectTransform.anchorMin = new Vector2(0.0f, 1.0f); // Anchors the button to the upper left of the reward screen. 
-        buttonRectTransform.anchorMax = new Vector2(0.0f, 1.0f);
+        buttonRectTransform.pivot = new Vector2(0.0f, 1.0f); // button's pivot is now the upper left
+        buttonRectTransform.anchorMin = new Vector2(0.05f, 0.9f); // Anchors the button to the upper left of the reward screen. 
+        buttonRectTransform.anchorMax = new Vector2(0.05f, 0.9f);
+        buttonRectTransform.localScale = new Vector2(0.75f, 0.75f);
         buttonRectTransform.anchoredPosition = Vector2.zero; //moves the button to thne upper left of the parent
 
         selector.GetComponent<MenuSelectorController>().label.text = "Skill Tree";
