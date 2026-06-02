@@ -4411,6 +4411,7 @@ GameObject:
   - component: {fileID: 1181427512}
   - component: {fileID: 1181427514}
   - component: {fileID: 1181427513}
+  - component: {fileID: 1181427515}
   m_Layer: 5
   m_Name: SkillTree
   m_TagString: Untagged
@@ -4427,7 +4428,7 @@ RectTransform:
   m_GameObject: {fileID: 1181427511}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.9664917, y: 3.4667091, z: 1}
+  m_LocalScale: {x: 8.254207, y: 3.8610477, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1766639958}
@@ -4435,8 +4436,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -18}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: -1}
+  m_SizeDelta: {x: 100, y: 94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1181427513
 MonoBehaviour:
@@ -4482,6 +4483,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1181427515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181427511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62c26dfc9252a44786c76204a25b988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillTreeUnloader
+  buttonPrefab: {fileID: 6791571272867747119, guid: 47865e4d0d1669541a3aa2992225a687, type: 3}
+  skillTreeUI: {fileID: 1181427511}
 --- !u!1 &1202924358
 GameObject:
   m_ObjectHideFlags: 0
