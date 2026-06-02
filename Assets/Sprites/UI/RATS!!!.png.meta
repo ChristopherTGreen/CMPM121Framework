@@ -1,0 +1,1521 @@
+fileFormatVersion: 2
+guid: e79137f57916b264c8b89e9dbc640019
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3631541159815519931
+    second: RATS!!!_0
+  - first:
+      213: -7768809157598762307
+    second: RATS!!!_1
+  - first:
+      213: -4521920733164970083
+    second: RATS!!!_2
+  - first:
+      213: 7795495853555470768
+    second: RATS!!!_3
+  - first:
+      213: -4047073127402385867
+    second: RATS!!!_4
+  - first:
+      213: -5480563803542205143
+    second: RATS!!!_5
+  - first:
+      213: 231829786006364986
+    second: RATS!!!_6
+  - first:
+      213: 6923525298172766914
+    second: RATS!!!_7
+  - first:
+      213: 6256053247323469354
+    second: RATS!!!_8
+  - first:
+      213: 8550997123748677255
+    second: RATS!!!_9
+  - first:
+      213: -4646276984200443254
+    second: RATS!!!_10
+  - first:
+      213: 1672543841242435945
+    second: RATS!!!_11
+  - first:
+      213: -4260323383593480568
+    second: RATS!!!_12
+  - first:
+      213: -2605768405374541841
+    second: RATS!!!_13
+  - first:
+      213: 1020124712746728470
+    second: RATS!!!_14
+  - first:
+      213: 1092287067871066872
+    second: RATS!!!_15
+  - first:
+      213: 8164874485751305754
+    second: RATS!!!_16
+  - first:
+      213: -1296037866989692869
+    second: RATS!!!_17
+  - first:
+      213: 5680466241044273776
+    second: RATS!!!_18
+  - first:
+      213: 4624403980706492412
+    second: RATS!!!_19
+  - first:
+      213: -8176114424390276479
+    second: RATS!!!_20
+  - first:
+      213: -5682471702932036309
+    second: RATS!!!_21
+  - first:
+      213: -7724560239564914766
+    second: RATS!!!_22
+  - first:
+      213: 1370339592302566827
+    second: RATS!!!_23
+  - first:
+      213: -5786749530224349586
+    second: RATS!!!_24
+  - first:
+      213: -2425103586401582102
+    second: RATS!!!_25
+  - first:
+      213: 5167661421280803220
+    second: RATS!!!_26
+  - first:
+      213: -3208305673198673829
+    second: RATS!!!_27
+  - first:
+      213: -4718126214887754182
+    second: RATS!!!_28
+  - first:
+      213: 6824635183079413595
+    second: RATS!!!_29
+  - first:
+      213: 8503789404003331120
+    second: RATS!!!_30
+  - first:
+      213: -3353455411989253780
+    second: RATS!!!_31
+  - first:
+      213: -3587288714966222731
+    second: RATS!!!_32
+  - first:
+      213: -5684745859054787326
+    second: RATS!!!_33
+  - first:
+      213: -4748521014256349772
+    second: RATS!!!_34
+  - first:
+      213: -7089969623972010098
+    second: RATS!!!_35
+  - first:
+      213: 47137467838367877
+    second: RATS!!!_36
+  - first:
+      213: -8079102745516780679
+    second: RATS!!!_37
+  - first:
+      213: -6333637334555899974
+    second: RATS!!!_38
+  - first:
+      213: 1747538791671873227
+    second: RATS!!!_39
+  - first:
+      213: -6111120266695146009
+    second: RATS!!!_40
+  - first:
+      213: -5265324443490233185
+    second: RATS!!!_41
+  - first:
+      213: -7336953584378713434
+    second: RATS!!!_42
+  - first:
+      213: -401465657612023489
+    second: RATS!!!_43
+  - first:
+      213: -844550263150332860
+    second: RATS!!!_44
+  - first:
+      213: -672384180659648641
+    second: RATS!!!_45
+  - first:
+      213: -1369713974708393016
+    second: RATS!!!_46
+  - first:
+      213: 7341796060944114863
+    second: RATS!!!_47
+  - first:
+      213: -6054942240971382618
+    second: RATS!!!_48
+  - first:
+      213: 4501741244630474283
+    second: RATS!!!_49
+  - first:
+      213: -8760049756660268848
+    second: RATS!!!_50
+  - first:
+      213: 1675796170789346024
+    second: RATS!!!_51
+  - first:
+      213: 7867261307742544922
+    second: RATS!!!_52
+  - first:
+      213: -1989980318423129513
+    second: RATS!!!_53
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RATS!!!_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 321
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbe9302b173d56230800000000000000
+      internalID: 3631541159815519931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 321
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dba26896b35af2490800000000000000
+      internalID: -7768809157598762307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 320
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9f5a352d09ee31c0800000000000000
+      internalID: -4521920733164970083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 321
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b1543f2d2a2f2c60800000000000000
+      internalID: 7795495853555470768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_4
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 323
+        width: 32
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53ec625de68e5d7c0800000000000000
+      internalID: -4047073127402385867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_5
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 323
+        width: 24
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92dc009024021f3b0800000000000000
+      internalID: -5480563803542205143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_6
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 323
+        width: 30
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a33a34b46ff973300800000000000000
+      internalID: 231829786006364986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_7
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 323
+        width: 30
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2caa407839d451060800000000000000
+      internalID: 6923525298172766914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_8
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 323
+        width: 30
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a26f4ae4847f1d650800000000000000
+      internalID: 6256053247323469354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_9
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 257
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7864d64349e3ba670800000000000000
+      internalID: 8550997123748677255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_10
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 257
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8ac8ac23bb158fb0800000000000000
+      internalID: -4646276984200443254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_11
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 256
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 961d58813c1163710800000000000000
+      internalID: 1672543841242435945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_12
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 260
+        width: 28
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88ece9c647a40e4c0800000000000000
+      internalID: -4260323383593480568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_13
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 259
+        width: 24
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fefd6b6f07376dbd0800000000000000
+      internalID: -2605768405374541841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_14
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 259
+        width: 24
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61cbdd97506382e00800000000000000
+      internalID: 1020124712746728470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_15
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 260
+        width: 28
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fa35311d45982f00800000000000000
+      internalID: 1092287067871066872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_16
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 260
+        width: 28
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a165bded5167f4170800000000000000
+      internalID: 8164874485751305754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_17
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 260
+        width: 28
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b38df9a3d6c830ee0800000000000000
+      internalID: -1296037866989692869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_18
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 196
+        width: 28
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07ada0823f115de40800000000000000
+      internalID: 5680466241044273776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_19
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 196
+        width: 28
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cffa9e75bee2d2040800000000000000
+      internalID: 4624403980706492412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_20
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 196
+        width: 28
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a254bff3b988e80800000000000000
+      internalID: -8176114424390276479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_21
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 192
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b25e68cd71ec321b0800000000000000
+      internalID: -5682471702932036309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_22
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 193
+        width: 41
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bf70aa7369dcc490800000000000000
+      internalID: -7724560239564914766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_23
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 193
+        width: 41
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bad19dc499c640310800000000000000
+      internalID: 1370339592302566827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_24
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 193
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6ea1d636f551bfa0800000000000000
+      internalID: -5786749530224349586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_25
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 193
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae3020d032d485ed0800000000000000
+      internalID: -2425103586401582102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_26
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 193
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 499bee6eea837b740800000000000000
+      internalID: 5167661421280803220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_27
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 129
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b506f121dfec973d0800000000000000
+      internalID: -3208305673198673829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_28
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 129
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a36382c8439d58eb0800000000000000
+      internalID: -4718126214887754182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_29
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 129
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b57d4116a89f5be50800000000000000
+      internalID: 6824635183079413595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_30
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 129
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03c695e6867830670800000000000000
+      internalID: 8503789404003331120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_31
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 128
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c61f446f1122671d0800000000000000
+      internalID: -3353455411989253780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_32
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 128
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 578bba58be3673ec0800000000000000
+      internalID: -3587288714966222731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_33
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 129
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 205aaa0a2c9bb11b0800000000000000
+      internalID: -5684745859054787326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_34
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 129
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bdc5c8db4dd91eb0800000000000000
+      internalID: -4748521014256349772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_35
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 129
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e87a6d6f03e5b9d90800000000000000
+      internalID: -7089969623972010098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_36
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 65
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5880e1af64777a000800000000000000
+      internalID: 47137467838367877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_37
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 65
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 973d69d9bd241ef80800000000000000
+      internalID: -8079102745516780679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_38
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 65
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab7c4a9b6666a18a0800000000000000
+      internalID: -6333637334555899974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_39
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 68
+        width: 28
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bce31dca541804810800000000000000
+      internalID: 1747538791671873227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_40
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 68
+        width: 28
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e502fbde70f03ba0800000000000000
+      internalID: -6111120266695146009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_41
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 68
+        width: 28
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f945596c05fcde6b0800000000000000
+      internalID: -5265324443490233185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_42
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 65
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aae39d7697ed2a90800000000000000
+      internalID: -7336953584378713434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_43
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 65
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3944888c15bd6af0800000000000000
+      internalID: -401465657612023489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_44
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 65
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44436f1a20e8744f0800000000000000
+      internalID: -844550263150332860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_45
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 3
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f77803f66263ba6f0800000000000000
+      internalID: -672384180659648641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_46
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 3
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cb2e95a56ccdfce0800000000000000
+      internalID: -1369713974708393016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_47
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 3
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa4afe17e9c43e560800000000000000
+      internalID: 7341796060944114863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_48
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 1
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a0a46fbc1688fba0800000000000000
+      internalID: -6054942240971382618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_49
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 4
+        width: 28
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2e9cec8fc5697e30800000000000000
+      internalID: 4501741244630474283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_50
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 4
+        width: 28
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d08487b82d0e6680800000000000000
+      internalID: -8760049756660268848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_51
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 1
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eadbd31dbf914710800000000000000
+      internalID: 1675796170789346024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_52
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 1
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a146b231a702e2d60800000000000000
+      internalID: 7867261307742544922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RATS!!!_53
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 1
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 752ee5a917b2264e0800000000000000
+      internalID: -1989980318423129513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RATS!!!_0: 3631541159815519931
+      RATS!!!_1: -7768809157598762307
+      RATS!!!_10: -4646276984200443254
+      RATS!!!_11: 1672543841242435945
+      RATS!!!_12: -4260323383593480568
+      RATS!!!_13: -2605768405374541841
+      RATS!!!_14: 1020124712746728470
+      RATS!!!_15: 1092287067871066872
+      RATS!!!_16: 8164874485751305754
+      RATS!!!_17: -1296037866989692869
+      RATS!!!_18: 5680466241044273776
+      RATS!!!_19: 4624403980706492412
+      RATS!!!_2: -4521920733164970083
+      RATS!!!_20: -8176114424390276479
+      RATS!!!_21: -5682471702932036309
+      RATS!!!_22: -7724560239564914766
+      RATS!!!_23: 1370339592302566827
+      RATS!!!_24: -5786749530224349586
+      RATS!!!_25: -2425103586401582102
+      RATS!!!_26: 5167661421280803220
+      RATS!!!_27: -3208305673198673829
+      RATS!!!_28: -4718126214887754182
+      RATS!!!_29: 6824635183079413595
+      RATS!!!_3: 7795495853555470768
+      RATS!!!_30: 8503789404003331120
+      RATS!!!_31: -3353455411989253780
+      RATS!!!_32: -3587288714966222731
+      RATS!!!_33: -5684745859054787326
+      RATS!!!_34: -4748521014256349772
+      RATS!!!_35: -7089969623972010098
+      RATS!!!_36: 47137467838367877
+      RATS!!!_37: -8079102745516780679
+      RATS!!!_38: -6333637334555899974
+      RATS!!!_39: 1747538791671873227
+      RATS!!!_4: -4047073127402385867
+      RATS!!!_40: -6111120266695146009
+      RATS!!!_41: -5265324443490233185
+      RATS!!!_42: -7336953584378713434
+      RATS!!!_43: -401465657612023489
+      RATS!!!_44: -844550263150332860
+      RATS!!!_45: -672384180659648641
+      RATS!!!_46: -1369713974708393016
+      RATS!!!_47: 7341796060944114863
+      RATS!!!_48: -6054942240971382618
+      RATS!!!_49: 4501741244630474283
+      RATS!!!_5: -5480563803542205143
+      RATS!!!_50: -8760049756660268848
+      RATS!!!_51: 1675796170789346024
+      RATS!!!_52: 7867261307742544922
+      RATS!!!_53: -1989980318423129513
+      RATS!!!_6: 231829786006364986
+      RATS!!!_7: 6923525298172766914
+      RATS!!!_8: 6256053247323469354
+      RATS!!!_9: 8550997123748677255
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
