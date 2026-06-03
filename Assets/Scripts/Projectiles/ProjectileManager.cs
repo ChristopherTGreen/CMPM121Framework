@@ -17,16 +17,17 @@ public class ProjectileManager : MonoBehaviour
         
     }
 
-    public void CreateProjectile(int which, string trajectory, Vector3 where, Vector3 direction, float speed, Action<Hittable,Vector3, int> onHit)
+    public void CreateProjectile(int which, string trajectory, Vector3 where, Vector3 direction, float speed, Action<Hittable,Vector3, int, bool> onHit)
     {
         GameObject new_projectile = Instantiate(projectiles[which], where + direction.normalized*1.1f, Quaternion.Euler(0,0,Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg));
         new_projectile.GetComponent<ProjectileController>().movement = MakeMovement(trajectory, speed);
         new_projectile.GetComponent<ProjectileController>().OnHit += onHit;
     }
 
-    public void CreateProjectile(int which, string trajectory, Vector3 where, Vector3 direction, float speed, Action<Hittable, Vector3, int> onHit, float lifetime, int pierce, int bounce, int damage, float size)
+    public void CreateProjectile(int which, string trajectory, Vector3 where, Vector3 direction, float speed, Action<Hittable, Vector3, int, bool> onHit, float lifetime, int pierce, int bounce, int damage, float size, bool secondary = false)
     {
-        GameObject new_projectile = Instantiate(projectiles[which], where + direction.normalized * 1.1f, Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
+        // hardcoded to 0 for projectiles, but if we want different styles of projectiles, change this
+        GameObject new_projectile = Instantiate(projectiles[0], where + direction.normalized * 1.1f, Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
         new_projectile.GetComponent<ProjectileController>().SetSize(size);
         new_projectile.GetComponent<ProjectileController>().movement = MakeMovement(trajectory, speed);
         new_projectile.GetComponent<ProjectileController>().OnHit += onHit;
@@ -34,6 +35,7 @@ public class ProjectileManager : MonoBehaviour
         new_projectile.GetComponent<ProjectileController>().SetPierce(pierce);
         new_projectile.GetComponent<ProjectileController>().SetBounce(bounce);
         new_projectile.GetComponent<ProjectileController>().SetDamage(damage);
+        new_projectile.GetComponent<ProjectileController>().SetSecondary(secondary);
     }
 
     public ProjectileMovement MakeMovement(string name, float speed)
@@ -54,6 +56,7 @@ public class ProjectileManager : MonoBehaviour
         {
             return new WitheringProjectileMovement(speed);
         }
+        throw new Exception("Projectile Manager: Invalid Projectile Movement");
         return null;
     }
 

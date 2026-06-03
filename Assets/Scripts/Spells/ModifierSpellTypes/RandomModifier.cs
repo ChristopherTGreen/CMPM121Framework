@@ -8,7 +8,10 @@ public class RandomModifier
 {
     private Dictionary<string, Func<SpellCaster, Spell>> spellDict = new Dictionary<string, Func<SpellCaster, Spell>>
     {
-        { "ArcaneBolt", (owner) => new ArcaneBolt(owner) }
+        { "ArcaneBolt", (owner) => new ArcaneBolt(owner) },
+        { "MagicMissile", (owner) => new MagicMissile(owner) },
+        { "ArcaneBlast", (owner) => new ArcaneBlast(owner) },
+        { "ArcaneSpray", (owner) => new ArcaneSpray(owner) }
     };
     private Dictionary<string, Func<Spell, SpellModifier>> modDict = new Dictionary<string, Func<Spell, SpellModifier>>
     {
