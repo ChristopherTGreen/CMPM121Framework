@@ -1,0 +1,80 @@
+using UnityEngine.UI;
+using UnityEngine;
+using TMPro;
+
+public class RelicNode : MonoBehaviour
+{
+    
+    public enum AvaliableRelics
+    {
+        
+    }
+
+    private SpellData spell; // Getting the spell from the game manager dictionary
+    private TextMeshProUGUI nodetext;
+
+
+
+    [Header("Select Spell")]
+    [SerializeField] private AvaliableRelics noderelic; // user selects the spell that node will be in the inspector
+
+    [Header("References")]
+    [SerializeField] private GameObject previous; // this will likely have to be an array of gameobjects
+
+    [Header("Only select true if this node will be the 1st node of the tree!!")]
+    [SerializeField] private bool startingNode = false;
+
+
+
+    //Runs before Start()
+    void Start()
+    {
+
+        // if the node is not a starting node and the previous property is not assigned
+        if (previous == null && startingNode == false)
+        {
+
+            throw new System.Exception("You forgot to assign an previous node somewhere!");
+
+        }
+        
+        // Note, this script will throw a reference error if you have it forced set to active before the level difficulty selection
+        // This script will run normally if you open the skill tree upon the completion of the first wave
+        
+        switch (nodespell)
+        {
+
+            case AvaliableSpells.ArcaneBolt:
+                spell = GameManager.Instance.spells["Arcane Bolt"];
+                break;
+            case AvaliableSpells.MagicMissile:
+                spell = GameManager.Instance.spells["Magic Missile"];
+                break;
+            case AvaliableSpells.ArcaneBlast:
+                spell = GameManager.Instance.spells["Arcane Blast"];
+                break;
+            case AvaliableSpells.ArcaneSpray:
+                spell = GameManager.Instance.spells["Arcane Spray"];
+                break;
+
+        }
+
+
+        PlaceNode(spell);
+
+    }
+
+
+
+    public void PlaceNode(SpellData spell)
+    {
+
+        nodetext = GetComponentInChildren<TextMeshProUGUI>();
+        nodetext.text = "Spell " + spell.name + ":\n" + spell.description;
+
+        GameManager.Instance.spellIconManager.PlaceSprite(spell.icon, this.GetComponent<Image>());
+    }
+
+
+
+}
