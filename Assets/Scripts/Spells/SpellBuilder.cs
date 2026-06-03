@@ -29,6 +29,7 @@ public class SpellBuilder
     public SpellBuilder WithSprite(int sprite) { spell.sprite = sprite; return this; }
     public SpellBuilder WithHeal(string heal) { spell.baseHeal = heal; return this; }
     public SpellBuilder WithNumber(string number) { spell.baseNumber = number; return this; }
+    public SpellBuilder WithSmallNumber(string number) { spell.baseSmallNumber = number; return this; }
     public SpellBuilder WithManaCost(string manaCost) { spell.baseManaCost = manaCost; return this; }
     public SpellBuilder WithCooldown(string cooldown) { spell.baseCooldown = cooldown; return this; }
     public SpellBuilder WithAngle(string angle) { spell.baseAngle = angle; return this; }
@@ -100,6 +101,7 @@ public class SpellBuilder
         if (data.mana_cost != null) WithManaCost(data.mana_cost);
         if (data.cooldown != null) WithCooldown(data.cooldown);
         if (data.N != null) WithNumber(data.N);
+        if (data.small_N != null) WithSmallNumber(data.small_N);
         if (data.repeat != null) WithRepeat(data.repeat);
         if (data.pierce != null) WithPierce(data.pierce);
         if (data.bounce != null) WithBounce(data.bounce);

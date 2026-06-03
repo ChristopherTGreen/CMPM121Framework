@@ -33,7 +33,7 @@ public class SpellCaster
         //spell = new RandomModifier().CreateRandomModifier(baseSpell);
         //spell = new RandomModifier().CreateRandomSpell(this);
         //spell = new DamageAmpModifier(spell);
-        spell = new MagicMissile(this);
+        spell = new ArcaneBlast(this);
         //spell = new DamageAmpModifier(new DamageMulModifier(new ArcaneBolt(this)));
         //spell = new DamageAmpModifier(new DoublerModifier(new HomingModifier(new ArcaneBolt(this))));
 

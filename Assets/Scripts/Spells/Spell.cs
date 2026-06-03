@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.UI.Image;
 
 public interface ISpell
@@ -31,6 +32,7 @@ public class Spell : ISpell
     public string baseHeal { get; set; } = "0";
     public string baseSpeed { get; set; } = "0";
     public string baseNumber { get; set; } = "1";
+    public string baseSmallNumber { get; set; } = "0";
     public string baseManaCost { get; set; } = "0";
     public string baseCooldown { get; set; } = "0";
     public string baseAngle { get; set; } = "0";
@@ -46,7 +48,7 @@ public class Spell : ISpell
     public string baseSecondaryTrajectory { get; set; } = null;
     public string baseSecondarySpeed { get; set; } = "0";
     public string baseSecondaryLifetime { get; set; } = "5";
-    public int baseSecondaryIcon { get; set; } = 0;
+    public int baseSecondaryIcon { get; set; } = -1;
 
 
     // Constructor
@@ -110,6 +112,10 @@ public class Spell : ISpell
     public virtual int GetNumber()
     {
         return ValueModifier.GetValue(stats.number, IntRPN(baseNumber));
+    }
+    public virtual int GetSmallNumber()
+    {
+        return ValueModifier.GetValue(stats.small_number, IntRPN(baseSmallNumber));
     }
     public virtual int GetRepeat()
     {
@@ -192,12 +198,15 @@ public class Spell : ISpell
 
         int repeat = GetRepeat();
         int number = GetNumber();
+        bool blast = false;
+        if (GetSmallNumber() > 0) blast = true;
+
         for (int i = 0; i < repeat; i++)
         {
             for (int j = 0; j < number; j++)
             {
                 direction = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-GetAngle() / 2.0f, GetAngle() / 2.0f)) * (target - where).normalized;
-                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit, GetLifetime(), GetPierce(), GetBounce(), GetDamage(),GetSize());
+                GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), where, direction, GetSpeed(), OnHit, GetLifetime(), GetPierce(), GetBounce(), GetDamage(),GetSize(), blast);
             }
             // Wait before the next shot (but don't wait after the final shot)
             if (i < (GetRepeat() - 1))
@@ -232,7 +241,7 @@ public class Spell : ISpell
         this.Cast(modifier);
     }
 
-    public void OnHit(Hittable other, Vector3 impact, int damage)
+    public void OnHit(Hittable other, Vector3 impact, int damage, bool blast = false)
     {
         if (other.team != team)
         {
@@ -240,6 +249,19 @@ public class Spell : ISpell
             EventBus.Instance.DoDamageDealt(GameManager.Instance.player.GetComponent<PlayerController>().hp);
             GameManager.Instance.sessionStats.totalDamageDealt += damage;
             if (GetHeal() > 0) GameManager.Instance.player.GetComponent<PlayerController>().hp.SetCurrentHP(GetHeal());
+
+            int smallNum = IntRPN(baseSmallNumber);
+            if (blast == true && smallNum > 0)
+            {
+                Vector3 randomDirection = new Vector3();
+                for (int i = 0; i < smallNum; i++)
+                {
+                    randomDirection = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-360 / 2.0f, 360 / 2.0f)) *(new Vector3(1, 1, 1)).normalized;
+                    GameManager.Instance.projectileManager.CreateProjectile(GetIcon(), GetTrajectory(), impact, randomDirection, GetSpeed(), OnHit, GetLifetime(), GetPierce(), GetBounce(), GetDamage(), GetSize());
+                }
+                
+            }
+        
         }
 
     }

@@ -9,7 +9,8 @@ public class ProjectileController : MonoBehaviour
     public int pierceAmount = 1;
     public int bounceAmount = 0;
     public int damageAmount = 0;
-    public event Action<Hittable,Vector3, int> OnHit;
+    public bool blast = false;
+    public event Action<Hittable,Vector3, int, bool> OnHit;
     public ProjectileMovement movement;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,13 +36,13 @@ public class ProjectileController : MonoBehaviour
             {
                 //Debug.Log("Damage loop");
                 //Debug.Log(ec.hp.hp);
-                OnHit(ec.hp, transform.position, damageAmount);
+                OnHit(ec.hp, transform.position, damageAmount, blast);
                 //Debug.Log(ec.hp.hp);
                 pierce();
                 while (ec.hp.hp > 0 && bounceAmount > 0 && pierceAmount > 0)
                 {
                     //Debug.Log(ec.hp.hp);
-                    OnHit(ec.hp, transform.position, damageAmount);
+                    OnHit(ec.hp, transform.position, damageAmount, blast);
                     pierce();
 
                 }
@@ -52,7 +53,7 @@ public class ProjectileController : MonoBehaviour
                 var pc = collision.gameObject.GetComponent<PlayerController>();
                 if (pc != null)
                 {
-                    OnHit(pc.hp, transform.position, damageAmount);
+                    OnHit(pc.hp, transform.position, damageAmount, blast);
                 }
             }
 
@@ -102,6 +103,10 @@ public class ProjectileController : MonoBehaviour
     public void SetSize(float size)
     {
         this.gameObject.transform.localScale *= size;
+    }
+    public void SetSecondary(bool isBlast)
+    {
+        this.blast = isBlast;
     }
 
     IEnumerator Expire(float lifetime)

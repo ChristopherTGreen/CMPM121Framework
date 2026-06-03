@@ -28,6 +28,7 @@ public class ValueModifier
     public List<ValueModifier<float>> size = new List<ValueModifier<float>>();
 
     // secondary values
+    public List<ValueModifier<int>> small_number = new List<ValueModifier<int>>();
     public List<ValueModifier<float>> secondary_speed = new List<ValueModifier<float>>();
     public List<ValueModifier<float>> secondary_amount = new List<ValueModifier<float>>();
     public List<ValueModifier<float>> secondary_lifetime = new List<ValueModifier<float>>();
@@ -54,6 +55,7 @@ public class ValueModifier
         //else if (valueName == "heal") heal.Add(valueMod);
         
         if (valueName == "number") number.Add(valueMod);
+        else if (valueName == "small_N") small_number.Add(valueMod);
         else if (valueName == "repeat") repeat.Add(valueMod);
         else if (valueName == "angle") angle.Add(valueMod);
         else if (valueName == "pierce") pierce.Add(valueMod);

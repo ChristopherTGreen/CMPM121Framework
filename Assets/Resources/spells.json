@@ -35,7 +35,7 @@
     "name": "Arcane Blast",
     "description": "A bolt that explodes into smaller bolts on impact.",
     "icon": 2,
-    "N": "8 power 5 / +",
+    "small_N": "8 power 5 / +",
     "damage": {
       "amount": "20 power 3 / +",
       "type": "arcane"
@@ -60,7 +60,7 @@
     "description": "A large number of short-range bolts in a cone.",
     "icon": 1,
     "N": "7 power 25 / +",
-    "spray": "0.3",
+    "angle": "0.3",
     "damage": {
       "amount": "3 power 5 / +",
       "type": "arcane"
