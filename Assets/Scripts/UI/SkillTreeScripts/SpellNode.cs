@@ -16,18 +16,12 @@ public class SpellNode : MonoBehaviour
     private SpellData spell; // Getting the spell from the game manager dictionary
     private TextMeshProUGUI nodetext;
 
-    //For line rendering
-    private LineRenderer linerenderer;
 
-    [Header("Important Note:")]
-    [TextArea(3, 10)] 
-    public string Notes = "Make sure the z-xis of the rect transform component is set to -1 on all nodes or else the connector lines will not show.";
 
     [Header("Select Spell")]
     [SerializeField] private AvaliableSpells nodespell; // user selects the spell that node will be in the inspector
 
-    [Header("Line Rendering References")]
-    [SerializeField] private GameObject thisNode;
+    [Header("References")]
     [SerializeField] private GameObject previous; // this will likely have to be an array of gameobjects
 
     [Header("Only select true if this node will be the 1st node of the tree!!")]
@@ -39,16 +33,8 @@ public class SpellNode : MonoBehaviour
     void Start()
     {
 
-        //Line rendering handling
-        if (previous != null) 
-        {
-
-            linerenderer = GetComponent<LineRenderer>();
-            linerenderer.positionCount = 2; //2 pts: A start and an end
-
-            linerenderer.widthMultiplier = 5.0f; //large for testing
-
-        } else if (previous == null && startingNode == false)
+        // if the node is not a starting node and the previous property is not assigned
+        if (previous == null && startingNode == false)
         {
 
             throw new System.Exception("You forgot to assign an previous node somewhere!");
@@ -93,29 +79,5 @@ public class SpellNode : MonoBehaviour
     }
 
 
-
-    void Update()
-    {
-        
-        if (previous != null && !startingNode){
-
-            //error checking
-            if (linerenderer == null)
-            {
-                throw new System.Exception("Not receiving linerenderer");
-            } else if (thisNode.transform.position == null)
-            {
-                throw new System.Exception("Not getting initial position");
-            } else if (previous.transform.position == null)
-            {
-                throw new System.Exception("Not getting the final position");
-            }
-
-            //drawing a line between nodes
-            linerenderer.SetPosition(0, thisNode.transform.position);
-            linerenderer.SetPosition(1, previous.transform.position);
-        }
-
-    }
 
 }
