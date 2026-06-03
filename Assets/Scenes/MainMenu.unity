@@ -3802,6 +3802,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1700529047}
+  - component: {fileID: 1700529048}
   m_Layer: 0
   m_Name: ImageOverlays
   m_TagString: Untagged
@@ -3827,6 +3828,18 @@ Transform:
   - {fileID: 867798820}
   m_Father: {fileID: 1788390598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1700529048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700529046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e76fe6128baf404fa29a8e2e6a79d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeepColorOverlay
 --- !u!1 &1737974118
 GameObject:
   m_ObjectHideFlags: 0
