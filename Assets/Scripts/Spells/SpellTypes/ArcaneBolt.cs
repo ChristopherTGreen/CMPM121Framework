@@ -14,15 +14,7 @@ class ArcaneBolt : Spell
         //Debug.Log("ArcaneBolt Constructor: Got Arcane Bolt from the GameManager");
 
         new SpellBuilder(this)
-            .WithName(data.name)
-            .WithDescription(data.description)
-            .WithIcon(data.icon)
-            .WithDamage(data.damage.amount, data.damage.type)
-            .WithManaCost(data.mana_cost)
-            .WithCooldown(data.cooldown)
-            .WithTrajectory(data.projectile.trajectory)
-            .WithSpeed(data.projectile.speed)
-            .WithSprite(data.projectile.sprite)
+            .SpellQuickBuilder(data)
             .Build(owner);
 
         //Debug.Log("ArcaneBolt Constructor: Finished Building Arcane Bolt");

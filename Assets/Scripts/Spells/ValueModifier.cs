@@ -27,6 +27,13 @@ public class ValueModifier
     public List<ValueModifier<int>> bounce = new List<ValueModifier<int>>();
     public List<ValueModifier<float>> size = new List<ValueModifier<float>>();
 
+    // secondary values
+    public List<ValueModifier<float>> secondary_speed = new List<ValueModifier<float>>();
+    public List<ValueModifier<float>> secondary_amount = new List<ValueModifier<float>>();
+    public List<ValueModifier<float>> secondary_lifetime = new List<ValueModifier<float>>();
+    public List<string> secondary_projectile_trajectory = new List<string>();
+
+
 
     // strings, may not need?
     public List<string> type = new List<string>();
@@ -38,39 +45,6 @@ public class ValueModifier
         //ValueModifier<int> damageMod = new ValueModifier<int>();
         //Multiplier<MathOperationsInt, int> healthMod = new Multiplier<MathOperationsInt, int>(potato);
         //AddValue<int>("damage", healthMod);
-
-    // Parameters: Takes a value modifier list that is a integer (such as "heal") and a string that is the name of the modifier type
-    // Call this when you want to store a list of integer value modifiers to a storage list defined at the top of this class
-    // If there are already stored value modifiers, then this method adds the new value modifiers to the existing list of value modifiers
-    public void AddList(List<ValueModifier<int>> valueMod, string valueName)
-    {
-        if (valueName == "amount") amount.AddRange(valueMod);
-        else if (valueName == "heal") heal.AddRange(valueMod);
-        else if (valueName == "angle") angle.AddRange(valueMod);
-        else if (valueName == "number") number.AddRange(valueMod);
-        else if (valueName == "repeat") repeat.AddRange(valueMod);
-        else if (valueName == "manaCost") manaCost.AddRange(valueMod);
-        else if (valueName == "pierce") pierce.AddRange(valueMod);
-        else throw new Exception("ValueModifier.cs_AddList(List<ValueModifier<int>>, string) >> Invalid value modifier int name for add list");
-    }
-
-    // Same as notes above but for floats
-    public void AddList(List<ValueModifier<float>> valueMod, string valueName)
-    {
-        if (valueName == "speed") speed.AddRange(valueMod);
-        else if (valueName == "cooldown") cooldown.AddRange(valueMod);
-        else if (valueName == "delay") delay.AddRange(valueMod);
-        else if (valueName == "lifetime") lifetime.AddRange(valueMod);
-        else throw new Exception("ValueModifier.cs_AddList(List<ValueModifier<float>>, string) >> Invalid value modifier float name for add list");
-    }
-    public void AddList(List<string> valueMod, string valueName)
-    {
-        if (valueName == "type") type.AddRange(valueMod);
-        else if (valueName == "trajectory") trajectory.AddRange(valueMod);
-        else if (valueName == "projectile_trajectory") projectile_trajectory.AddRange(valueMod);
-        else if (valueName == "name") name.AddRange(valueMod);
-        else throw new Exception("ValueModifier.cs_AddList(List<string>, string) >> Invalid value modifier string name for add list");
-    }
 
     // This method adds a ValueModifier int to a existing storage class defined at the top of this class.
     // Do not call this for adding a list of modifiers to an existing list of modifiers, if you want to do this, call the above two methods
@@ -92,12 +66,15 @@ public class ValueModifier
     public void AddValue(ValueModifier<float> valueMod, string valueName)
     {
         if (valueName == "speed") speed.Add(valueMod);
+        else if (valueName == "secondary_speed") secondary_speed.Add(valueMod);
         else if (valueName == "cooldown") cooldown.Add(valueMod);
         else if (valueName == "delay") delay.Add(valueMod);
         else if (valueName == "lifetime") lifetime.Add(valueMod);
+        else if (valueName == "secondary_lifetime") secondary_lifetime.Add(valueMod);
 
         else if (valueName == "amount") amount.Add(valueMod);
-        else  if (valueName == "heal") heal.Add(valueMod);
+        else if (valueName == "secondary_amount") secondary_amount.Add(valueMod);
+        else if (valueName == "heal") heal.Add(valueMod);
         else if (valueName == "manaCost") manaCost.Add(valueMod);
         else if (valueName == "size") size.Add(valueMod);
 
@@ -109,6 +86,7 @@ public class ValueModifier
         if (valueName == "type") type.Add(valueMod);
         else if (valueName == "trajectory") trajectory.Add(valueMod);
         else if (valueName == "projectile_trajectory") projectile_trajectory.Add(valueMod);
+        else if (valueName == "secondary_projectile_trajectory") secondary_projectile_trajectory.Add(valueMod);
         else if (valueName == "name") name.Add(valueMod);
         else throw new Exception("ValueModifier.cs_AddValue(string, string) >> Invalid value modifier string name: " + valueName + " for add value");
     }

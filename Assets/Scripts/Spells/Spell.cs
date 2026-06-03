@@ -41,6 +41,13 @@ public class Spell : ISpell
     public string baseBounce { get; set; } = "0";
     public string baseSize { get; set; } = "1";
 
+    // secondary projectile values
+    public string baseSecondaryDamage { get; set; } = "0";
+    public string baseSecondaryTrajectory { get; set; } = null;
+    public string baseSecondarySpeed { get; set; } = "0";
+    public string baseSecondaryLifetime { get; set; } = "5";
+    public int baseSecondaryIcon { get; set; } = 0;
+
 
     // Constructor
     public Spell(SpellCaster owner = null) // change this probably - chris
@@ -145,6 +152,27 @@ public class Spell : ISpell
     {
         return ValueModifier.GetValue(stats.size, FloatRPN(baseSize));
     }
+    public virtual int GetSecondaryDamage()
+    {
+        return (int)ValueModifier.GetValue(stats.secondary_amount, IntRPN(baseSecondaryDamage));
+    }
+    public virtual string GetSecondaryTrajectory()
+    {
+        return ValueModifier.GetValue(stats.secondary_projectile_trajectory, baseSecondaryTrajectory);
+    }
+    public virtual float GetSecondarySpeed()
+    {
+        return ValueModifier.GetValue(stats.secondary_speed, FloatRPN(baseSecondarySpeed));
+    }
+    public virtual float GetSecondarylifetime()
+    {
+        return ValueModifier.GetValue(stats.secondary_lifetime, FloatRPN(baseSecondaryLifetime));
+    }
+    public virtual int GetSecondaryIcon()
+    {
+        return baseSecondaryIcon;
+    }
+
 
     // IsReady() 
     // Seems to return if the spell is ready to be spawned if player clicks a button

@@ -10,6 +10,7 @@ public class SpellData
     public string description { get ; set; } = null;
     public int icon { get ; set; } = -1;
     public SpellDamageData damage { get ; set; } = null;
+    public string secondary_damage { get; set; } = null;
     public string heal { get; set; } = null;
     public string mana_cost { get ; set; } = null;
     public string cooldown { get ; set; } = null;
@@ -17,7 +18,9 @@ public class SpellData
     public string repeat { get; set; } = null;
     public string pierce { get; set; } = null;
     public string bounce { get; set; } = null;
+    public string size { get; set; } = null;
     public SpellProjectileData projectile { get ; set; } = null;
+    public SpellProjectileData secondary_projectile { get; set; } = null;
 
 
 
