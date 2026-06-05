@@ -7,7 +7,35 @@ using UnityEngine;
 
 public class NavPointManager : MonoBehaviour
 {
+    public static NavPointManager globalNavPointManager { get; private set; }
     public GameObject[] points;
+
+    float time = 0;
+    const int threshold = 10; // seconds till update of nav mesh
+
+    private void Awake()
+    {
+        if (globalNavPointManager != null && globalNavPointManager != this)
+        {
+            Destroy(gameObject); // deletes if there already exists one, just in case 
+            return;
+        }
+        globalNavPointManager = this;
+    }
+
+    // update loop for the nav point generator
+    void Update()
+    {
+        time += Time.deltaTime;
+        if (time >= threshold)
+        {
+            Debug.Log("updating nav points");
+            time = 0;
+            UpdateNavPointWeights();
+        }
+    }
+
+
 
     // Finds the closest point (Nav point) to the given point
     public GameObject GetClosestNavPoint(Vector3 point)
@@ -24,6 +52,26 @@ public class NavPointManager : MonoBehaviour
         return GetClosestNavPoint(point).GetComponent<NavPointNode>();
     }
 
+    // gets next nav point
+    public Vector3 GetNextNavPoint(Vector3 currentPosition)
+    {
+        Vector3 bestNextPoint = new Vector3();
+        int lowestDistance = 99999;
+        // gets closest nav node, which is used to determine if a search or next node is necessary 
+        NavPointNode closestNavNode = GetClosestNavNode(currentPosition);
+
+        foreach (NavPointNode neighbor in closestNavNode.neighbors)
+        {
+            if (neighbor.distanceToPlayer < lowestDistance)
+            {
+                lowestDistance = neighbor.distanceToPlayer;
+                bestNextPoint = neighbor.transform.position;
+            }
+        }
+
+        return bestNextPoint;
+    }
+
     // updates all nav points relative to the player 
     public void UpdateNavPointWeights()
     {
@@ -36,7 +84,7 @@ public class NavPointManager : MonoBehaviour
 
         // for a reset incase of any detached nodes, but this probably is never actually used
         //List<NavPointNode> nodes = new List<NavPointNode>();
-        foreach (GameObject node in points) 
+        foreach (GameObject node in points)
         {
             NavPointNode navNode = node.GetComponent<NavPointNode>();
             navNode.distanceToPlayer = 99999;
@@ -58,22 +106,5 @@ public class NavPointManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    public Vector3 GetNextNavPoint(Vector3 currentPosition)
-    {
-        Vector3 bestNextPoint = new Vector3();
-        int lowestDistance = 99999;
-
-        foreach (NavPointNode neighbor in GetClosestNavNode(currentPosition).neighbors)
-        {
-            if (neighbor.distanceToPlayer < lowestDistance)
-            {
-                lowestDistance = neighbor.distanceToPlayer;
-                bestNextPoint = neighbor.transform.position;
-            }
-        }
-
-        return bestNextPoint;
     }
 }

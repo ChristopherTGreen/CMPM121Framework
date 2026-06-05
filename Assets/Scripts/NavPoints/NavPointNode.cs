@@ -8,8 +8,4 @@ public class NavPointNode : MonoBehaviour
     public List<NavPointNode> neighbors = new();
     public int distanceToPlayer = 99999; // defaults to far away
 
-    public void WeightedDistanceAssignment()
-    {
-
-    }
 }

@@ -11,18 +11,23 @@ public class EnemyController : MonoBehaviour
     public bool dead;
 
     public float last_attack;
+
+    public Vector3 targetPosition;
+    const int distanceBeforeNewTarget = 20;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         target = GameManager.Instance.player.transform;
         hp.OnDeath += Die;
         healthui.SetHealth(hp);
+        targetPosition = GameManager.Instance.navPointManager.GetClosestNavPoint(transform.position).transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = target.position - transform.position;
+        Vector3 direction = targetPosition - transform.position;
+
         if (direction.magnitude < 2f)
         {
             DoAttack();
@@ -31,6 +36,8 @@ public class EnemyController : MonoBehaviour
         {
             GetComponent<Unit>().movement = direction.normalized * speed;
         }
+
+        NextTarget();
     }
     
     void DoAttack()
@@ -44,6 +51,18 @@ public class EnemyController : MonoBehaviour
             //Debug.Log(targetObject);
             EventBus.Instance.DoDamageTaken(target.transform.position, targetObject);
         }
+    }
+    // update for getting a new target position, if need be
+    void NextTarget()
+    {
+        if (targetPosition == null || (targetPosition - transform.position).sqrMagnitude < distanceBeforeNewTarget)
+        {
+            RaycastHit2D hit = Physics2D.Linecast(transform.position, targetPosition);
+            // did not hit anything, clear goal line to the player
+            if (hit.collider != null) targetPosition = GameManager.Instance.player.transform.position;
+            else targetPosition = GameManager.Instance.navPointManager.GetNextNavPoint(transform.position);
+        }
+        // nothing, absolutely nothing except stay on target - Gold Five
     }
 
 
