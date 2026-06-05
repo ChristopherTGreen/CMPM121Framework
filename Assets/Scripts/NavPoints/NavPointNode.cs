@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class NavPointNode : MonoBehaviour
 {
-    public List<NavPointNode> Neighbors = new();
-    public int DistanceToPlayer = 99999; // defaults to far away
+    public List<NavPointNode> neighbors = new();
+    public int distanceToPlayer = 99999; // defaults to far away
 
     public void WeightedDistanceAssignment()
     {
