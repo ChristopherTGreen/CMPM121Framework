@@ -53,7 +53,8 @@ public class EnemySpawner : MonoBehaviour
         level_selector.gameObject.SetActive(false);
         // this is not nice: we should not have to be required to tell the player directly that the level is starting
         GameManager.Instance.player.GetComponent<PlayerController>().StartLevel();
-
+        // update nav points before spawning enemies
+        GameManager.Instance.navPointManager.UpdateNavPointWeights();
         // find the level name (I think that is what this does) - chris
         //LevelData levelReference = LevelSelector(levelname);
         levelReference = GameManager.Instance.levels[levelname];

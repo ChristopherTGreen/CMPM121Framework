@@ -9,11 +9,12 @@ TagManager:
   - NextWaveButton
   - AcceptSpellButton
   - RelicDisplay
+  - World
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Non-AI Default
   - Water
   - UI
   - 

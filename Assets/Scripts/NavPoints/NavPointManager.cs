@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using System.Text;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class NavPointManager : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class NavPointManager : MonoBehaviour
     public GameObject[] points;
 
     float time = 0;
-    const int threshold = 10; // seconds till update of nav mesh
+    const int threshold = 5; // seconds till update of nav mesh
+    const int maxConnectionDistance = 50; // max distance for a node to connect to another node
+    float connectionRadius = 3.5f;
 
-    private void Awake()
+    void Awake()
     {
         if (globalNavPointManager != null && globalNavPointManager != this)
         {
@@ -21,15 +24,25 @@ public class NavPointManager : MonoBehaviour
             return;
         }
         globalNavPointManager = this;
+
+        SetNeighborsQuickly();
+        
+
     }
 
+    void Start()
+    {
+        UpdateNavPointWeights();
+    }
     // update loop for the nav point generator
     void Update()
     {
+        if (GameManager.Instance.state == GameManager.GameState.PREGAME || GameManager.Instance.state == GameManager.GameState.GAMEOVER) return;
+
         time += Time.deltaTime;
         if (time >= threshold)
         {
-            Debug.Log("updating nav points");
+            //Debug.Log("updating nav points");
             time = 0;
             UpdateNavPointWeights();
         }
@@ -47,7 +60,7 @@ public class NavPointManager : MonoBehaviour
     }
 
     // Uses the GetClosestPoint to find the closest node
-    public NavPointNode GetClosestNavNode(Vector3 point) 
+    public NavPointNode GetClosestNavNode(Vector3 point)
     {
         return GetClosestNavPoint(point).GetComponent<NavPointNode>();
     }
@@ -55,7 +68,7 @@ public class NavPointManager : MonoBehaviour
     // gets next nav point
     public Vector3 GetNextNavPoint(Vector3 currentPosition)
     {
-        Vector3 bestNextPoint = new Vector3();
+        Vector3 bestNextPoint = GetClosestNavNode(currentPosition).transform.position;
         int lowestDistance = 99999;
         // gets closest nav node, which is used to determine if a search or next node is necessary 
         NavPointNode closestNavNode = GetClosestNavNode(currentPosition);
@@ -75,6 +88,7 @@ public class NavPointManager : MonoBehaviour
     // updates all nav points relative to the player 
     public void UpdateNavPointWeights()
     {
+        if (GameManager.Instance.state == GameManager.GameState.PREGAME || GameManager.Instance.state == GameManager.GameState.GAMEOVER) return;
         // queue for all current nodes to check
         Queue<NavPointNode> queue = new Queue<NavPointNode>();
 
@@ -106,5 +120,84 @@ public class NavPointManager : MonoBehaviour
                 }
             }
         }
+
+        foreach (GameObject node in points)
+        {
+            NavPointNode navNode = node.GetComponent<NavPointNode>();
+            //Debug.Log(navNode);
+            //Debug.Log(navNode.distanceToPlayer);
+        }
     }
+
+    // Set Neighbors automatically sets up neighboring nodes, wiht consideration of sight and not distance
+    // O(n^2) currently, annoyingly, but only is called once at startup
+    public void SetNeighborsQuickly()
+    {
+        foreach (GameObject node in points)
+        {
+            //Debug.Log(node);
+            NavPointNode navNode = node.GetComponent<NavPointNode>();
+
+            foreach (GameObject potentialObject in points)
+            {
+                NavPointNode potentialNavNode = potentialObject.GetComponent<NavPointNode>();
+                //Debug.Log(potentialNavNode);
+                if (potentialNavNode == null || potentialNavNode == navNode) continue;
+
+                if (HasClearPath(navNode.transform.position, potentialNavNode.transform.position))
+                {
+                    if (!navNode.neighbors.Contains(potentialNavNode))
+                    {
+                        //Debug.Log("Added node");
+                        //Debug.Log(potentialNavNode);
+                        navNode.neighbors.Add(potentialNavNode);
+                    }
+                }
+            }
+            
+
+        }
+
+    }
+
+    // ClearPath finder, finds out if line of sight exists between points
+    private bool HasClearPath(Vector3 givenPosition, Vector3 targetPosition)
+    {
+        RaycastHit2D hit = Physics2D.Linecast(givenPosition, targetPosition, LayerMask.GetMask("Non-AI Default"));
+
+        if (hit.collider != null)
+        {
+            if (hit.collider.CompareTag("World"))
+            {
+                return false; // unclear sight
+            }
+        }
+        if ((givenPosition - targetPosition).magnitude >= maxConnectionDistance) return false;
+        return true; // clear sight
+    }
+    /*
+    private void OnDrawGizmos()
+    {
+        
+        Gizmos.color = Color.yellow;
+
+        Gizmos.color = Color.cyan;
+
+        foreach (GameObject node in points)
+        {
+            NavPointNode navNode = node.GetComponent<NavPointNode>();
+            Gizmos.DrawWireSphere(node.transform.position, connectionRadius);
+
+            foreach (NavPointNode neighbor in navNode.neighbors)
+            {
+                
+                if (neighbor != null)
+                {
+                    
+                    Gizmos.DrawLine(node.transform.position, neighbor.transform.position);
+                }
+            }
+        }
+    }
+    */
 }

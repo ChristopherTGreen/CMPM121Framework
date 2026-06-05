@@ -13,31 +13,36 @@ public class EnemyController : MonoBehaviour
     public float last_attack;
 
     public Vector3 targetPosition;
-    const int distanceBeforeNewTarget = 20;
+    const int distanceBeforeNewTarget = 10;
+    const float boxSize = 0.5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         target = GameManager.Instance.player.transform;
         hp.OnDeath += Die;
         healthui.SetHealth(hp);
-        targetPosition = GameManager.Instance.navPointManager.GetClosestNavPoint(transform.position).transform.position;
+        targetPosition = GameManager.Instance.navPointManager.GetNextNavPoint(transform.position);
+        //Debug.Log(transform.position);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 direction = targetPosition - transform.position;
+        Vector3 distanceToTarget = GameManager.Instance.player.transform.position - transform.position;
 
-        if (direction.magnitude < 2f)
+        if (distanceToTarget.magnitude < 2f)
         {
             DoAttack();
         }
         else
         {
+
             GetComponent<Unit>().movement = direction.normalized * speed;
         }
 
-        NextTarget();
+        NextTarget(direction);
     }
     
     void DoAttack()
@@ -53,14 +58,34 @@ public class EnemyController : MonoBehaviour
         }
     }
     // update for getting a new target position, if need be
-    void NextTarget()
+    void NextTarget(Vector3 direction)
     {
+        // line of sight check
+        Vector3 safeStartPos = transform.position + (direction.normalized * 1.0f);
+        RaycastHit2D hit = Physics2D.Linecast(safeStartPos, target.position, LayerMask.GetMask("Non-AI Default"));
+        //Debug.DrawLine(safeStartPos, target.position, Color.red);
+        if (hit.collider != null && !hit.collider.CompareTag("World") && hit.collider.CompareTag("unit"))
+        {
+            //Debug.Log("I see you maybe");
+
+            if (hit.collider.gameObject == this.gameObject)
+            {
+                //Debug.Log("self collide");
+            }
+            
+            targetPosition = GameManager.Instance.player.transform.position;
+            return;
+        
+        }
+
+        Vector3 actualTargetPosition = GameManager.Instance.player.transform.position;
+        // nav point check
         if (targetPosition == null || (targetPosition - transform.position).sqrMagnitude < distanceBeforeNewTarget)
         {
-            RaycastHit2D hit = Physics2D.Linecast(transform.position, targetPosition);
-            // did not hit anything, clear goal line to the player
-            if (hit.collider != null) targetPosition = GameManager.Instance.player.transform.position;
-            else targetPosition = GameManager.Instance.navPointManager.GetNextNavPoint(transform.position);
+            //Debug.Log(targetPosition);
+            //Debug.Log("getting next nav point");
+            targetPosition = GameManager.Instance.navPointManager.GetNextNavPoint(transform.position);
+            //Debug.Log(targetPosition);
         }
         // nothing, absolutely nothing except stay on target - Gold Five
     }
