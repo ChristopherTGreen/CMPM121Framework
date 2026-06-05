@@ -5,7 +5,7 @@ using System.Text;
 using System.Linq;
 using UnityEngine;
 
-public class NavPointManager
+public class NavPointManager : MonoBehaviour
 {
     public GameObject[] points;
 

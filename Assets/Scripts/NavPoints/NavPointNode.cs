@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class NavPointNode
+public class NavPointNode : MonoBehaviour
 {
     public List<NavPointNode> Neighbors = new();
     public int DistanceToPlayer = 99999; // defaults to far away
