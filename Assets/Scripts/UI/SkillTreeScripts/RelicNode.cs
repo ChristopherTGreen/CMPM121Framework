@@ -7,15 +7,24 @@ public class RelicNode : MonoBehaviour
     
     public enum AvaliableRelics
     {
-        
+        GreenGem,
+        JadeElephant,
+        GoldenMask,
+        CursedScroll,
+        KingsCharge,
+        LifeSteal,
+        ArmletReplenish,
+        ManaBubble,
+        WarlocksTome,
+        BloodAmulet
     }
 
-    private SpellData spell; // Getting the spell from the game manager dictionary
+    private RelicData relic; // Getting the spell from the game manager dictionary
     private TextMeshProUGUI nodetext;
 
 
 
-    [Header("Select Spell")]
+    [Header("Select Relic")]
     [SerializeField] private AvaliableRelics noderelic; // user selects the spell that node will be in the inspector
 
     [Header("References")]
@@ -41,38 +50,59 @@ public class RelicNode : MonoBehaviour
         // Note, this script will throw a reference error if you have it forced set to active before the level difficulty selection
         // This script will run normally if you open the skill tree upon the completion of the first wave
         
-        switch (nodespell)
+        switch (noderelic)
         {
 
-            case AvaliableSpells.ArcaneBolt:
-                spell = GameManager.Instance.spells["Arcane Bolt"];
+            case AvaliableRelics.GreenGem:
+                relic = GameManager.Instance.relics["Green Gem"];
                 break;
-            case AvaliableSpells.MagicMissile:
-                spell = GameManager.Instance.spells["Magic Missile"];
+            case AvaliableRelics.JadeElephant:
+                relic = GameManager.Instance.relics["Jade Elephant"];
                 break;
-            case AvaliableSpells.ArcaneBlast:
-                spell = GameManager.Instance.spells["Arcane Blast"];
+            case AvaliableRelics.GoldenMask:
+                relic = GameManager.Instance.relics["Golden Mask"];
                 break;
-            case AvaliableSpells.ArcaneSpray:
-                spell = GameManager.Instance.spells["Arcane Spray"];
+            case AvaliableRelics.CursedScroll:
+                relic = GameManager.Instance.relics["Cursed Scroll"];
                 break;
+            case AvaliableRelics.KingsCharge:
+                relic = GameManager.Instance.relics["Kings Charge"];
+                break;
+            case AvaliableRelics.LifeSteal:
+                relic = GameManager.Instance.relics["Life Steal"];
+                break;
+            case AvaliableRelics.ArmletReplenish:
+                relic = GameManager.Instance.relics["Armlet Replenish"];
+                break;
+            case AvaliableRelics.ManaBubble:
+                relic = GameManager.Instance.relics["Mana Bubble"];
+                break;
+            case AvaliableRelics.WarlocksTome:
+                relic = GameManager.Instance.relics["Warlocks Tome"];
+                break;
+            case AvaliableRelics.BloodAmulet:
+                relic = GameManager.Instance.relics["Blood Amulet"];
+                break;
+            default:
+                throw new System.Exception($"Unhandled relic type: {noderelic}");
 
         }
 
 
-        PlaceNode(spell);
+
+        PlaceNode(relic);
 
     }
 
 
 
-    public void PlaceNode(SpellData spell)
+    public void PlaceNode(RelicData relic)
     {
 
         nodetext = GetComponentInChildren<TextMeshProUGUI>();
-        nodetext.text = "Spell " + spell.name + ":\n" + spell.description;
+        nodetext.text = "Relic " + relic.name + ":\n" + relic.trigger.description + ", " + relic.effect.description;
 
-        GameManager.Instance.spellIconManager.PlaceSprite(spell.icon, this.GetComponent<Image>());
+        GameManager.Instance.relicIconManager.PlaceSprite(relic.sprite, this.GetComponent<Image>());
     }
 
 
