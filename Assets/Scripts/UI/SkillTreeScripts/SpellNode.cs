@@ -18,7 +18,7 @@ public class SpellNode : MonoBehaviour
 
     private SpellData spell; // Getting the spell from the game manager dictionary
     private TextMeshProUGUI nodetext;
-    private float lockedAlphaLvl = 0.7f;
+    private float lockedAlphaLvl = 0.7f; // same locked alpha lvl for all disabled nodes across all node scripts
     private Button iconbutton;
 
 
@@ -29,9 +29,9 @@ public class SpellNode : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject[] previous; // this will likely have to be an array of gameobjects
 
-    [Header("Node Flags (For Debugging)")]
+    [Header("Node Flags (For Debugging)")] // all of these flags need to be the same name across all node scripts
     [SerializeField] private bool nodeUnlockedFlag = false;
-    public bool nodeCollectedFlag = false;
+    public bool nodeCollectedFlag = false; 
 
     [Header("Only select true if this node will be the 1st node of the tree!!")]
     [SerializeField] private bool startingNode = false;
