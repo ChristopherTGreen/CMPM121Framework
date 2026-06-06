@@ -29,7 +29,7 @@ public class SpellNode : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject[] previous; // this will likely have to be an array of gameobjects
 
-    [Header("Node Flags")]
+    [Header("Node Flags (For Debugging)")]
     [SerializeField] private bool nodeUnlockedFlag = false;
     public bool nodeCollectedFlag = false;
 
