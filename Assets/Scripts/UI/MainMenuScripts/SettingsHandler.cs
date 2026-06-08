@@ -7,6 +7,13 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField] Image warmImage;
     [SerializeField] Image brightnessImage;
     [SerializeField] GameObject settingsPage;
+
+    private void Start()
+    {
+        applyCold(SettingsData.coldValue);
+        applyWarm(SettingsData.warmValue);
+        applyBrightness(SettingsData.brightnessValue);
+    }
     public void applyCold(float sliderValue)
     {
         Color newColor = coldImage.color;
@@ -26,7 +33,7 @@ public class SettingsHandler : MonoBehaviour
         Color newColor = brightnessImage.color;
         newColor.a = sliderValue;         
         brightnessImage.color = newColor;
-        SettingsData.brightNessValue = sliderValue;
+        SettingsData.brightnessValue = sliderValue;
     }
     public void HideSettingPage()
     {
