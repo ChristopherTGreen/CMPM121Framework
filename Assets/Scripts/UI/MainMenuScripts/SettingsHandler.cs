@@ -12,18 +12,21 @@ public class SettingsHandler : MonoBehaviour
         Color newColor = coldImage.color;
         newColor.a = sliderValue;
         coldImage.color = newColor;
+        SettingsData.coldValue = sliderValue;
     }
     public void applyWarm(float sliderValue)
     {
         Color newColor = warmImage.color; 
         newColor.a = sliderValue;         
-        warmImage.color = newColor;       
+        warmImage.color = newColor;
+        SettingsData.warmValue = sliderValue;
     }
     public void applyBrightness(float sliderValue)
     {
         Color newColor = brightnessImage.color;
         newColor.a = sliderValue;         
-        brightnessImage.color = newColor;       
+        brightnessImage.color = newColor;
+        SettingsData.brightNessValue = sliderValue;
     }
     public void HideSettingPage()
     {
