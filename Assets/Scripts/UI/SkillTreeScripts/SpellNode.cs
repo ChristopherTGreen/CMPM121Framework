@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class SpellNode : MonoBehaviour
 {
@@ -13,8 +14,12 @@ public class SpellNode : MonoBehaviour
         ArcaneSpray
     }
 
+
+
     private SpellData spell; // Getting the spell from the game manager dictionary
     private TextMeshProUGUI nodetext;
+    private float lockedAlphaLvl = 0.7f; // same locked alpha lvl for all disabled nodes across all node scripts
+    private Button iconbutton;
 
 
 
@@ -22,16 +27,29 @@ public class SpellNode : MonoBehaviour
     [SerializeField] private AvaliableSpells nodespell; // user selects the spell that node will be in the inspector
 
     [Header("References")]
-    [SerializeField] private GameObject previous; // this will likely have to be an array of gameobjects
+    [SerializeField] private GameObject[] previous; // this will likely have to be an array of gameobjects
+
+    [Header("Node Flags (For Debugging)")] // all of these flags need to be the same name across all node scripts
+    [SerializeField] private bool nodeUnlockedFlag = false;
+    public bool nodeCollectedFlag = false; 
 
     [Header("Only select true if this node will be the 1st node of the tree!!")]
     [SerializeField] private bool startingNode = false;
 
 
-
-    //Runs before Start()
+    
     void Start()
     {
+
+        iconbutton = this.GetComponent<Button>();
+
+        // can't find button component? Throw error - button component is needed 
+        if (iconbutton == null)
+        {
+
+            throw new System.Exception("No button component attached to this node, see the hierarchy for highlighted node");
+
+        }
 
         // if the node is not a starting node and the previous property is not assigned
         if (previous == null && startingNode == false)
@@ -41,6 +59,16 @@ public class SpellNode : MonoBehaviour
 
         }
         
+        // if the node is the starting node, do not make it transparent, else do make it transparent (locked)
+        if (!startingNode && previous != null)
+        {
+
+            LockNode(); // icon transparency and eventually the disabling of the button
+
+        }
+        
+
+
         // Note, this script will throw a reference error if you have it forced set to active before the level difficulty selection
         // This script will run normally if you open the skill tree upon the completion of the first wave
         
@@ -63,13 +91,35 @@ public class SpellNode : MonoBehaviour
         }
 
 
+        ButtonHandler();
         PlaceNode(spell);
 
     }
 
 
 
-    public void PlaceNode(SpellData spell)
+    // checking for previous everytime - may cause performance issues as each node will be checking every frame
+    // for it's previous to be collected
+    // State machine for node states? Temporarilty doing a flag right now
+    void Update()
+    {
+        
+        if (!startingNode && !nodeUnlockedFlag)
+        {
+        
+            if (CheckPreviousCollected(previous))
+            {
+                nodeUnlockedFlag = true;
+                UnlockNode();
+            }
+
+        }
+
+    }
+
+
+
+    private void PlaceNode(SpellData spell)
     {
 
         nodetext = GetComponentInChildren<TextMeshProUGUI>();
@@ -79,5 +129,83 @@ public class SpellNode : MonoBehaviour
     }
 
 
+
+    //Adds the listener to the button component
+    private void ButtonHandler()
+    {
+        
+        iconbutton.onClick.RemoveAllListeners();
+        iconbutton.onClick.AddListener(() => CollectSpell());
+
+    }
+
+
+
+    //Listener to the button - needs to be public for Unity's onClick happy funtime thingy thing 
+    public void CollectSpell()
+    {
+        
+        Debug.Log("You have collected " + spell.name + "!");
+
+        //put actual collection here. Switch statement?
+
+        //then disable the button so the player can't click the node again
+        iconbutton.interactable = false;
+        nodeCollectedFlag = true; // indicate the node is collected for the previous check in Update()
+
+    }
+
+
+
+    private void LockNode()
+    {
+
+        //disable button feature
+        iconbutton.interactable = false; //disables button component
+
+        //reduce transparency
+        Color alphaAdjust = this.GetComponent<Image>().color;
+        alphaAdjust.a = lockedAlphaLvl;
+        this.GetComponent<Image>().color = alphaAdjust;
+
+    }
+
+
+
+    // when player gets all of the previous nodes, then run this function
+    private void UnlockNode()
+    {
+        
+        //enable button feature
+        iconbutton.interactable = true;
+
+        //disable transparency
+        Color alphaAdjust = this.GetComponent<Image>().color;
+        alphaAdjust.a = 1.0f; //100% transparency
+        this.GetComponent<Image>().color = alphaAdjust;
+
+    }
+
+
+
+    //returns true if all of the previous nodes have been collected
+    //returns false if not all of the previous nodes have been collected
+    private bool CheckPreviousCollected(GameObject[] objArray)
+    {
+        
+        foreach(GameObject prev in objArray)
+        {
+            
+            // if the node collected flag of any of the previous components are false (not collected) return false
+            if (!prev.GetComponent<SpellNode>().nodeCollectedFlag)
+            {
+                return false;
+            }
+
+        }
+
+        return true; //fpreach loop finished, therefore true
+
+    }
 
 }
