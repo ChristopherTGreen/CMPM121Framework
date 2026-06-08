@@ -34,6 +34,7 @@ public class GameManager
     public RelicIconManager relicIconManager;
 
     public Stats sessionStats = new Stats();
+    public PlayerUpgradeManager playerUpgradeManager = new PlayerUpgradeManager();
 
     private List<GameObject> enemies;
     // Private dictionary for enemy types for storage in a singleton 
