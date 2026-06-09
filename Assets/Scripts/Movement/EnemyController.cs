@@ -85,7 +85,7 @@ public class EnemyController : MonoBehaviour
         Vector3 actualTargetPosition = GameManager.Instance.player.transform.position;
 
         RaycastHit2D hit = Physics2D.Linecast(safeStartPos, target.position, LayerMask.GetMask("Non-AI Default"));
-        Debug.DrawLine(safeStartPos, target.position, Color.red);
+        //Debug.DrawLine(safeStartPos, target.position, Color.red);
 
         if (hit.collider == null || !hit.collider.CompareTag("unit"))
         {
