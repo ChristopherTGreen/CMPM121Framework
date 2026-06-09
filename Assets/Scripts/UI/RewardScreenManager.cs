@@ -10,6 +10,7 @@ public class RewardScreenManager : MonoBehaviour
     public GameObject rewardUI;
     public GameObject spellReward;
     public SpellUIContainer spelluicontainer;
+    public PlayerUpgradeUI playerUpgradeUI;
     RewardSpell rewardSpell = new RewardSpell();
     RewardRelicDisplay rewardRelicDisplay;
 
@@ -36,24 +37,18 @@ public class RewardScreenManager : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
         {
-
-            // TESTING FOR NOW:
-
-            // % 3 for every 3 waves
-            if (GameManager.Instance.wave_count % 3 == 0) //set at 1 for testing
+            if (GameManager.Instance.wave_count % 3 == 0)
             {
                 rewardRelicDisplay.RelicRewards();
             }
+
+            playerUpgradeUI.ShowUpgradeOptions();
 
             NextWaveButtonHandler();
             rewardSpell.AcceptButtonHandler();
             rewardSpell.DropButtonHandler();
 
-            // DisplaySpell(Spell RewardSpell) is located in RewardSpellUI.cs
-            //rewardSpell.DisplaySpell(); // Need to store the randomly generated spell and call that randomly generated spell here
-            
             rewardUI.SetActive(true);
-            
         }
         else if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
         {
@@ -75,6 +70,7 @@ public class RewardScreenManager : MonoBehaviour
             rewardRelicDisplay.ClearRewardRelicDisplays(rewardUI);
 
             rewardUI.SetActive(false);
+            playerUpgradeUI.ResetPanel();
         }
     }
     
@@ -113,7 +109,7 @@ public class RewardScreenManager : MonoBehaviour
         NextWaveButton.onClick.RemoveAllListeners();
         NextWaveButton.onClick.AddListener(() =>
         {
-            GameManager.Instance.playerUpgradeManager.ApplyTestUpgrade();  //This was added for debug reasons, basically when you click continue it gives the stats. Replace with UI later.
+            //GameManager.Instance.playerUpgradeManager.ApplyTestUpgrade();  //This was added for debug reasons, basically when you click continue it gives the stats. Replace with UI later.
             GameManager.Instance.state = GameManager.GameState.COUNTDOWN;
 
         });
