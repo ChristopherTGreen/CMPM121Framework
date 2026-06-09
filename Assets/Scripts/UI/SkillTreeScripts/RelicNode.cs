@@ -220,9 +220,30 @@ public class RelicNode : MonoBehaviour
         {
             
             // if the node collected flag of any of the previous components are false (not collected) return false
-            if (!prev.GetComponent<SpellNode>().nodeCollectedFlag)
+            if (prev.GetComponent<SpellNode>() != null)
             {
-                return false;
+                
+                if (!prev.GetComponent<SpellNode>().nodeCollectedFlag)
+                {
+                    return false;
+                }
+
+            } else if (prev.GetComponent<RelicNode>() != null)
+            {
+                
+                if (!prev.GetComponent<RelicNode>().nodeCollectedFlag)
+                {
+                    return false;
+                }
+
+            } else
+            {
+                
+                if (!prev.GetComponent<ModifierNode>().nodeCollectedFlag)
+                {
+                    return false;
+                }
+
             }
 
         }
