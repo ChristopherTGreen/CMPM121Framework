@@ -106,14 +106,20 @@ public class PlayerUpgradeUI : MonoBehaviour
     private void RefreshCurrentStatsLabel()
     {
         PlayerController player = GameManager.Instance.player.GetComponent<PlayerController>();
+        PlayerUpgradeManager upgrades = GameManager.Instance.playerUpgradeManager;
 
         currentStatsLabel.text =
             "Current Stats\n"
-            + "Health: " + player.hp.hp + " / " + player.hp.max_hp + "\n"
-            + "Spell Power: " + player.power + "\n"
-            + "Mana Regen: " + player.spellcaster.mana_reg + "\n"
-            + "Max Mana: " + player.spellcaster.max_mana + "\n"
-            + "Move Speed: " + player.speed;
+            + "Health: " + player.hp.hp + " / " + player.hp.max_hp
+            + "  (+" + upgrades.GetBonus(PlayerStatType.MaxHealth) + ")\n"
+            + "Spell Power: " + player.power
+            + "  (+" + upgrades.GetBonus(PlayerStatType.SpellPower) + ")\n"
+            + "Mana Regen: " + player.spellcaster.mana_reg
+            + "  (+" + upgrades.GetBonus(PlayerStatType.ManaRegen) + ")\n"
+            + "Max Mana: " + player.spellcaster.max_mana
+            + "  (+" + upgrades.GetBonus(PlayerStatType.MaxMana) + ")\n"
+            + "Move Speed: " + player.speed
+            + "  (+" + upgrades.GetBonus(PlayerStatType.MoveSpeed) + ")";
     }
 
     private void ClearButtons()
