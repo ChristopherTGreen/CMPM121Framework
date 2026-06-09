@@ -49,4 +49,45 @@ public class PlayerUpgradeManager
         flatBonuses[PlayerStatType.MaxMana] = 0;
         flatBonuses[PlayerStatType.MoveSpeed] = 0;
     }
+
+    public List<PlayerUpgrade> GetUpgradeOptions()
+    {
+        return new List<PlayerUpgrade>
+        {
+            new PlayerUpgrade(
+                "Health",
+                "+100 Max Health",
+                PlayerStatType.MaxHealth,
+                100
+            ),
+
+            new PlayerUpgrade(
+                "Spell Power",
+                "+50 Spell Power",
+                PlayerStatType.SpellPower,
+                50
+            ),
+
+            new PlayerUpgrade(
+                "Mana Regen",
+                "+25 Mana Regen",
+                PlayerStatType.ManaRegen,
+                25
+            ),
+
+            new PlayerUpgrade(
+                "Max Mana",
+                "+100 Max Mana",
+                PlayerStatType.MaxMana,
+                100
+            ),
+
+            new PlayerUpgrade(
+                "Move Speed",
+                "+2 Move Speed",
+                PlayerStatType.MoveSpeed,
+                2
+            )
+        };
+    }
 }
