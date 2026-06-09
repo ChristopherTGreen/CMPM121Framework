@@ -172,6 +172,10 @@ public class RelicNode : MonoBehaviour
 
         //put actual collection here. Switch statement?
 
+
+
+        
+
         //then disable the button so the player can't click the node again
         iconbutton.interactable = false;
         nodeCollectedFlag = true; // indicate the node is collected for the previous check in Update()
