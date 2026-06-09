@@ -85,11 +85,11 @@ public class RewardScreenManager : MonoBehaviour
         return GlobalRewardUI.activeSelf;
     }
 
-    
-    
+
+
     // This will get called in the enemy spawner right before the yield return wait for the RewardUI.
     // Using a similar method that I used in the MenuSelectorController when getting the enemy spawner class references
-    
+
     /*
     * In EnemySpawner.cs, I had to declare levelReference at the top of the class + Declare the RewardScreenManager
     * Then in Start() of EnemySpawner, I had to tell Unity to find which object in the heirachy that class was attached to
@@ -106,12 +106,18 @@ public class RewardScreenManager : MonoBehaviour
         // Centers the button in the rewardUI. For some reason, the y position is set at -158?!
         //RectTransform NextWaveButtonPosition = rewardUI.GetComponentInChildren<Button>().GetComponent<RectTransform>();
         //NextWaveButtonPosition.anchoredPosition = new Vector2(0, 0);
-        
-        
+
+
         // RemoveAllListeners is so you dont spawn 5 waves at once at wave 5.
         // If I didn't have this here, it would spawn the previous five waves and mess up the countdown
         NextWaveButton.onClick.RemoveAllListeners();
-        NextWaveButton.onClick.AddListener(() => GameManager.Instance.state = GameManager.GameState.COUNTDOWN); //When Continue button click, trigger the next wave
+        NextWaveButton.onClick.AddListener(() =>
+        {
+            GameManager.Instance.playerUpgradeManager.ApplyTestUpgrade();  //This was added for debug reasons, basically when you click continue it gives the stats. Replace with UI later.
+            GameManager.Instance.state = GameManager.GameState.COUNTDOWN;
+
+        });
+    //When Continue button click, trigger the next wave
         NextWaveButton.onClick.AddListener(() => spelluicontainer.HideDropButtons());
         NextWaveButton.onClick.AddListener(() => GameManager.Instance.sessionStats.currentSpellModNames.Clear());
 
