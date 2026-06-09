@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
         healthui.SetHealth(hp);
         manaui.SetSpellCaster(spellcaster);
         spellui.SetSpell(spellcaster.spell);
+        spellui.highlight.SetActive(true);
 
         //UnityEngine.Debug.Log("Initial player health: " + hp.max_hp);
         //UnityEngine.Debug.Log("Initial player max mana: " + spellcaster.max_mana);
@@ -200,6 +201,8 @@ public class PlayerController : MonoBehaviour
 
         if (GameManager.Instance.activeSpells.Length > 0)
         {
+            // disable current spell in use (visually)
+            spellui.highlight.SetActive(false);
             
             // Should cycle, 1 2 3 0
             activeSpellIndex = (activeSpellIndex + 1) % GameManager.Instance.activeSpells.Length;
@@ -212,6 +215,9 @@ public class PlayerController : MonoBehaviour
             //UnityEngine.Debug.Log("Active Spell index: " + activeSpellIndex);
 
             Spell activespell = GameManager.Instance.activeSpells[activeSpellIndex];
+            spellui = GameManager.Instance.spellUIcontainer.spellUIs[activeSpellIndex].GetComponent<SpellUI>();
+            spellui.highlight.SetActive(true);
+
             spellcaster.CurrentActiveSpell(activespell);
 
             //UnityEngine.Debug.Log("Equipped Spell: " + activespell.name + System.Array.IndexOf(GameManager.Instance.activeSpells, activespell));

@@ -38,6 +38,7 @@ public class SpellUI : MonoBehaviour
     void Update()
     {
         if (spell == null) return;
+        //Debug.Log(spell.name);
         if (Time.time > last_text_update + UPDATE_DELAY)
         {
             manacost.text = spell.GetManaCost().ToString();
