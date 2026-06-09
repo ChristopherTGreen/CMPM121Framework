@@ -13,7 +13,7 @@ public class NavPointManager : MonoBehaviour
 
     float time = 0;
     const int threshold = 5; // seconds till update of nav mesh
-    const int maxConnectionDistance = 50; // max distance for a node to connect to another node
+    const int maxConnectionDistance = 19; // max distance for a node to connect to another node
     float connectionRadius = 3.5f;
 
     void Awake()
@@ -91,6 +91,7 @@ public class NavPointManager : MonoBehaviour
         if (GameManager.Instance.state == GameManager.GameState.PREGAME || GameManager.Instance.state == GameManager.GameState.GAMEOVER) return;
         // queue for all current nodes to check
         Queue<NavPointNode> queue = new Queue<NavPointNode>();
+        
 
         // closest is used for player finding
         GameObject closestObject = GetClosestNavPoint(GameManager.Instance.player.transform.position);
@@ -115,18 +116,18 @@ public class NavPointManager : MonoBehaviour
             {
                 if (neighbor.distanceToPlayer == 99999)
                 {
-                    neighbor.distanceToPlayer = current.distanceToPlayer + 1;
+                    neighbor.distanceToPlayer = (int)(neighbor.transform.position - GameManager.Instance.player.transform.position).magnitude;
                     queue.Enqueue(neighbor);
                 }
             }
         }
 
-        foreach (GameObject node in points)
+       /* foreach (GameObject node in points)
         {
             NavPointNode navNode = node.GetComponent<NavPointNode>();
             //Debug.Log(navNode);
             //Debug.Log(navNode.distanceToPlayer);
-        }
+        }*/
     }
 
     // Set Neighbors automatically sets up neighboring nodes, wiht consideration of sight and not distance
@@ -175,8 +176,8 @@ public class NavPointManager : MonoBehaviour
         if ((givenPosition - targetPosition).magnitude >= maxConnectionDistance) return false;
         return true; // clear sight
     }
-    /*
-    private void OnDrawGizmos()
+    
+    /*private void OnDrawGizmos()
     {
         
         Gizmos.color = Color.yellow;
@@ -198,6 +199,6 @@ public class NavPointManager : MonoBehaviour
                 }
             }
         }
-    }
-    */
+    }*/
+    
 }
