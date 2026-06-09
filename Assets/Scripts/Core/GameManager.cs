@@ -33,6 +33,9 @@ public class GameManager
     public PlayerSpriteManager playerSpriteManager;
     public RelicIconManager relicIconManager;
 
+    public NavPointManager navPointManager = GameObject.Find("NavPointManager").GetComponent<NavPointManager>();
+
+
     public Stats sessionStats = new Stats();
     public PlayerUpgradeManager playerUpgradeManager = new PlayerUpgradeManager();
 
