@@ -74,8 +74,6 @@ public class PlayerUpgradeUI : MonoBehaviour
         int upgradedValue = currentValue + upgrade.amount;
 
         return upgrade.name
-            + "\nCurrent: " + currentValue
-            + " -> " + upgradedValue
             + "\n" + upgrade.description;
     }
 
