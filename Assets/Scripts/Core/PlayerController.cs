@@ -1,10 +1,11 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.IO;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using static PlayerStats;
 
 public class PlayerController : MonoBehaviour
 {
@@ -96,19 +97,25 @@ public class PlayerController : MonoBehaviour
 
                 //UnityEngine.Debug.Log(">> Player Scaled");
 
-                //updating player with new scaling
-                spellcaster.SetMaxMana(newData.mana);
-                spellcaster.mana_reg = newData.mana_regeneration;
+                //updating player with new scaling, this is now update to also add the upgrades selected by the player
+                PlayerUpgradeManager upgrades = GameManager.Instance.playerUpgradeManager;
 
-                //Debug.Log("Power before: " + power);
+                spellcaster.SetMaxMana(
+                    newData.mana + upgrades.GetBonus(PlayerStatType.MaxMana)
+                );
 
-                power = newData.spellpower;
+                spellcaster.mana_reg =
+                    newData.mana_regeneration + upgrades.GetBonus(PlayerStatType.ManaRegen);
 
-                //Debug.Log("Power after: " + power);
+                power =
+                    newData.spellpower + upgrades.GetBonus(PlayerStatType.SpellPower);
 
-                speed = newData.speed;
-                
-                hp.SetMaxHP(newData.health);
+                speed =
+                    newData.speed + upgrades.GetBonus(PlayerStatType.MoveSpeed);
+
+                hp.SetMaxHP(
+                    newData.health + upgrades.GetBonus(PlayerStatType.MaxHealth)
+                );
                 hp.team = Hittable.Team.PLAYER;
 
                 healthui.SetHealth(hp);
