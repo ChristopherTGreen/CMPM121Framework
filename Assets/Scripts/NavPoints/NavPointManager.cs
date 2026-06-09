@@ -177,7 +177,7 @@ public class NavPointManager : MonoBehaviour
         return true; // clear sight
     }
     
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         
         Gizmos.color = Color.yellow;
@@ -199,6 +199,6 @@ public class NavPointManager : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
     
 }
