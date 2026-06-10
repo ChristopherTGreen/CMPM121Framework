@@ -184,11 +184,11 @@ public class ModifierNode : MonoBehaviour
 
 
 
+        SkillTreeRewardManager.ApplyModifier(nodemod);
 
-        
 
-        //then disable the button so the player can't click the node again
-        iconbutton.interactable = false;
+        //the button so the player can't click the node again
+        iconbutton.interactable = false;//then disable
         nodeCollectedFlag = true; // indicate the node is collected for the previous check in Update()
 
     }
