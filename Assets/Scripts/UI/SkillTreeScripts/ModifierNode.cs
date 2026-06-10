@@ -177,21 +177,20 @@ public class ModifierNode : MonoBehaviour
     //Listener to the button - needs to be public for Unity's onClick happy funtime thingy thing 
     public void CollectMod()
     {
-        
+        if (!SkillTreeRewardManager.CanSelectNode())
+        {
+            Debug.Log("No skill tree selections remaining this round.");
+            return;
+        }
+
         Debug.Log("You have collected " + spellmod.name + "!");
-
-        //put actual collection here. Switch statement?
-
-
 
         SpellNode.AvaliableSpells baseSpell = FindBaseSpellType();
         SkillTreeRewardManager.ApplyModifier(nodemod, baseSpell);
+        SkillTreeRewardManager.RegisterNodeSelection();
 
-
-        //the button so the player can't click the node again
-        iconbutton.interactable = false;//then disable
-        nodeCollectedFlag = true; // indicate the node is collected for the previous check in Update()
-
+        iconbutton.interactable = false;
+        nodeCollectedFlag = true;
     }
 
 

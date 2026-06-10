@@ -1346,6 +1346,7 @@ MonoBehaviour:
   spellReward: {fileID: 882227329}
   spelluicontainer: {fileID: 1982188287}
   playerUpgradeUI: {fileID: 1848423348}
+  useRandomSpellRewards: 0
 --- !u!4 &220180078
 Transform:
   m_ObjectHideFlags: 0
@@ -7644,8 +7645,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1}
-  m_SizeDelta: {x: 100, y: 94}
+  m_AnchoredPosition: {x: -39.627914, y: -22.899}
+  m_SizeDelta: {x: 81.0383, y: 85.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1181427513
 MonoBehaviour:

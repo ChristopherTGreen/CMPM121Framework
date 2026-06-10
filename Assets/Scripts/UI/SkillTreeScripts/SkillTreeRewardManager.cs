@@ -6,6 +6,9 @@ public static class SkillTreeRewardManager
 
     private static Dictionary<SpellNode.AvaliableSpells, int> spellSlots =
     new Dictionary<SpellNode.AvaliableSpells, int>();
+    public static int selectionsAllowedPerRound = 1;
+    private static int selectionsUsedThisRound = 0;
+
     public static void GrantSpell(SpellNode.AvaliableSpells spellType)
     {
         PlayerController player = GameManager.Instance.player.GetComponent<PlayerController>();
@@ -216,5 +219,25 @@ public static class SkillTreeRewardManager
         }
 
         return -1;
+    }
+
+    public static bool CanSelectNode()
+    {
+        return selectionsUsedThisRound < selectionsAllowedPerRound;
+    }
+
+    public static void RegisterNodeSelection()
+    {
+        selectionsUsedThisRound++;
+    }
+
+    public static void ResetRoundSelections()
+    {
+        selectionsUsedThisRound = 0;
+    }
+
+    public static int GetSelectionsRemaining()
+    {
+        return selectionsAllowedPerRound - selectionsUsedThisRound;
     }
 }

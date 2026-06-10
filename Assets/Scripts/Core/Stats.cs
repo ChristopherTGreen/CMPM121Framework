@@ -26,18 +26,18 @@ public class Stats : MonoBehaviour
 
     public string getSpellDescription()
     {
+        if (currentSpell == null)
+        {
+            return "";
+        }
 
         string description = "Spell Description: " + currentSpell.description + "\n\n" + "Modifiers: ";
 
-        //Debug.Log("Getting current spell: " + currentSpell.name);
-
         foreach (string modname in currentSpellModNames)
         {
-            //Debug.Log("Modifier name: " + modname);
             description += modname + ", ";
         }
 
-        // temporary hard coded description - this will later get the description of the randomly generated spell
         return description;
     }
 

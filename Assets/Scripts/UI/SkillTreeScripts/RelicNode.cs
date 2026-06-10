@@ -167,9 +167,16 @@ public class RelicNode : MonoBehaviour
     //Listener to the button - needs to be public for Unity's onClick happy funtime thingy thing 
     public void CollectRelic()
     {
+        if (!SkillTreeRewardManager.CanSelectNode())
+        {
+            Debug.Log("No skill tree selections remaining this round.");
+            return;
+        }
+
         Debug.Log("You have collected " + relic.name + "!");
 
         SkillTreeRewardManager.GrantRelic(relic);
+        SkillTreeRewardManager.RegisterNodeSelection();
 
         iconbutton.interactable = false;
         nodeCollectedFlag = true;
