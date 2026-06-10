@@ -15,7 +15,7 @@ public class SkillTreeLoader : MonoBehaviour
     void Start()
     {
         
-        SkillTreeButtonSpawner();
+        //SkillTreeButtonSpawner();
 
     }
 
