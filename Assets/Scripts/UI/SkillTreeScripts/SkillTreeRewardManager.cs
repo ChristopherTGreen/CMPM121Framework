@@ -240,4 +240,9 @@ public static class SkillTreeRewardManager
     {
         return selectionsAllowedPerRound - selectionsUsedThisRound;
     }
+
+    public static void RegisterSpellSlot(SpellNode.AvaliableSpells spellType, int slotIndex)
+    {
+        spellSlots[spellType] = slotIndex;
+    }
 }

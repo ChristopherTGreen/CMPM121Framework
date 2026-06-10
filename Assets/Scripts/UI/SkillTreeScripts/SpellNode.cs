@@ -96,6 +96,12 @@ public class SpellNode : MonoBehaviour
         ButtonHandler();
         PlaceNode(spell);
 
+        if (nodespell == AvaliableSpells.ArcaneBolt)
+        {
+            SkillTreeRewardManager.RegisterSpellSlot(nodespell, 0);
+            SetCollectedVisual();
+        }
+
     }
 
 
