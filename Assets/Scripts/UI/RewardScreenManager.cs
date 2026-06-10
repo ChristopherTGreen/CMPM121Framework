@@ -15,6 +15,7 @@ public class RewardScreenManager : MonoBehaviour
     RewardRelicDisplay rewardRelicDisplay;
     public bool useRandomSpellRewards = false;
     private bool skillTreeSelectionsResetForWave;
+    public GameObject skillTreeUI;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,11 +45,6 @@ public class RewardScreenManager : MonoBehaviour
                 skillTreeSelectionsResetForWave = true;
             }
 
-            if (GameManager.Instance.wave_count % 3 == 0)
-            {
-              //  rewardRelicDisplay.RelicRewards();  //So we don't see the relics anymore, only in skill tree
-            }
-
             playerUpgradeUI.ShowUpgradeOptions();
 
             if (useRandomSpellRewards)
@@ -65,9 +61,10 @@ public class RewardScreenManager : MonoBehaviour
                 rewardUI.transform.Find("Accept").gameObject.SetActive(false);
             }
 
-            NextWaveButtonHandler();
+            rewardUI.transform.Find("Next").gameObject.SetActive(false);
 
             rewardUI.SetActive(true);
+            skillTreeUI.SetActive(true);
         }
         else if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
         {
@@ -75,7 +72,9 @@ public class RewardScreenManager : MonoBehaviour
             rewardRelicDisplay.ClearRewardRelicDisplays(rewardUI);
 
             rewardUI.SetActive(true);
+            skillTreeUI.SetActive(false);
 
+            rewardUI.transform.Find("Next").gameObject.SetActive(true);
             rewardUI.transform.Find("Accept").gameObject.SetActive(false);
             rewardUI.transform.Find("spellReward").gameObject.SetActive(false);
         }
@@ -90,6 +89,7 @@ public class RewardScreenManager : MonoBehaviour
             rewardRelicDisplay.ClearRewardRelicDisplays(rewardUI);
 
             rewardUI.SetActive(false);
+            skillTreeUI.SetActive(false);
             playerUpgradeUI.ResetPanel();
         }
     }

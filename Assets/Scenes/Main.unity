@@ -1495,6 +1495,7 @@ MonoBehaviour:
   spelluicontainer: {fileID: 1982188287}
   playerUpgradeUI: {fileID: 1848423348}
   useRandomSpellRewards: 0
+  skillTreeUI: {fileID: 1181427511}
 --- !u!4 &220180078
 Transform:
   m_ObjectHideFlags: 0

@@ -30,10 +30,10 @@ public class SkillTreeUnloader : MonoBehaviour
         buttonRectTransform.localScale = new Vector2(0.085f, 0.2f);
         buttonRectTransform.anchoredPosition = Vector2.zero; //moves the button to thne bottom left of the parent
 
-        selector.GetComponent<MenuSelectorController>().label.text = "Close";
+        selector.GetComponent<MenuSelectorController>().label.text = "Continue";
         selector.GetComponent<MenuSelectorController>().spawner = null; //sets the spawner to null so the StartLevel() in the MenuSelectorController just returns instead of staating the level
         selector.GetComponent<Button>().onClick.RemoveAllListeners();
-        selector.GetComponent<Button>().onClick.AddListener(() => HideSkillTree());
+        selector.GetComponent<Button>().onClick.AddListener(() => ContinueToNextWave());
 
     }
 
@@ -47,4 +47,16 @@ public class SkillTreeUnloader : MonoBehaviour
 
     }
 
+    public void ContinueToNextWave()
+    {
+        skillTreeUI.SetActive(false);
+
+        if (GameManager.Instance.spellUIcontainer != null)
+        {
+            GameManager.Instance.spellUIcontainer.HideDropButtons();
+        }
+
+        GameManager.Instance.sessionStats.currentSpellModNames.Clear();
+        GameManager.Instance.state = GameManager.GameState.COUNTDOWN;
+    }
 }
