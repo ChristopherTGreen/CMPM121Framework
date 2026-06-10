@@ -26,7 +26,8 @@ public class ModifierNode : MonoBehaviour
     private TextMeshProUGUI nodetext;
     private float lockedAlphaLvl = 0.7f; // same locked alpha lvl for all disabled nodes across all node scripts
     private Button iconbutton;
-
+    [SerializeField] private Color collectedColor = new Color(0.35f, 1f, 0.35f, 1f);
+    private Image nodeImage;
 
 
 
@@ -50,6 +51,7 @@ public class ModifierNode : MonoBehaviour
     {
 
         iconbutton = this.GetComponent<Button>();
+        nodeImage = this.GetComponent<Image>();
 
         // can't find button component? Throw error - button component is needed 
         if (iconbutton == null)
@@ -189,8 +191,7 @@ public class ModifierNode : MonoBehaviour
         SkillTreeRewardManager.ApplyModifier(nodemod, baseSpell);
         SkillTreeRewardManager.RegisterNodeSelection();
 
-        iconbutton.interactable = false;
-        nodeCollectedFlag = true;
+        SetCollectedVisual();
     }
 
 
@@ -213,7 +214,12 @@ public class ModifierNode : MonoBehaviour
     // when player gets all of the previous nodes, then run this function
     private void UnlockNode()
     {
-        
+
+        if (nodeCollectedFlag)
+        {
+            return;
+        }
+
         //enable button feature
         iconbutton.interactable = true;
 
@@ -304,6 +310,19 @@ public class ModifierNode : MonoBehaviour
         throw new System.Exception("ModifierNode could not find a connected base SpellNode.");
     }
 
+
+
+
+    private void SetCollectedVisual()
+    {
+        nodeCollectedFlag = true;
+        iconbutton.interactable = false;
+
+        if (nodeImage != null)
+        {
+            nodeImage.color = collectedColor;
+        }
+    }
 
 }
 
