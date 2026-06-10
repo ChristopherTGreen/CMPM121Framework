@@ -23,7 +23,8 @@ public class RelicNode : MonoBehaviour
     private TextMeshProUGUI nodetext;
     private float lockedAlphaLvl = 0.7f; // same locked alpha lvl for all disabled nodes across all node scripts
     private Button iconbutton;
-
+    [SerializeField] private Color collectedColor = new Color(0.35f, 1f, 0.35f, 1f);
+    private Image nodeImage;
 
 
     [Header("Select Relic")]
@@ -46,6 +47,7 @@ public class RelicNode : MonoBehaviour
     {
 
         iconbutton = this.GetComponent<Button>();
+        nodeImage = this.GetComponent<Image>();
 
         // can't find button component? Throw error - button component is needed 
         if (iconbutton == null)
@@ -178,8 +180,7 @@ public class RelicNode : MonoBehaviour
         SkillTreeRewardManager.GrantRelic(relic);
         SkillTreeRewardManager.RegisterNodeSelection();
 
-        iconbutton.interactable = false;
-        nodeCollectedFlag = true;
+        SetCollectedVisual();
     }
 
 
@@ -202,15 +203,16 @@ public class RelicNode : MonoBehaviour
     // when player gets all of the previous nodes, then run this function
     private void UnlockNode()
     {
-        
-        //enable button feature
+        if (nodeCollectedFlag)
+        {
+            return;
+        }
+
         iconbutton.interactable = true;
 
-        //disable transparency
         Color alphaAdjust = this.GetComponent<Image>().color;
-        alphaAdjust.a = 1.0f; //100% transparency
+        alphaAdjust.a = 1.0f;
         this.GetComponent<Image>().color = alphaAdjust;
-
     }
 
 
@@ -292,6 +294,15 @@ public class RelicNode : MonoBehaviour
         throw new System.Exception("RelicNode could not find a connected base SpellNode.");
     }
 
+    private void SetCollectedVisual()
+    {
+        nodeCollectedFlag = true;
+        iconbutton.interactable = false;
 
+        if (nodeImage != null)
+        {
+            nodeImage.color = collectedColor;
+        }
+    }
 
 }
