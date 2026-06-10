@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        AudioManager.PlayAudio(AudioManager.AudioTypes.BGMusic, 0.7f);
+
         unit = GetComponent<Unit>();
         GameManager.Instance.player = gameObject;
         activeSpellIndex = 4;

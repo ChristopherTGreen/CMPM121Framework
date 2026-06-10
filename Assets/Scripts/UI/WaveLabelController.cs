@@ -50,12 +50,14 @@ public class WaveLabelController : MonoBehaviour
         {
             if (GameManager.Instance.enemy_count <= 0)
             {
+                AudioManager.PlayAudio(AudioManager.AudioTypes.Win);
                 rewardSpellDescriptionFlag = false;
                 rewardSpellDescription.text = "";
                 tmp.text = "You Win!\n" + GameManager.Instance.sessionStats.getStats();
             }
             else
             {
+                AudioManager.PlayAudio(AudioManager.AudioTypes.Lose);
                 rewardSpellDescriptionFlag = false;
                 rewardSpellDescription.text = "";
                 tmp.text = "You Lose!\n" + GameManager.Instance.sessionStats.getStats();
