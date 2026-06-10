@@ -233,6 +233,7 @@ public class Spell : ISpell
     public void Cast()
     {
         ((ISpell)this).Cast(new ValueModifier());
+        AudioManager.PlayAudio(AudioManager.AudioTypes.CastSpell);
     }
 
     void ISpell.Cast(ValueModifier modifier)

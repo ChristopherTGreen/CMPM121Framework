@@ -7,7 +7,6 @@ public class AudioManager : MonoBehaviour
     {
         BGMusic,
         CastSpell,
-        PlayerWalk,
         Win,
         Lose,
         Damage
