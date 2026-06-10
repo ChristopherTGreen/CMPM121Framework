@@ -27,6 +27,13 @@ public static class SkillTreeRewardManager
         PlayerController player = GameManager.Instance.player.GetComponent<PlayerController>();
 
         int index = player.activeSpellIndex;
+
+        if (index < 0 || index >= GameManager.Instance.activeSpells.Length)
+        {
+            index = 0;
+        }
+
+        player.activeSpellIndex = index;
         Spell currentSpell = GameManager.Instance.activeSpells[index];
 
         if (currentSpell == null)

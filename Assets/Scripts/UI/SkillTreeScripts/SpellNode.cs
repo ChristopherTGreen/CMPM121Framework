@@ -226,4 +226,9 @@ public class SpellNode : MonoBehaviour
 
     }
 
+
+    public AvaliableSpells GetSpellType()
+    {
+        return nodespell;
+    }
 }
