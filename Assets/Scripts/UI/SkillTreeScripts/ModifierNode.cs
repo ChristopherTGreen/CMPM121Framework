@@ -184,7 +184,8 @@ public class ModifierNode : MonoBehaviour
 
 
 
-        SkillTreeRewardManager.ApplyModifier(nodemod);
+        SpellNode.AvaliableSpells baseSpell = FindBaseSpellType();
+        SkillTreeRewardManager.ApplyModifier(nodemod, baseSpell);
 
 
         //the button so the player can't click the node again
@@ -268,6 +269,41 @@ public class ModifierNode : MonoBehaviour
     }
 
 
+    public SpellNode.AvaliableSpells FindBaseSpellType()
+    {
+        if (previous == null || previous.Length == 0)
+        {
+            throw new System.Exception("ModifierNode has no previous nodes assigned.");
+        }
+
+        foreach (GameObject prev in previous)
+        {
+            if (prev == null)
+            {
+                continue;
+            }
+
+            SpellNode spellNode = prev.GetComponent<SpellNode>();
+            if (spellNode != null)
+            {
+                return spellNode.GetSpellType();
+            }
+
+            ModifierNode modifierNode = prev.GetComponent<ModifierNode>();
+            if (modifierNode != null)
+            {
+                return modifierNode.FindBaseSpellType();
+            }
+
+            RelicNode relicNode = prev.GetComponent<RelicNode>();
+            if (relicNode != null)
+            {
+                return relicNode.FindBaseSpellType();
+            }
+        }
+
+        throw new System.Exception("ModifierNode could not find a connected base SpellNode.");
+    }
 
 
 }

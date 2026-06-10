@@ -249,6 +249,42 @@ public class RelicNode : MonoBehaviour
 
     }
 
+    public SpellNode.AvaliableSpells FindBaseSpellType()
+    {
+        if (previous == null || previous.Length == 0)
+        {
+            throw new System.Exception("RelicNode has no previous nodes assigned.");
+        }
+
+        foreach (GameObject prev in previous)
+        {
+            if (prev == null)
+            {
+                continue;
+            }
+
+            SpellNode spellNode = prev.GetComponent<SpellNode>();
+            if (spellNode != null)
+            {
+                return spellNode.GetSpellType();
+            }
+
+            ModifierNode modifierNode = prev.GetComponent<ModifierNode>();
+            if (modifierNode != null)
+            {
+                return modifierNode.FindBaseSpellType();
+            }
+
+            RelicNode relicNode = prev.GetComponent<RelicNode>();
+            if (relicNode != null)
+            {
+                return relicNode.FindBaseSpellType();
+            }
+        }
+
+        throw new System.Exception("RelicNode could not find a connected base SpellNode.");
+    }
+
 
 
 }

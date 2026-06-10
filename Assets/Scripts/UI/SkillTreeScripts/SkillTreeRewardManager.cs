@@ -1,54 +1,72 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class SkillTreeRewardManager
 {
+
+    private static Dictionary<SpellNode.AvaliableSpells, int> spellSlots =
+    new Dictionary<SpellNode.AvaliableSpells, int>();
     public static void GrantSpell(SpellNode.AvaliableSpells spellType)
     {
         PlayerController player = GameManager.Instance.player.GetComponent<PlayerController>();
         Spell newSpell = CreateSpell(spellType, player.spellcaster);
 
-        if (GameManager.Instance.GetFilledSlotCount() < GameManager.Instance.activeSpells.Length)
+        int slotIndex = FindFirstOpenSpellSlot();
+
+        if (slotIndex == -1)
         {
-            GameManager.Instance.StoreActiveSpell(newSpell);
-        }
-        else
-        {
-            int index = player.activeSpellIndex;
-            GameManager.Instance.activeSpells[index] = newSpell;
-            player.spellcaster.CurrentActiveSpell(newSpell);
+            slotIndex = player.activeSpellIndex;
+
+            if (slotIndex < 0 || slotIndex >= GameManager.Instance.activeSpells.Length)
+            {
+                slotIndex = 0;
+            }
         }
 
-        GameManager.Instance.spellUIcontainer.ShowActiveSpells();
+        GameManager.Instance.activeSpells[slotIndex] = newSpell;
+        spellSlots[spellType] = slotIndex;
+
+        player.activeSpellIndex = slotIndex;
+        player.spellcaster.CurrentActiveSpell(newSpell);
+
         RefreshSpellUI();
     }
 
-    public static void ApplyModifier(ModifierNode.AvaliableModifiers modifierType)
+    public static void ApplyModifier(
+     ModifierNode.AvaliableModifiers modifierType,
+     SpellNode.AvaliableSpells baseSpellType
+ )
     {
-        PlayerController player = GameManager.Instance.player.GetComponent<PlayerController>();
-
-        int index = player.activeSpellIndex;
-
-        if (index < 0 || index >= GameManager.Instance.activeSpells.Length)
+        if (!spellSlots.ContainsKey(baseSpellType))
         {
-            index = 0;
+            Debug.LogWarning("Base spell has not been collected yet: " + baseSpellType);
+            return;
         }
 
-        player.activeSpellIndex = index;
+        int index = spellSlots[baseSpellType];
+
         Spell currentSpell = GameManager.Instance.activeSpells[index];
 
         if (currentSpell == null)
         {
-            Debug.LogWarning("No active spell selected to modify.");
+            Debug.LogWarning("No spell found in slot for: " + baseSpellType);
             return;
         }
 
         Spell modifiedSpell = CreateModifier(modifierType, currentSpell);
 
         GameManager.Instance.activeSpells[index] = modifiedSpell;
-        player.spellcaster.CurrentActiveSpell(modifiedSpell);
+
+        PlayerController player = GameManager.Instance.player.GetComponent<PlayerController>();
+
+        if (player.activeSpellIndex == index)
+        {
+            player.spellcaster.CurrentActiveSpell(modifiedSpell);
+        }
 
         RefreshSpellUI();
     }
+
 
     public static void GrantRelic(RelicData relicData)
     {
@@ -185,5 +203,18 @@ public static class SkillTreeRewardManager
             spellUIObject.SetActive(true);
             spellUIObject.GetComponent<SpellUI>().SetSpell(spell);
         }
+    }
+
+    private static int FindFirstOpenSpellSlot()
+    {
+        for (int i = 0; i < GameManager.Instance.activeSpells.Length; i++)
+        {
+            if (GameManager.Instance.activeSpells[i] == null)
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 }
