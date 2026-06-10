@@ -177,20 +177,20 @@ public class ModifierNode : MonoBehaviour
     //Listener to the button - needs to be public for Unity's onClick happy funtime thingy thing 
     public void CollectMod()
     {
-        
+        if (!SkillTreeRewardManager.CanSelectNode())
+        {
+            Debug.Log("No skill tree selections remaining this round.");
+            return;
+        }
+
         Debug.Log("You have collected " + spellmod.name + "!");
 
-        //put actual collection here. Switch statement?
+        SpellNode.AvaliableSpells baseSpell = FindBaseSpellType();
+        SkillTreeRewardManager.ApplyModifier(nodemod, baseSpell);
+        SkillTreeRewardManager.RegisterNodeSelection();
 
-
-
-
-        
-
-        //then disable the button so the player can't click the node again
         iconbutton.interactable = false;
-        nodeCollectedFlag = true; // indicate the node is collected for the previous check in Update()
-
+        nodeCollectedFlag = true;
     }
 
 
@@ -268,6 +268,41 @@ public class ModifierNode : MonoBehaviour
     }
 
 
+    public SpellNode.AvaliableSpells FindBaseSpellType()
+    {
+        if (previous == null || previous.Length == 0)
+        {
+            throw new System.Exception("ModifierNode has no previous nodes assigned.");
+        }
+
+        foreach (GameObject prev in previous)
+        {
+            if (prev == null)
+            {
+                continue;
+            }
+
+            SpellNode spellNode = prev.GetComponent<SpellNode>();
+            if (spellNode != null)
+            {
+                return spellNode.GetSpellType();
+            }
+
+            ModifierNode modifierNode = prev.GetComponent<ModifierNode>();
+            if (modifierNode != null)
+            {
+                return modifierNode.FindBaseSpellType();
+            }
+
+            RelicNode relicNode = prev.GetComponent<RelicNode>();
+            if (relicNode != null)
+            {
+                return relicNode.FindBaseSpellType();
+            }
+        }
+
+        throw new System.Exception("ModifierNode could not find a connected base SpellNode.");
+    }
 
 
 }

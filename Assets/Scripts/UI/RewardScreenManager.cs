@@ -13,7 +13,8 @@ public class RewardScreenManager : MonoBehaviour
     public PlayerUpgradeUI playerUpgradeUI;
     RewardSpell rewardSpell = new RewardSpell();
     RewardRelicDisplay rewardRelicDisplay;
-
+    public bool useRandomSpellRewards = false;
+    private bool skillTreeSelectionsResetForWave;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,32 +38,51 @@ public class RewardScreenManager : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
         {
+            if (!skillTreeSelectionsResetForWave)
+            {
+                SkillTreeRewardManager.ResetRoundSelections();
+                skillTreeSelectionsResetForWave = true;
+            }
+
             if (GameManager.Instance.wave_count % 3 == 0)
             {
-                rewardRelicDisplay.RelicRewards();
+              //  rewardRelicDisplay.RelicRewards();  //So we don't see the relics anymore, only in skill tree
             }
 
             playerUpgradeUI.ShowUpgradeOptions();
 
+            if (useRandomSpellRewards)
+            {
+                rewardSpell.AcceptButtonHandler();
+                rewardSpell.DropButtonHandler();
+
+                spellReward.SetActive(true);
+                rewardUI.transform.Find("Accept").gameObject.SetActive(true);
+            }
+            else
+            {
+                spellReward.SetActive(false);
+                rewardUI.transform.Find("Accept").gameObject.SetActive(false);
+            }
+
             NextWaveButtonHandler();
-            rewardSpell.AcceptButtonHandler();
-            rewardSpell.DropButtonHandler();
 
             rewardUI.SetActive(true);
         }
         else if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
         {
             RestartButtonHandler();
-            rewardRelicDisplay.ClearRewardRelicDisplays(rewardUI); // deletes the relic rewards at the game over screen. 
+            rewardRelicDisplay.ClearRewardRelicDisplays(rewardUI);
+
             rewardUI.SetActive(true);
 
-            //Hides the accept and drop buttons when the wave ends.
             rewardUI.transform.Find("Accept").gameObject.SetActive(false);
             rewardUI.transform.Find("spellReward").gameObject.SetActive(false);
         }
         else
         {
-            //When wave starts set the rewardSpellGenerated flag to false
+            skillTreeSelectionsResetForWave = false;
+
             rewardSpell.RewardSpellGenerated = false;
             rewardRelicDisplay.relicsDisplayedFlag = false;
             rewardRelicDisplay.relicSelectedFlag = false;
@@ -73,7 +93,7 @@ public class RewardScreenManager : MonoBehaviour
             playerUpgradeUI.ResetPanel();
         }
     }
-    
+
     // RewardScreenActive()
     // Returns if the reward screen is active in the scene or not
     public static bool RewardScreenActive()

@@ -144,20 +144,19 @@ public class SpellNode : MonoBehaviour
     //Listener to the button - needs to be public for Unity's onClick happy funtime thingy thing 
     public void CollectSpell()
     {
-        
+        if (!SkillTreeRewardManager.CanSelectNode())
+        {
+            Debug.Log("No skill tree selections remaining this round.");
+            return;
+        }
+
         Debug.Log("You have collected " + spell.name + "!");
 
-        //put actual collection here. Switch statement?
+        SkillTreeRewardManager.GrantSpell(nodespell);
+        SkillTreeRewardManager.RegisterNodeSelection();
 
-
-
-
-        
-
-        //then disable the button so the player can't click the node again
         iconbutton.interactable = false;
-        nodeCollectedFlag = true; // indicate the node is collected for the previous check in Update()
-
+        nodeCollectedFlag = true;
     }
 
 
@@ -234,4 +233,9 @@ public class SpellNode : MonoBehaviour
 
     }
 
+
+    public AvaliableSpells GetSpellType()
+    {
+        return nodespell;
+    }
 }
