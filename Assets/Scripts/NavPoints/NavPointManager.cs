@@ -14,7 +14,7 @@ public class NavPointManager : MonoBehaviour
     float time = 0;
     const int threshold = 5; // seconds till update of nav mesh
     const int maxConnectionDistance = 19; // max distance for a node to connect to another node
-    float connectionRadius = 3.5f;
+    //float connectionRadius = 3.5f;
 
     void Awake()
     {

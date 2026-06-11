@@ -6,11 +6,13 @@
       <Path>
         <Point X="31" Y="6.312" />
         <Point X="25.745" Y="6.312" />
-        <Point X="25.745" Y="10.398" />
-        <Point X="16.908" Y="10.398" Type="JumpStart" />
-        <Point X="16.741" Y="10.398" Type="JumpEnd" />
-        <Point X="16.669" Y="10.398" Type="JumpStart" />
-        <Point X="16.503" Y="10.398" Type="JumpEnd" />
+        <Point X="25.745" Y="9.231" />
+        <Point X="17.284" Y="9.231" />
+        <Point X="17.284" Y="10.398" />
+        <Point X="16.896" Y="10.398" Type="JumpStart" />
+        <Point X="16.729" Y="10.398" Type="JumpEnd" />
+        <Point X="16.646" Y="10.398" Type="JumpStart" />
+        <Point X="16.48" Y="10.398" Type="JumpEnd" />
         <Point X="16.25" Y="10.398" />
       </Path>
     </AssociationLine>
@@ -25,7 +27,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="SpawnPoint">
-    <Position X="34.5" Y="8.25" Width="1.5" />
+    <Position X="35.25" Y="8.75" Width="1.5" />
     <NestedTypes>
       <Enum Name="SpawnPoint.SpawnName" Collapsed="true">
         <TypeIdentifier>
@@ -73,16 +75,16 @@
     </NestedTypes>
     <AssociationLine Name="projectileManager" Type="ProjectileManager" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="17" Y="17.063" />
-        <Point X="17.375" Y="17.063" />
+        <Point X="17" Y="16.713" />
+        <Point X="17.375" Y="16.713" />
         <Point X="17.375" Y="20.481" />
         <Point X="20.75" Y="20.481" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="activeSpells" Type="Spell" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="15.5" Y="16.7" />
-        <Point X="15.125" Y="16.7" />
+        <Point X="15.5" Y="16.373" />
+        <Point X="15.125" Y="16.373" />
         <Point X="15.125" Y="29.178" />
         <Point X="11.208" Y="29.178" Type="JumpStart" />
         <Point X="11.042" Y="29.178" Type="JumpEnd" />
@@ -91,8 +93,8 @@
     </AssociationLine>
     <AssociationLine Name="currentRewardSpell" Type="Spell" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="15.5" Y="16.459" />
-        <Point X="14.808" Y="16.459" />
+        <Point X="15.5" Y="16.147" />
+        <Point X="14.808" Y="16.147" />
         <Point X="14.808" Y="27.96" />
         <Point X="11.208" Y="27.96" Type="JumpStart" />
         <Point X="11.042" Y="27.96" Type="JumpEnd" />
@@ -101,16 +103,16 @@
     </AssociationLine>
     <AssociationLine Name="spellUIcontainer" Type="SpellUIContainer" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="15.5" Y="16.277" />
-        <Point X="14.472" Y="16.277" />
-        <Point X="14.472" Y="20.823" />
-        <Point X="11.208" Y="20.823" Type="JumpStart" />
-        <Point X="11.042" Y="20.823" Type="JumpEnd" />
-        <Point X="9.5" Y="20.823" />
+        <Point X="15.5" Y="15.976" />
+        <Point X="14.472" Y="15.976" />
+        <Point X="14.472" Y="22.073" />
+        <Point X="11.208" Y="22.073" Type="JumpStart" />
+        <Point X="11.042" Y="22.073" Type="JumpEnd" />
+        <Point X="10.5" Y="22.073" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AIIAQEAIAQAAABAAACAABCARBAEBAAQFQIiMAEAMABA=</HashCode>
+      <HashCode>AIIAQEAIAQAAEBAAACAABCARBAEBAAQFQIiMAEAMABA=</HashCode>
       <FileName>Assets\Scripts\Core\GameManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -119,6 +121,8 @@
       <Field Name="currentRewardSpell" />
       <Field Name="spellUIcontainer" />
       <Field Name="chosenClass" />
+      <Field Name="navPointManager" />
+      <Field Name="playerUpgradeManager" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Field Name="enemyTypes" />
@@ -132,18 +136,19 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="RewardScreenManager">
-    <Position X="34.5" Y="4.5" Width="1.5" />
+    <Position X="35.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAgAAgACQAAAoEAAAAAAAEAAAAAAAAAAAIAAAAEAA=</HashCode>
+      <HashCode>AAQAgAAgACQAAAoEAAQAAAgEQAAAAAAAAAAIgAAAEAA=</HashCode>
       <FileName>Assets\Scripts\UI\RewardScreenManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="rewardSpell" />
       <Field Name="rewardRelicDisplay" />
+      <Field Name="playerUpgradeUI" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Stats">
-    <Position X="18.25" Y="13.5" Width="1.5" />
+    <Position X="18.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEEAASAAgAAAAAIAAAAAAACAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Core\Stats.cs</FileName>
@@ -181,7 +186,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GameRestarter">
-    <Position X="36.25" Y="4.5" Width="1.5" />
+    <Position X="37" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Core\GameRestarter.cs</FileName>
@@ -223,13 +228,13 @@
   <Class Name="Spell">
     <Position X="7.75" Y="25.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>YDAAAEFUQCggiAAAIKgAEEQAWhEUAIxACQAAwABAAoA=</HashCode>
+      <HashCode>YDACAEFUQCggiACAIKjgEEQAWhEUAIxECQAA4AFAApA=</HashCode>
       <FileName>Assets\Scripts\Spells\Spell.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ArcaneBolt" Collapsed="true">
-    <Position X="5.75" Y="24" Width="1.5" />
+    <Position X="3.75" Y="21" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Spells\SpellTypes\ArcaneBolt.cs</FileName>
@@ -246,28 +251,28 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="BounceModifier" Collapsed="true">
-    <Position X="3.75" Y="36.25" Width="1.5" />
+    <Position X="12.75" Y="37.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Spells\ModifierSpellTypes\Bounce.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ChaosModifier" Collapsed="true">
-    <Position X="6" Y="36.25" Width="1.5" />
+    <Position X="15" Y="37.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Spells\ModifierSpellTypes\Chaos.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DamageAmpModifier" Collapsed="true">
-    <Position X="8.25" Y="36.25" Width="1.5" />
+    <Position X="17.25" Y="37.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Spells\ModifierSpellTypes\DamageAmp.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DoublerModifier" Collapsed="true">
-    <Position X="10.5" Y="36.25" Width="1.5" />
+    <Position X="19.5" Y="37.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Spells\ModifierSpellTypes\Doubler.cs</FileName>
@@ -302,7 +307,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SplitterModifier" Collapsed="true">
-    <Position X="21.75" Y="36.25" Width="1.5" />
+    <Position X="19.5" Y="38.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Spells\ModifierSpellTypes\Splitter.cs</FileName>
@@ -371,17 +376,17 @@
   <Class Name="SpellData" Collapsed="true">
     <Position X="10" Y="16.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAARIAAgQAEYEAAAEgAACAEAgAEAQAAQJBAADA=</HashCode>
+      <HashCode>AAEgAAABRIAAgQAEYMAAAEgBACAEAgAEAQAQQJBAADA=</HashCode>
       <FileName>Assets\Scripts\Spells\SpellData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SpellUIContainer">
-    <Position X="8" Y="19.5" Width="1.5" />
+    <Position X="9" Y="20.75" Width="1.5" />
     <AssociationLine Name="activeSpellList" Type="Spell" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="8.906" Y="22.146" />
-        <Point X="8.906" Y="22.521" />
-        <Point X="8.812" Y="22.521" />
+        <Point X="9.906" Y="23.396" />
+        <Point X="9.906" Y="24.875" />
+        <Point X="8.812" Y="24.875" />
         <Point X="8.812" Y="25.25" />
       </Path>
     </AssociationLine>
@@ -403,7 +408,7 @@
   <Class Name="ProjectileController">
     <Position X="19" Y="21.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQABACAQCAEAAAAAEQQAACAAAAAEABAAIAgAABAAAA=</HashCode>
+      <HashCode>AAQABACAQCgEAAAAAEQYAACBAAAAEABAAIAgAABAAAA=</HashCode>
       <FileName>Assets\Scripts\Projectiles\ProjectileController.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -418,9 +423,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SpellBuilder">
-    <Position X="3.75" Y="24" Width="1.5" />
+    <Position X="3.75" Y="25.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAiAAAAAAgAABEAAAAIAAAAKAAgAAIQiCAQAgAAAA=</HashCode>
+      <HashCode>ABBAiAAAAAAgAABEAAAAIAAAAKBVkAAYRiSBSAgAAAA=</HashCode>
       <FileName>Assets\Scripts\Spells\SpellBuilder.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -428,7 +433,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="SpellModifierBuilder">
-    <Position X="3.75" Y="29" Width="1.5" />
+    <Position X="3.75" Y="32.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAMAIgEAACAAAAAAAAQIAAADgEEEgAAAAICAAAAAAEA=</HashCode>
       <FileName>Assets\Scripts\Spells\SpellModifierBuilder.cs</FileName>
@@ -438,14 +443,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ValueModifier">
-    <Position X="5.75" Y="29" Width="1.5" />
+    <Position X="5.75" Y="32.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAYIAAQAIAAUAAAAgAACIFgwEGAAAAAABAABA=</HashCode>
+      <HashCode>AAAAAAAAYIAAQAIQQcAAAAgQACIFgwEGAAAAAAJAAAA=</HashCode>
       <FileName>Assets\Scripts\Spells\ValueModifier.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ValueModifier&lt;T&gt;">
-    <Position X="3.75" Y="33.75" Width="1.5" />
+    <Position X="3.75" Y="37.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Spells\ValueModifier.cs</FileName>
@@ -495,7 +500,7 @@
   <Class Name="RelicData" Collapsed="true">
     <Position X="18" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAEAAAAAAAAAAAAAAAABAEAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAAEAAAAAAAAAAAAAAAABAEAAAAAAAAAAAAABA=</HashCode>
       <FileName>Assets\Scripts\Relics\RelicData.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -541,7 +546,7 @@
   <Class Name="RelicEffect">
     <Position X="46.25" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAIABIAAAAAAAACAAgAAAAAAQAAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAIAAAIABIAAAAAAAACAAgAAAAAAQAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Relics\RelicEffect.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -702,9 +707,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EventBus">
-    <Position X="21.25" Y="10.75" Width="1.5" />
+    <Position X="26.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAQgEAAAAAAAGAAEAAACEAgABABBAAQEQEAACAkAACA=</HashCode>
+      <HashCode>EAQgGAAAAAAAGAAEAAACEAgABABBAAQEQEAACgkAACA=</HashCode>
       <FileName>Assets\Scripts\Core\EventBus.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -726,16 +731,16 @@
         <Point X="30.125" Y="14.863" />
         <Point X="30.125" Y="25.938" />
         <Point X="20.75" Y="25.938" />
-        <Point X="20.75" Y="26.444" />
-        <Point X="16.333" Y="26.444" Type="JumpStart" />
-        <Point X="16.167" Y="26.444" Type="JumpEnd" />
-        <Point X="15.208" Y="26.444" Type="JumpStart" />
-        <Point X="15.042" Y="26.444" Type="JumpEnd" />
-        <Point X="14.891" Y="26.444" Type="JumpStart" />
-        <Point X="14.725" Y="26.444" Type="JumpEnd" />
-        <Point X="11.208" Y="26.444" Type="JumpStart" />
-        <Point X="11.042" Y="26.444" Type="JumpEnd" />
-        <Point X="9.625" Y="26.444" />
+        <Point X="20.75" Y="27.021" />
+        <Point X="16.333" Y="27.021" Type="JumpStart" />
+        <Point X="16.167" Y="27.021" Type="JumpEnd" />
+        <Point X="15.208" Y="27.021" Type="JumpStart" />
+        <Point X="15.042" Y="27.021" Type="JumpEnd" />
+        <Point X="14.891" Y="27.021" Type="JumpStart" />
+        <Point X="14.725" Y="27.021" Type="JumpEnd" />
+        <Point X="11.208" Y="27.021" Type="JumpStart" />
+        <Point X="11.042" Y="27.021" Type="JumpEnd" />
+        <Point X="9.625" Y="27.021" />
         <Point X="9.625" Y="25.938" />
         <Point X="9.25" Y="25.938" />
       </Path>
@@ -765,6 +770,213 @@
     <ShowAsAssociation>
       <Field Name="rewardedrelic" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="ArcaneBlast" Collapsed="true">
+    <Position X="3.75" Y="24" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\SpellTypes\ArcaneBlast.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ArcaneSpray" Collapsed="true">
+    <Position X="3.75" Y="23" Width="1.5" />
+    <InheritanceLine Type="Spell" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="25.25" />
+        <Point X="8.5" Y="23.845" />
+        <Point X="5" Y="23.845" />
+        <Point X="5" Y="23.691" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\SpellTypes\ArcaneSpray.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MagicMissile" Collapsed="true">
+    <Position X="3.75" Y="22" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\SpellTypes\MagicMissile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Broken" Collapsed="true">
+    <Position X="12.75" Y="38.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\ModifierSpellTypes\Broken.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BubbleModifier" Collapsed="true">
+    <Position X="17.25" Y="38.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\ModifierSpellTypes\Bubble.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Massive" Collapsed="true">
+    <Position X="15" Y="38.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Spells\ModifierSpellTypes\Massive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManaBubble" Collapsed="true">
+    <Position X="46.25" Y="21.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Relics\RelicTypes\ManaBubble.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarlocksTome" Collapsed="true">
+    <Position X="48" Y="21.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Relics\RelicTypes\WarlocksTome.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BloodAmulet" Collapsed="true">
+    <Position X="49.75" Y="21.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Relics\RelicTypes\BloodAmulet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NavPointManager">
+    <Position X="20.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAGAQCAAAAAAAABAAAAAEQAAACAAAAAJBAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\NavPoints\NavPointManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NavPointNode">
+    <Position X="22.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\NavPoints\NavPointNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="neighbors" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="EnemyController">
+    <Position X="33.5" Y="23" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="EnemyController.state" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Movement\EnemyController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IgQAUAAAACAAgAAgIAAAAAAAAQAAAQAIAABARSAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Movement\EnemyController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="hp" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PlayerUpgradeManager">
+    <Position X="19" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAQAAAAoAAAAAAAAAQAAAAAAAAAIAA=</HashCode>
+      <FileName>Assets\Scripts\RPGStats\PlayerUpgradeManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerUpgradeUI">
+    <Position X="33" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAQAAAABAEAkAAQAAAAAAAAAAEAEAECAAAgAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\RPGStats\PlayerUpgradeUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerUpgrade">
+    <Position X="20.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAEgAAAAAAAAAAABAA=</HashCode>
+      <FileName>Assets\Scripts\RPGStats\PlayerUpgrade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SettingsHandler">
+    <Position X="38.5" Y="33" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgABAAAAACAAAAACAAAAAAMIkAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\UI\MainMenuScripts\SettingsHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SettingsData">
+    <Position X="40.25" Y="33" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\SettingsData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SkillTreeLoader">
+    <Position X="45.5" Y="28" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAKAAACAQAAgAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\SkillTreeScripts\SkillTreeLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SkillTreeRewardManager">
+    <Position X="47.25" Y="27" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAgAEAAAAAAAgAGAAAFAEACoAABhCAA=</HashCode>
+      <FileName>Assets\Scripts\UI\SkillTreeScripts\SkillTreeRewardManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SkillTreeUnloader">
+    <Position X="43.75" Y="27" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAKAIAAAAAAAAAAgAAAAAAACAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\SkillTreeScripts\SkillTreeUnloader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AudioManager">
+    <Position X="22.75" Y="14.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="AudioManager.AudioTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Audio\AudioManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgACAAAAAAAQAAAAAAAAAAEAAAQAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Audio\AudioManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CreditsHandling">
+    <Position X="42" Y="32" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAACAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\MainMenuScripts\CreditsHandling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuitApplication">
+    <Position X="38.5" Y="31" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\MainMenuScripts\QuitApplication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WitheringProjectileMovement" Collapsed="true">
+    <Position X="24.5" Y="21.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAgAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Projectiles\WitheringProjectileMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewMonoBehaviourScript">
+    <Position X="31.75" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAEAAAAAAgAAAAAAEQAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\UI\SkillTreeScripts\UiZoomingHandling.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

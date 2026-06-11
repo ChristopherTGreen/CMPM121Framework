@@ -57,7 +57,7 @@ public class ProjectileManager : MonoBehaviour
             return new WitheringProjectileMovement(speed);
         }
         throw new Exception("Projectile Manager: Invalid Projectile Movement");
-        return null;
+        //return null;
     }
 
 }
