@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 // Credits: Used Jason Weimann's 'Unity3D - How to Zoom an Image / Create a zoomable pannable sprite' yt video
 // IScrollHandler comes from UnityEngine.EventSystems - Not one of our interfaces, it's Unity's
-public class NewMonoBehaviourScript : MonoBehaviour, IScrollHandler
+public class UIZoomingHandling : MonoBehaviour, IScrollHandler
 {
 
     private Vector3 initialScale;
